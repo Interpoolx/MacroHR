@@ -5,12 +5,14 @@ import { useState, useEffect, useCallback } from 'react'
 import { Badge } from "@shared/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@shared/components/ui/avatar"
 import { toast } from "sonner"
+import { X } from 'lucide-react'
 import {
     Dialog,
     DialogContent,
     DialogHeader,
     DialogTitle,
-    DialogFooter
+    DialogFooter,
+    DialogDescription
 } from "@shared/components/ui/dialog"
 import { Button } from "@shared/components/ui/button"
 import { Input } from "@shared/components/ui/input"
@@ -116,8 +118,7 @@ function PeopleManagementPage() {
             designation: '',
             status: 'active'
         })
-        console.log("Opening Modal for:", person ? person.name : "New Employee");
-        setTimeout(() => setIsModalOpen(true), 10)
+        setIsModalOpen(true)
     }, [])
 
     const handleSave = useCallback(() => {
@@ -181,6 +182,9 @@ function PeopleManagementPage() {
                         <DialogTitle className="text-3xl font-black uppercase italic tracking-tighter text-white">
                             {editingPerson ? 'Refine' : 'Add New'} <span className='text-primary'>Employee</span>
                         </DialogTitle>
+                        <DialogDescription className="text-slate-500 font-bold uppercase italic text-[10px] tracking-widest mt-2">
+                            {editingPerson ? 'Update existing employee record information' : 'Register a new employee into the workforce database'}
+                        </DialogDescription>
                     </DialogHeader>
 
                     <div className="space-y-6">

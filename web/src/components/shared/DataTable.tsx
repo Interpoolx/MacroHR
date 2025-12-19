@@ -82,10 +82,7 @@ export function DataTable<TData>({
                             <DropdownMenuSeparator className="bg-white/5" />
                             {onEdit && (
                                 <DropdownMenuItem
-                                    onSelect={(e) => {
-                                        e.preventDefault();
-                                        onEdit(item);
-                                    }}
+                                    onSelect={() => onEdit(item)}
                                     className="rounded-xl focus:bg-primary/10 focus:text-primary font-black uppercase italic text-[10px] tracking-widest cursor-pointer group"
                                 >
                                     <div className="flex items-center gap-3">
@@ -96,7 +93,7 @@ export function DataTable<TData>({
                             )}
                             {onDelete && (
                                 <DropdownMenuItem
-                                    onClick={() => onDelete(item)}
+                                    onSelect={() => onDelete(item)}
                                     className="flex items-center gap-2 p-2 rounded-xl focus:bg-red-500/10 focus:text-red-500 transition-colors cursor-pointer font-medium text-sm"
                                 >
                                     <Trash2 className="h-4 w-4" /> Delete

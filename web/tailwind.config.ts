@@ -1,4 +1,6 @@
-/** @type {import('tailwindcss').Config} */
+import type { Config } from 'tailwindcss';
+import tailwindcssAnimate from 'tailwindcss-animate';
+import typography from '@tailwindcss/typography';
 module.exports = {
   content: [
     "./index.html",
@@ -7,9 +9,10 @@ module.exports = {
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     './features/**/*.{ts,tsx}',
-    './shared/components/**/*.{ts,tsx}',
+    '../shared/components/**/*.{ts,tsx}',
+    '../node_modules/@radix-ui/**/*.{js,jsx,ts,tsx}',
   ],
-  darkMode: ["class"],
+  darkMode: "class",
   theme: {
     container: {
       center: true,
@@ -110,7 +113,7 @@ module.exports = {
     },
   },
   plugins: [
-    require("@tailwindcss/typography"),
-    require("tailwindcss-animate"),
+    typography,
+    tailwindcssAnimate,
   ],
-};
+} satisfies Config;
