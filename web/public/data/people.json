@@ -1,0 +1,42 @@
+[
+    {
+        "id": "EMP001",
+        "name": "Sarah Jenkins",
+        "email": "sarah.j@macrohr.com",
+        "department": "Engineering",
+        "designation": "Senior Frontend Engineer",
+        "status": "active",
+        "joinDate": "2023-01-15",
+        "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"
+    },
+    {
+        "id": "EMP002",
+        "name": "Michael Chen",
+        "email": "m.chen@macrohr.com",
+        "department": "Product",
+        "designation": "Product Manager",
+        "status": "active",
+        "joinDate": "2023-03-20",
+        "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Michael"
+    },
+    {
+        "id": "EMP003",
+        "name": "Alex Rivera",
+        "email": "alex.r@macrohr.com",
+        "department": "Design",
+        "designation": "UI/UX Designer",
+        "status": "pending",
+        "joinDate": "2024-01-10",
+        "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Alex"
+    },
+    {
+        "id": "EMP004",
+        "name": "Emily Davis",
+        "email": "emily.d@macrohr.com",
+        "department": "HR",
+        "designation": "HR Specialist",
+        "status": "active",
+        "joinDate": "2022-11-05",
+        "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Emily"
+    }
+]

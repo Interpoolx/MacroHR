@@ -1,0 +1,19 @@
+{
+    "name": "macrohr-monorepo",
+    "private": true,
+    "workspaces": [
+        "backend",
+        "web",
+        "shared"
+    ],
+    "scripts": {
+        "dev": "concurrently \"npm run dev --workspace=backend\" \"npm run dev --workspace=web\"",
+        "dev:back": "npm run dev --workspace=backend",
+        "dev:web": "npm run dev --workspace=web",
+        "build": "npm run build --workspaces",
+        "lint": "npm run lint --workspaces"
+    },
+    "devDependencies": {
+        "concurrently": "^9.1.0"
+    }
+}

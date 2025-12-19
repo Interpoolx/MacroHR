@@ -1,0 +1,22 @@
+[
+    {
+        "id": "REF001",
+        "employeeId": "EMP001",
+        "employeeName": "Sarah Jenkins",
+        "requestDate": "2024-01-05",
+        "type": "Standard Employment Verification",
+        "recipient": "Chase Bank",
+        "status": "approved",
+        "processedDate": "2024-01-06"
+    },
+    {
+        "id": "REF002",
+        "employeeId": "EMP002",
+        "employeeName": "Michael Chen",
+        "requestDate": "2024-01-10",
+        "type": "Detailed Reference Letter",
+        "recipient": "GreenTree Rentals",
+        "status": "pending",
+        "processedDate": null
+    }
+]

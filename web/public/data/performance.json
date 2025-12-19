@@ -1,0 +1,29 @@
+[
+    {
+        "id": "PERF001",
+        "employeeId": "EMP001",
+        "employeeName": "Sarah Jenkins",
+        "reviewPeriod": "Q4 2023",
+        "rating": 4.8,
+        "status": "completed",
+        "feedback": "Exceptional contribution to the React 19 migration."
+    },
+    {
+        "id": "PERF002",
+        "employeeId": "EMP002",
+        "employeeName": "Michael Chen",
+        "reviewPeriod": "Q4 2023",
+        "rating": 4.2,
+        "status": "completed",
+        "feedback": "Strong leadership in the Product launch phase."
+    },
+    {
+        "id": "PERF003",
+        "employeeId": "EMP003",
+        "employeeName": "Alex Rivera",
+        "reviewPeriod": "Q4 2023",
+        "rating": 3.9,
+        "status": "pending",
+        "feedback": "Needs to focus on documentation clarity."
+    }
+]

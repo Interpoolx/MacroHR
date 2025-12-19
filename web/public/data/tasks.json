@@ -1,0 +1,26 @@
+[
+    {
+        "id": "TSK001",
+        "title": "Update SEO Meta Tags",
+        "priority": "high",
+        "status": "in-progress",
+        "dueDate": "2024-01-10",
+        "category": "Marketing"
+    },
+    {
+        "id": "TSK002",
+        "title": "Hono API Documentation",
+        "priority": "medium",
+        "status": "todo",
+        "dueDate": "2024-01-12",
+        "category": "Development"
+    },
+    {
+        "id": "TSK003",
+        "title": "Submit Q4 Expenses",
+        "priority": "low",
+        "status": "completed",
+        "dueDate": "2023-12-31",
+        "category": "Finance"
+    }
+]

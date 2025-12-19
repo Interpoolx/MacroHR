@@ -1,0 +1,82 @@
+[
+    {
+        "id": "1",
+        "name": "Rajesh Kumar",
+        "email": "admin@admin.com",
+        "role": "admin",
+        "status": "active",
+        "createdAt": "2023-01-01T10:00:00Z"
+    },
+    {
+        "id": "2",
+        "name": "Sarah Staff",
+        "email": "manager@staff.com",
+        "role": "manager",
+        "status": "active",
+        "createdAt": "2023-02-15T09:30:00Z"
+    },
+    {
+        "id": "3",
+        "name": "Alex User",
+        "email": "user@user.com",
+        "role": "user",
+        "status": "active",
+        "createdAt": "2023-03-20T14:45:00Z"
+    },
+    {
+        "id": "4",
+        "name": "Emma Wilson",
+        "email": "emma@example.com",
+        "role": "user",
+        "status": "active",
+        "createdAt": "2023-04-10T11:20:00Z"
+    },
+    {
+        "id": "5",
+        "name": "Michael Chen",
+        "email": "michael@example.com",
+        "role": "manager",
+        "status": "inactive",
+        "createdAt": "2023-05-05T16:15:00Z"
+    },
+    {
+        "id": "6",
+        "name": "Sophia Garcia",
+        "email": "sophia@example.com",
+        "role": "user",
+        "status": "active",
+        "createdAt": "2023-06-12T08:50:00Z"
+    },
+    {
+        "id": "7",
+        "name": "David Miller",
+        "email": "david@example.com",
+        "role": "user",
+        "status": "pending",
+        "createdAt": "2023-07-18T13:40:00Z"
+    },
+    {
+        "id": "8",
+        "name": "Olivia Taylor",
+        "email": "olivia@example.com",
+        "role": "user",
+        "status": "active",
+        "createdAt": "2023-08-22T10:05:00Z"
+    },
+    {
+        "id": "9",
+        "name": "James Anderson",
+        "email": "james@example.com",
+        "role": "manager",
+        "status": "active",
+        "createdAt": "2023-09-30T15:55:00Z"
+    },
+    {
+        "id": "10",
+        "name": "Isabella White",
+        "email": "isabella@example.com",
+        "role": "user",
+        "status": "active",
+        "createdAt": "2023-10-05T09:10:00Z"
+    }
+]

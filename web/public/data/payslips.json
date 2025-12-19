@@ -1,0 +1,41 @@
+[
+    {
+        "id": "PS-2023-12",
+        "employeeId": "EMP001",
+        "employeeName": "Sarah Jenkins",
+        "month": "December",
+        "year": 2023,
+        "basicSalary": 8500,
+        "allowance": 1200,
+        "deductions": 450,
+        "netSalary": 9250,
+        "status": "paid",
+        "paymentDate": "2023-12-28"
+    },
+    {
+        "id": "PS-2023-11",
+        "employeeId": "EMP001",
+        "employeeName": "Sarah Jenkins",
+        "month": "November",
+        "year": 2023,
+        "basicSalary": 8500,
+        "allowance": 1200,
+        "deductions": 400,
+        "netSalary": 9300,
+        "status": "paid",
+        "paymentDate": "2023-11-28"
+    },
+    {
+        "id": "PS-2023-12-02",
+        "employeeId": "EMP002",
+        "employeeName": "Michael Chen",
+        "month": "December",
+        "year": 2023,
+        "basicSalary": 7500,
+        "allowance": 800,
+        "deductions": 300,
+        "netSalary": 8000,
+        "status": "processed",
+        "paymentDate": "2023-12-28"
+    }
+]

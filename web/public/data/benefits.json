@@ -1,0 +1,29 @@
+[
+    {
+        "id": "BEN001",
+        "name": "Premium Health Insurance",
+        "provider": "BlueCross BlueShield",
+        "category": "Health",
+        "coverage": "Family",
+        "monthlyCost": 450,
+        "status": "active"
+    },
+    {
+        "id": "BEN002",
+        "name": "401(k) Retirement Plan",
+        "provider": "Fidelity",
+        "category": "Finance",
+        "coverage": "Individual",
+        "monthlyCost": 0,
+        "status": "active"
+    },
+    {
+        "id": "BEN003",
+        "name": "Gym Membership",
+        "provider": "Anytime Fitness",
+        "category": "Wellness",
+        "coverage": "Individual",
+        "monthlyCost": 45,
+        "status": "active"
+    }
+]

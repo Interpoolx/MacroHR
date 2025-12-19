@@ -1,0 +1,26 @@
+[
+    {
+        "id": "TKT-101",
+        "subject": "Payroll Discrepancy",
+        "priority": "high",
+        "status": "open",
+        "createdAt": "2024-01-15T09:00:00Z",
+        "category": "Payroll"
+    },
+    {
+        "id": "TKT-102",
+        "subject": "Benefit Enrollment Help",
+        "priority": "medium",
+        "status": "in-progress",
+        "createdAt": "2024-01-16T11:30:00Z",
+        "category": "Benefits"
+    },
+    {
+        "id": "TKT-103",
+        "subject": "Password Reset Issue",
+        "priority": "low",
+        "status": "resolved",
+        "createdAt": "2024-01-14T15:45:00Z",
+        "category": "Technical"
+    }
+]

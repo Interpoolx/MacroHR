@@ -1,0 +1,43 @@
+[
+    {
+        "id": "1",
+        "name": "Administrator",
+        "key": "admin",
+        "description": "Full system access and settings management",
+        "permissions": [
+            "all"
+        ]
+    },
+    {
+        "id": "2",
+        "name": "Manager",
+        "key": "manager",
+        "description": "Team management and reporting access",
+        "permissions": [
+            "view_dashboard",
+            "manage_users",
+            "view_reports"
+        ]
+    },
+    {
+        "id": "3",
+        "name": "Developer",
+        "key": "developer",
+        "description": "Access to API tools and technical logs",
+        "permissions": [
+            "view_dashboard",
+            "manage_api",
+            "view_logs"
+        ]
+    },
+    {
+        "id": "4",
+        "name": "User",
+        "key": "user",
+        "description": "Standard personal dashboard access",
+        "permissions": [
+            "view_dashboard",
+            "manage_profile"
+        ]
+    }
+]

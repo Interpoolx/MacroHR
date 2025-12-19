@@ -1,0 +1,26 @@
+[
+    {
+        "id": "DOC001",
+        "name": "Employment Contract",
+        "type": "PDF",
+        "category": "Legal",
+        "uploadDate": "2023-01-15",
+        "owner": "Sarah Jenkins"
+    },
+    {
+        "id": "DOC002",
+        "name": "W-4 Form",
+        "type": "PDF",
+        "category": "Tax",
+        "uploadDate": "2023-01-16",
+        "owner": "Sarah Jenkins"
+    },
+    {
+        "id": "DOC003",
+        "name": "Product Specs v1.2",
+        "type": "DOCX",
+        "category": "Work",
+        "uploadDate": "2023-11-20",
+        "owner": "Michael Chen"
+    }
+]
