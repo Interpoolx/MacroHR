@@ -25,9 +25,9 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 
-// .wrangler/tmp/bundle-7p279G/checked-fetch.js
+// .wrangler/tmp/bundle-dwA4zy/checked-fetch.js
 var require_checked_fetch = __commonJS({
-  ".wrangler/tmp/bundle-7p279G/checked-fetch.js"() {
+  ".wrangler/tmp/bundle-dwA4zy/checked-fetch.js"() {
     "use strict";
     var urls = /* @__PURE__ */ new Set();
     function checkURL(request, init) {
@@ -56,29 +56,57 @@ var require_checked_fetch = __commonJS({
   }
 });
 
-// .wrangler/tmp/bundle-7p279G/middleware-loader.entry.ts
+// .wrangler/tmp/bundle-dwA4zy/strip-cf-connecting-ip-header.js
+var require_strip_cf_connecting_ip_header = __commonJS({
+  ".wrangler/tmp/bundle-dwA4zy/strip-cf-connecting-ip-header.js"() {
+    "use strict";
+    function stripCfConnectingIPHeader(input, init) {
+      const request = new Request(input, init);
+      request.headers.delete("CF-Connecting-IP");
+      return request;
+    }
+    __name(stripCfConnectingIPHeader, "stripCfConnectingIPHeader");
+    globalThis.fetch = new Proxy(globalThis.fetch, {
+      apply(target, thisArg, argArray) {
+        return Reflect.apply(target, thisArg, [
+          stripCfConnectingIPHeader.apply(null, argArray)
+        ]);
+      }
+    });
+  }
+});
+
+// .wrangler/tmp/bundle-dwA4zy/middleware-loader.entry.ts
 var import_checked_fetch72 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header72 = __toESM(require_strip_cf_connecting_ip_header());
 
 // wrangler-modules-watch:wrangler:modules-watch
 var import_checked_fetch = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header = __toESM(require_strip_cf_connecting_ip_header());
 
-// .wrangler/tmp/bundle-7p279G/middleware-insertion-facade.js
+// .wrangler/tmp/bundle-dwA4zy/middleware-insertion-facade.js
 var import_checked_fetch70 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header70 = __toESM(require_strip_cf_connecting_ip_header());
 
 // src/index.ts
 var import_checked_fetch67 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header67 = __toESM(require_strip_cf_connecting_ip_header());
 
-// node_modules/hono/dist/index.js
+// ../node_modules/hono/dist/index.js
 var import_checked_fetch25 = __toESM(require_checked_fetch(), 1);
+var import_strip_cf_connecting_ip_header25 = __toESM(require_strip_cf_connecting_ip_header(), 1);
 
-// node_modules/hono/dist/hono.js
+// ../node_modules/hono/dist/hono.js
 var import_checked_fetch24 = __toESM(require_checked_fetch(), 1);
+var import_strip_cf_connecting_ip_header24 = __toESM(require_strip_cf_connecting_ip_header(), 1);
 
-// node_modules/hono/dist/hono-base.js
+// ../node_modules/hono/dist/hono-base.js
 var import_checked_fetch12 = __toESM(require_checked_fetch(), 1);
+var import_strip_cf_connecting_ip_header12 = __toESM(require_strip_cf_connecting_ip_header(), 1);
 
-// node_modules/hono/dist/compose.js
+// ../node_modules/hono/dist/compose.js
 var import_checked_fetch2 = __toESM(require_checked_fetch(), 1);
+var import_strip_cf_connecting_ip_header2 = __toESM(require_strip_cf_connecting_ip_header(), 1);
 var compose = /* @__PURE__ */ __name((middleware, onError, onNotFound) => {
   return (context, next) => {
     let index = -1;
@@ -123,21 +151,26 @@ var compose = /* @__PURE__ */ __name((middleware, onError, onNotFound) => {
   };
 }, "compose");
 
-// node_modules/hono/dist/context.js
+// ../node_modules/hono/dist/context.js
 var import_checked_fetch9 = __toESM(require_checked_fetch(), 1);
+var import_strip_cf_connecting_ip_header9 = __toESM(require_strip_cf_connecting_ip_header(), 1);
 
-// node_modules/hono/dist/request.js
+// ../node_modules/hono/dist/request.js
 var import_checked_fetch7 = __toESM(require_checked_fetch(), 1);
+var import_strip_cf_connecting_ip_header7 = __toESM(require_strip_cf_connecting_ip_header(), 1);
 
-// node_modules/hono/dist/http-exception.js
+// ../node_modules/hono/dist/http-exception.js
 var import_checked_fetch3 = __toESM(require_checked_fetch(), 1);
+var import_strip_cf_connecting_ip_header3 = __toESM(require_strip_cf_connecting_ip_header(), 1);
 
-// node_modules/hono/dist/request/constants.js
+// ../node_modules/hono/dist/request/constants.js
 var import_checked_fetch4 = __toESM(require_checked_fetch(), 1);
+var import_strip_cf_connecting_ip_header4 = __toESM(require_strip_cf_connecting_ip_header(), 1);
 var GET_MATCH_RESULT = /* @__PURE__ */ Symbol();
 
-// node_modules/hono/dist/utils/body.js
+// ../node_modules/hono/dist/utils/body.js
 var import_checked_fetch5 = __toESM(require_checked_fetch(), 1);
+var import_strip_cf_connecting_ip_header5 = __toESM(require_strip_cf_connecting_ip_header(), 1);
 var parseBody = /* @__PURE__ */ __name(async (request, options = /* @__PURE__ */ Object.create(null)) => {
   const { all = false, dot = false } = options;
   const headers = request instanceof HonoRequest ? request.raw.headers : request.headers;
@@ -208,8 +241,9 @@ var handleParsingNestedValues = /* @__PURE__ */ __name((form, key, value) => {
   });
 }, "handleParsingNestedValues");
 
-// node_modules/hono/dist/utils/url.js
+// ../node_modules/hono/dist/utils/url.js
 var import_checked_fetch6 = __toESM(require_checked_fetch(), 1);
+var import_strip_cf_connecting_ip_header6 = __toESM(require_strip_cf_connecting_ip_header(), 1);
 var splitPath = /* @__PURE__ */ __name((path) => {
   const paths = path.split("/");
   if (paths[0] === "") {
@@ -411,12 +445,9 @@ var getQueryParams = /* @__PURE__ */ __name((url, key) => {
 }, "getQueryParams");
 var decodeURIComponent_ = decodeURIComponent;
 
-// node_modules/hono/dist/request.js
+// ../node_modules/hono/dist/request.js
 var tryDecodeURIComponent = /* @__PURE__ */ __name((str) => tryDecode(str, decodeURIComponent_), "tryDecodeURIComponent");
-var HonoRequest = class {
-  static {
-    __name(this, "HonoRequest");
-  }
+var HonoRequest = /* @__PURE__ */ __name(class {
   /**
    * `.raw` can get the raw Request object.
    *
@@ -497,7 +528,7 @@ var HonoRequest = class {
   async parseBody(options) {
     return this.bodyCache.parsedBody ??= await parseBody(this, options);
   }
-  #cachedBody = /* @__PURE__ */ __name((key) => {
+  #cachedBody = (key) => {
     const { bodyCache, raw: raw2 } = this;
     const cachedBody = bodyCache[key];
     if (cachedBody) {
@@ -513,7 +544,7 @@ var HonoRequest = class {
       });
     }
     return bodyCache[key] = raw2[key]();
-  }, "#cachedBody");
+  };
   /**
    * `.json()` can parse Request body of type `application/json`
    *
@@ -680,10 +711,11 @@ var HonoRequest = class {
   get routePath() {
     return this.#matchResult[0].map(([[, route]]) => route)[this.routeIndex].path;
   }
-};
+}, "HonoRequest");
 
-// node_modules/hono/dist/utils/html.js
+// ../node_modules/hono/dist/utils/html.js
 var import_checked_fetch8 = __toESM(require_checked_fetch(), 1);
+var import_strip_cf_connecting_ip_header8 = __toESM(require_strip_cf_connecting_ip_header(), 1);
 var HtmlEscapedCallbackPhase = {
   Stringify: 1,
   BeforeStream: 2,
@@ -725,7 +757,7 @@ var resolveCallback = /* @__PURE__ */ __name(async (str, phase, preserveCallback
   }
 }, "resolveCallback");
 
-// node_modules/hono/dist/context.js
+// ../node_modules/hono/dist/context.js
 var TEXT_PLAIN = "text/plain; charset=UTF-8";
 var setDefaultContentType = /* @__PURE__ */ __name((contentType, headers) => {
   return {
@@ -733,10 +765,7 @@ var setDefaultContentType = /* @__PURE__ */ __name((contentType, headers) => {
     ...headers
   };
 }, "setDefaultContentType");
-var Context = class {
-  static {
-    __name(this, "Context");
-  }
+var Context = /* @__PURE__ */ __name(class {
   #rawRequest;
   #req;
   /**
@@ -876,23 +905,23 @@ var Context = class {
    * })
    * ```
    */
-  render = /* @__PURE__ */ __name((...args) => {
+  render = (...args) => {
     this.#renderer ??= (content) => this.html(content);
     return this.#renderer(...args);
-  }, "render");
+  };
   /**
    * Sets the layout for the response.
    *
    * @param layout - The layout to set.
    * @returns The layout function.
    */
-  setLayout = /* @__PURE__ */ __name((layout) => this.#layout = layout, "setLayout");
+  setLayout = (layout) => this.#layout = layout;
   /**
    * Gets the current layout for the response.
    *
    * @returns The current layout function.
    */
-  getLayout = /* @__PURE__ */ __name(() => this.#layout, "getLayout");
+  getLayout = () => this.#layout;
   /**
    * `.setRenderer()` can set the layout in the custom middleware.
    *
@@ -914,9 +943,9 @@ var Context = class {
    * })
    * ```
    */
-  setRenderer = /* @__PURE__ */ __name((renderer) => {
+  setRenderer = (renderer) => {
     this.#renderer = renderer;
-  }, "setRenderer");
+  };
   /**
    * `.header()` can set headers.
    *
@@ -933,7 +962,7 @@ var Context = class {
    * })
    * ```
    */
-  header = /* @__PURE__ */ __name((name, value, options) => {
+  header = (name, value, options) => {
     if (this.finalized) {
       this.#res = new Response(this.#res.body, this.#res);
     }
@@ -945,10 +974,10 @@ var Context = class {
     } else {
       headers.set(name, value);
     }
-  }, "header");
-  status = /* @__PURE__ */ __name((status) => {
+  };
+  status = (status) => {
     this.#status = status;
-  }, "status");
+  };
   /**
    * `.set()` can set the value specified by the key.
    *
@@ -962,10 +991,10 @@ var Context = class {
    * })
    * ```
    */
-  set = /* @__PURE__ */ __name((key, value) => {
+  set = (key, value) => {
     this.#var ??= /* @__PURE__ */ new Map();
     this.#var.set(key, value);
-  }, "set");
+  };
   /**
    * `.get()` can use the value specified by the key.
    *
@@ -979,9 +1008,9 @@ var Context = class {
    * })
    * ```
    */
-  get = /* @__PURE__ */ __name((key) => {
+  get = (key) => {
     return this.#var ? this.#var.get(key) : void 0;
-  }, "get");
+  };
   /**
    * `.var` can access the value of a variable.
    *
@@ -1026,7 +1055,7 @@ var Context = class {
     const status = typeof arg === "number" ? arg : arg?.status ?? this.#status;
     return new Response(data, { status, headers: responseHeaders });
   }
-  newResponse = /* @__PURE__ */ __name((...args) => this.#newResponse(...args), "newResponse");
+  newResponse = (...args) => this.#newResponse(...args);
   /**
    * `.body()` can return the HTTP response.
    * You can set headers with `.header()` and set HTTP status code with `.status`.
@@ -1048,7 +1077,7 @@ var Context = class {
    * })
    * ```
    */
-  body = /* @__PURE__ */ __name((data, arg, headers) => this.#newResponse(data, arg, headers), "body");
+  body = (data, arg, headers) => this.#newResponse(data, arg, headers);
   /**
    * `.text()` can render text as `Content-Type:text/plain`.
    *
@@ -1061,13 +1090,13 @@ var Context = class {
    * })
    * ```
    */
-  text = /* @__PURE__ */ __name((text, arg, headers) => {
+  text = (text, arg, headers) => {
     return !this.#preparedHeaders && !this.#status && !arg && !headers && !this.finalized ? new Response(text) : this.#newResponse(
       text,
       arg,
       setDefaultContentType(TEXT_PLAIN, headers)
     );
-  }, "text");
+  };
   /**
    * `.json()` can render JSON as `Content-Type:application/json`.
    *
@@ -1080,17 +1109,17 @@ var Context = class {
    * })
    * ```
    */
-  json = /* @__PURE__ */ __name((object, arg, headers) => {
+  json = (object, arg, headers) => {
     return this.#newResponse(
       JSON.stringify(object),
       arg,
       setDefaultContentType("application/json", headers)
     );
-  }, "json");
-  html = /* @__PURE__ */ __name((html, arg, headers) => {
+  };
+  html = (html, arg, headers) => {
     const res = /* @__PURE__ */ __name((html2) => this.#newResponse(html2, arg, setDefaultContentType("text/html; charset=UTF-8", headers)), "res");
     return typeof html === "object" ? resolveCallback(html, HtmlEscapedCallbackPhase.Stringify, false, {}).then(res) : res(html);
-  }, "html");
+  };
   /**
    * `.redirect()` can Redirect, default status code is 302.
    *
@@ -1106,7 +1135,7 @@ var Context = class {
    * })
    * ```
    */
-  redirect = /* @__PURE__ */ __name((location, status) => {
+  redirect = (location, status) => {
     const locationString = String(location);
     this.header(
       "Location",
@@ -1115,7 +1144,7 @@ var Context = class {
       !/[^\x00-\xFF]/.test(locationString) ? locationString : encodeURI(locationString)
     );
     return this.newResponse(null, status ?? 302);
-  }, "redirect");
+  };
   /**
    * `.notFound()` can return the Not Found Response.
    *
@@ -1128,29 +1157,28 @@ var Context = class {
    * })
    * ```
    */
-  notFound = /* @__PURE__ */ __name(() => {
+  notFound = () => {
     this.#notFoundHandler ??= () => new Response();
     return this.#notFoundHandler(this);
-  }, "notFound");
-};
+  };
+}, "Context");
 
-// node_modules/hono/dist/router.js
+// ../node_modules/hono/dist/router.js
 var import_checked_fetch10 = __toESM(require_checked_fetch(), 1);
+var import_strip_cf_connecting_ip_header10 = __toESM(require_strip_cf_connecting_ip_header(), 1);
 var METHOD_NAME_ALL = "ALL";
 var METHOD_NAME_ALL_LOWERCASE = "all";
 var METHODS = ["get", "post", "put", "delete", "options", "patch"];
 var MESSAGE_MATCHER_IS_ALREADY_BUILT = "Can not add a route since the matcher is already built.";
-var UnsupportedPathError = class extends Error {
-  static {
-    __name(this, "UnsupportedPathError");
-  }
-};
+var UnsupportedPathError = /* @__PURE__ */ __name(class extends Error {
+}, "UnsupportedPathError");
 
-// node_modules/hono/dist/utils/constants.js
+// ../node_modules/hono/dist/utils/constants.js
 var import_checked_fetch11 = __toESM(require_checked_fetch(), 1);
+var import_strip_cf_connecting_ip_header11 = __toESM(require_strip_cf_connecting_ip_header(), 1);
 var COMPOSED_HANDLER = "__COMPOSED_HANDLER";
 
-// node_modules/hono/dist/hono-base.js
+// ../node_modules/hono/dist/hono-base.js
 var notFoundHandler = /* @__PURE__ */ __name((c) => {
   return c.text("404 Not Found", 404);
 }, "notFoundHandler");
@@ -1162,10 +1190,7 @@ var errorHandler = /* @__PURE__ */ __name((err, c) => {
   console.error(err);
   return c.text("Internal Server Error", 500);
 }, "errorHandler");
-var Hono = class _Hono {
-  static {
-    __name(this, "_Hono");
-  }
+var Hono = /* @__PURE__ */ __name(class _Hono {
   get;
   post;
   put;
@@ -1306,10 +1331,10 @@ var Hono = class _Hono {
    * })
    * ```
    */
-  onError = /* @__PURE__ */ __name((handler) => {
+  onError = (handler) => {
     this.errorHandler = handler;
     return this;
-  }, "onError");
+  };
   /**
    * `.notFound()` allows you to customize a Not Found Response.
    *
@@ -1325,10 +1350,10 @@ var Hono = class _Hono {
    * })
    * ```
    */
-  notFound = /* @__PURE__ */ __name((handler) => {
+  notFound = (handler) => {
     this.#notFoundHandler = handler;
     return this;
-  }, "notFound");
+  };
   /**
    * `.mount()` allows you to mount applications built with other frameworks into your Hono application.
    *
@@ -1471,9 +1496,9 @@ var Hono = class _Hono {
    * @returns {Response | Promise<Response>} response of request
    *
    */
-  fetch = /* @__PURE__ */ __name((request, ...rest) => {
+  fetch = (request, ...rest) => {
     return this.#dispatch(request, rest[1], rest[0], request.method);
-  }, "fetch");
+  };
   /**
    * `.request()` is a useful method for testing.
    * You can pass a URL or pathname to send a GET request.
@@ -1486,7 +1511,7 @@ var Hono = class _Hono {
    * ```
    * @see https://hono.dev/docs/api/hono#request
    */
-  request = /* @__PURE__ */ __name((input, requestInit, Env, executionCtx) => {
+  request = (input, requestInit, Env, executionCtx) => {
     if (input instanceof Request) {
       return this.fetch(requestInit ? new Request(input, requestInit) : input, Env, executionCtx);
     }
@@ -1499,7 +1524,7 @@ var Hono = class _Hono {
       Env,
       executionCtx
     );
-  }, "request");
+  };
   /**
    * `.fire()` automatically adds a global fetch event listener.
    * This can be useful for environments that adhere to the Service Worker API, such as non-ES module Cloudflare Workers.
@@ -1517,25 +1542,28 @@ var Hono = class _Hono {
    * @see https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API
    * @see https://developers.cloudflare.com/workers/reference/migrate-to-module-workers/
    */
-  fire = /* @__PURE__ */ __name(() => {
+  fire = () => {
     addEventListener("fetch", (event) => {
       event.respondWith(this.#dispatch(event.request, event, void 0, event.request.method));
     });
-  }, "fire");
-};
+  };
+}, "_Hono");
 
-// node_modules/hono/dist/router/reg-exp-router/index.js
+// ../node_modules/hono/dist/router/reg-exp-router/index.js
 var import_checked_fetch18 = __toESM(require_checked_fetch(), 1);
+var import_strip_cf_connecting_ip_header18 = __toESM(require_strip_cf_connecting_ip_header(), 1);
 
-// node_modules/hono/dist/router/reg-exp-router/router.js
+// ../node_modules/hono/dist/router/reg-exp-router/router.js
 var import_checked_fetch16 = __toESM(require_checked_fetch(), 1);
+var import_strip_cf_connecting_ip_header16 = __toESM(require_strip_cf_connecting_ip_header(), 1);
 
-// node_modules/hono/dist/router/reg-exp-router/matcher.js
+// ../node_modules/hono/dist/router/reg-exp-router/matcher.js
 var import_checked_fetch13 = __toESM(require_checked_fetch(), 1);
+var import_strip_cf_connecting_ip_header13 = __toESM(require_strip_cf_connecting_ip_header(), 1);
 var emptyParam = [];
 function match(method, path) {
   const matchers = this.buildAllMatchers();
-  const match2 = /* @__PURE__ */ __name(((method2, path2) => {
+  const match2 = /* @__PURE__ */ __name((method2, path2) => {
     const matcher = matchers[method2] || matchers[METHOD_NAME_ALL];
     const staticMatch = matcher[2][path2];
     if (staticMatch) {
@@ -1547,14 +1575,15 @@ function match(method, path) {
     }
     const index = match3.indexOf("", 1);
     return [matcher[1][index], match3];
-  }), "match2");
+  }, "match2");
   this.match = match2;
   return match2(method, path);
 }
 __name(match, "match");
 
-// node_modules/hono/dist/router/reg-exp-router/node.js
+// ../node_modules/hono/dist/router/reg-exp-router/node.js
 var import_checked_fetch14 = __toESM(require_checked_fetch(), 1);
+var import_strip_cf_connecting_ip_header14 = __toESM(require_strip_cf_connecting_ip_header(), 1);
 var LABEL_REG_EXP_STR = "[^/]+";
 var ONLY_WILDCARD_REG_EXP_STR = ".*";
 var TAIL_WILDCARD_REG_EXP_STR = "(?:|/.*)";
@@ -1580,10 +1609,7 @@ function compareKey(a, b) {
   return a.length === b.length ? a < b ? -1 : 1 : b.length - a.length;
 }
 __name(compareKey, "compareKey");
-var Node = class _Node {
-  static {
-    __name(this, "_Node");
-  }
+var Node = /* @__PURE__ */ __name(class _Node {
   #index;
   #varIndex;
   #children = /* @__PURE__ */ Object.create(null);
@@ -1664,14 +1690,12 @@ var Node = class _Node {
     }
     return "(?:" + strList.join("|") + ")";
   }
-};
+}, "_Node");
 
-// node_modules/hono/dist/router/reg-exp-router/trie.js
+// ../node_modules/hono/dist/router/reg-exp-router/trie.js
 var import_checked_fetch15 = __toESM(require_checked_fetch(), 1);
-var Trie = class {
-  static {
-    __name(this, "Trie");
-  }
+var import_strip_cf_connecting_ip_header15 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+var Trie = /* @__PURE__ */ __name(class {
   #context = { varIndex: 0 };
   #root = new Node();
   insert(path, index, pathErrorCheckOnly) {
@@ -1724,9 +1748,9 @@ var Trie = class {
     });
     return [new RegExp(`^${regexp}`), indexReplacementMap, paramReplacementMap];
   }
-};
+}, "Trie");
 
-// node_modules/hono/dist/router/reg-exp-router/router.js
+// ../node_modules/hono/dist/router/reg-exp-router/router.js
 var nullMatcher = [/^$/, [], /* @__PURE__ */ Object.create(null)];
 var wildcardRegExpCache = /* @__PURE__ */ Object.create(null);
 function buildWildcardRegExp(path) {
@@ -1812,10 +1836,7 @@ function findMiddleware(middleware, path) {
   return void 0;
 }
 __name(findMiddleware, "findMiddleware");
-var RegExpRouter = class {
-  static {
-    __name(this, "RegExpRouter");
-  }
+var RegExpRouter = /* @__PURE__ */ __name(class {
   name = "RegExpRouter";
   #middleware;
   #routes;
@@ -1910,20 +1931,20 @@ var RegExpRouter = class {
       return buildMatcherFromPreprocessedRoutes(routes);
     }
   }
-};
+}, "RegExpRouter");
 
-// node_modules/hono/dist/router/reg-exp-router/prepared-router.js
+// ../node_modules/hono/dist/router/reg-exp-router/prepared-router.js
 var import_checked_fetch17 = __toESM(require_checked_fetch(), 1);
+var import_strip_cf_connecting_ip_header17 = __toESM(require_strip_cf_connecting_ip_header(), 1);
 
-// node_modules/hono/dist/router/smart-router/index.js
+// ../node_modules/hono/dist/router/smart-router/index.js
 var import_checked_fetch20 = __toESM(require_checked_fetch(), 1);
+var import_strip_cf_connecting_ip_header20 = __toESM(require_strip_cf_connecting_ip_header(), 1);
 
-// node_modules/hono/dist/router/smart-router/router.js
+// ../node_modules/hono/dist/router/smart-router/router.js
 var import_checked_fetch19 = __toESM(require_checked_fetch(), 1);
-var SmartRouter = class {
-  static {
-    __name(this, "SmartRouter");
-  }
+var import_strip_cf_connecting_ip_header19 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+var SmartRouter = /* @__PURE__ */ __name(class {
   name = "SmartRouter";
   #routers = [];
   #routes = [];
@@ -1975,21 +1996,21 @@ var SmartRouter = class {
     }
     return this.#routers[0];
   }
-};
+}, "SmartRouter");
 
-// node_modules/hono/dist/router/trie-router/index.js
+// ../node_modules/hono/dist/router/trie-router/index.js
 var import_checked_fetch23 = __toESM(require_checked_fetch(), 1);
+var import_strip_cf_connecting_ip_header23 = __toESM(require_strip_cf_connecting_ip_header(), 1);
 
-// node_modules/hono/dist/router/trie-router/router.js
+// ../node_modules/hono/dist/router/trie-router/router.js
 var import_checked_fetch22 = __toESM(require_checked_fetch(), 1);
+var import_strip_cf_connecting_ip_header22 = __toESM(require_strip_cf_connecting_ip_header(), 1);
 
-// node_modules/hono/dist/router/trie-router/node.js
+// ../node_modules/hono/dist/router/trie-router/node.js
 var import_checked_fetch21 = __toESM(require_checked_fetch(), 1);
+var import_strip_cf_connecting_ip_header21 = __toESM(require_strip_cf_connecting_ip_header(), 1);
 var emptyParams = /* @__PURE__ */ Object.create(null);
-var Node2 = class _Node2 {
-  static {
-    __name(this, "_Node");
-  }
+var Node2 = /* @__PURE__ */ __name(class _Node2 {
   #methods;
   #children;
   #patterns;
@@ -2143,13 +2164,10 @@ var Node2 = class _Node2 {
     }
     return [handlerSets.map(({ handler, params }) => [handler, params])];
   }
-};
+}, "_Node");
 
-// node_modules/hono/dist/router/trie-router/router.js
-var TrieRouter = class {
-  static {
-    __name(this, "TrieRouter");
-  }
+// ../node_modules/hono/dist/router/trie-router/router.js
+var TrieRouter = /* @__PURE__ */ __name(class {
   name = "TrieRouter";
   #node;
   constructor() {
@@ -2168,13 +2186,10 @@ var TrieRouter = class {
   match(method, path) {
     return this.#node.search(method, path);
   }
-};
+}, "TrieRouter");
 
-// node_modules/hono/dist/hono.js
-var Hono2 = class extends Hono {
-  static {
-    __name(this, "Hono");
-  }
+// ../node_modules/hono/dist/hono.js
+var Hono2 = /* @__PURE__ */ __name(class extends Hono {
   /**
    * Creates an instance of the Hono class.
    *
@@ -2186,10 +2201,11 @@ var Hono2 = class extends Hono {
       routers: [new RegExpRouter(), new TrieRouter()]
     });
   }
-};
+}, "Hono");
 
-// node_modules/hono/dist/middleware/cors/index.js
+// ../node_modules/hono/dist/middleware/cors/index.js
 var import_checked_fetch26 = __toESM(require_checked_fetch(), 1);
+var import_strip_cf_connecting_ip_header26 = __toESM(require_strip_cf_connecting_ip_header(), 1);
 var cors = /* @__PURE__ */ __name((options) => {
   const defaults = {
     origin: "*",
@@ -2275,21 +2291,26 @@ var cors = /* @__PURE__ */ __name((options) => {
   }, "cors2");
 }, "cors");
 
-// node_modules/@supabase/supabase-js/dist/index.mjs
+// ../node_modules/@supabase/supabase-js/dist/index.mjs
 var import_checked_fetch64 = __toESM(require_checked_fetch(), 1);
+var import_strip_cf_connecting_ip_header64 = __toESM(require_strip_cf_connecting_ip_header(), 1);
 
-// node_modules/@supabase/functions-js/dist/module/index.js
+// ../node_modules/@supabase/functions-js/dist/module/index.js
 var import_checked_fetch31 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header31 = __toESM(require_strip_cf_connecting_ip_header());
 
-// node_modules/@supabase/functions-js/dist/module/FunctionsClient.js
+// ../node_modules/@supabase/functions-js/dist/module/FunctionsClient.js
 var import_checked_fetch30 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header30 = __toESM(require_strip_cf_connecting_ip_header());
 
-// node_modules/tslib/tslib.es6.mjs
+// ../node_modules/tslib/tslib.es6.mjs
 var import_checked_fetch27 = __toESM(require_checked_fetch(), 1);
+var import_strip_cf_connecting_ip_header27 = __toESM(require_strip_cf_connecting_ip_header(), 1);
 function __rest(s, e) {
   var t = {};
-  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-    t[p] = s[p];
+  for (var p in s)
+    if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+      t[p] = s[p];
   if (s != null && typeof Object.getOwnPropertySymbols === "function")
     for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
       if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
@@ -2331,8 +2352,9 @@ function __awaiter(thisArg, _arguments, P, generator) {
 }
 __name(__awaiter, "__awaiter");
 
-// node_modules/@supabase/functions-js/dist/module/helper.js
+// ../node_modules/@supabase/functions-js/dist/module/helper.js
 var import_checked_fetch28 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header28 = __toESM(require_strip_cf_connecting_ip_header());
 var resolveFetch = /* @__PURE__ */ __name((customFetch) => {
   if (customFetch) {
     return (...args) => customFetch(...args);
@@ -2340,42 +2362,35 @@ var resolveFetch = /* @__PURE__ */ __name((customFetch) => {
   return (...args) => fetch(...args);
 }, "resolveFetch");
 
-// node_modules/@supabase/functions-js/dist/module/types.js
+// ../node_modules/@supabase/functions-js/dist/module/types.js
 var import_checked_fetch29 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header29 = __toESM(require_strip_cf_connecting_ip_header());
 var FunctionsError = class extends Error {
-  static {
-    __name(this, "FunctionsError");
-  }
   constructor(message, name = "FunctionsError", context) {
     super(message);
     this.name = name;
     this.context = context;
   }
 };
+__name(FunctionsError, "FunctionsError");
 var FunctionsFetchError = class extends FunctionsError {
-  static {
-    __name(this, "FunctionsFetchError");
-  }
   constructor(context) {
     super("Failed to send a request to the Edge Function", "FunctionsFetchError", context);
   }
 };
+__name(FunctionsFetchError, "FunctionsFetchError");
 var FunctionsRelayError = class extends FunctionsError {
-  static {
-    __name(this, "FunctionsRelayError");
-  }
   constructor(context) {
     super("Relay Error invoking the Edge Function", "FunctionsRelayError", context);
   }
 };
+__name(FunctionsRelayError, "FunctionsRelayError");
 var FunctionsHttpError = class extends FunctionsError {
-  static {
-    __name(this, "FunctionsHttpError");
-  }
   constructor(context) {
     super("Edge Function returned a non-2xx status code", "FunctionsHttpError", context);
   }
 };
+__name(FunctionsHttpError, "FunctionsHttpError");
 var FunctionRegion;
 (function(FunctionRegion2) {
   FunctionRegion2["Any"] = "any";
@@ -2395,11 +2410,8 @@ var FunctionRegion;
   FunctionRegion2["UsWest2"] = "us-west-2";
 })(FunctionRegion || (FunctionRegion = {}));
 
-// node_modules/@supabase/functions-js/dist/module/FunctionsClient.js
+// ../node_modules/@supabase/functions-js/dist/module/FunctionsClient.js
 var FunctionsClient = class {
-  static {
-    __name(this, "FunctionsClient");
-  }
   /**
    * Creates a new Functions client bound to an Edge Functions URL.
    *
@@ -2533,13 +2545,12 @@ var FunctionsClient = class {
     });
   }
 };
+__name(FunctionsClient, "FunctionsClient");
 
-// node_modules/@supabase/postgrest-js/dist/index.mjs
+// ../node_modules/@supabase/postgrest-js/dist/index.mjs
 var import_checked_fetch32 = __toESM(require_checked_fetch(), 1);
-var PostgrestError = class extends Error {
-  static {
-    __name(this, "PostgrestError");
-  }
+var import_strip_cf_connecting_ip_header32 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+var PostgrestError = /* @__PURE__ */ __name(class extends Error {
   /**
   * @example
   * ```ts
@@ -2560,11 +2571,8 @@ var PostgrestError = class extends Error {
     this.hint = context.hint;
     this.code = context.code;
   }
-};
-var PostgrestBuilder = class {
-  static {
-    __name(this, "PostgrestBuilder");
-  }
+}, "PostgrestError");
+var PostgrestBuilder = /* @__PURE__ */ __name(class {
   /**
   * Creates a builder configured for a specific PostgREST request.
   *
@@ -2589,8 +2597,10 @@ var PostgrestBuilder = class {
     this.shouldThrowOnError = (_builder$shouldThrowO = builder.shouldThrowOnError) !== null && _builder$shouldThrowO !== void 0 ? _builder$shouldThrowO : false;
     this.signal = builder.signal;
     this.isMaybeSingle = (_builder$isMaybeSingl = builder.isMaybeSingle) !== null && _builder$isMaybeSingl !== void 0 ? _builder$isMaybeSingl : false;
-    if (builder.fetch) this.fetch = builder.fetch;
-    else this.fetch = fetch;
+    if (builder.fetch)
+      this.fetch = builder.fetch;
+    else
+      this.fetch = fetch;
   }
   /**
   * If there's an error with the query, throwOnError will reject the promise by
@@ -2613,9 +2623,12 @@ var PostgrestBuilder = class {
   then(onfulfilled, onrejected) {
     var _this = this;
     if (this.schema === void 0) {
-    } else if (["GET", "HEAD"].includes(this.method)) this.headers.set("Accept-Profile", this.schema);
-    else this.headers.set("Content-Profile", this.schema);
-    if (this.method !== "GET" && this.method !== "HEAD") this.headers.set("Content-Type", "application/json");
+    } else if (["GET", "HEAD"].includes(this.method))
+      this.headers.set("Accept-Profile", this.schema);
+    else
+      this.headers.set("Content-Profile", this.schema);
+    if (this.method !== "GET" && this.method !== "HEAD")
+      this.headers.set("Content-Type", "application/json");
     const _fetch = this.fetch;
     let res = _fetch(this.url.toString(), {
       method: this.method,
@@ -2634,26 +2647,33 @@ var PostgrestBuilder = class {
           var _this$headers$get;
           const body = await res$1.text();
           if (body === "") {
-          } else if (_this.headers.get("Accept") === "text/csv") data = body;
-          else if (_this.headers.get("Accept") && ((_this$headers$get = _this.headers.get("Accept")) === null || _this$headers$get === void 0 ? void 0 : _this$headers$get.includes("application/vnd.pgrst.plan+text"))) data = body;
-          else data = JSON.parse(body);
+          } else if (_this.headers.get("Accept") === "text/csv")
+            data = body;
+          else if (_this.headers.get("Accept") && ((_this$headers$get = _this.headers.get("Accept")) === null || _this$headers$get === void 0 ? void 0 : _this$headers$get.includes("application/vnd.pgrst.plan+text")))
+            data = body;
+          else
+            data = JSON.parse(body);
         }
         const countHeader = (_this$headers$get2 = _this.headers.get("Prefer")) === null || _this$headers$get2 === void 0 ? void 0 : _this$headers$get2.match(/count=(exact|planned|estimated)/);
         const contentRange = (_res$headers$get = res$1.headers.get("content-range")) === null || _res$headers$get === void 0 ? void 0 : _res$headers$get.split("/");
-        if (countHeader && contentRange && contentRange.length > 1) count = parseInt(contentRange[1]);
-        if (_this.isMaybeSingle && _this.method === "GET" && Array.isArray(data)) if (data.length > 1) {
-          error = {
-            code: "PGRST116",
-            details: `Results contain ${data.length} rows, application/vnd.pgrst.object+json requires 1 row`,
-            hint: null,
-            message: "JSON object requested, multiple (or no) rows returned"
-          };
-          data = null;
-          count = null;
-          status = 406;
-          statusText = "Not Acceptable";
-        } else if (data.length === 1) data = data[0];
-        else data = null;
+        if (countHeader && contentRange && contentRange.length > 1)
+          count = parseInt(contentRange[1]);
+        if (_this.isMaybeSingle && _this.method === "GET" && Array.isArray(data))
+          if (data.length > 1) {
+            error = {
+              code: "PGRST116",
+              details: `Results contain ${data.length} rows, application/vnd.pgrst.object+json requires 1 row`,
+              hint: null,
+              message: "JSON object requested, multiple (or no) rows returned"
+            };
+            data = null;
+            count = null;
+            status = 406;
+            statusText = "Not Acceptable";
+          } else if (data.length === 1)
+            data = data[0];
+          else
+            data = null;
       } else {
         var _error$details;
         const body = await res$1.text();
@@ -2669,14 +2689,16 @@ var PostgrestBuilder = class {
           if (res$1.status === 404 && body === "") {
             status = 204;
             statusText = "No Content";
-          } else error = { message: body };
+          } else
+            error = { message: body };
         }
         if (error && _this.isMaybeSingle && (error === null || error === void 0 || (_error$details = error.details) === null || _error$details === void 0 ? void 0 : _error$details.includes("0 rows"))) {
           error = null;
           status = 200;
           statusText = "OK";
         }
-        if (error && _this.shouldThrowOnError) throw new PostgrestError(error);
+        if (error && _this.shouldThrowOnError)
+          throw new PostgrestError(error);
       }
       return {
         error,
@@ -2686,38 +2708,41 @@ var PostgrestBuilder = class {
         statusText
       };
     });
-    if (!this.shouldThrowOnError) res = res.catch((fetchError) => {
-      var _fetchError$name2;
-      let errorDetails = "";
-      const cause = fetchError === null || fetchError === void 0 ? void 0 : fetchError.cause;
-      if (cause) {
-        var _cause$message, _cause$code, _fetchError$name, _cause$name;
-        const causeMessage = (_cause$message = cause === null || cause === void 0 ? void 0 : cause.message) !== null && _cause$message !== void 0 ? _cause$message : "";
-        const causeCode = (_cause$code = cause === null || cause === void 0 ? void 0 : cause.code) !== null && _cause$code !== void 0 ? _cause$code : "";
-        errorDetails = `${(_fetchError$name = fetchError === null || fetchError === void 0 ? void 0 : fetchError.name) !== null && _fetchError$name !== void 0 ? _fetchError$name : "FetchError"}: ${fetchError === null || fetchError === void 0 ? void 0 : fetchError.message}`;
-        errorDetails += `
+    if (!this.shouldThrowOnError)
+      res = res.catch((fetchError) => {
+        var _fetchError$name2;
+        let errorDetails = "";
+        const cause = fetchError === null || fetchError === void 0 ? void 0 : fetchError.cause;
+        if (cause) {
+          var _cause$message, _cause$code, _fetchError$name, _cause$name;
+          const causeMessage = (_cause$message = cause === null || cause === void 0 ? void 0 : cause.message) !== null && _cause$message !== void 0 ? _cause$message : "";
+          const causeCode = (_cause$code = cause === null || cause === void 0 ? void 0 : cause.code) !== null && _cause$code !== void 0 ? _cause$code : "";
+          errorDetails = `${(_fetchError$name = fetchError === null || fetchError === void 0 ? void 0 : fetchError.name) !== null && _fetchError$name !== void 0 ? _fetchError$name : "FetchError"}: ${fetchError === null || fetchError === void 0 ? void 0 : fetchError.message}`;
+          errorDetails += `
 
 Caused by: ${(_cause$name = cause === null || cause === void 0 ? void 0 : cause.name) !== null && _cause$name !== void 0 ? _cause$name : "Error"}: ${causeMessage}`;
-        if (causeCode) errorDetails += ` (${causeCode})`;
-        if (cause === null || cause === void 0 ? void 0 : cause.stack) errorDetails += `
+          if (causeCode)
+            errorDetails += ` (${causeCode})`;
+          if (cause === null || cause === void 0 ? void 0 : cause.stack)
+            errorDetails += `
 ${cause.stack}`;
-      } else {
-        var _fetchError$stack;
-        errorDetails = (_fetchError$stack = fetchError === null || fetchError === void 0 ? void 0 : fetchError.stack) !== null && _fetchError$stack !== void 0 ? _fetchError$stack : "";
-      }
-      return {
-        error: {
-          message: `${(_fetchError$name2 = fetchError === null || fetchError === void 0 ? void 0 : fetchError.name) !== null && _fetchError$name2 !== void 0 ? _fetchError$name2 : "FetchError"}: ${fetchError === null || fetchError === void 0 ? void 0 : fetchError.message}`,
-          details: errorDetails,
-          hint: "",
-          code: ""
-        },
-        data: null,
-        count: null,
-        status: 0,
-        statusText: ""
-      };
-    });
+        } else {
+          var _fetchError$stack;
+          errorDetails = (_fetchError$stack = fetchError === null || fetchError === void 0 ? void 0 : fetchError.stack) !== null && _fetchError$stack !== void 0 ? _fetchError$stack : "";
+        }
+        return {
+          error: {
+            message: `${(_fetchError$name2 = fetchError === null || fetchError === void 0 ? void 0 : fetchError.name) !== null && _fetchError$name2 !== void 0 ? _fetchError$name2 : "FetchError"}: ${fetchError === null || fetchError === void 0 ? void 0 : fetchError.message}`,
+            details: errorDetails,
+            hint: "",
+            code: ""
+          },
+          data: null,
+          count: null,
+          status: 0,
+          statusText: ""
+        };
+      });
     return res.then(onfulfilled, onrejected);
   }
   /**
@@ -2754,11 +2779,8 @@ ${cause.stack}`;
   overrideTypes() {
     return this;
   }
-};
-var PostgrestTransformBuilder = class extends PostgrestBuilder {
-  static {
-    __name(this, "PostgrestTransformBuilder");
-  }
+}, "PostgrestBuilder");
+var PostgrestTransformBuilder = /* @__PURE__ */ __name(class extends PostgrestBuilder {
   /**
   * Perform a SELECT on the query result.
   *
@@ -2771,8 +2793,10 @@ var PostgrestTransformBuilder = class extends PostgrestBuilder {
   select(columns) {
     let quoted = false;
     const cleanedColumns = (columns !== null && columns !== void 0 ? columns : "*").split("").map((c) => {
-      if (/\s/.test(c) && !quoted) return "";
-      if (c === '"') quoted = !quoted;
+      if (/\s/.test(c) && !quoted)
+        return "";
+      if (c === '"')
+        quoted = !quoted;
       return c;
     }).join("");
     this.url.searchParams.set("select", cleanedColumns);
@@ -2866,8 +2890,10 @@ var PostgrestTransformBuilder = class extends PostgrestBuilder {
   * this returns an error.
   */
   maybeSingle() {
-    if (this.method === "GET") this.headers.set("Accept", "application/json");
-    else this.headers.set("Accept", "application/vnd.pgrst.object+json");
+    if (this.method === "GET")
+      this.headers.set("Accept", "application/json");
+    else
+      this.headers.set("Accept", "application/vnd.pgrst.object+json");
     this.isMaybeSingle = true;
     return this;
   }
@@ -2921,8 +2947,10 @@ var PostgrestTransformBuilder = class extends PostgrestBuilder {
     ].filter(Boolean).join("|");
     const forMediatype = (_this$headers$get = this.headers.get("Accept")) !== null && _this$headers$get !== void 0 ? _this$headers$get : "application/json";
     this.headers.set("Accept", `application/vnd.pgrst.plan+${format}; for="${forMediatype}"; options=${options};`);
-    if (format === "json") return this;
-    else return this;
+    if (format === "json")
+      return this;
+    else
+      return this;
   }
   /**
   * Rollback the query.
@@ -2953,12 +2981,9 @@ var PostgrestTransformBuilder = class extends PostgrestBuilder {
     this.headers.append("Prefer", `max-affected=${value}`);
     return this;
   }
-};
+}, "PostgrestTransformBuilder");
 var PostgrestReservedCharsRegexp = /* @__PURE__ */ new RegExp("[,()]");
-var PostgrestFilterBuilder = class extends PostgrestTransformBuilder {
-  static {
-    __name(this, "PostgrestFilterBuilder");
-  }
+var PostgrestFilterBuilder = /* @__PURE__ */ __name(class extends PostgrestTransformBuilder {
   /**
   * Match only rows where `column` is equal to `value`.
   *
@@ -3141,8 +3166,10 @@ var PostgrestFilterBuilder = class extends PostgrestTransformBuilder {
   */
   in(column, values) {
     const cleanedValues = Array.from(new Set(values)).map((s) => {
-      if (typeof s === "string" && PostgrestReservedCharsRegexp.test(s)) return `"${s}"`;
-      else return `${s}`;
+      if (typeof s === "string" && PostgrestReservedCharsRegexp.test(s))
+        return `"${s}"`;
+      else
+        return `${s}`;
     }).join(",");
     this.url.searchParams.append(column, `in.(${cleanedValues})`);
     return this;
@@ -3155,8 +3182,10 @@ var PostgrestFilterBuilder = class extends PostgrestTransformBuilder {
   */
   notIn(column, values) {
     const cleanedValues = Array.from(new Set(values)).map((s) => {
-      if (typeof s === "string" && PostgrestReservedCharsRegexp.test(s)) return `"${s}"`;
-      else return `${s}`;
+      if (typeof s === "string" && PostgrestReservedCharsRegexp.test(s))
+        return `"${s}"`;
+      else
+        return `${s}`;
     }).join(",");
     this.url.searchParams.append(column, `not.in.(${cleanedValues})`);
     return this;
@@ -3169,9 +3198,12 @@ var PostgrestFilterBuilder = class extends PostgrestTransformBuilder {
   * @param value - The jsonb, array, or range value to filter with
   */
   contains(column, value) {
-    if (typeof value === "string") this.url.searchParams.append(column, `cs.${value}`);
-    else if (Array.isArray(value)) this.url.searchParams.append(column, `cs.{${value.join(",")}}`);
-    else this.url.searchParams.append(column, `cs.${JSON.stringify(value)}`);
+    if (typeof value === "string")
+      this.url.searchParams.append(column, `cs.${value}`);
+    else if (Array.isArray(value))
+      this.url.searchParams.append(column, `cs.{${value.join(",")}}`);
+    else
+      this.url.searchParams.append(column, `cs.${JSON.stringify(value)}`);
     return this;
   }
   /**
@@ -3182,9 +3214,12 @@ var PostgrestFilterBuilder = class extends PostgrestTransformBuilder {
   * @param value - The jsonb, array, or range value to filter with
   */
   containedBy(column, value) {
-    if (typeof value === "string") this.url.searchParams.append(column, `cd.${value}`);
-    else if (Array.isArray(value)) this.url.searchParams.append(column, `cd.{${value.join(",")}}`);
-    else this.url.searchParams.append(column, `cd.${JSON.stringify(value)}`);
+    if (typeof value === "string")
+      this.url.searchParams.append(column, `cd.${value}`);
+    else if (Array.isArray(value))
+      this.url.searchParams.append(column, `cd.{${value.join(",")}}`);
+    else
+      this.url.searchParams.append(column, `cd.${JSON.stringify(value)}`);
     return this;
   }
   /**
@@ -3253,8 +3288,10 @@ var PostgrestFilterBuilder = class extends PostgrestTransformBuilder {
   * @param value - The array or range value to filter with
   */
   overlaps(column, value) {
-    if (typeof value === "string") this.url.searchParams.append(column, `ov.${value}`);
-    else this.url.searchParams.append(column, `ov.{${value.join(",")}}`);
+    if (typeof value === "string")
+      this.url.searchParams.append(column, `ov.${value}`);
+    else
+      this.url.searchParams.append(column, `ov.{${value.join(",")}}`);
     return this;
   }
   /**
@@ -3269,9 +3306,12 @@ var PostgrestFilterBuilder = class extends PostgrestTransformBuilder {
   */
   textSearch(column, query, { config, type } = {}) {
     let typePart = "";
-    if (type === "plain") typePart = "pl";
-    else if (type === "phrase") typePart = "ph";
-    else if (type === "websearch") typePart = "w";
+    if (type === "plain")
+      typePart = "pl";
+    else if (type === "phrase")
+      typePart = "ph";
+    else if (type === "websearch")
+      typePart = "w";
     const configPart = config === void 0 ? "" : `(${config})`;
     this.url.searchParams.append(column, `${typePart}fts${configPart}.${query}`);
     return this;
@@ -3343,11 +3383,8 @@ var PostgrestFilterBuilder = class extends PostgrestTransformBuilder {
     this.url.searchParams.append(column, `${operator}.${value}`);
     return this;
   }
-};
-var PostgrestQueryBuilder = class {
-  static {
-    __name(this, "PostgrestQueryBuilder");
-  }
+}, "PostgrestFilterBuilder");
+var PostgrestQueryBuilder = /* @__PURE__ */ __name(class {
   /**
   * Creates a query builder scoped to a Postgres table or view.
   *
@@ -3393,12 +3430,15 @@ var PostgrestQueryBuilder = class {
     const method = head2 ? "HEAD" : "GET";
     let quoted = false;
     const cleanedColumns = (columns !== null && columns !== void 0 ? columns : "*").split("").map((c) => {
-      if (/\s/.test(c) && !quoted) return "";
-      if (c === '"') quoted = !quoted;
+      if (/\s/.test(c) && !quoted)
+        return "";
+      if (c === '"')
+        quoted = !quoted;
       return c;
     }).join("");
     this.url.searchParams.set("select", cleanedColumns);
-    if (count) this.headers.append("Prefer", `count=${count}`);
+    if (count)
+      this.headers.append("Prefer", `count=${count}`);
     return new PostgrestFilterBuilder({
       method,
       url: this.url,
@@ -3436,8 +3476,10 @@ var PostgrestQueryBuilder = class {
   insert(values, { count, defaultToNull = true } = {}) {
     var _this$fetch;
     const method = "POST";
-    if (count) this.headers.append("Prefer", `count=${count}`);
-    if (!defaultToNull) this.headers.append("Prefer", `missing=default`);
+    if (count)
+      this.headers.append("Prefer", `count=${count}`);
+    if (!defaultToNull)
+      this.headers.append("Prefer", `missing=default`);
     if (Array.isArray(values)) {
       const columns = values.reduce((acc, x) => acc.concat(Object.keys(x)), []);
       if (columns.length > 0) {
@@ -3543,9 +3585,12 @@ var PostgrestQueryBuilder = class {
     var _this$fetch2;
     const method = "POST";
     this.headers.append("Prefer", `resolution=${ignoreDuplicates ? "ignore" : "merge"}-duplicates`);
-    if (onConflict !== void 0) this.url.searchParams.set("on_conflict", onConflict);
-    if (count) this.headers.append("Prefer", `count=${count}`);
-    if (!defaultToNull) this.headers.append("Prefer", "missing=default");
+    if (onConflict !== void 0)
+      this.url.searchParams.set("on_conflict", onConflict);
+    if (count)
+      this.headers.append("Prefer", `count=${count}`);
+    if (!defaultToNull)
+      this.headers.append("Prefer", "missing=default");
     if (Array.isArray(values)) {
       const columns = values.reduce((acc, x) => acc.concat(Object.keys(x)), []);
       if (columns.length > 0) {
@@ -3586,7 +3631,8 @@ var PostgrestQueryBuilder = class {
   update(values, { count } = {}) {
     var _this$fetch3;
     const method = "PATCH";
-    if (count) this.headers.append("Prefer", `count=${count}`);
+    if (count)
+      this.headers.append("Prefer", `count=${count}`);
     return new PostgrestFilterBuilder({
       method,
       url: this.url,
@@ -3618,7 +3664,8 @@ var PostgrestQueryBuilder = class {
   delete({ count } = {}) {
     var _this$fetch4;
     const method = "DELETE";
-    if (count) this.headers.append("Prefer", `count=${count}`);
+    if (count)
+      this.headers.append("Prefer", `count=${count}`);
     return new PostgrestFilterBuilder({
       method,
       url: this.url,
@@ -3627,11 +3674,8 @@ var PostgrestQueryBuilder = class {
       fetch: (_this$fetch4 = this.fetch) !== null && _this$fetch4 !== void 0 ? _this$fetch4 : fetch
     });
   }
-};
-var PostgrestClient = class PostgrestClient2 {
-  static {
-    __name(this, "PostgrestClient");
-  }
+}, "PostgrestQueryBuilder");
+var PostgrestClient = /* @__PURE__ */ __name(class PostgrestClient2 {
   /**
   * Creates a PostgREST client.
   *
@@ -3662,7 +3706,8 @@ var PostgrestClient = class PostgrestClient2 {
   * @param relation - The table or view name to query
   */
   from(relation) {
-    if (!relation || typeof relation !== "string" || relation.trim() === "") throw new Error("Invalid relation name: relation must be a non-empty string.");
+    if (!relation || typeof relation !== "string" || relation.trim() === "")
+      throw new Error("Invalid relation name: relation must be a non-empty string.");
     return new PostgrestQueryBuilder(new URL(`${this.url}/${relation}`), {
       headers: new Headers(this.headers),
       schema: this.schemaName,
@@ -3730,7 +3775,8 @@ var PostgrestClient = class PostgrestClient2 {
       body = args;
     }
     const headers = new Headers(this.headers);
-    if (count) headers.set("Prefer", `count=${count}`);
+    if (count)
+      headers.set("Prefer", `count=${count}`);
     return new PostgrestFilterBuilder({
       method,
       url,
@@ -3740,20 +3786,20 @@ var PostgrestClient = class PostgrestClient2 {
       fetch: (_this$fetch = this.fetch) !== null && _this$fetch !== void 0 ? _this$fetch : fetch
     });
   }
-};
+}, "PostgrestClient");
 
-// node_modules/@supabase/realtime-js/dist/module/index.js
+// ../node_modules/@supabase/realtime-js/dist/module/index.js
 var import_checked_fetch43 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header43 = __toESM(require_strip_cf_connecting_ip_header());
 
-// node_modules/@supabase/realtime-js/dist/module/RealtimeClient.js
+// ../node_modules/@supabase/realtime-js/dist/module/RealtimeClient.js
 var import_checked_fetch42 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header42 = __toESM(require_strip_cf_connecting_ip_header());
 
-// node_modules/@supabase/realtime-js/dist/module/lib/websocket-factory.js
+// ../node_modules/@supabase/realtime-js/dist/module/lib/websocket-factory.js
 var import_checked_fetch33 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header33 = __toESM(require_strip_cf_connecting_ip_header());
 var WebSocketFactory = class {
-  static {
-    __name(this, "WebSocketFactory");
-  }
   /**
    * Static-only utility – prevent instantiation.
    */
@@ -3865,16 +3911,19 @@ Suggested solution: ${env.workaround}`;
     }
   }
 };
+__name(WebSocketFactory, "WebSocketFactory");
 var websocket_factory_default = WebSocketFactory;
 
-// node_modules/@supabase/realtime-js/dist/module/lib/constants.js
+// ../node_modules/@supabase/realtime-js/dist/module/lib/constants.js
 var import_checked_fetch35 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header35 = __toESM(require_strip_cf_connecting_ip_header());
 
-// node_modules/@supabase/realtime-js/dist/module/lib/version.js
+// ../node_modules/@supabase/realtime-js/dist/module/lib/version.js
 var import_checked_fetch34 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header34 = __toESM(require_strip_cf_connecting_ip_header());
 var version = "2.89.0";
 
-// node_modules/@supabase/realtime-js/dist/module/lib/constants.js
+// ../node_modules/@supabase/realtime-js/dist/module/lib/constants.js
 var DEFAULT_VERSION = `realtime-js/${version}`;
 var VSN_1_0_0 = "1.0.0";
 var VSN_2_0_0 = "2.0.0";
@@ -3918,12 +3967,10 @@ var CONNECTION_STATE;
   CONNECTION_STATE2["Closed"] = "closed";
 })(CONNECTION_STATE || (CONNECTION_STATE = {}));
 
-// node_modules/@supabase/realtime-js/dist/module/lib/serializer.js
+// ../node_modules/@supabase/realtime-js/dist/module/lib/serializer.js
 var import_checked_fetch36 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header36 = __toESM(require_strip_cf_connecting_ip_header());
 var Serializer = class {
-  static {
-    __name(this, "Serializer");
-  }
   constructor(allowedMetadataKeys) {
     this.HEADER_LENGTH = 1;
     this.USER_BROADCAST_PUSH_META_LENGTH = 6;
@@ -4061,13 +4108,12 @@ var Serializer = class {
     return Object.fromEntries(Object.entries(obj).filter(([key]) => keys.includes(key)));
   }
 };
+__name(Serializer, "Serializer");
 
-// node_modules/@supabase/realtime-js/dist/module/lib/timer.js
+// ../node_modules/@supabase/realtime-js/dist/module/lib/timer.js
 var import_checked_fetch37 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header37 = __toESM(require_strip_cf_connecting_ip_header());
 var Timer = class {
-  static {
-    __name(this, "Timer");
-  }
   constructor(callback, timerCalc) {
     this.callback = callback;
     this.timerCalc = timerCalc;
@@ -4090,9 +4136,11 @@ var Timer = class {
     }, this.timerCalc(this.tries + 1));
   }
 };
+__name(Timer, "Timer");
 
-// node_modules/@supabase/realtime-js/dist/module/lib/transformers.js
+// ../node_modules/@supabase/realtime-js/dist/module/lib/transformers.js
 var import_checked_fetch38 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header38 = __toESM(require_strip_cf_connecting_ip_header());
 var PostgresTypes;
 (function(PostgresTypes2) {
   PostgresTypes2["abstime"] = "abstime";
@@ -4161,24 +4209,17 @@ var convertCell = /* @__PURE__ */ __name((type, value) => {
       return toJson(value);
     case PostgresTypes.timestamp:
       return toTimestampString(value);
-    // Format to be consistent with PostgREST
     case PostgresTypes.abstime:
-    // To allow users to cast it based on Timezone
     case PostgresTypes.date:
-    // To allow users to cast it based on Timezone
     case PostgresTypes.daterange:
     case PostgresTypes.int4range:
     case PostgresTypes.int8range:
     case PostgresTypes.money:
     case PostgresTypes.reltime:
-    // To allow users to cast it based on Timezone
     case PostgresTypes.text:
     case PostgresTypes.time:
-    // To allow users to cast it based on Timezone
     case PostgresTypes.timestamptz:
-    // To allow users to cast it based on Timezone
     case PostgresTypes.timetz:
-    // To allow users to cast it based on Timezone
     case PostgresTypes.tsrange:
     case PostgresTypes.tstzrange:
       return noop(value);
@@ -4255,15 +4296,14 @@ var httpEndpointURL = /* @__PURE__ */ __name((socketUrl) => {
   return wsUrl.href;
 }, "httpEndpointURL");
 
-// node_modules/@supabase/realtime-js/dist/module/RealtimeChannel.js
+// ../node_modules/@supabase/realtime-js/dist/module/RealtimeChannel.js
 var import_checked_fetch41 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header41 = __toESM(require_strip_cf_connecting_ip_header());
 
-// node_modules/@supabase/realtime-js/dist/module/lib/push.js
+// ../node_modules/@supabase/realtime-js/dist/module/lib/push.js
 var import_checked_fetch39 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header39 = __toESM(require_strip_cf_connecting_ip_header());
 var Push = class {
-  static {
-    __name(this, "Push");
-  }
   /**
    * Initializes the Push
    *
@@ -4360,19 +4400,18 @@ var Push = class {
     return this.receivedResp && this.receivedResp.status === status;
   }
 };
+__name(Push, "Push");
 
-// node_modules/@supabase/realtime-js/dist/module/RealtimePresence.js
+// ../node_modules/@supabase/realtime-js/dist/module/RealtimePresence.js
 var import_checked_fetch40 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header40 = __toESM(require_strip_cf_connecting_ip_header());
 var REALTIME_PRESENCE_LISTEN_EVENTS;
 (function(REALTIME_PRESENCE_LISTEN_EVENTS2) {
   REALTIME_PRESENCE_LISTEN_EVENTS2["SYNC"] = "sync";
   REALTIME_PRESENCE_LISTEN_EVENTS2["JOIN"] = "join";
   REALTIME_PRESENCE_LISTEN_EVENTS2["LEAVE"] = "leave";
 })(REALTIME_PRESENCE_LISTEN_EVENTS || (REALTIME_PRESENCE_LISTEN_EVENTS = {}));
-var RealtimePresence = class _RealtimePresence {
-  static {
-    __name(this, "RealtimePresence");
-  }
+var RealtimePresence = class {
   /**
    * Creates a Presence helper that keeps the local presence state in sync with the server.
    *
@@ -4395,12 +4434,12 @@ var RealtimePresence = class _RealtimePresence {
     this.joinRef = null;
     this.enabled = false;
     this.caller = {
-      onJoin: /* @__PURE__ */ __name(() => {
-      }, "onJoin"),
-      onLeave: /* @__PURE__ */ __name(() => {
-      }, "onLeave"),
-      onSync: /* @__PURE__ */ __name(() => {
-      }, "onSync")
+      onJoin: () => {
+      },
+      onLeave: () => {
+      },
+      onSync: () => {
+      }
     };
     const events = (opts === null || opts === void 0 ? void 0 : opts.events) || {
       state: "presence_state",
@@ -4409,9 +4448,9 @@ var RealtimePresence = class _RealtimePresence {
     this.channel._on(events.state, {}, (newState) => {
       const { onJoin, onLeave, onSync } = this.caller;
       this.joinRef = this.channel._joinRef();
-      this.state = _RealtimePresence.syncState(this.state, newState, onJoin, onLeave);
+      this.state = RealtimePresence.syncState(this.state, newState, onJoin, onLeave);
       this.pendingDiffs.forEach((diff) => {
-        this.state = _RealtimePresence.syncDiff(this.state, diff, onJoin, onLeave);
+        this.state = RealtimePresence.syncDiff(this.state, diff, onJoin, onLeave);
       });
       this.pendingDiffs = [];
       onSync();
@@ -4421,7 +4460,7 @@ var RealtimePresence = class _RealtimePresence {
       if (this.inPendingSyncState()) {
         this.pendingDiffs.push(diff);
       } else {
-        this.state = _RealtimePresence.syncDiff(this.state, diff, onJoin, onLeave);
+        this.state = RealtimePresence.syncDiff(this.state, diff, onJoin, onLeave);
         onSync();
       }
     });
@@ -4596,8 +4635,9 @@ var RealtimePresence = class _RealtimePresence {
     return !this.joinRef || this.joinRef !== this.channel._joinRef();
   }
 };
+__name(RealtimePresence, "RealtimePresence");
 
-// node_modules/@supabase/realtime-js/dist/module/RealtimeChannel.js
+// ../node_modules/@supabase/realtime-js/dist/module/RealtimeChannel.js
 var REALTIME_POSTGRES_CHANGES_LISTEN_EVENT;
 (function(REALTIME_POSTGRES_CHANGES_LISTEN_EVENT2) {
   REALTIME_POSTGRES_CHANGES_LISTEN_EVENT2["ALL"] = "*";
@@ -4619,10 +4659,7 @@ var REALTIME_SUBSCRIBE_STATES;
   REALTIME_SUBSCRIBE_STATES2["CLOSED"] = "CLOSED";
   REALTIME_SUBSCRIBE_STATES2["CHANNEL_ERROR"] = "CHANNEL_ERROR";
 })(REALTIME_SUBSCRIBE_STATES || (REALTIME_SUBSCRIBE_STATES = {}));
-var RealtimeChannel = class _RealtimeChannel {
-  static {
-    __name(this, "RealtimeChannel");
-  }
+var RealtimeChannel = class {
   /**
    * Creates a channel that can broadcast messages, sync presence, and listen to Postgres changes.
    *
@@ -4744,7 +4781,7 @@ var RealtimeChannel = class _RealtimeChannel {
             const clientPostgresBinding = clientPostgresBindings[i];
             const { filter: { event, schema, table, filter } } = clientPostgresBinding;
             const serverPostgresFilter = postgres_changes2 && postgres_changes2[i];
-            if (serverPostgresFilter && serverPostgresFilter.event === event && _RealtimeChannel.isFilterValueEqual(serverPostgresFilter.schema, schema) && _RealtimeChannel.isFilterValueEqual(serverPostgresFilter.table, table) && _RealtimeChannel.isFilterValueEqual(serverPostgresFilter.filter, filter)) {
+            if (serverPostgresFilter && serverPostgresFilter.event === event && RealtimeChannel.isFilterValueEqual(serverPostgresFilter.schema, schema) && RealtimeChannel.isFilterValueEqual(serverPostgresFilter.table, table) && RealtimeChannel.isFilterValueEqual(serverPostgresFilter.filter, filter)) {
               newPostgresBindings.push(Object.assign(Object.assign({}, clientPostgresBinding), { id: serverPostgresFilter.id }));
             } else {
               this.unsubscribe();
@@ -5113,7 +5150,7 @@ var RealtimeChannel = class _RealtimeChannel {
     if (this.bindings[typeLower]) {
       this.bindings[typeLower] = this.bindings[typeLower].filter((bind) => {
         var _a;
-        return !(((_a = bind.type) === null || _a === void 0 ? void 0 : _a.toLocaleLowerCase()) === typeLower && _RealtimeChannel.isEqual(bind.filter, filter));
+        return !(((_a = bind.type) === null || _a === void 0 ? void 0 : _a.toLocaleLowerCase()) === typeLower && RealtimeChannel.isEqual(bind.filter, filter));
       });
     }
     return this;
@@ -5195,8 +5232,9 @@ var RealtimeChannel = class _RealtimeChannel {
     return records;
   }
 };
+__name(RealtimeChannel, "RealtimeChannel");
 
-// node_modules/@supabase/realtime-js/dist/module/RealtimeClient.js
+// ../node_modules/@supabase/realtime-js/dist/module/RealtimeClient.js
 var noop2 = /* @__PURE__ */ __name(() => {
 }, "noop");
 var CONNECTION_TIMEOUTS = {
@@ -5213,9 +5251,6 @@ var WORKER_SCRIPT = `
     }
   });`;
 var RealtimeClient = class {
-  static {
-    __name(this, "RealtimeClient");
-  }
   /**
    * Initializes the Socket.
    *
@@ -5920,17 +5955,17 @@ Option 2: Install and provide the "ws" package:
       this.logLevel = options.logLevel || options.log_level;
       this.params = Object.assign(Object.assign({}, this.params), { log_level: this.logLevel });
     }
-    this.reconnectAfterMs = (_h = options === null || options === void 0 ? void 0 : options.reconnectAfterMs) !== null && _h !== void 0 ? _h : ((tries) => {
+    this.reconnectAfterMs = (_h = options === null || options === void 0 ? void 0 : options.reconnectAfterMs) !== null && _h !== void 0 ? _h : (tries) => {
       return RECONNECT_INTERVALS[tries - 1] || DEFAULT_RECONNECT_FALLBACK;
-    });
+    };
     switch (this.vsn) {
       case VSN_1_0_0:
-        this.encode = (_j = options === null || options === void 0 ? void 0 : options.encode) !== null && _j !== void 0 ? _j : ((payload, callback) => {
+        this.encode = (_j = options === null || options === void 0 ? void 0 : options.encode) !== null && _j !== void 0 ? _j : (payload, callback) => {
           return callback(JSON.stringify(payload));
-        });
-        this.decode = (_k = options === null || options === void 0 ? void 0 : options.decode) !== null && _k !== void 0 ? _k : ((payload, callback) => {
+        };
+        this.decode = (_k = options === null || options === void 0 ? void 0 : options.decode) !== null && _k !== void 0 ? _k : (payload, callback) => {
           return callback(JSON.parse(payload));
-        });
+        };
         break;
       case VSN_2_0_0:
         this.encode = (_l = options === null || options === void 0 ? void 0 : options.encode) !== null && _l !== void 0 ? _l : this.serializer.encode.bind(this.serializer);
@@ -5947,16 +5982,16 @@ Option 2: Install and provide the "ws" package:
     }
   }
 };
+__name(RealtimeClient, "RealtimeClient");
 
-// node_modules/@supabase/storage-js/dist/index.mjs
+// ../node_modules/@supabase/storage-js/dist/index.mjs
 var import_checked_fetch45 = __toESM(require_checked_fetch(), 1);
+var import_strip_cf_connecting_ip_header45 = __toESM(require_strip_cf_connecting_ip_header(), 1);
 
-// node_modules/iceberg-js/dist/index.mjs
+// ../node_modules/iceberg-js/dist/index.mjs
 var import_checked_fetch44 = __toESM(require_checked_fetch(), 1);
-var IcebergError = class extends Error {
-  static {
-    __name(this, "IcebergError");
-  }
+var import_strip_cf_connecting_ip_header44 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+var IcebergError = /* @__PURE__ */ __name(class extends Error {
   constructor(message, opts) {
     super(message);
     this.name = "IcebergError";
@@ -5984,7 +6019,7 @@ var IcebergError = class extends Error {
   isAuthenticationTimeout() {
     return this.status === 419;
   }
-};
+}, "IcebergError");
 function buildUrl(baseUrl, path, query) {
   const url = new URL(path, baseUrl);
   if (query) {
@@ -6059,10 +6094,7 @@ function namespaceToPath(namespace) {
   return namespace.join("");
 }
 __name(namespaceToPath, "namespaceToPath");
-var NamespaceOperations = class {
-  static {
-    __name(this, "NamespaceOperations");
-  }
+var NamespaceOperations = /* @__PURE__ */ __name(class {
   constructor(client, prefix = "") {
     this.client = client;
     this.prefix = prefix;
@@ -6127,15 +6159,12 @@ var NamespaceOperations = class {
       throw error;
     }
   }
-};
+}, "NamespaceOperations");
 function namespaceToPath2(namespace) {
   return namespace.join("");
 }
 __name(namespaceToPath2, "namespaceToPath2");
-var TableOperations = class {
-  static {
-    __name(this, "TableOperations");
-  }
+var TableOperations = /* @__PURE__ */ __name(class {
   constructor(client, prefix = "", accessDelegation) {
     this.client = client;
     this.prefix = prefix;
@@ -6220,11 +6249,8 @@ var TableOperations = class {
       throw error;
     }
   }
-};
-var IcebergRestCatalog = class {
-  static {
-    __name(this, "IcebergRestCatalog");
-  }
+}, "TableOperations");
+var IcebergRestCatalog = /* @__PURE__ */ __name(class {
   /**
    * Creates a new Iceberg REST Catalog client.
    *
@@ -6500,27 +6526,21 @@ var IcebergRestCatalog = class {
   async createTableIfNotExists(namespace, request) {
     return this.tableOps.createTableIfNotExists(namespace, request);
   }
-};
+}, "IcebergRestCatalog");
 
-// node_modules/@supabase/storage-js/dist/index.mjs
-var StorageError = class extends Error {
-  static {
-    __name(this, "StorageError");
-  }
+// ../node_modules/@supabase/storage-js/dist/index.mjs
+var StorageError = /* @__PURE__ */ __name(class extends Error {
   constructor(message) {
     super(message);
     this.__isStorageError = true;
     this.name = "StorageError";
   }
-};
+}, "StorageError");
 function isStorageError(error) {
   return typeof error === "object" && error !== null && "__isStorageError" in error;
 }
 __name(isStorageError, "isStorageError");
-var StorageApiError = class extends StorageError {
-  static {
-    __name(this, "StorageApiError");
-  }
+var StorageApiError = /* @__PURE__ */ __name(class extends StorageError {
   constructor(message, status, statusCode) {
     super(message);
     this.name = "StorageApiError";
@@ -6535,27 +6555,27 @@ var StorageApiError = class extends StorageError {
       statusCode: this.statusCode
     };
   }
-};
-var StorageUnknownError = class extends StorageError {
-  static {
-    __name(this, "StorageUnknownError");
-  }
+}, "StorageApiError");
+var StorageUnknownError = /* @__PURE__ */ __name(class extends StorageError {
   constructor(message, originalError) {
     super(message);
     this.name = "StorageUnknownError";
     this.originalError = originalError;
   }
-};
+}, "StorageUnknownError");
 var resolveFetch$1 = /* @__PURE__ */ __name((customFetch) => {
-  if (customFetch) return (...args) => customFetch(...args);
+  if (customFetch)
+    return (...args) => customFetch(...args);
   return (...args) => fetch(...args);
 }, "resolveFetch$1");
 var resolveResponse$1 = /* @__PURE__ */ __name(() => {
   return Response;
 }, "resolveResponse$1");
 var recursiveToCamel = /* @__PURE__ */ __name((item) => {
-  if (Array.isArray(item)) return item.map((el) => recursiveToCamel(el));
-  else if (typeof item === "function" || item !== Object(item)) return item;
+  if (Array.isArray(item))
+    return item.map((el) => recursiveToCamel(el));
+  else if (typeof item === "function" || item !== Object(item))
+    return item;
   const result = {};
   Object.entries(item).forEach(([key, value]) => {
     const newKey = key.replace(/([-_][a-z])/gi, (c) => c.toUpperCase().replace(/[-_]/g, ""));
@@ -6564,15 +6584,20 @@ var recursiveToCamel = /* @__PURE__ */ __name((item) => {
   return result;
 }, "recursiveToCamel");
 var isPlainObject$1 = /* @__PURE__ */ __name((value) => {
-  if (typeof value !== "object" || value === null) return false;
+  if (typeof value !== "object" || value === null)
+    return false;
   const prototype = Object.getPrototypeOf(value);
   return (prototype === null || prototype === Object.prototype || Object.getPrototypeOf(prototype) === null) && !(Symbol.toStringTag in value) && !(Symbol.iterator in value);
 }, "isPlainObject$1");
 var isValidBucketName = /* @__PURE__ */ __name((bucketName) => {
-  if (!bucketName || typeof bucketName !== "string") return false;
-  if (bucketName.length === 0 || bucketName.length > 100) return false;
-  if (bucketName.trim() !== bucketName) return false;
-  if (bucketName.includes("/") || bucketName.includes("\\")) return false;
+  if (!bucketName || typeof bucketName !== "string")
+    return false;
+  if (bucketName.length === 0 || bucketName.length > 100)
+    return false;
+  if (bucketName.trim() !== bucketName)
+    return false;
+  if (bucketName.includes("/") || bucketName.includes("\\"))
+    return false;
   return /^[\w!.\*'() &$@=;:+,?-]+$/.test(bucketName);
 }, "isValidBucketName");
 function _typeof(o) {
@@ -6585,11 +6610,13 @@ function _typeof(o) {
 }
 __name(_typeof, "_typeof");
 function toPrimitive(t, r) {
-  if ("object" != _typeof(t) || !t) return t;
+  if ("object" != _typeof(t) || !t)
+    return t;
   var e = t[Symbol.toPrimitive];
   if (void 0 !== e) {
     var i = e.call(t, r || "default");
-    if ("object" != _typeof(i)) return i;
+    if ("object" != _typeof(i))
+      return i;
     throw new TypeError("@@toPrimitive must return a primitive value.");
   }
   return ("string" === r ? String : Number)(t);
@@ -6637,33 +6664,40 @@ var _getErrorMessage$1 = /* @__PURE__ */ __name((err) => {
   return err.msg || err.message || err.error_description || (typeof err.error === "string" ? err.error : (_err$error = err.error) === null || _err$error === void 0 ? void 0 : _err$error.message) || JSON.stringify(err);
 }, "_getErrorMessage$1");
 var handleError$1 = /* @__PURE__ */ __name(async (error, reject, options) => {
-  if (error instanceof await resolveResponse$1() && !(options === null || options === void 0 ? void 0 : options.noResolveJson)) error.json().then((err) => {
-    const status = error.status || 500;
-    const statusCode = (err === null || err === void 0 ? void 0 : err.statusCode) || status + "";
-    reject(new StorageApiError(_getErrorMessage$1(err), status, statusCode));
-  }).catch((err) => {
-    reject(new StorageUnknownError(_getErrorMessage$1(err), err));
-  });
-  else reject(new StorageUnknownError(_getErrorMessage$1(error), error));
+  if (error instanceof await resolveResponse$1() && !(options === null || options === void 0 ? void 0 : options.noResolveJson))
+    error.json().then((err) => {
+      const status = error.status || 500;
+      const statusCode = (err === null || err === void 0 ? void 0 : err.statusCode) || status + "";
+      reject(new StorageApiError(_getErrorMessage$1(err), status, statusCode));
+    }).catch((err) => {
+      reject(new StorageUnknownError(_getErrorMessage$1(err), err));
+    });
+  else
+    reject(new StorageUnknownError(_getErrorMessage$1(error), error));
 }, "handleError$1");
 var _getRequestParams$1 = /* @__PURE__ */ __name((method, options, parameters, body) => {
   const params = {
     method,
     headers: (options === null || options === void 0 ? void 0 : options.headers) || {}
   };
-  if (method === "GET" || !body) return params;
+  if (method === "GET" || !body)
+    return params;
   if (isPlainObject$1(body)) {
     params.headers = _objectSpread2({ "Content-Type": "application/json" }, options === null || options === void 0 ? void 0 : options.headers);
     params.body = JSON.stringify(body);
-  } else params.body = body;
-  if (options === null || options === void 0 ? void 0 : options.duplex) params.duplex = options.duplex;
+  } else
+    params.body = body;
+  if (options === null || options === void 0 ? void 0 : options.duplex)
+    params.duplex = options.duplex;
   return _objectSpread2(_objectSpread2({}, params), parameters);
 }, "_getRequestParams$1");
 async function _handleRequest$1(fetcher, method, url, options, parameters, body) {
   return new Promise((resolve, reject) => {
     fetcher(url, _getRequestParams$1(method, options, parameters, body)).then((result) => {
-      if (!result.ok) throw result;
-      if (options === null || options === void 0 ? void 0 : options.noResolveJson) return result;
+      if (!result.ok)
+        throw result;
+      if (options === null || options === void 0 ? void 0 : options.noResolveJson)
+        return result;
       return result.json();
     }).then((data) => resolve(data)).catch((error) => handleError$1(error, reject, options));
   });
@@ -6689,10 +6723,7 @@ async function remove(fetcher, url, body, options, parameters) {
   return _handleRequest$1(fetcher, "DELETE", url, options, parameters, body);
 }
 __name(remove, "remove");
-var StreamDownloadBuilder = class {
-  static {
-    __name(this, "StreamDownloadBuilder");
-  }
+var StreamDownloadBuilder = /* @__PURE__ */ __name(class {
   constructor(downloadFn, shouldThrowOnError) {
     this.downloadFn = downloadFn;
     this.shouldThrowOnError = shouldThrowOnError;
@@ -6708,21 +6739,20 @@ var StreamDownloadBuilder = class {
         error: null
       };
     } catch (error) {
-      if (_this.shouldThrowOnError) throw error;
-      if (isStorageError(error)) return {
-        data: null,
-        error
-      };
+      if (_this.shouldThrowOnError)
+        throw error;
+      if (isStorageError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
-};
+}, "StreamDownloadBuilder");
 var _Symbol$toStringTag;
 _Symbol$toStringTag = Symbol.toStringTag;
-var BlobDownloadBuilder = class {
-  static {
-    __name(this, "BlobDownloadBuilder");
-  }
+var BlobDownloadBuilder = /* @__PURE__ */ __name(class {
   constructor(downloadFn, shouldThrowOnError) {
     this.downloadFn = downloadFn;
     this.shouldThrowOnError = shouldThrowOnError;
@@ -6742,7 +6772,8 @@ var BlobDownloadBuilder = class {
     return this.getPromise().finally(onfinally);
   }
   getPromise() {
-    if (!this.promise) this.promise = this.execute();
+    if (!this.promise)
+      this.promise = this.execute();
     return this.promise;
   }
   async execute() {
@@ -6753,15 +6784,17 @@ var BlobDownloadBuilder = class {
         error: null
       };
     } catch (error) {
-      if (_this.shouldThrowOnError) throw error;
-      if (isStorageError(error)) return {
-        data: null,
-        error
-      };
+      if (_this.shouldThrowOnError)
+        throw error;
+      if (isStorageError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
-};
+}, "BlobDownloadBuilder");
 var DEFAULT_SEARCH_OPTIONS = {
   limit: 100,
   offset: 0,
@@ -6775,10 +6808,7 @@ var DEFAULT_FILE_OPTIONS = {
   contentType: "text/plain;charset=UTF-8",
   upsert: false
 };
-var StorageFileApi = class {
-  static {
-    __name(this, "StorageFileApi");
-  }
+var StorageFileApi = /* @__PURE__ */ __name(class {
   constructor(url, headers = {}, bucketId, fetch$1) {
     this.shouldThrowOnError = false;
     this.url = url;
@@ -6812,20 +6842,26 @@ var StorageFileApi = class {
       if (typeof Blob !== "undefined" && fileBody instanceof Blob) {
         body = new FormData();
         body.append("cacheControl", options.cacheControl);
-        if (metadata) body.append("metadata", _this.encodeMetadata(metadata));
+        if (metadata)
+          body.append("metadata", _this.encodeMetadata(metadata));
         body.append("", fileBody);
       } else if (typeof FormData !== "undefined" && fileBody instanceof FormData) {
         body = fileBody;
-        if (!body.has("cacheControl")) body.append("cacheControl", options.cacheControl);
-        if (metadata && !body.has("metadata")) body.append("metadata", _this.encodeMetadata(metadata));
+        if (!body.has("cacheControl"))
+          body.append("cacheControl", options.cacheControl);
+        if (metadata && !body.has("metadata"))
+          body.append("metadata", _this.encodeMetadata(metadata));
       } else {
         body = fileBody;
         headers["cache-control"] = `max-age=${options.cacheControl}`;
         headers["content-type"] = options.contentType;
-        if (metadata) headers["x-metadata"] = _this.toBase64(_this.encodeMetadata(metadata));
-        if ((typeof ReadableStream !== "undefined" && body instanceof ReadableStream || body && typeof body === "object" && "pipe" in body && typeof body.pipe === "function") && !options.duplex) options.duplex = "half";
+        if (metadata)
+          headers["x-metadata"] = _this.toBase64(_this.encodeMetadata(metadata));
+        if ((typeof ReadableStream !== "undefined" && body instanceof ReadableStream || body && typeof body === "object" && "pipe" in body && typeof body.pipe === "function") && !options.duplex)
+          options.duplex = "half";
       }
-      if (fileOptions === null || fileOptions === void 0 ? void 0 : fileOptions.headers) headers = _objectSpread2(_objectSpread2({}, headers), fileOptions.headers);
+      if (fileOptions === null || fileOptions === void 0 ? void 0 : fileOptions.headers)
+        headers = _objectSpread2(_objectSpread2({}, headers), fileOptions.headers);
       const cleanPath = _this._removeEmptyFolders(path);
       const _path = _this._getFinalPath(cleanPath);
       const data = await (method == "PUT" ? put : post$1)(_this.fetch, `${_this.url}/object/${_path}`, body, _objectSpread2({ headers }, (options === null || options === void 0 ? void 0 : options.duplex) ? { duplex: options.duplex } : {}));
@@ -6838,11 +6874,13 @@ var StorageFileApi = class {
         error: null
       };
     } catch (error) {
-      if (_this.shouldThrowOnError) throw error;
-      if (isStorageError(error)) return {
-        data: null,
-        error
-      };
+      if (_this.shouldThrowOnError)
+        throw error;
+      if (isStorageError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
@@ -6954,11 +6992,13 @@ var StorageFileApi = class {
         error: null
       };
     } catch (error) {
-      if (_this3.shouldThrowOnError) throw error;
-      if (isStorageError(error)) return {
-        data: null,
-        error
-      };
+      if (_this3.shouldThrowOnError)
+        throw error;
+      if (isStorageError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
@@ -6997,11 +7037,13 @@ var StorageFileApi = class {
     try {
       let _path = _this4._getFinalPath(path);
       const headers = _objectSpread2({}, _this4.headers);
-      if (options === null || options === void 0 ? void 0 : options.upsert) headers["x-upsert"] = "true";
+      if (options === null || options === void 0 ? void 0 : options.upsert)
+        headers["x-upsert"] = "true";
       const data = await post$1(_this4.fetch, `${_this4.url}/object/upload/sign/${_path}`, {}, { headers });
       const url = new URL(_this4.url + data.url);
       const token = url.searchParams.get("token");
-      if (!token) throw new StorageError("No token returned by API");
+      if (!token)
+        throw new StorageError("No token returned by API");
       return {
         data: {
           signedUrl: url.toString(),
@@ -7011,11 +7053,13 @@ var StorageFileApi = class {
         error: null
       };
     } catch (error) {
-      if (_this4.shouldThrowOnError) throw error;
-      if (isStorageError(error)) return {
-        data: null,
-        error
-      };
+      if (_this4.shouldThrowOnError)
+        throw error;
+      if (isStorageError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
@@ -7106,11 +7150,13 @@ var StorageFileApi = class {
         error: null
       };
     } catch (error) {
-      if (_this6.shouldThrowOnError) throw error;
-      if (isStorageError(error)) return {
-        data: null,
-        error
-      };
+      if (_this6.shouldThrowOnError)
+        throw error;
+      if (isStorageError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
@@ -7154,11 +7200,13 @@ var StorageFileApi = class {
         error: null
       };
     } catch (error) {
-      if (_this7.shouldThrowOnError) throw error;
-      if (isStorageError(error)) return {
-        data: null,
-        error
-      };
+      if (_this7.shouldThrowOnError)
+        throw error;
+      if (isStorageError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
@@ -7225,11 +7273,13 @@ var StorageFileApi = class {
         error: null
       };
     } catch (error) {
-      if (_this8.shouldThrowOnError) throw error;
-      if (isStorageError(error)) return {
-        data: null,
-        error
-      };
+      if (_this8.shouldThrowOnError)
+        throw error;
+      if (isStorageError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
@@ -7284,11 +7334,13 @@ var StorageFileApi = class {
         error: null
       };
     } catch (error) {
-      if (_this9.shouldThrowOnError) throw error;
-      if (isStorageError(error)) return {
-        data: null,
-        error
-      };
+      if (_this9.shouldThrowOnError)
+        throw error;
+      if (isStorageError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
@@ -7365,11 +7417,13 @@ var StorageFileApi = class {
         error: null
       };
     } catch (error) {
-      if (_this10.shouldThrowOnError) throw error;
-      if (isStorageError(error)) return {
-        data: null,
-        error
-      };
+      if (_this10.shouldThrowOnError)
+        throw error;
+      if (isStorageError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
@@ -7398,13 +7452,15 @@ var StorageFileApi = class {
         error: null
       };
     } catch (error) {
-      if (_this11.shouldThrowOnError) throw error;
+      if (_this11.shouldThrowOnError)
+        throw error;
       if (isStorageError(error) && error instanceof StorageUnknownError) {
         const originalError = error.originalError;
-        if ([400, 404].includes(originalError === null || originalError === void 0 ? void 0 : originalError.status)) return {
-          data: false,
-          error
-        };
+        if ([400, 404].includes(originalError === null || originalError === void 0 ? void 0 : originalError.status))
+          return {
+            data: false,
+            error
+          };
       }
       throw error;
     }
@@ -7463,12 +7519,15 @@ var StorageFileApi = class {
     const _path = this._getFinalPath(path);
     const _queryString = [];
     const downloadQueryParam = (options === null || options === void 0 ? void 0 : options.download) ? `download=${options.download === true ? "" : options.download}` : "";
-    if (downloadQueryParam !== "") _queryString.push(downloadQueryParam);
+    if (downloadQueryParam !== "")
+      _queryString.push(downloadQueryParam);
     const renderPath = typeof (options === null || options === void 0 ? void 0 : options.transform) !== "undefined" ? "render/image" : "object";
     const transformationQuery = this.transformOptsToQueryString((options === null || options === void 0 ? void 0 : options.transform) || {});
-    if (transformationQuery !== "") _queryString.push(transformationQuery);
+    if (transformationQuery !== "")
+      _queryString.push(transformationQuery);
     let queryString = _queryString.join("&");
-    if (queryString !== "") queryString = `?${queryString}`;
+    if (queryString !== "")
+      queryString = `?${queryString}`;
     return { data: { publicUrl: encodeURI(`${this.url}/${renderPath}/public/${_path}${queryString}`) } };
   }
   /**
@@ -7502,11 +7561,13 @@ var StorageFileApi = class {
         error: null
       };
     } catch (error) {
-      if (_this12.shouldThrowOnError) throw error;
-      if (isStorageError(error)) return {
-        data: null,
-        error
-      };
+      if (_this12.shouldThrowOnError)
+        throw error;
+      if (isStorageError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
@@ -7587,11 +7648,13 @@ var StorageFileApi = class {
         error: null
       };
     } catch (error) {
-      if (_this13.shouldThrowOnError) throw error;
-      if (isStorageError(error)) return {
-        data: null,
-        error
-      };
+      if (_this13.shouldThrowOnError)
+        throw error;
+      if (isStorageError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
@@ -7611,11 +7674,13 @@ var StorageFileApi = class {
         error: null
       };
     } catch (error) {
-      if (_this14.shouldThrowOnError) throw error;
-      if (isStorageError(error)) return {
-        data: null,
-        error
-      };
+      if (_this14.shouldThrowOnError)
+        throw error;
+      if (isStorageError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
@@ -7623,7 +7688,8 @@ var StorageFileApi = class {
     return JSON.stringify(metadata);
   }
   toBase64(data) {
-    if (typeof Buffer !== "undefined") return Buffer.from(data).toString("base64");
+    if (typeof Buffer !== "undefined")
+      return Buffer.from(data).toString("base64");
     return btoa(data);
   }
   _getFinalPath(path) {
@@ -7634,25 +7700,28 @@ var StorageFileApi = class {
   }
   transformOptsToQueryString(transform) {
     const params = [];
-    if (transform.width) params.push(`width=${transform.width}`);
-    if (transform.height) params.push(`height=${transform.height}`);
-    if (transform.resize) params.push(`resize=${transform.resize}`);
-    if (transform.format) params.push(`format=${transform.format}`);
-    if (transform.quality) params.push(`quality=${transform.quality}`);
+    if (transform.width)
+      params.push(`width=${transform.width}`);
+    if (transform.height)
+      params.push(`height=${transform.height}`);
+    if (transform.resize)
+      params.push(`resize=${transform.resize}`);
+    if (transform.format)
+      params.push(`format=${transform.format}`);
+    if (transform.quality)
+      params.push(`quality=${transform.quality}`);
     return params.join("&");
   }
-};
+}, "StorageFileApi");
 var version2 = "2.89.0";
 var DEFAULT_HEADERS$1 = { "X-Client-Info": `storage-js/${version2}` };
-var StorageBucketApi = class {
-  static {
-    __name(this, "StorageBucketApi");
-  }
+var StorageBucketApi = /* @__PURE__ */ __name(class {
   constructor(url, headers = {}, fetch$1, opts) {
     this.shouldThrowOnError = false;
     const baseUrl = new URL(url);
     if (opts === null || opts === void 0 ? void 0 : opts.useNewHostname) {
-      if (/supabase\.(co|in|red)$/.test(baseUrl.hostname) && !baseUrl.hostname.includes("storage.supabase.")) baseUrl.hostname = baseUrl.hostname.replace("supabase.", "storage.supabase.");
+      if (/supabase\.(co|in|red)$/.test(baseUrl.hostname) && !baseUrl.hostname.includes("storage.supabase."))
+        baseUrl.hostname = baseUrl.hostname.replace("supabase.", "storage.supabase.");
     }
     this.url = baseUrl.href.replace(/\/$/, "");
     this.headers = _objectSpread2(_objectSpread2({}, DEFAULT_HEADERS$1), headers);
@@ -7708,11 +7777,13 @@ var StorageBucketApi = class {
         error: null
       };
     } catch (error) {
-      if (_this.shouldThrowOnError) throw error;
-      if (isStorageError(error)) return {
-        data: null,
-        error
-      };
+      if (_this.shouldThrowOnError)
+        throw error;
+      if (isStorageError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
@@ -7757,11 +7828,13 @@ var StorageBucketApi = class {
         error: null
       };
     } catch (error) {
-      if (_this2.shouldThrowOnError) throw error;
-      if (isStorageError(error)) return {
-        data: null,
-        error
-      };
+      if (_this2.shouldThrowOnError)
+        throw error;
+      if (isStorageError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
@@ -7817,11 +7890,13 @@ var StorageBucketApi = class {
         error: null
       };
     } catch (error) {
-      if (_this3.shouldThrowOnError) throw error;
-      if (isStorageError(error)) return {
-        data: null,
-        error
-      };
+      if (_this3.shouldThrowOnError)
+        throw error;
+      if (isStorageError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
@@ -7874,11 +7949,13 @@ var StorageBucketApi = class {
         error: null
       };
     } catch (error) {
-      if (_this4.shouldThrowOnError) throw error;
-      if (isStorageError(error)) return {
-        data: null,
-        error
-      };
+      if (_this4.shouldThrowOnError)
+        throw error;
+      if (isStorageError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
@@ -7914,11 +7991,13 @@ var StorageBucketApi = class {
         error: null
       };
     } catch (error) {
-      if (_this5.shouldThrowOnError) throw error;
-      if (isStorageError(error)) return {
-        data: null,
-        error
-      };
+      if (_this5.shouldThrowOnError)
+        throw error;
+      if (isStorageError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
@@ -7955,30 +8034,34 @@ var StorageBucketApi = class {
         error: null
       };
     } catch (error) {
-      if (_this6.shouldThrowOnError) throw error;
-      if (isStorageError(error)) return {
-        data: null,
-        error
-      };
+      if (_this6.shouldThrowOnError)
+        throw error;
+      if (isStorageError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
   listBucketOptionsToQueryString(options) {
     const params = {};
     if (options) {
-      if ("limit" in options) params.limit = String(options.limit);
-      if ("offset" in options) params.offset = String(options.offset);
-      if (options.search) params.search = options.search;
-      if (options.sortColumn) params.sortColumn = options.sortColumn;
-      if (options.sortOrder) params.sortOrder = options.sortOrder;
+      if ("limit" in options)
+        params.limit = String(options.limit);
+      if ("offset" in options)
+        params.offset = String(options.offset);
+      if (options.search)
+        params.search = options.search;
+      if (options.sortColumn)
+        params.sortColumn = options.sortColumn;
+      if (options.sortOrder)
+        params.sortOrder = options.sortOrder;
     }
     return Object.keys(params).length > 0 ? "?" + new URLSearchParams(params).toString() : "";
   }
-};
-var StorageAnalyticsClient = class {
-  static {
-    __name(this, "StorageAnalyticsClient");
-  }
+}, "StorageBucketApi");
+var StorageAnalyticsClient = /* @__PURE__ */ __name(class {
   /**
   * @alpha
   *
@@ -8059,11 +8142,13 @@ var StorageAnalyticsClient = class {
         error: null
       };
     } catch (error) {
-      if (_this.shouldThrowOnError) throw error;
-      if (isStorageError(error)) return {
-        data: null,
-        error
-      };
+      if (_this.shouldThrowOnError)
+        throw error;
+      if (isStorageError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
@@ -8117,11 +8202,16 @@ var StorageAnalyticsClient = class {
     var _this2 = this;
     try {
       const queryParams = new URLSearchParams();
-      if ((options === null || options === void 0 ? void 0 : options.limit) !== void 0) queryParams.set("limit", options.limit.toString());
-      if ((options === null || options === void 0 ? void 0 : options.offset) !== void 0) queryParams.set("offset", options.offset.toString());
-      if (options === null || options === void 0 ? void 0 : options.sortColumn) queryParams.set("sortColumn", options.sortColumn);
-      if (options === null || options === void 0 ? void 0 : options.sortOrder) queryParams.set("sortOrder", options.sortOrder);
-      if (options === null || options === void 0 ? void 0 : options.search) queryParams.set("search", options.search);
+      if ((options === null || options === void 0 ? void 0 : options.limit) !== void 0)
+        queryParams.set("limit", options.limit.toString());
+      if ((options === null || options === void 0 ? void 0 : options.offset) !== void 0)
+        queryParams.set("offset", options.offset.toString());
+      if (options === null || options === void 0 ? void 0 : options.sortColumn)
+        queryParams.set("sortColumn", options.sortColumn);
+      if (options === null || options === void 0 ? void 0 : options.sortOrder)
+        queryParams.set("sortOrder", options.sortOrder);
+      if (options === null || options === void 0 ? void 0 : options.search)
+        queryParams.set("search", options.search);
       const queryString = queryParams.toString();
       const url = queryString ? `${_this2.url}/bucket?${queryString}` : `${_this2.url}/bucket`;
       return {
@@ -8129,11 +8219,13 @@ var StorageAnalyticsClient = class {
         error: null
       };
     } catch (error) {
-      if (_this2.shouldThrowOnError) throw error;
-      if (isStorageError(error)) return {
-        data: null,
-        error
-      };
+      if (_this2.shouldThrowOnError)
+        throw error;
+      if (isStorageError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
@@ -8176,11 +8268,13 @@ var StorageAnalyticsClient = class {
         error: null
       };
     } catch (error) {
-      if (_this3.shouldThrowOnError) throw error;
-      if (isStorageError(error)) return {
-        data: null,
-        error
-      };
+      if (_this3.shouldThrowOnError)
+        throw error;
+      if (isStorageError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
@@ -8309,20 +8403,22 @@ var StorageAnalyticsClient = class {
   */
   from(bucketName) {
     var _this4 = this;
-    if (!isValidBucketName(bucketName)) throw new StorageError("Invalid bucket name: File, folder, and bucket names must follow AWS object key naming guidelines and should avoid the use of any other characters.");
+    if (!isValidBucketName(bucketName))
+      throw new StorageError("Invalid bucket name: File, folder, and bucket names must follow AWS object key naming guidelines and should avoid the use of any other characters.");
     const catalog = new IcebergRestCatalog({
       baseUrl: this.url,
       catalogName: bucketName,
       auth: {
         type: "custom",
-        getHeaders: /* @__PURE__ */ __name(async () => _this4.headers, "getHeaders")
+        getHeaders: async () => _this4.headers
       },
       fetch: this.fetch
     });
     const shouldThrowOnError = this.shouldThrowOnError;
     return new Proxy(catalog, { get(target, prop) {
       const value = target[prop];
-      if (typeof value !== "function") return value;
+      if (typeof value !== "function")
+        return value;
       return async (...args) => {
         try {
           return {
@@ -8330,7 +8426,8 @@ var StorageAnalyticsClient = class {
             error: null
           };
         } catch (error) {
-          if (shouldThrowOnError) throw error;
+          if (shouldThrowOnError)
+            throw error;
           return {
             data: null,
             error
@@ -8339,29 +8436,23 @@ var StorageAnalyticsClient = class {
       };
     } });
   }
-};
+}, "StorageAnalyticsClient");
 var DEFAULT_HEADERS = {
   "X-Client-Info": `storage-js/${version2}`,
   "Content-Type": "application/json"
 };
-var StorageVectorsError = class extends Error {
-  static {
-    __name(this, "StorageVectorsError");
-  }
+var StorageVectorsError = /* @__PURE__ */ __name(class extends Error {
   constructor(message) {
     super(message);
     this.__isStorageVectorsError = true;
     this.name = "StorageVectorsError";
   }
-};
+}, "StorageVectorsError");
 function isStorageVectorsError(error) {
   return typeof error === "object" && error !== null && "__isStorageVectorsError" in error;
 }
 __name(isStorageVectorsError, "isStorageVectorsError");
-var StorageVectorsApiError = class extends StorageVectorsError {
-  static {
-    __name(this, "StorageVectorsApiError");
-  }
+var StorageVectorsApiError = /* @__PURE__ */ __name(class extends StorageVectorsError {
   constructor(message, status, statusCode) {
     super(message);
     this.name = "StorageVectorsApiError";
@@ -8376,23 +8467,22 @@ var StorageVectorsApiError = class extends StorageVectorsError {
       statusCode: this.statusCode
     };
   }
-};
-var StorageVectorsUnknownError = class extends StorageVectorsError {
-  static {
-    __name(this, "StorageVectorsUnknownError");
-  }
+}, "StorageVectorsApiError");
+var StorageVectorsUnknownError = /* @__PURE__ */ __name(class extends StorageVectorsError {
   constructor(message, originalError) {
     super(message);
     this.name = "StorageVectorsUnknownError";
     this.originalError = originalError;
   }
-};
+}, "StorageVectorsUnknownError");
 var resolveFetch2 = /* @__PURE__ */ __name((customFetch) => {
-  if (customFetch) return (...args) => customFetch(...args);
+  if (customFetch)
+    return (...args) => customFetch(...args);
   return (...args) => fetch(...args);
 }, "resolveFetch");
 var isPlainObject = /* @__PURE__ */ __name((value) => {
-  if (typeof value !== "object" || value === null) return false;
+  if (typeof value !== "object" || value === null)
+    return false;
   const prototype = Object.getPrototypeOf(value);
   return (prototype === null || prototype === Object.prototype || Object.getPrototypeOf(prototype) === null) && !(Symbol.toStringTag in value) && !(Symbol.iterator in value);
 }, "isPlainObject");
@@ -8401,38 +8491,45 @@ var handleError = /* @__PURE__ */ __name(async (error, reject, options) => {
   if (error && typeof error === "object" && "status" in error && "ok" in error && typeof error.status === "number" && !(options === null || options === void 0 ? void 0 : options.noResolveJson)) {
     const status = error.status || 500;
     const responseError = error;
-    if (typeof responseError.json === "function") responseError.json().then((err) => {
-      const statusCode = (err === null || err === void 0 ? void 0 : err.statusCode) || (err === null || err === void 0 ? void 0 : err.code) || status + "";
-      reject(new StorageVectorsApiError(_getErrorMessage(err), status, statusCode));
-    }).catch(() => {
-      const statusCode = status + "";
-      reject(new StorageVectorsApiError(responseError.statusText || `HTTP ${status} error`, status, statusCode));
-    });
+    if (typeof responseError.json === "function")
+      responseError.json().then((err) => {
+        const statusCode = (err === null || err === void 0 ? void 0 : err.statusCode) || (err === null || err === void 0 ? void 0 : err.code) || status + "";
+        reject(new StorageVectorsApiError(_getErrorMessage(err), status, statusCode));
+      }).catch(() => {
+        const statusCode = status + "";
+        reject(new StorageVectorsApiError(responseError.statusText || `HTTP ${status} error`, status, statusCode));
+      });
     else {
       const statusCode = status + "";
       reject(new StorageVectorsApiError(responseError.statusText || `HTTP ${status} error`, status, statusCode));
     }
-  } else reject(new StorageVectorsUnknownError(_getErrorMessage(error), error));
+  } else
+    reject(new StorageVectorsUnknownError(_getErrorMessage(error), error));
 }, "handleError");
 var _getRequestParams = /* @__PURE__ */ __name((method, options, parameters, body) => {
   const params = {
     method,
     headers: (options === null || options === void 0 ? void 0 : options.headers) || {}
   };
-  if (method === "GET" || !body) return params;
+  if (method === "GET" || !body)
+    return params;
   if (isPlainObject(body)) {
     params.headers = _objectSpread2({ "Content-Type": "application/json" }, options === null || options === void 0 ? void 0 : options.headers);
     params.body = JSON.stringify(body);
-  } else params.body = body;
+  } else
+    params.body = body;
   return _objectSpread2(_objectSpread2({}, params), parameters);
 }, "_getRequestParams");
 async function _handleRequest(fetcher, method, url, options, parameters, body) {
   return new Promise((resolve, reject) => {
     fetcher(url, _getRequestParams(method, options, parameters, body)).then((result) => {
-      if (!result.ok) throw result;
-      if (options === null || options === void 0 ? void 0 : options.noResolveJson) return result;
+      if (!result.ok)
+        throw result;
+      if (options === null || options === void 0 ? void 0 : options.noResolveJson)
+        return result;
       const contentType = result.headers.get("content-type");
-      if (!contentType || !contentType.includes("application/json")) return {};
+      if (!contentType || !contentType.includes("application/json"))
+        return {};
       return result.json();
     }).then((data) => resolve(data)).catch((error) => handleError(error, reject, options));
   });
@@ -8442,10 +8539,7 @@ async function post(fetcher, url, body, options, parameters) {
   return _handleRequest(fetcher, "POST", url, options, parameters, body);
 }
 __name(post, "post");
-var VectorIndexApi = class {
-  static {
-    __name(this, "VectorIndexApi");
-  }
+var VectorIndexApi = /* @__PURE__ */ __name(class {
   /** Creates a new VectorIndexApi instance */
   constructor(url, headers = {}, fetch$1) {
     this.shouldThrowOnError = false;
@@ -8467,11 +8561,13 @@ var VectorIndexApi = class {
         error: null
       };
     } catch (error) {
-      if (_this.shouldThrowOnError) throw error;
-      if (isStorageVectorsError(error)) return {
-        data: null,
-        error
-      };
+      if (_this.shouldThrowOnError)
+        throw error;
+      if (isStorageVectorsError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
@@ -8487,11 +8583,13 @@ var VectorIndexApi = class {
         error: null
       };
     } catch (error) {
-      if (_this2.shouldThrowOnError) throw error;
-      if (isStorageVectorsError(error)) return {
-        data: null,
-        error
-      };
+      if (_this2.shouldThrowOnError)
+        throw error;
+      if (isStorageVectorsError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
@@ -8504,11 +8602,13 @@ var VectorIndexApi = class {
         error: null
       };
     } catch (error) {
-      if (_this3.shouldThrowOnError) throw error;
-      if (isStorageVectorsError(error)) return {
-        data: null,
-        error
-      };
+      if (_this3.shouldThrowOnError)
+        throw error;
+      if (isStorageVectorsError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
@@ -8524,19 +8624,18 @@ var VectorIndexApi = class {
         error: null
       };
     } catch (error) {
-      if (_this4.shouldThrowOnError) throw error;
-      if (isStorageVectorsError(error)) return {
-        data: null,
-        error
-      };
+      if (_this4.shouldThrowOnError)
+        throw error;
+      if (isStorageVectorsError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
-};
-var VectorDataApi = class {
-  static {
-    __name(this, "VectorDataApi");
-  }
+}, "VectorIndexApi");
+var VectorDataApi = /* @__PURE__ */ __name(class {
   /** Creates a new VectorDataApi instance */
   constructor(url, headers = {}, fetch$1) {
     this.shouldThrowOnError = false;
@@ -8553,17 +8652,20 @@ var VectorDataApi = class {
   async putVectors(options) {
     var _this = this;
     try {
-      if (options.vectors.length < 1 || options.vectors.length > 500) throw new Error("Vector batch size must be between 1 and 500 items");
+      if (options.vectors.length < 1 || options.vectors.length > 500)
+        throw new Error("Vector batch size must be between 1 and 500 items");
       return {
         data: await post(_this.fetch, `${_this.url}/PutVectors`, options, { headers: _this.headers }) || {},
         error: null
       };
     } catch (error) {
-      if (_this.shouldThrowOnError) throw error;
-      if (isStorageVectorsError(error)) return {
-        data: null,
-        error
-      };
+      if (_this.shouldThrowOnError)
+        throw error;
+      if (isStorageVectorsError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
@@ -8576,11 +8678,13 @@ var VectorDataApi = class {
         error: null
       };
     } catch (error) {
-      if (_this2.shouldThrowOnError) throw error;
-      if (isStorageVectorsError(error)) return {
-        data: null,
-        error
-      };
+      if (_this2.shouldThrowOnError)
+        throw error;
+      if (isStorageVectorsError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
@@ -8589,9 +8693,11 @@ var VectorDataApi = class {
     var _this3 = this;
     try {
       if (options.segmentCount !== void 0) {
-        if (options.segmentCount < 1 || options.segmentCount > 16) throw new Error("segmentCount must be between 1 and 16");
+        if (options.segmentCount < 1 || options.segmentCount > 16)
+          throw new Error("segmentCount must be between 1 and 16");
         if (options.segmentIndex !== void 0) {
-          if (options.segmentIndex < 0 || options.segmentIndex >= options.segmentCount) throw new Error(`segmentIndex must be between 0 and ${options.segmentCount - 1}`);
+          if (options.segmentIndex < 0 || options.segmentIndex >= options.segmentCount)
+            throw new Error(`segmentIndex must be between 0 and ${options.segmentCount - 1}`);
         }
       }
       return {
@@ -8599,11 +8705,13 @@ var VectorDataApi = class {
         error: null
       };
     } catch (error) {
-      if (_this3.shouldThrowOnError) throw error;
-      if (isStorageVectorsError(error)) return {
-        data: null,
-        error
-      };
+      if (_this3.shouldThrowOnError)
+        throw error;
+      if (isStorageVectorsError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
@@ -8616,11 +8724,13 @@ var VectorDataApi = class {
         error: null
       };
     } catch (error) {
-      if (_this4.shouldThrowOnError) throw error;
-      if (isStorageVectorsError(error)) return {
-        data: null,
-        error
-      };
+      if (_this4.shouldThrowOnError)
+        throw error;
+      if (isStorageVectorsError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
@@ -8628,25 +8738,25 @@ var VectorDataApi = class {
   async deleteVectors(options) {
     var _this5 = this;
     try {
-      if (options.keys.length < 1 || options.keys.length > 500) throw new Error("Keys batch size must be between 1 and 500 items");
+      if (options.keys.length < 1 || options.keys.length > 500)
+        throw new Error("Keys batch size must be between 1 and 500 items");
       return {
         data: await post(_this5.fetch, `${_this5.url}/DeleteVectors`, options, { headers: _this5.headers }) || {},
         error: null
       };
     } catch (error) {
-      if (_this5.shouldThrowOnError) throw error;
-      if (isStorageVectorsError(error)) return {
-        data: null,
-        error
-      };
+      if (_this5.shouldThrowOnError)
+        throw error;
+      if (isStorageVectorsError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
-};
-var VectorBucketApi = class {
-  static {
-    __name(this, "VectorBucketApi");
-  }
+}, "VectorDataApi");
+var VectorBucketApi = /* @__PURE__ */ __name(class {
   /** Creates a new VectorBucketApi instance */
   constructor(url, headers = {}, fetch$1) {
     this.shouldThrowOnError = false;
@@ -8668,11 +8778,13 @@ var VectorBucketApi = class {
         error: null
       };
     } catch (error) {
-      if (_this.shouldThrowOnError) throw error;
-      if (isStorageVectorsError(error)) return {
-        data: null,
-        error
-      };
+      if (_this.shouldThrowOnError)
+        throw error;
+      if (isStorageVectorsError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
@@ -8685,11 +8797,13 @@ var VectorBucketApi = class {
         error: null
       };
     } catch (error) {
-      if (_this2.shouldThrowOnError) throw error;
-      if (isStorageVectorsError(error)) return {
-        data: null,
-        error
-      };
+      if (_this2.shouldThrowOnError)
+        throw error;
+      if (isStorageVectorsError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
@@ -8702,11 +8816,13 @@ var VectorBucketApi = class {
         error: null
       };
     } catch (error) {
-      if (_this3.shouldThrowOnError) throw error;
-      if (isStorageVectorsError(error)) return {
-        data: null,
-        error
-      };
+      if (_this3.shouldThrowOnError)
+        throw error;
+      if (isStorageVectorsError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
@@ -8719,19 +8835,18 @@ var VectorBucketApi = class {
         error: null
       };
     } catch (error) {
-      if (_this4.shouldThrowOnError) throw error;
-      if (isStorageVectorsError(error)) return {
-        data: null,
-        error
-      };
+      if (_this4.shouldThrowOnError)
+        throw error;
+      if (isStorageVectorsError(error))
+        return {
+          data: null,
+          error
+        };
       throw error;
     }
   }
-};
-var StorageVectorsClient = class extends VectorBucketApi {
-  static {
-    __name(this, "StorageVectorsClient");
-  }
+}, "VectorBucketApi");
+var StorageVectorsClient = /* @__PURE__ */ __name(class extends VectorBucketApi {
   /**
   * @alpha
   *
@@ -8877,11 +8992,8 @@ var StorageVectorsClient = class extends VectorBucketApi {
     var _superprop_getDeleteBucket = /* @__PURE__ */ __name(() => super.deleteBucket, "_superprop_getDeleteBucket"), _this4 = this;
     return _superprop_getDeleteBucket().call(_this4, vectorBucketName);
   }
-};
-var VectorBucketScope = class extends VectorIndexApi {
-  static {
-    __name(this, "VectorBucketScope");
-  }
+}, "StorageVectorsClient");
+var VectorBucketScope = /* @__PURE__ */ __name(class extends VectorIndexApi {
   /**
   * @alpha
   *
@@ -9034,11 +9146,8 @@ var VectorBucketScope = class extends VectorIndexApi {
   index(indexName) {
     return new VectorIndexScope(this.url, this.headers, this.vectorBucketName, indexName, this.fetch);
   }
-};
-var VectorIndexScope = class extends VectorDataApi {
-  static {
-    __name(this, "VectorIndexScope");
-  }
+}, "VectorBucketScope");
+var VectorIndexScope = /* @__PURE__ */ __name(class extends VectorDataApi {
   /**
   *
   * @alpha
@@ -9210,11 +9319,8 @@ var VectorIndexScope = class extends VectorDataApi {
       indexName: _this13.indexName
     }));
   }
-};
-var StorageClient = class extends StorageBucketApi {
-  static {
-    __name(this, "StorageClient");
-  }
+}, "VectorIndexScope");
+var StorageClient = /* @__PURE__ */ __name(class extends StorageBucketApi {
   /**
   * Creates a client for Storage buckets, files, analytics, and vectors.
   *
@@ -9277,25 +9383,30 @@ var StorageClient = class extends StorageBucketApi {
   get analytics() {
     return new StorageAnalyticsClient(this.url + "/iceberg", this.headers, this.fetch);
   }
-};
+}, "StorageClient");
 
-// node_modules/@supabase/auth-js/dist/module/index.js
+// ../node_modules/@supabase/auth-js/dist/module/index.js
 var import_checked_fetch63 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header63 = __toESM(require_strip_cf_connecting_ip_header());
 
-// node_modules/@supabase/auth-js/dist/module/GoTrueAdminApi.js
+// ../node_modules/@supabase/auth-js/dist/module/GoTrueAdminApi.js
 var import_checked_fetch53 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header53 = __toESM(require_strip_cf_connecting_ip_header());
 
-// node_modules/@supabase/auth-js/dist/module/lib/fetch.js
+// ../node_modules/@supabase/auth-js/dist/module/lib/fetch.js
 var import_checked_fetch51 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header51 = __toESM(require_strip_cf_connecting_ip_header());
 
-// node_modules/@supabase/auth-js/dist/module/lib/constants.js
+// ../node_modules/@supabase/auth-js/dist/module/lib/constants.js
 var import_checked_fetch47 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header47 = __toESM(require_strip_cf_connecting_ip_header());
 
-// node_modules/@supabase/auth-js/dist/module/lib/version.js
+// ../node_modules/@supabase/auth-js/dist/module/lib/version.js
 var import_checked_fetch46 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header46 = __toESM(require_strip_cf_connecting_ip_header());
 var version3 = "2.89.0";
 
-// node_modules/@supabase/auth-js/dist/module/lib/constants.js
+// ../node_modules/@supabase/auth-js/dist/module/lib/constants.js
 var AUTO_REFRESH_TICK_DURATION_MS = 30 * 1e3;
 var AUTO_REFRESH_TICK_THRESHOLD = 3;
 var EXPIRY_MARGIN_MS = AUTO_REFRESH_TICK_THRESHOLD * AUTO_REFRESH_TICK_DURATION_MS;
@@ -9312,15 +9423,14 @@ var API_VERSIONS = {
 var BASE64URL_REGEX = /^([a-z0-9_-]{4})*($|[a-z0-9_-]{3}$|[a-z0-9_-]{2}$)$/i;
 var JWKS_TTL = 10 * 60 * 1e3;
 
-// node_modules/@supabase/auth-js/dist/module/lib/helpers.js
+// ../node_modules/@supabase/auth-js/dist/module/lib/helpers.js
 var import_checked_fetch50 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header50 = __toESM(require_strip_cf_connecting_ip_header());
 
-// node_modules/@supabase/auth-js/dist/module/lib/errors.js
+// ../node_modules/@supabase/auth-js/dist/module/lib/errors.js
 var import_checked_fetch48 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header48 = __toESM(require_strip_cf_connecting_ip_header());
 var AuthError = class extends Error {
-  static {
-    __name(this, "AuthError");
-  }
   constructor(message, status, code) {
     super(message);
     this.__isAuthError = true;
@@ -9329,14 +9439,12 @@ var AuthError = class extends Error {
     this.code = code;
   }
 };
+__name(AuthError, "AuthError");
 function isAuthError(error) {
   return typeof error === "object" && error !== null && "__isAuthError" in error;
 }
 __name(isAuthError, "isAuthError");
 var AuthApiError = class extends AuthError {
-  static {
-    __name(this, "AuthApiError");
-  }
   constructor(message, status, code) {
     super(message, status, code);
     this.name = "AuthApiError";
@@ -9344,62 +9452,50 @@ var AuthApiError = class extends AuthError {
     this.code = code;
   }
 };
+__name(AuthApiError, "AuthApiError");
 function isAuthApiError(error) {
   return isAuthError(error) && error.name === "AuthApiError";
 }
 __name(isAuthApiError, "isAuthApiError");
 var AuthUnknownError = class extends AuthError {
-  static {
-    __name(this, "AuthUnknownError");
-  }
   constructor(message, originalError) {
     super(message);
     this.name = "AuthUnknownError";
     this.originalError = originalError;
   }
 };
+__name(AuthUnknownError, "AuthUnknownError");
 var CustomAuthError = class extends AuthError {
-  static {
-    __name(this, "CustomAuthError");
-  }
   constructor(message, name, status, code) {
     super(message, status, code);
     this.name = name;
     this.status = status;
   }
 };
+__name(CustomAuthError, "CustomAuthError");
 var AuthSessionMissingError = class extends CustomAuthError {
-  static {
-    __name(this, "AuthSessionMissingError");
-  }
   constructor() {
     super("Auth session missing!", "AuthSessionMissingError", 400, void 0);
   }
 };
+__name(AuthSessionMissingError, "AuthSessionMissingError");
 function isAuthSessionMissingError(error) {
   return isAuthError(error) && error.name === "AuthSessionMissingError";
 }
 __name(isAuthSessionMissingError, "isAuthSessionMissingError");
 var AuthInvalidTokenResponseError = class extends CustomAuthError {
-  static {
-    __name(this, "AuthInvalidTokenResponseError");
-  }
   constructor() {
     super("Auth session or user missing", "AuthInvalidTokenResponseError", 500, void 0);
   }
 };
+__name(AuthInvalidTokenResponseError, "AuthInvalidTokenResponseError");
 var AuthInvalidCredentialsError = class extends CustomAuthError {
-  static {
-    __name(this, "AuthInvalidCredentialsError");
-  }
   constructor(message) {
     super(message, "AuthInvalidCredentialsError", 400, void 0);
   }
 };
+__name(AuthInvalidCredentialsError, "AuthInvalidCredentialsError");
 var AuthImplicitGrantRedirectError = class extends CustomAuthError {
-  static {
-    __name(this, "AuthImplicitGrantRedirectError");
-  }
   constructor(message, details = null) {
     super(message, "AuthImplicitGrantRedirectError", 500, void 0);
     this.details = null;
@@ -9414,14 +9510,12 @@ var AuthImplicitGrantRedirectError = class extends CustomAuthError {
     };
   }
 };
+__name(AuthImplicitGrantRedirectError, "AuthImplicitGrantRedirectError");
 function isAuthImplicitGrantRedirectError(error) {
   return isAuthError(error) && error.name === "AuthImplicitGrantRedirectError";
 }
 __name(isAuthImplicitGrantRedirectError, "isAuthImplicitGrantRedirectError");
 var AuthPKCEGrantCodeExchangeError = class extends CustomAuthError {
-  static {
-    __name(this, "AuthPKCEGrantCodeExchangeError");
-  }
   constructor(message, details = null) {
     super(message, "AuthPKCEGrantCodeExchangeError", 500, void 0);
     this.details = null;
@@ -9436,46 +9530,40 @@ var AuthPKCEGrantCodeExchangeError = class extends CustomAuthError {
     };
   }
 };
+__name(AuthPKCEGrantCodeExchangeError, "AuthPKCEGrantCodeExchangeError");
 var AuthPKCECodeVerifierMissingError = class extends CustomAuthError {
-  static {
-    __name(this, "AuthPKCECodeVerifierMissingError");
-  }
   constructor() {
     super("PKCE code verifier not found in storage. This can happen if the auth flow was initiated in a different browser or device, or if the storage was cleared. For SSR frameworks (Next.js, SvelteKit, etc.), use @supabase/ssr on both the server and client to store the code verifier in cookies.", "AuthPKCECodeVerifierMissingError", 400, "pkce_code_verifier_not_found");
   }
 };
+__name(AuthPKCECodeVerifierMissingError, "AuthPKCECodeVerifierMissingError");
 var AuthRetryableFetchError = class extends CustomAuthError {
-  static {
-    __name(this, "AuthRetryableFetchError");
-  }
   constructor(message, status) {
     super(message, "AuthRetryableFetchError", status, void 0);
   }
 };
+__name(AuthRetryableFetchError, "AuthRetryableFetchError");
 function isAuthRetryableFetchError(error) {
   return isAuthError(error) && error.name === "AuthRetryableFetchError";
 }
 __name(isAuthRetryableFetchError, "isAuthRetryableFetchError");
 var AuthWeakPasswordError = class extends CustomAuthError {
-  static {
-    __name(this, "AuthWeakPasswordError");
-  }
   constructor(message, status, reasons) {
     super(message, "AuthWeakPasswordError", status, "weak_password");
     this.reasons = reasons;
   }
 };
+__name(AuthWeakPasswordError, "AuthWeakPasswordError");
 var AuthInvalidJwtError = class extends CustomAuthError {
-  static {
-    __name(this, "AuthInvalidJwtError");
-  }
   constructor(message) {
     super(message, "AuthInvalidJwtError", 400, "invalid_jwt");
   }
 };
+__name(AuthInvalidJwtError, "AuthInvalidJwtError");
 
-// node_modules/@supabase/auth-js/dist/module/lib/base64url.js
+// ../node_modules/@supabase/auth-js/dist/module/lib/base64url.js
 var import_checked_fetch49 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header49 = __toESM(require_strip_cf_connecting_ip_header());
 var TO_BASE64URL = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_".split("");
 var IGNORE_BASE64URL = " 	\n\r=".split("");
 var FROM_BASE64URL = (() => {
@@ -9646,7 +9734,7 @@ function bytesToBase64URL(bytes) {
 }
 __name(bytesToBase64URL, "bytesToBase64URL");
 
-// node_modules/@supabase/auth-js/dist/module/lib/helpers.js
+// ../node_modules/@supabase/auth-js/dist/module/lib/helpers.js
 function expiresAt(expiresIn) {
   const timeNow = Math.round(Date.now() / 1e3);
   return timeNow + expiresIn;
@@ -9731,19 +9819,17 @@ var getItemAsync = /* @__PURE__ */ __name(async (storage, key) => {
 var removeItemAsync = /* @__PURE__ */ __name(async (storage, key) => {
   await storage.removeItem(key);
 }, "removeItemAsync");
-var Deferred = class _Deferred {
-  static {
-    __name(this, "Deferred");
-  }
+var Deferred = class {
   constructor() {
     ;
-    this.promise = new _Deferred.promiseConstructor((res, rej) => {
+    this.promise = new Deferred.promiseConstructor((res, rej) => {
       ;
       this.resolve = res;
       this.reject = rej;
     });
   }
 };
+__name(Deferred, "Deferred");
 Deferred.promiseConstructor = Promise;
 function decodeJWT(token) {
   const parts = token.split(".");
@@ -9902,7 +9988,7 @@ __name(validateUUID, "validateUUID");
 function userNotAvailableProxy() {
   const proxyTarget = {};
   return new Proxy(proxyTarget, {
-    get: /* @__PURE__ */ __name((target, prop) => {
+    get: (target, prop) => {
       if (prop === "__isUserNotAvailableProxy") {
         return true;
       }
@@ -9913,19 +9999,19 @@ function userNotAvailableProxy() {
         }
       }
       throw new Error(`@supabase/auth-js: client was created with userStorage option and there was no user stored in the user storage. Accessing the "${prop}" property of the session object is not supported. Please use getUser() instead.`);
-    }, "get"),
-    set: /* @__PURE__ */ __name((_target, prop) => {
+    },
+    set: (_target, prop) => {
       throw new Error(`@supabase/auth-js: client was created with userStorage option and there was no user stored in the user storage. Setting the "${prop}" property of the session object is not supported. Please use getUser() to fetch a user object you can manipulate.`);
-    }, "set"),
-    deleteProperty: /* @__PURE__ */ __name((_target, prop) => {
+    },
+    deleteProperty: (_target, prop) => {
       throw new Error(`@supabase/auth-js: client was created with userStorage option and there was no user stored in the user storage. Deleting the "${prop}" property of the session object is not supported. Please use getUser() to fetch a user object you can manipulate.`);
-    }, "deleteProperty")
+    }
   });
 }
 __name(userNotAvailableProxy, "userNotAvailableProxy");
 function insecureUserWarningProxy(user, suppressWarningRef) {
   return new Proxy(user, {
-    get: /* @__PURE__ */ __name((target, prop, receiver) => {
+    get: (target, prop, receiver) => {
       if (prop === "__isInsecureUserWarningProxy") {
         return true;
       }
@@ -9940,7 +10026,7 @@ function insecureUserWarningProxy(user, suppressWarningRef) {
         suppressWarningRef.value = true;
       }
       return Reflect.get(target, prop, receiver);
-    }, "get")
+    }
   });
 }
 __name(insecureUserWarningProxy, "insecureUserWarningProxy");
@@ -9949,7 +10035,7 @@ function deepClone(obj) {
 }
 __name(deepClone, "deepClone");
 
-// node_modules/@supabase/auth-js/dist/module/lib/fetch.js
+// ../node_modules/@supabase/auth-js/dist/module/lib/fetch.js
 var _getErrorMessage2 = /* @__PURE__ */ __name((err) => err.msg || err.message || err.error_description || err.error || JSON.stringify(err), "_getErrorMessage");
 var NETWORK_ERROR_CODES = [502, 503, 504];
 async function handleError2(error) {
@@ -10096,15 +10182,13 @@ function hasSession(data) {
 }
 __name(hasSession, "hasSession");
 
-// node_modules/@supabase/auth-js/dist/module/lib/types.js
+// ../node_modules/@supabase/auth-js/dist/module/lib/types.js
 var import_checked_fetch52 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header52 = __toESM(require_strip_cf_connecting_ip_header());
 var SIGN_OUT_SCOPES = ["global", "local", "others"];
 
-// node_modules/@supabase/auth-js/dist/module/GoTrueAdminApi.js
+// ../node_modules/@supabase/auth-js/dist/module/GoTrueAdminApi.js
 var GoTrueAdminApi = class {
-  static {
-    __name(this, "GoTrueAdminApi");
-  }
   /**
    * Creates an admin API client that can be used to manage users and OAuth clients.
    *
@@ -10345,9 +10429,9 @@ var GoTrueAdminApi = class {
     try {
       const { data, error } = await _request(this.fetch, "GET", `${this.url}/admin/users/${params.userId}/factors`, {
         headers: this.headers,
-        xform: /* @__PURE__ */ __name((factors) => {
+        xform: (factors) => {
           return { data: { factors }, error: null };
-        }, "xform")
+        }
       });
       return { data, error };
     } catch (error) {
@@ -10423,9 +10507,9 @@ var GoTrueAdminApi = class {
       return await _request(this.fetch, "POST", `${this.url}/admin/oauth/clients`, {
         body: params,
         headers: this.headers,
-        xform: /* @__PURE__ */ __name((client) => {
+        xform: (client) => {
           return { data: client, error: null };
-        }, "xform")
+        }
       });
     } catch (error) {
       if (isAuthError(error)) {
@@ -10444,9 +10528,9 @@ var GoTrueAdminApi = class {
     try {
       return await _request(this.fetch, "GET", `${this.url}/admin/oauth/clients/${clientId}`, {
         headers: this.headers,
-        xform: /* @__PURE__ */ __name((client) => {
+        xform: (client) => {
           return { data: client, error: null };
-        }, "xform")
+        }
       });
     } catch (error) {
       if (isAuthError(error)) {
@@ -10466,9 +10550,9 @@ var GoTrueAdminApi = class {
       return await _request(this.fetch, "PUT", `${this.url}/admin/oauth/clients/${clientId}`, {
         body: params,
         headers: this.headers,
-        xform: /* @__PURE__ */ __name((client) => {
+        xform: (client) => {
           return { data: client, error: null };
-        }, "xform")
+        }
       });
     } catch (error) {
       if (isAuthError(error)) {
@@ -10507,9 +10591,9 @@ var GoTrueAdminApi = class {
     try {
       return await _request(this.fetch, "POST", `${this.url}/admin/oauth/clients/${clientId}/regenerate_secret`, {
         headers: this.headers,
-        xform: /* @__PURE__ */ __name((client) => {
+        xform: (client) => {
           return { data: client, error: null };
-        }, "xform")
+        }
       });
     } catch (error) {
       if (isAuthError(error)) {
@@ -10519,29 +10603,33 @@ var GoTrueAdminApi = class {
     }
   }
 };
+__name(GoTrueAdminApi, "GoTrueAdminApi");
 
-// node_modules/@supabase/auth-js/dist/module/GoTrueClient.js
+// ../node_modules/@supabase/auth-js/dist/module/GoTrueClient.js
 var import_checked_fetch60 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header60 = __toESM(require_strip_cf_connecting_ip_header());
 
-// node_modules/@supabase/auth-js/dist/module/lib/local-storage.js
+// ../node_modules/@supabase/auth-js/dist/module/lib/local-storage.js
 var import_checked_fetch54 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header54 = __toESM(require_strip_cf_connecting_ip_header());
 function memoryLocalStorageAdapter(store = {}) {
   return {
-    getItem: /* @__PURE__ */ __name((key) => {
+    getItem: (key) => {
       return store[key] || null;
-    }, "getItem"),
-    setItem: /* @__PURE__ */ __name((key, value) => {
+    },
+    setItem: (key, value) => {
       store[key] = value;
-    }, "setItem"),
-    removeItem: /* @__PURE__ */ __name((key) => {
+    },
+    removeItem: (key) => {
       delete store[key];
-    }, "removeItem")
+    }
   };
 }
 __name(memoryLocalStorageAdapter, "memoryLocalStorageAdapter");
 
-// node_modules/@supabase/auth-js/dist/module/lib/locks.js
+// ../node_modules/@supabase/auth-js/dist/module/lib/locks.js
 var import_checked_fetch55 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header55 = __toESM(require_strip_cf_connecting_ip_header());
 var internals = {
   /**
    * @experimental
@@ -10549,19 +10637,15 @@ var internals = {
   debug: !!(globalThis && supportsLocalStorage() && globalThis.localStorage && globalThis.localStorage.getItem("supabase.gotrue-js.locks.debug") === "true")
 };
 var LockAcquireTimeoutError = class extends Error {
-  static {
-    __name(this, "LockAcquireTimeoutError");
-  }
   constructor(message) {
     super(message);
     this.isAcquireTimeout = true;
   }
 };
+__name(LockAcquireTimeoutError, "LockAcquireTimeoutError");
 var NavigatorLockAcquireTimeoutError = class extends LockAcquireTimeoutError {
-  static {
-    __name(this, "NavigatorLockAcquireTimeoutError");
-  }
 };
+__name(NavigatorLockAcquireTimeoutError, "NavigatorLockAcquireTimeoutError");
 async function navigatorLock(name, acquireTimeout, fn) {
   if (internals.debug) {
     console.log("@supabase/gotrue-js: navigatorLock: acquire lock", name, acquireTimeout);
@@ -10616,16 +10700,17 @@ async function navigatorLock(name, acquireTimeout, fn) {
 }
 __name(navigatorLock, "navigatorLock");
 
-// node_modules/@supabase/auth-js/dist/module/lib/polyfills.js
+// ../node_modules/@supabase/auth-js/dist/module/lib/polyfills.js
 var import_checked_fetch56 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header56 = __toESM(require_strip_cf_connecting_ip_header());
 function polyfillGlobalThis() {
   if (typeof globalThis === "object")
     return;
   try {
     Object.defineProperty(Object.prototype, "__magic__", {
-      get: /* @__PURE__ */ __name(function() {
+      get: function() {
         return this;
-      }, "get"),
+      },
       configurable: true
     });
     __magic__.globalThis = __magic__;
@@ -10638,8 +10723,9 @@ function polyfillGlobalThis() {
 }
 __name(polyfillGlobalThis, "polyfillGlobalThis");
 
-// node_modules/@supabase/auth-js/dist/module/lib/web3/ethereum.js
+// ../node_modules/@supabase/auth-js/dist/module/lib/web3/ethereum.js
 var import_checked_fetch57 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header57 = __toESM(require_strip_cf_connecting_ip_header());
 function getAddress(address) {
   if (!/^0x[a-fA-F0-9]{40}$/.test(address)) {
     throw new Error(`@supabase/auth-js: Address "${address}" is invalid.`);
@@ -10711,15 +10797,14 @@ ${suffix}`;
 }
 __name(createSiweMessage, "createSiweMessage");
 
-// node_modules/@supabase/auth-js/dist/module/lib/webauthn.js
+// ../node_modules/@supabase/auth-js/dist/module/lib/webauthn.js
 var import_checked_fetch59 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header59 = __toESM(require_strip_cf_connecting_ip_header());
 
-// node_modules/@supabase/auth-js/dist/module/lib/webauthn.errors.js
+// ../node_modules/@supabase/auth-js/dist/module/lib/webauthn.errors.js
 var import_checked_fetch58 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header58 = __toESM(require_strip_cf_connecting_ip_header());
 var WebAuthnError = class extends Error {
-  static {
-    __name(this, "WebAuthnError");
-  }
   constructor({ message, code, cause, name }) {
     var _a;
     super(message, { cause });
@@ -10728,10 +10813,8 @@ var WebAuthnError = class extends Error {
     this.code = code;
   }
 };
+__name(WebAuthnError, "WebAuthnError");
 var WebAuthnUnknownError = class extends WebAuthnError {
-  static {
-    __name(this, "WebAuthnUnknownError");
-  }
   constructor(message, originalError) {
     super({
       code: "ERROR_PASSTHROUGH_SEE_CAUSE_PROPERTY",
@@ -10742,6 +10825,7 @@ var WebAuthnUnknownError = class extends WebAuthnError {
     this.originalError = originalError;
   }
 };
+__name(WebAuthnUnknownError, "WebAuthnUnknownError");
 function identifyRegistrationError({ error, options }) {
   var _a, _b, _c;
   const { publicKey } = options;
@@ -10891,11 +10975,8 @@ function identifyAuthenticationError({ error, options }) {
 }
 __name(identifyAuthenticationError, "identifyAuthenticationError");
 
-// node_modules/@supabase/auth-js/dist/module/lib/webauthn.js
+// ../node_modules/@supabase/auth-js/dist/module/lib/webauthn.js
 var WebAuthnAbortService = class {
-  static {
-    __name(this, "WebAuthnAbortService");
-  }
   /**
    * Create an abort signal for a new WebAuthn operation.
    * Automatically cancels any existing operation.
@@ -10928,6 +11009,7 @@ var WebAuthnAbortService = class {
     }
   }
 };
+__name(WebAuthnAbortService, "WebAuthnAbortService");
 var webAuthnAbortService = new WebAuthnAbortService();
 function deserializeCredentialCreationOptions(options) {
   if (!options) {
@@ -11165,9 +11247,6 @@ function mergeCredentialRequestOptions(baseOptions, overrides) {
 }
 __name(mergeCredentialRequestOptions, "mergeCredentialRequestOptions");
 var WebAuthnApi = class {
-  static {
-    __name(this, "WebAuthnApi");
-  }
   constructor(client) {
     this.client = client;
     this.enroll = this._enroll.bind(this);
@@ -11421,8 +11500,9 @@ var WebAuthnApi = class {
     }
   }
 };
+__name(WebAuthnApi, "WebAuthnApi");
 
-// node_modules/@supabase/auth-js/dist/module/GoTrueClient.js
+// ../node_modules/@supabase/auth-js/dist/module/GoTrueClient.js
 polyfillGlobalThis();
 var DEFAULT_OPTIONS = {
   url: GOTRUE_URL,
@@ -11441,10 +11521,7 @@ async function lockNoOp(name, acquireTimeout, fn) {
 }
 __name(lockNoOp, "lockNoOp");
 var GLOBAL_JWKS = {};
-var GoTrueClient = class _GoTrueClient {
-  static {
-    __name(this, "GoTrueClient");
-  }
+var GoTrueClient = class {
   /**
    * The JWKS used for verifying asymmetric JWTs
    */
@@ -11494,8 +11571,8 @@ var GoTrueClient = class _GoTrueClient {
     this.logger = console.log;
     const settings = Object.assign(Object.assign({}, DEFAULT_OPTIONS), options);
     this.storageKey = settings.storageKey;
-    this.instanceID = (_a = _GoTrueClient.nextInstanceID[this.storageKey]) !== null && _a !== void 0 ? _a : 0;
-    _GoTrueClient.nextInstanceID[this.storageKey] = this.instanceID + 1;
+    this.instanceID = (_a = GoTrueClient.nextInstanceID[this.storageKey]) !== null && _a !== void 0 ? _a : 0;
+    GoTrueClient.nextInstanceID[this.storageKey] = this.instanceID + 1;
     this.logDebugMessages = !!settings.debug;
     if (typeof settings.debug === "function") {
       this.logger = settings.debug;
@@ -12856,10 +12933,10 @@ var GoTrueClient = class _GoTrueClient {
     const subscription = {
       id,
       callback,
-      unsubscribe: /* @__PURE__ */ __name(() => {
+      unsubscribe: () => {
         this._debug("#unsubscribe()", "state change callback with id removed", id);
         this.stateChangeEmitters.delete(id);
-      }, "unsubscribe")
+      }
     };
     this._debug("#onAuthStateChange()", "registered callback with id", id);
     this.stateChangeEmitters.set(id, subscription);
@@ -13694,7 +13771,7 @@ var GoTrueClient = class _GoTrueClient {
         return await _request(this.fetch, "GET", `${this.url}/oauth/authorizations/${authorizationId}`, {
           headers: this.headers,
           jwt: session.access_token,
-          xform: /* @__PURE__ */ __name((data) => ({ data, error: null }), "xform")
+          xform: (data) => ({ data, error: null })
         });
       });
     } catch (error) {
@@ -13722,7 +13799,7 @@ var GoTrueClient = class _GoTrueClient {
           headers: this.headers,
           jwt: session.access_token,
           body: { action: "approve" },
-          xform: /* @__PURE__ */ __name((data) => ({ data, error: null }), "xform")
+          xform: (data) => ({ data, error: null })
         });
         if (response.data && response.data.redirect_url) {
           if (isBrowser() && !(options === null || options === void 0 ? void 0 : options.skipBrowserRedirect)) {
@@ -13756,7 +13833,7 @@ var GoTrueClient = class _GoTrueClient {
           headers: this.headers,
           jwt: session.access_token,
           body: { action: "deny" },
-          xform: /* @__PURE__ */ __name((data) => ({ data, error: null }), "xform")
+          xform: (data) => ({ data, error: null })
         });
         if (response.data && response.data.redirect_url) {
           if (isBrowser() && !(options === null || options === void 0 ? void 0 : options.skipBrowserRedirect)) {
@@ -13789,7 +13866,7 @@ var GoTrueClient = class _GoTrueClient {
         return await _request(this.fetch, "GET", `${this.url}/user/oauth/grants`, {
           headers: this.headers,
           jwt: session.access_token,
-          xform: /* @__PURE__ */ __name((data) => ({ data, error: null }), "xform")
+          xform: (data) => ({ data, error: null })
         });
       });
     } catch (error) {
@@ -13924,24 +14001,31 @@ var GoTrueClient = class _GoTrueClient {
     }
   }
 };
+__name(GoTrueClient, "GoTrueClient");
 GoTrueClient.nextInstanceID = {};
 var GoTrueClient_default = GoTrueClient;
 
-// node_modules/@supabase/auth-js/dist/module/AuthAdminApi.js
+// ../node_modules/@supabase/auth-js/dist/module/AuthAdminApi.js
 var import_checked_fetch61 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header61 = __toESM(require_strip_cf_connecting_ip_header());
 
-// node_modules/@supabase/auth-js/dist/module/AuthClient.js
+// ../node_modules/@supabase/auth-js/dist/module/AuthClient.js
 var import_checked_fetch62 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header62 = __toESM(require_strip_cf_connecting_ip_header());
 var AuthClient = GoTrueClient_default;
 var AuthClient_default = AuthClient;
 
-// node_modules/@supabase/supabase-js/dist/index.mjs
+// ../node_modules/@supabase/supabase-js/dist/index.mjs
 var version4 = "2.89.0";
 var JS_ENV = "";
-if (typeof Deno !== "undefined") JS_ENV = "deno";
-else if (typeof document !== "undefined") JS_ENV = "web";
-else if (typeof navigator !== "undefined" && navigator.product === "ReactNative") JS_ENV = "react-native";
-else JS_ENV = "node";
+if (typeof Deno !== "undefined")
+  JS_ENV = "deno";
+else if (typeof document !== "undefined")
+  JS_ENV = "web";
+else if (typeof navigator !== "undefined" && navigator.product === "ReactNative")
+  JS_ENV = "react-native";
+else
+  JS_ENV = "node";
 var DEFAULT_HEADERS3 = { "X-Client-Info": `supabase-js-${JS_ENV}/${version4}` };
 var DEFAULT_GLOBAL_OPTIONS = { headers: DEFAULT_HEADERS3 };
 var DEFAULT_DB_OPTIONS = { schema: "public" };
@@ -13962,11 +14046,13 @@ function _typeof2(o) {
 }
 __name(_typeof2, "_typeof");
 function toPrimitive2(t, r) {
-  if ("object" != _typeof2(t) || !t) return t;
+  if ("object" != _typeof2(t) || !t)
+    return t;
   var e = t[Symbol.toPrimitive];
   if (void 0 !== e) {
     var i = e.call(t, r || "default");
-    if ("object" != _typeof2(i)) return i;
+    if ("object" != _typeof2(i))
+      return i;
     throw new TypeError("@@toPrimitive must return a primitive value.");
   }
   return ("string" === r ? String : Number)(t);
@@ -14010,7 +14096,8 @@ function _objectSpread22(e) {
 }
 __name(_objectSpread22, "_objectSpread2");
 var resolveFetch4 = /* @__PURE__ */ __name((customFetch) => {
-  if (customFetch) return (...args) => customFetch(...args);
+  if (customFetch)
+    return (...args) => customFetch(...args);
   return (...args) => fetch(...args);
 }, "resolveFetch");
 var resolveHeadersConstructor = /* @__PURE__ */ __name(() => {
@@ -14023,8 +14110,10 @@ var fetchWithAuth = /* @__PURE__ */ __name((supabaseKey, getAccessToken, customF
     var _await$getAccessToken;
     const accessToken = (_await$getAccessToken = await getAccessToken()) !== null && _await$getAccessToken !== void 0 ? _await$getAccessToken : supabaseKey;
     let headers = new HeadersConstructor(init === null || init === void 0 ? void 0 : init.headers);
-    if (!headers.has("apikey")) headers.set("apikey", supabaseKey);
-    if (!headers.has("Authorization")) headers.set("Authorization", `Bearer ${accessToken}`);
+    if (!headers.has("apikey"))
+      headers.set("apikey", supabaseKey);
+    if (!headers.has("Authorization"))
+      headers.set("Authorization", `Bearer ${accessToken}`);
     return fetch$1(input, _objectSpread22(_objectSpread22({}, init), {}, { headers }));
   };
 }, "fetchWithAuth");
@@ -14042,17 +14131,21 @@ function applySettingDefaults(options, defaults) {
     realtime: _objectSpread22(_objectSpread22({}, DEFAULT_REALTIME_OPTIONS$1), realtimeOptions),
     storage: {},
     global: _objectSpread22(_objectSpread22(_objectSpread22({}, DEFAULT_GLOBAL_OPTIONS$1), globalOptions), {}, { headers: _objectSpread22(_objectSpread22({}, (_DEFAULT_GLOBAL_OPTIO = DEFAULT_GLOBAL_OPTIONS$1 === null || DEFAULT_GLOBAL_OPTIONS$1 === void 0 ? void 0 : DEFAULT_GLOBAL_OPTIONS$1.headers) !== null && _DEFAULT_GLOBAL_OPTIO !== void 0 ? _DEFAULT_GLOBAL_OPTIO : {}), (_globalOptions$header = globalOptions === null || globalOptions === void 0 ? void 0 : globalOptions.headers) !== null && _globalOptions$header !== void 0 ? _globalOptions$header : {}) }),
-    accessToken: /* @__PURE__ */ __name(async () => "", "accessToken")
+    accessToken: async () => ""
   };
-  if (options.accessToken) result.accessToken = options.accessToken;
-  else delete result.accessToken;
+  if (options.accessToken)
+    result.accessToken = options.accessToken;
+  else
+    delete result.accessToken;
   return result;
 }
 __name(applySettingDefaults, "applySettingDefaults");
 function validateSupabaseUrl(supabaseUrl) {
   const trimmedUrl = supabaseUrl === null || supabaseUrl === void 0 ? void 0 : supabaseUrl.trim();
-  if (!trimmedUrl) throw new Error("supabaseUrl is required.");
-  if (!trimmedUrl.match(/^https?:\/\//i)) throw new Error("Invalid supabaseUrl: Must be a valid HTTP or HTTPS URL.");
+  if (!trimmedUrl)
+    throw new Error("supabaseUrl is required.");
+  if (!trimmedUrl.match(/^https?:\/\//i))
+    throw new Error("Invalid supabaseUrl: Must be a valid HTTP or HTTPS URL.");
   try {
     return new URL(ensureTrailingSlash(trimmedUrl));
   } catch (_unused) {
@@ -14060,18 +14153,12 @@ function validateSupabaseUrl(supabaseUrl) {
   }
 }
 __name(validateSupabaseUrl, "validateSupabaseUrl");
-var SupabaseAuthClient = class extends AuthClient_default {
-  static {
-    __name(this, "SupabaseAuthClient");
-  }
+var SupabaseAuthClient = /* @__PURE__ */ __name(class extends AuthClient_default {
   constructor(options) {
     super(options);
   }
-};
-var SupabaseClient = class {
-  static {
-    __name(this, "SupabaseClient");
-  }
+}, "SupabaseAuthClient");
+var SupabaseClient = /* @__PURE__ */ __name(class {
   /**
   * Create a new client for use in the browser.
   * @param supabaseUrl The unique Supabase URL which is supplied when you create a new project in your project dashboard.
@@ -14097,7 +14184,8 @@ var SupabaseClient = class {
     this.supabaseUrl = supabaseUrl;
     this.supabaseKey = supabaseKey;
     const baseUrl = validateSupabaseUrl(supabaseUrl);
-    if (!supabaseKey) throw new Error("supabaseKey is required.");
+    if (!supabaseKey)
+      throw new Error("supabaseKey is required.");
     this.realtimeUrl = new URL("realtime/v1", baseUrl);
     this.realtimeUrl.protocol = this.realtimeUrl.protocol.replace("http", "ws");
     this.authUrl = new URL("auth/v1", baseUrl);
@@ -14118,23 +14206,25 @@ var SupabaseClient = class {
       this.auth = this._initSupabaseAuthClient((_settings$auth = settings.auth) !== null && _settings$auth !== void 0 ? _settings$auth : {}, this.headers, settings.global.fetch);
     } else {
       this.accessToken = settings.accessToken;
-      this.auth = new Proxy({}, { get: /* @__PURE__ */ __name((_, prop) => {
+      this.auth = new Proxy({}, { get: (_, prop) => {
         throw new Error(`@supabase/supabase-js: Supabase Client is configured with the accessToken option, accessing supabase.auth.${String(prop)} is not possible`);
-      }, "get") });
+      } });
     }
     this.fetch = fetchWithAuth(supabaseKey, this._getAccessToken.bind(this), settings.global.fetch);
     this.realtime = this._initRealtimeClient(_objectSpread22({
       headers: this.headers,
       accessToken: this._getAccessToken.bind(this)
     }, settings.realtime));
-    if (this.accessToken) this.accessToken().then((token) => this.realtime.setAuth(token)).catch((e) => console.warn("Failed to set initial Realtime auth token:", e));
+    if (this.accessToken)
+      this.accessToken().then((token) => this.realtime.setAuth(token)).catch((e) => console.warn("Failed to set initial Realtime auth token:", e));
     this.rest = new PostgrestClient(new URL("rest/v1", baseUrl).href, {
       headers: this.headers,
       schema: settings.db.schema,
       fetch: this.fetch
     });
     this.storage = new StorageClient(this.storageUrl.href, this.headers, this.fetch, options === null || options === void 0 ? void 0 : options.storage);
-    if (!settings.accessToken) this._listenForAuthEvents();
+    if (!settings.accessToken)
+      this._listenForAuthEvents();
   }
   /**
   * Supabase Functions allows you to deploy and invoke edge functions.
@@ -14227,7 +14317,8 @@ var SupabaseClient = class {
   async _getAccessToken() {
     var _this = this;
     var _data$session$access_, _data$session;
-    if (_this.accessToken) return await _this.accessToken();
+    if (_this.accessToken)
+      return await _this.accessToken();
     const { data } = await _this.auth.getSession();
     return (_data$session$access_ = (_data$session = data.session) === null || _data$session === void 0 ? void 0 : _data$session.access_token) !== null && _data$session$access_ !== void 0 ? _data$session$access_ : _this.supabaseKey;
   }
@@ -14267,31 +14358,51 @@ var SupabaseClient = class {
       this.realtime.setAuth(token);
     } else if (event === "SIGNED_OUT") {
       this.realtime.setAuth();
-      if (source == "STORAGE") this.auth.signOut();
+      if (source == "STORAGE")
+        this.auth.signOut();
       this.changedAccessToken = void 0;
     }
   }
-};
+}, "SupabaseClient");
 var createClient = /* @__PURE__ */ __name((supabaseUrl, supabaseKey, options) => {
   return new SupabaseClient(supabaseUrl, supabaseKey, options);
 }, "createClient");
 function shouldShowDeprecationWarning() {
-  if (typeof window !== "undefined") return false;
-  if (typeof process === "undefined") return false;
+  if (typeof window !== "undefined")
+    return false;
+  if (typeof process === "undefined")
+    return false;
   const processVersion = process["version"];
-  if (processVersion === void 0 || processVersion === null) return false;
+  if (processVersion === void 0 || processVersion === null)
+    return false;
   const versionMatch = processVersion.match(/^v(\d+)\./);
-  if (!versionMatch) return false;
+  if (!versionMatch)
+    return false;
   return parseInt(versionMatch[1], 10) <= 18;
 }
 __name(shouldShowDeprecationWarning, "shouldShowDeprecationWarning");
-if (shouldShowDeprecationWarning()) console.warn("\u26A0\uFE0F  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217");
+if (shouldShowDeprecationWarning())
+  console.warn("\u26A0\uFE0F  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217");
 
 // src/storage.ts
 var import_checked_fetch66 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header66 = __toESM(require_strip_cf_connecting_ip_header());
 
 // ../shared/config/site.ts
 var import_checked_fetch65 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header65 = __toESM(require_strip_cf_connecting_ip_header());
+var getEnv = /* @__PURE__ */ __name((key, defaultValue = "") => {
+  if (typeof import.meta !== "undefined" && import.meta.env) {
+    return import.meta.env[key] || defaultValue;
+  }
+  try {
+    if (typeof process !== "undefined" && process.env) {
+      return process.env[key] || defaultValue;
+    }
+  } catch (e) {
+  }
+  return defaultValue;
+}, "getEnv");
 var siteConfig = {
   // --- General (General Tab) ---
   name: "MacroHR",
@@ -14306,7 +14417,7 @@ var siteConfig = {
   version: "1.0.0",
   environment: "production",
   demo_mode: "enabled",
-  system_mode: "demo",
+  system_mode: getEnv("VITE_SUPABASE_URL") && getEnv("VITE_SUPABASE_ANON_KEY") ? "live" : "demo",
   // --- Branding (Branding Tab) ---
   logo: {
     text: "MacroHR",
@@ -14347,24 +14458,24 @@ var siteConfig = {
   },
   cloudflare: {
     r2: {
-      bucketName: "",
-      accountId: "",
-      accessKeyId: "",
-      secretAccessKey: "",
-      publicUrl: "",
+      bucketName: getEnv("VITE_R2_BUCKET_NAME"),
+      accountId: getEnv("VITE_R2_ACCOUNT_ID"),
+      accessKeyId: getEnv("VITE_R2_ACCESS_KEY_ID"),
+      secretAccessKey: getEnv("VITE_R2_SECRET_ACCESS_KEY"),
+      // Only secure on backend
+      publicUrl: getEnv("VITE_R2_PUBLIC_URL"),
       binding: "BUCKET"
     },
     d1: {
-      databaseId: "",
+      databaseId: getEnv("VITE_D1_DATABASE_ID"),
       binding: "DB"
     }
   },
   supabase: {
-    url: "",
-    // Set via environment variables or admin settings
-    anonKey: "",
-    serviceRoleKey: ""
-    // Keep secure
+    url: getEnv("VITE_SUPABASE_URL"),
+    anonKey: getEnv("VITE_SUPABASE_ANON_KEY"),
+    serviceRoleKey: getEnv("SUPABASE_SERVICE_ROLE_KEY")
+    // Only secure on backend
   },
   auth: {
     providers: ["email", "google", "github"],
@@ -14840,9 +14951,6 @@ var D1Storage = class {
   constructor(db) {
     this.db = db;
   }
-  static {
-    __name(this, "D1Storage");
-  }
   async getUsers() {
     const { results } = await this.db.prepare("SELECT * FROM users ORDER BY created_at DESC").all();
     return results;
@@ -14864,10 +14972,8 @@ var D1Storage = class {
     return results;
   }
 };
+__name(D1Storage, "D1Storage");
 var JsonStorage = class {
-  static {
-    __name(this, "JsonStorage");
-  }
   async getUsers() {
     return [
       { id: "1", name: "Demo Admin", email: "admin@example.com", role: "admin", status: "active", createdAt: (/* @__PURE__ */ new Date()).toISOString() }
@@ -14883,6 +14989,7 @@ var JsonStorage = class {
     return [];
   }
 };
+__name(JsonStorage, "JsonStorage");
 function getStorage(c) {
   const db = c.env.DB;
   const provider = siteConfig.database.provider;
@@ -14953,8 +15060,9 @@ app.get("/api/documents", async (c) => {
 });
 var src_default = app;
 
-// C:/Users/respo/AppData/Local/npm-cache/_npx/32026684e21afda6/node_modules/wrangler/templates/middleware/middleware-ensure-req-body-drained.ts
+// ../node_modules/wrangler/templates/middleware/middleware-ensure-req-body-drained.ts
 var import_checked_fetch68 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header68 = __toESM(require_strip_cf_connecting_ip_header());
 var drainBody = /* @__PURE__ */ __name(async (request, env, _ctx, middlewareCtx) => {
   try {
     return await middlewareCtx.next(request, env);
@@ -14972,8 +15080,9 @@ var drainBody = /* @__PURE__ */ __name(async (request, env, _ctx, middlewareCtx)
 }, "drainBody");
 var middleware_ensure_req_body_drained_default = drainBody;
 
-// C:/Users/respo/AppData/Local/npm-cache/_npx/32026684e21afda6/node_modules/wrangler/templates/middleware/middleware-miniflare3-json-error.ts
+// ../node_modules/wrangler/templates/middleware/middleware-miniflare3-json-error.ts
 var import_checked_fetch69 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header69 = __toESM(require_strip_cf_connecting_ip_header());
 function reduceError(e) {
   return {
     name: e?.name,
@@ -14996,15 +15105,16 @@ var jsonError = /* @__PURE__ */ __name(async (request, env, _ctx, middlewareCtx)
 }, "jsonError");
 var middleware_miniflare3_json_error_default = jsonError;
 
-// .wrangler/tmp/bundle-7p279G/middleware-insertion-facade.js
+// .wrangler/tmp/bundle-dwA4zy/middleware-insertion-facade.js
 var __INTERNAL_WRANGLER_MIDDLEWARE__ = [
   middleware_ensure_req_body_drained_default,
   middleware_miniflare3_json_error_default
 ];
 var middleware_insertion_facade_default = src_default;
 
-// C:/Users/respo/AppData/Local/npm-cache/_npx/32026684e21afda6/node_modules/wrangler/templates/middleware/common.ts
+// ../node_modules/wrangler/templates/middleware/common.ts
 var import_checked_fetch71 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header71 = __toESM(require_strip_cf_connecting_ip_header());
 var __facade_middleware__ = [];
 function __facade_register__(...args) {
   __facade_middleware__.push(...args.flat());
@@ -15029,24 +15139,22 @@ function __facade_invoke__(request, env, ctx, dispatch, finalMiddleware) {
 }
 __name(__facade_invoke__, "__facade_invoke__");
 
-// .wrangler/tmp/bundle-7p279G/middleware-loader.entry.ts
-var __Facade_ScheduledController__ = class ___Facade_ScheduledController__ {
+// .wrangler/tmp/bundle-dwA4zy/middleware-loader.entry.ts
+var __Facade_ScheduledController__ = class {
   constructor(scheduledTime, cron, noRetry) {
     this.scheduledTime = scheduledTime;
     this.cron = cron;
     this.#noRetry = noRetry;
   }
-  static {
-    __name(this, "__Facade_ScheduledController__");
-  }
   #noRetry;
   noRetry() {
-    if (!(this instanceof ___Facade_ScheduledController__)) {
+    if (!(this instanceof __Facade_ScheduledController__)) {
       throw new TypeError("Illegal invocation");
     }
     this.#noRetry();
   }
 };
+__name(__Facade_ScheduledController__, "__Facade_ScheduledController__");
 function wrapExportedHandler(worker) {
   if (__INTERNAL_WRANGLER_MIDDLEWARE__ === void 0 || __INTERNAL_WRANGLER_MIDDLEWARE__.length === 0) {
     return worker;
@@ -15087,15 +15195,15 @@ function wrapWorkerEntrypoint(klass) {
     __facade_register__(middleware);
   }
   return class extends klass {
-    #fetchDispatcher = /* @__PURE__ */ __name((request, env, ctx) => {
+    #fetchDispatcher = (request, env, ctx) => {
       this.env = env;
       this.ctx = ctx;
       if (super.fetch === void 0) {
         throw new Error("Entrypoint class does not define a fetch() function.");
       }
       return super.fetch(request);
-    }, "#fetchDispatcher");
-    #dispatcher = /* @__PURE__ */ __name((type, init) => {
+    };
+    #dispatcher = (type, init) => {
       if (type === "scheduled" && super.scheduled !== void 0) {
         const controller = new __Facade_ScheduledController__(
           Date.now(),
@@ -15105,7 +15213,7 @@ function wrapWorkerEntrypoint(klass) {
         );
         return super.scheduled(controller);
       }
-    }, "#dispatcher");
+    };
     fetch(request) {
       return __facade_invoke__(
         request,

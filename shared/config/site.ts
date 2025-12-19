@@ -1,3 +1,15 @@
+const getEnv = (key: string, defaultValue: string = ""): string => {
+    if (typeof import.meta !== 'undefined' && (import.meta as any).env) {
+        return (import.meta as any).env[key] || defaultValue;
+    }
+    try {
+        if (typeof process !== 'undefined' && process.env) {
+            return process.env[key] || defaultValue;
+        }
+    } catch (e) { }
+    return defaultValue;
+};
+
 export const siteConfig = {
     // --- General (General Tab) ---
     name: "MacroHR",
@@ -12,7 +24,7 @@ export const siteConfig = {
     version: "1.0.0",
     environment: "production" as "development" | "staging" | "production",
     demo_mode: "enabled" as "enabled" | "disabled",
-    system_mode: "demo" as "demo" | "live",
+    system_mode: (getEnv("VITE_SUPABASE_URL") && getEnv("VITE_SUPABASE_ANON_KEY")) ? "live" : "demo" as "demo" | "live",
 
     // --- Branding (Branding Tab) ---
     logo: {
@@ -53,22 +65,22 @@ export const siteConfig = {
     },
     cloudflare: {
         r2: {
-            bucketName: "",
-            accountId: "",
-            accessKeyId: "",
-            secretAccessKey: "",
-            publicUrl: "",
+            bucketName: getEnv("VITE_R2_BUCKET_NAME"),
+            accountId: getEnv("VITE_R2_ACCOUNT_ID"),
+            accessKeyId: getEnv("VITE_R2_ACCESS_KEY_ID"),
+            secretAccessKey: getEnv("VITE_R2_SECRET_ACCESS_KEY"), // Only secure on backend
+            publicUrl: getEnv("VITE_R2_PUBLIC_URL"),
             binding: "BUCKET",
         },
         d1: {
-            databaseId: "",
+            databaseId: getEnv("VITE_D1_DATABASE_ID"),
             binding: "DB",
         }
     },
     supabase: {
-        url: "", // Set via environment variables or admin settings
-        anonKey: "",
-        serviceRoleKey: "", // Keep secure
+        url: getEnv("VITE_SUPABASE_URL"),
+        anonKey: getEnv("VITE_SUPABASE_ANON_KEY"),
+        serviceRoleKey: getEnv("SUPABASE_SERVICE_ROLE_KEY"), // Only secure on backend
     },
     auth: {
         providers: ["email", "google", "github"],

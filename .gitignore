@@ -23,3 +23,9 @@ project-readme/
 *.njsproj
 *.sln
 *.sw?
+*.env
+**/.env*
+web/*.env
+web/.env.local
+backend/.env
+backend/.env.local
