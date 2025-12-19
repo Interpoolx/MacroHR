@@ -121,10 +121,9 @@ export const siteConfig = {
     // --- Navigation (Navigation Tab) ---
     nav: [
         { title: "Features", href: "#features" },
-        { title: "Pricing", href: "#pricing" },
         { title: "How It Works", href: "#how-it-works" },
         { title: "Testimonials", href: "#testimonials" },
-        { title: "Help", href: "/help" },
+        { title: "FAQ", href: "#faq" },
     ],
     footer: {
         links: [
