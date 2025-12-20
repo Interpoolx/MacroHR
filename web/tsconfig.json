@@ -35,5 +35,14 @@
     "exactOptionalPropertyTypes": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true
-  }
+  },
+  "include": [
+    "src", // ← Critical: tells TS to process files in src/
+    "../shared", // ← Important if you import from @shared
+    "vite.config.ts" // Optional: for Vite config types
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }

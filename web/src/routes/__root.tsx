@@ -11,7 +11,7 @@ function RootComponent() {
     return (
         <ErrorBoundary>
             <Outlet />
-            <Toaster position="top-right" />
+            <Toaster position="top-right" closeButton />
             {process.env.NODE_ENV === 'development' && <TanStackRouterDevtools />}
         </ErrorBoundary>
     )

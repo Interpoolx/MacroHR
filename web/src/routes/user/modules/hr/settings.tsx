@@ -20,7 +20,7 @@ import { Tabs, TabsContent } from "@shared/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@shared/components/ui/card";
 import { toast } from "sonner";
 
-export const Route = createFileRoute('/user/settings')({
+export const Route = createFileRoute('/user/modules/hr/settings')({
   component: HRSettingsPage,
 });
 
@@ -98,7 +98,7 @@ function HRSettingsPage() {
                       <p className="text-[10px] font-bold opacity-70 truncate mt-0.5">{cat.description}</p>
                     )}
                   </div>
-                  <ChevronRight size={16} className={`transition-transform duration-300 ${activeTab === cat.id ? 'translate-x-0' : '-translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0'}`} />
+                  <ChevronRight size={16} className={`transition-transform duration-300 ${activeTab === cat.id ? `translate-x-0` : `-translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0`}`} />
                 </button>
               ))}
             </div>

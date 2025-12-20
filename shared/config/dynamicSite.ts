@@ -2,6 +2,8 @@ import { API_BASE_URL } from './api'
 import { siteConfig as staticConfig } from './site'
 
 export const getSiteConfig = async () => {
+    // Note: Temporarily disabled dynamic fetch due to backend authorization constraints
+    /*
     try {
         const response = await fetch(`${API_BASE_URL}/api/admin/settings`)
         if (response.ok) {
@@ -69,5 +71,6 @@ export const getSiteConfig = async () => {
     } catch (e) {
         console.error('Failed to load dynamic settings', e)
     }
+    */
     return staticConfig
 }

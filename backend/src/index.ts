@@ -85,4 +85,15 @@ app.get('/api/documents', async (c) => {
     }
 });
 
+// ===== SETTINGS ENDPOINTS =====
+app.get('/api/admin/settings', async (c) => {
+    try {
+        const storage = getStorage(c);
+        const settings = await storage.getSettings();
+        return c.json(settings);
+    } catch (error) {
+        return c.json({ error: 'Failed to load settings' }, 500);
+    }
+});
+
 export default app;

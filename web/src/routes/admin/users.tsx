@@ -39,6 +39,15 @@ export const Route = createFileRoute('/admin/users')({
   component: UsersManagementPage,
 });
 
+const tableConfig = {
+  addLabel: "New User",
+  editLabel: "Edit User",
+  searchPlaceholder: "Search users...", // optional – override default if needed
+  // You can add more later:
+  // deleteLabel: "Delete User",
+  // emptyMessage: "No users found",
+};
+
 const columnHelper = createColumnHelper<User>();
 
 const columns: ColumnDef<User, any>[] = [
@@ -54,8 +63,8 @@ const columns: ColumnDef<User, any>[] = [
             <AvatarFallback className="font-bold bg-primary/10 text-primary">{name.charAt(0)}</AvatarFallback>
           </Avatar>
           <div className="flex flex-col">
-            <span className="font-black uppercase italic text-sm tracking-tight leading-none">{name}</span>
-            <span className="text-xs font-bold text-slate-500 mt-1">{email}</span>
+            <span className="font-black uppercase italic text-sm tracking-tight leading-none text-foreground">{name}</span>
+            <span className="text-xs font-bold text-muted-foreground mt-1">{email}</span>
           </div>
         </div>
       )
@@ -68,7 +77,7 @@ const columns: ColumnDef<User, any>[] = [
       const colors: Record<string, string> = {
         admin: "bg-orange-500/10 text-orange-500 border-orange-500/20",
         manager: "bg-blue-500/10 text-blue-500 border-blue-500/20",
-        user: "bg-slate-500/10 text-slate-500 border-slate-500/20",
+        user: "bg-muted text-muted-foreground border-border",
       };
       return (
         <Badge variant="outline" className={`font-black uppercase italic text-[10px] tracking-widest px-2 py-0 ${colors[role] || colors.user}`}>
@@ -89,14 +98,14 @@ const columns: ColumnDef<User, any>[] = [
       return (
         <div className="flex items-center gap-2">
           <div className={`w-2 h-2 rounded-full ${colors[status]} shadow-[0_0_8px_currentColor]`} />
-          <span className="text-xs font-black uppercase italic tracking-widest text-slate-400">{status}</span>
+          <span className="text-xs font-black uppercase italic tracking-widest text-muted-foreground/60">{status}</span>
         </div>
       )
     }
   }),
   columnHelper.accessor('createdAt', {
     header: 'Joined',
-    cell: info => <span className="text-xs font-bold text-slate-600 font-mono italic">{new Date(info.getValue()).toLocaleDateString()}</span>,
+    cell: info => <span className="text-xs font-bold text-muted-foreground font-mono italic">{new Date(info.getValue()).toLocaleDateString()}</span>,
   }),
 ];
 
@@ -112,7 +121,7 @@ function UsersManagementPage() {
   });
 
   useEffect(() => {
-    fetch('/data/users.json')
+    fetch('/data/hr/users.json')
       .then(res => res.json())
       .then(data => setUsers(data))
       .catch(err => console.error('Error fetching users:', err));
@@ -172,21 +181,22 @@ function UsersManagementPage() {
 
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="flex justify-between items-center bg-white/5 p-8 rounded-[2.5rem] border border-white/10 glass shadow-2xl overflow-hidden relative">
+      <div className="flex justify-between items-center bg-card p-8 rounded-[var(--radius)] border border-border glass shadow-2xl overflow-hidden relative">
         <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-[100px] -mr-32 -mt-32 pointer-events-none" />
         <div className="relative z-10">
-          <h1 className="text-4xl font-black uppercase italic tracking-tighter leading-none">
+          <h1 className="text-4xl font-black uppercase italic tracking-tighter leading-none text-foreground">
             User <span className="text-primary">Management</span>
           </h1>
-          <p className="text-slate-500 mt-2 font-bold uppercase italic text-xs tracking-[0.2em]">Manage system access and roles across the ecosystem</p>
+          <p className="text-muted-foreground mt-2 font-bold uppercase italic text-xs tracking-[0.2em]">Manage system access and roles across the ecosystem</p>
         </div>
       </div>
 
-      <div className="p-8 bg-white/5 border border-white/10 glass rounded-[2.5rem] shadow-2xl">
+      <div className="p-8 bg-card border border-border glass rounded-[var(--radius)] shadow-2xl">
         <DataTable
           columns={columns}
           data={users}
-          searchKey="name"
+          searchColumn="name"
+          config={tableConfig}
           onEdit={handleOpenModal}
           onDelete={handleDelete}
           onAdd={() => handleOpenModal(null)}
@@ -195,68 +205,68 @@ function UsersManagementPage() {
 
       {/* CRUD Modal */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="glass border-white/10 shadow-3xl rounded-[2.5rem] max-w-lg p-8">
+        <DialogContent className="glass border-border shadow-3xl rounded-[var(--radius)] max-w-lg p-8">
           <DialogHeader className="mb-6">
             <div className="w-14 h-14 accent-gradient rounded-2xl flex items-center justify-center mb-4 shadow-xl shadow-primary/20">
               {editingUser ? <Edit2 className="text-white" size={28} /> : <UserPlus className="text-white" size={28} />}
             </div>
-            <DialogTitle className="text-3xl font-black uppercase italic tracking-tighter leading-none">
+            <DialogTitle className="text-3xl font-black uppercase italic tracking-tighter leading-none text-foreground">
               {editingUser ? 'Refine' : 'Add New'} <span className="text-primary">User</span>
             </DialogTitle>
-            <DialogDescription className="font-bold text-slate-500 uppercase italic text-[10px] tracking-widest mt-2">
+            <DialogDescription className="font-bold text-muted-foreground uppercase italic text-[10px] tracking-widest mt-2">
               {editingUser ? 'Synthesize updates for existing identity' : 'Initialize a new security profile in the system'}
             </DialogDescription>
           </DialogHeader>
 
           <div className="space-y-6">
             <div className="space-y-2">
-              <Label className="font-black uppercase italic text-[10px] tracking-widest text-slate-400">Full Name</Label>
+              <Label className="font-black uppercase italic text-[10px] tracking-widest text-muted-foreground">Full Name</Label>
               <Input
                 value={formData.name || ''}
                 onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                className="h-12 bg-white/5 border-white/10 rounded-xl focus:ring-primary/20"
+                className="h-12 bg-muted/50 border-border rounded-xl focus:ring-primary/20"
                 placeholder="John Doe"
               />
             </div>
             <div className="space-y-2">
-              <Label className="font-black uppercase italic text-[10px] tracking-widest text-slate-400">Email Address</Label>
+              <Label className="font-black uppercase italic text-[10px] tracking-widest text-muted-foreground">Email Address</Label>
               <Input
                 value={formData.email || ''}
                 onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                className="h-12 bg-white/5 border-white/10 rounded-xl focus:ring-primary/20"
+                className="h-12 bg-muted/50 border-border rounded-xl focus:ring-primary/20"
                 placeholder="john@example.com"
               />
             </div>
             <div className="grid grid-cols-2 gap-6">
               <div className="space-y-2">
-                <Label className="font-black uppercase italic text-[10px] tracking-widest text-slate-400">System Role</Label>
+                <Label className="font-black uppercase italic text-[10px] tracking-widest text-muted-foreground">System Role</Label>
                 <Select
                   value={(formData.role || 'user') as string}
                   onValueChange={(v: string) => setFormData(prev => ({ ...prev, role: v as any }))}
                 >
-                  <SelectTrigger className="h-12 bg-white/5 border-white/10 rounded-xl">
+                  <SelectTrigger className="h-12 bg-muted/50 border-border rounded-xl">
                     <SelectValue placeholder="Select Role" />
                   </SelectTrigger>
-                  <SelectContent className="glass border-white/10 rounded-2xl p-2">
-                    <SelectItem value="user" className="rounded-xl focus:bg-white/10 font-bold text-xs uppercase italic tracking-widest">User</SelectItem>
-                    <SelectItem value="manager" className="rounded-xl focus:bg-white/10 font-bold text-xs uppercase italic tracking-widest">Manager</SelectItem>
-                    <SelectItem value="admin" className="rounded-xl focus:bg-white/10 font-bold text-xs uppercase italic tracking-widest">Admin</SelectItem>
+                  <SelectContent className="glass border-border rounded-[var(--radius)] p-2">
+                    <SelectItem value="user" className="rounded-xl focus:bg-muted/50 font-bold text-xs uppercase italic tracking-widest">User</SelectItem>
+                    <SelectItem value="manager" className="rounded-xl focus:bg-muted/50 font-bold text-xs uppercase italic tracking-widest">Manager</SelectItem>
+                    <SelectItem value="admin" className="rounded-xl focus:bg-muted/50 font-bold text-xs uppercase italic tracking-widest">Admin</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label className="font-black uppercase italic text-[10px] tracking-widest text-slate-400">Registry Status</Label>
+                <Label className="font-black uppercase italic text-[10px] tracking-widest text-muted-foreground">Registry Status</Label>
                 <Select
                   value={(formData.status || 'active') as string}
                   onValueChange={(v: string) => setFormData(prev => ({ ...prev, status: v as any }))}
                 >
-                  <SelectTrigger className="h-12 bg-white/5 border-white/10 rounded-xl">
+                  <SelectTrigger className="h-12 bg-muted/50 border-border rounded-xl">
                     <SelectValue placeholder="Select Status" />
                   </SelectTrigger>
-                  <SelectContent className="glass border-white/10 rounded-2xl p-2">
-                    <SelectItem value="active" className="rounded-xl focus:bg-white/10 font-bold text-xs uppercase italic tracking-widest">Active</SelectItem>
-                    <SelectItem value="inactive" className="rounded-xl focus:bg-white/10 font-bold text-xs uppercase italic tracking-widest">Inactive</SelectItem>
-                    <SelectItem value="pending" className="rounded-xl focus:bg-white/10 font-bold text-xs uppercase italic tracking-widest">Pending</SelectItem>
+                  <SelectContent className="glass border-border rounded-[var(--radius)] p-2">
+                    <SelectItem value="active" className="rounded-xl focus:bg-muted/50 font-bold text-xs uppercase italic tracking-widest">Active</SelectItem>
+                    <SelectItem value="inactive" className="rounded-xl focus:bg-muted/50 font-bold text-xs uppercase italic tracking-widest">Inactive</SelectItem>
+                    <SelectItem value="pending" className="rounded-xl focus:bg-muted/50 font-bold text-xs uppercase italic tracking-widest">Pending</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -267,13 +277,13 @@ function UsersManagementPage() {
             <Button
               variant="ghost"
               onClick={() => setIsModalOpen(false)}
-              className="h-12 px-6 rounded-xl font-black uppercase italic text-xs tracking-widest text-slate-400 hover:text-white hover:bg-white/5"
+              className="h-12 px-6 rounded-xl font-black uppercase italic text-xs tracking-widest text-muted-foreground hover:text-foreground hover:bg-muted/30"
             >
               Abort
             </Button>
             <Button
               onClick={handleSaveUser}
-              className="h-12 px-8 accent-gradient border-0 rounded-xl font-black uppercase italic shadow-xl shadow-primary/20 hover:scale-105 transition-all text-xs tracking-widest"
+              className="h-12 px-8 bg-primary text-primary-foreground border-0 rounded-xl font-black uppercase italic shadow-xl shadow-primary/20 hover:scale-105 transition-all text-xs tracking-widest"
             >
               {editingUser ? 'Commit Updates' : 'Initialize Profile'}
             </Button>

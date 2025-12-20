@@ -1,8 +1,17 @@
 import { motion } from "framer-motion";
 import { Button } from "@shared/components/ui/button";
 import { Github, Rocket, Zap, Layout, Code2, Layers } from "lucide-react";
+import { useSiteConfig } from "@shared/config/SiteConfigContext";
 
 export const HeroSection = () => {
+  const { config } = useSiteConfig();
+  const module = config.module;
+
+  // Split name for styling: "MacroHR" -> "Macro" and "HR"
+  const nameParts = module.name.replace(/([A-Z])/g, ' $1').trim().split(' ');
+  const firstName = nameParts[0] || module.name;
+  const restName = nameParts.slice(1).join('') || 'Suite';
+
   return (
     <section id="hero" className="min-h-screen flex flex-col justify-center pt-24 pb-12 px-6 relative overflow-hidden">
       {/* Background gradient orbs */}
@@ -36,7 +45,7 @@ export const HeroSection = () => {
           className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-bold mb-8 border border-primary/20 backdrop-blur-sm"
         >
           <Zap className="w-4 h-4 fill-current animate-pulse" />
-          Modernize Your HR Operations with React 19
+          Modernize Your {module.name} Operations with React 19
         </motion.div>
 
         <motion.h1
@@ -45,8 +54,9 @@ export const HeroSection = () => {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-6xl md:text-8xl lg:text-9xl font-black leading-[0.9] mb-8 text-balance uppercase italic"
         >
-          Supercharge <br />
-          Your <span className="gradient-text">HR SAAS.</span>
+          {firstName} <br />
+          <span className="text-foreground">Your </span>
+          <span className="gradient-text">{restName}.</span>
         </motion.h1>
 
         <motion.p
@@ -55,10 +65,7 @@ export const HeroSection = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto mb-10 leading-relaxed font-medium"
         >
-          The ultimate HR Management & Workforce Orchestration suite. Built with <span className="text-foreground font-bold italic">React 19</span>,
-          <span className="text-foreground font-bold italic underline decoration-primary">Hono</span>,
-          and <span className="text-foreground font-bold italic">TanStack</span>.
-          Experience the future of personnel management.
+          {module.description}
         </motion.p>
 
         <motion.div
@@ -67,13 +74,13 @@ export const HeroSection = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="flex flex-col sm:flex-row justify-center gap-6 mb-12"
         >
-          <a href="https://github.com/Interpoolx/MacroHR" target="_blank" rel="noopener noreferrer">
+          <a href={module.url} target="_blank" rel="noopener noreferrer">
             <Button size="lg" className="accent-gradient border-0 text-xl px-10 py-8 font-black uppercase italic glow-effect group transition-all hover:scale-105 active:scale-95 text-white">
               <Rocket className="mr-3 h-6 w-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-              Launch HR Suite
+              Launch {module.name}
             </Button>
           </a>
-          <a href="https://github.com/Interpoolx/MacroHR" target="_blank" rel="noopener noreferrer">
+          <a href={module.githubUrl} target="_blank" rel="noopener noreferrer">
             <Button size="lg" variant="outline" className="text-xl px-10 py-8 font-black uppercase italic bg-secondary/30 border-border hover:bg-secondary/50 hover:border-primary/50 transition-all">
               <Github className="mr-3 h-6 w-6" />
               Star on GitHub

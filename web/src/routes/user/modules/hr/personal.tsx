@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useState, useEffect } from 'react'
 import { createColumnHelper, ColumnDef } from '@tanstack/react-table'
-import { DataTable } from '../../components/shared/DataTable'
+import { DataTable } from '../../../../components/shared/DataTable'
 import { Badge } from "@shared/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@shared/components/ui/avatar"
 import { toast } from "sonner"
@@ -29,7 +29,7 @@ interface EmployeeProfile {
     avatar: string
 }
 
-export const Route = createFileRoute('/user/personal')({
+export const Route = createFileRoute('/user/modules/hr/personal')({
     component: PersonnelDossierPage,
 })
 
@@ -76,7 +76,7 @@ function PersonnelDossierPage() {
 
     useEffect(() => {
         // Using existing data for demo
-        fetch('/data/people.json')
+        fetch('/data/hr/people.json')
             .then(res => res.json())
             .then(data => {
                 // Map person to profile for detailed view simulation
@@ -116,7 +116,7 @@ function PersonnelDossierPage() {
                 <DataTable
                     columns={columns}
                     data={profiles}
-                    searchKey="name"
+                    searchColumn="name"
                     onEdit={handleSelectProfile} // Re-using Edit for Detailed Viewer
                 />
             </div>

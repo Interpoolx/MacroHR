@@ -15,21 +15,23 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
-import { Route as UserTasksRouteImport } from './routes/user/tasks'
-import { Route as UserSupportRouteImport } from './routes/user/support'
-import { Route as UserSettingsRouteImport } from './routes/user/settings'
-import { Route as UserPersonalRouteImport } from './routes/user/personal'
-import { Route as UserPerformanceRouteImport } from './routes/user/performance'
-import { Route as UserPeopleRouteImport } from './routes/user/people'
-import { Route as UserPayslipRouteImport } from './routes/user/payslip'
-import { Route as UserJobReferenceRouteImport } from './routes/user/job-reference'
-import { Route as UserDocumentsRouteImport } from './routes/user/documents'
 import { Route as UserDashboardRouteImport } from './routes/user/dashboard'
-import { Route as UserBenefitsRouteImport } from './routes/user/benefits'
-import { Route as UserAttendanceRouteImport } from './routes/user/attendance'
+import { Route as UserSlugRouteImport } from './routes/user/$slug'
 import { Route as AdminUsersRouteImport } from './routes/admin/users'
 import { Route as AdminSettingsRouteImport } from './routes/admin/settings'
 import { Route as AdminRolesRouteImport } from './routes/admin/roles'
+import { Route as AdminSlugRouteImport } from './routes/admin/$slug'
+import { Route as UserModulesHrTasksRouteImport } from './routes/user/modules/hr/tasks'
+import { Route as UserModulesHrSupportRouteImport } from './routes/user/modules/hr/support'
+import { Route as UserModulesHrSettingsRouteImport } from './routes/user/modules/hr/settings'
+import { Route as UserModulesHrPersonalRouteImport } from './routes/user/modules/hr/personal'
+import { Route as UserModulesHrPerformanceRouteImport } from './routes/user/modules/hr/performance'
+import { Route as UserModulesHrPeopleRouteImport } from './routes/user/modules/hr/people'
+import { Route as UserModulesHrPayslipRouteImport } from './routes/user/modules/hr/payslip'
+import { Route as UserModulesHrJobReferenceRouteImport } from './routes/user/modules/hr/job-reference'
+import { Route as UserModulesHrDocumentsRouteImport } from './routes/user/modules/hr/documents'
+import { Route as UserModulesHrBenefitsRouteImport } from './routes/user/modules/hr/benefits'
+import { Route as UserModulesHrAttendanceRouteImport } from './routes/user/modules/hr/attendance'
 
 const UserRoute = UserRouteImport.update({
   id: '/user',
@@ -61,64 +63,14 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AdminRoute,
 } as any)
-const UserTasksRoute = UserTasksRouteImport.update({
-  id: '/tasks',
-  path: '/tasks',
-  getParentRoute: () => UserRoute,
-} as any)
-const UserSupportRoute = UserSupportRouteImport.update({
-  id: '/support',
-  path: '/support',
-  getParentRoute: () => UserRoute,
-} as any)
-const UserSettingsRoute = UserSettingsRouteImport.update({
-  id: '/settings',
-  path: '/settings',
-  getParentRoute: () => UserRoute,
-} as any)
-const UserPersonalRoute = UserPersonalRouteImport.update({
-  id: '/personal',
-  path: '/personal',
-  getParentRoute: () => UserRoute,
-} as any)
-const UserPerformanceRoute = UserPerformanceRouteImport.update({
-  id: '/performance',
-  path: '/performance',
-  getParentRoute: () => UserRoute,
-} as any)
-const UserPeopleRoute = UserPeopleRouteImport.update({
-  id: '/people',
-  path: '/people',
-  getParentRoute: () => UserRoute,
-} as any)
-const UserPayslipRoute = UserPayslipRouteImport.update({
-  id: '/payslip',
-  path: '/payslip',
-  getParentRoute: () => UserRoute,
-} as any)
-const UserJobReferenceRoute = UserJobReferenceRouteImport.update({
-  id: '/job-reference',
-  path: '/job-reference',
-  getParentRoute: () => UserRoute,
-} as any)
-const UserDocumentsRoute = UserDocumentsRouteImport.update({
-  id: '/documents',
-  path: '/documents',
-  getParentRoute: () => UserRoute,
-} as any)
 const UserDashboardRoute = UserDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
   getParentRoute: () => UserRoute,
 } as any)
-const UserBenefitsRoute = UserBenefitsRouteImport.update({
-  id: '/benefits',
-  path: '/benefits',
-  getParentRoute: () => UserRoute,
-} as any)
-const UserAttendanceRoute = UserAttendanceRouteImport.update({
-  id: '/attendance',
-  path: '/attendance',
+const UserSlugRoute = UserSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
   getParentRoute: () => UserRoute,
 } as any)
 const AdminUsersRoute = AdminUsersRouteImport.update({
@@ -136,6 +88,68 @@ const AdminRolesRoute = AdminRolesRouteImport.update({
   path: '/roles',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminSlugRoute = AdminSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => AdminRoute,
+} as any)
+const UserModulesHrTasksRoute = UserModulesHrTasksRouteImport.update({
+  id: '/modules/hr/tasks',
+  path: '/modules/hr/tasks',
+  getParentRoute: () => UserRoute,
+} as any)
+const UserModulesHrSupportRoute = UserModulesHrSupportRouteImport.update({
+  id: '/modules/hr/support',
+  path: '/modules/hr/support',
+  getParentRoute: () => UserRoute,
+} as any)
+const UserModulesHrSettingsRoute = UserModulesHrSettingsRouteImport.update({
+  id: '/modules/hr/settings',
+  path: '/modules/hr/settings',
+  getParentRoute: () => UserRoute,
+} as any)
+const UserModulesHrPersonalRoute = UserModulesHrPersonalRouteImport.update({
+  id: '/modules/hr/personal',
+  path: '/modules/hr/personal',
+  getParentRoute: () => UserRoute,
+} as any)
+const UserModulesHrPerformanceRoute =
+  UserModulesHrPerformanceRouteImport.update({
+    id: '/modules/hr/performance',
+    path: '/modules/hr/performance',
+    getParentRoute: () => UserRoute,
+  } as any)
+const UserModulesHrPeopleRoute = UserModulesHrPeopleRouteImport.update({
+  id: '/modules/hr/people',
+  path: '/modules/hr/people',
+  getParentRoute: () => UserRoute,
+} as any)
+const UserModulesHrPayslipRoute = UserModulesHrPayslipRouteImport.update({
+  id: '/modules/hr/payslip',
+  path: '/modules/hr/payslip',
+  getParentRoute: () => UserRoute,
+} as any)
+const UserModulesHrJobReferenceRoute =
+  UserModulesHrJobReferenceRouteImport.update({
+    id: '/modules/hr/job-reference',
+    path: '/modules/hr/job-reference',
+    getParentRoute: () => UserRoute,
+  } as any)
+const UserModulesHrDocumentsRoute = UserModulesHrDocumentsRouteImport.update({
+  id: '/modules/hr/documents',
+  path: '/modules/hr/documents',
+  getParentRoute: () => UserRoute,
+} as any)
+const UserModulesHrBenefitsRoute = UserModulesHrBenefitsRouteImport.update({
+  id: '/modules/hr/benefits',
+  path: '/modules/hr/benefits',
+  getParentRoute: () => UserRoute,
+} as any)
+const UserModulesHrAttendanceRoute = UserModulesHrAttendanceRouteImport.update({
+  id: '/modules/hr/attendance',
+  path: '/modules/hr/attendance',
+  getParentRoute: () => UserRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -143,44 +157,48 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/profile': typeof ProfileRoute
   '/user': typeof UserRouteWithChildren
+  '/admin/$slug': typeof AdminSlugRoute
   '/admin/roles': typeof AdminRolesRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
-  '/user/attendance': typeof UserAttendanceRoute
-  '/user/benefits': typeof UserBenefitsRoute
+  '/user/$slug': typeof UserSlugRoute
   '/user/dashboard': typeof UserDashboardRoute
-  '/user/documents': typeof UserDocumentsRoute
-  '/user/job-reference': typeof UserJobReferenceRoute
-  '/user/payslip': typeof UserPayslipRoute
-  '/user/people': typeof UserPeopleRoute
-  '/user/performance': typeof UserPerformanceRoute
-  '/user/personal': typeof UserPersonalRoute
-  '/user/settings': typeof UserSettingsRoute
-  '/user/support': typeof UserSupportRoute
-  '/user/tasks': typeof UserTasksRoute
   '/admin/': typeof AdminIndexRoute
+  '/user/modules/hr/attendance': typeof UserModulesHrAttendanceRoute
+  '/user/modules/hr/benefits': typeof UserModulesHrBenefitsRoute
+  '/user/modules/hr/documents': typeof UserModulesHrDocumentsRoute
+  '/user/modules/hr/job-reference': typeof UserModulesHrJobReferenceRoute
+  '/user/modules/hr/payslip': typeof UserModulesHrPayslipRoute
+  '/user/modules/hr/people': typeof UserModulesHrPeopleRoute
+  '/user/modules/hr/performance': typeof UserModulesHrPerformanceRoute
+  '/user/modules/hr/personal': typeof UserModulesHrPersonalRoute
+  '/user/modules/hr/settings': typeof UserModulesHrSettingsRoute
+  '/user/modules/hr/support': typeof UserModulesHrSupportRoute
+  '/user/modules/hr/tasks': typeof UserModulesHrTasksRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/profile': typeof ProfileRoute
   '/user': typeof UserRouteWithChildren
+  '/admin/$slug': typeof AdminSlugRoute
   '/admin/roles': typeof AdminRolesRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
-  '/user/attendance': typeof UserAttendanceRoute
-  '/user/benefits': typeof UserBenefitsRoute
+  '/user/$slug': typeof UserSlugRoute
   '/user/dashboard': typeof UserDashboardRoute
-  '/user/documents': typeof UserDocumentsRoute
-  '/user/job-reference': typeof UserJobReferenceRoute
-  '/user/payslip': typeof UserPayslipRoute
-  '/user/people': typeof UserPeopleRoute
-  '/user/performance': typeof UserPerformanceRoute
-  '/user/personal': typeof UserPersonalRoute
-  '/user/settings': typeof UserSettingsRoute
-  '/user/support': typeof UserSupportRoute
-  '/user/tasks': typeof UserTasksRoute
   '/admin': typeof AdminIndexRoute
+  '/user/modules/hr/attendance': typeof UserModulesHrAttendanceRoute
+  '/user/modules/hr/benefits': typeof UserModulesHrBenefitsRoute
+  '/user/modules/hr/documents': typeof UserModulesHrDocumentsRoute
+  '/user/modules/hr/job-reference': typeof UserModulesHrJobReferenceRoute
+  '/user/modules/hr/payslip': typeof UserModulesHrPayslipRoute
+  '/user/modules/hr/people': typeof UserModulesHrPeopleRoute
+  '/user/modules/hr/performance': typeof UserModulesHrPerformanceRoute
+  '/user/modules/hr/personal': typeof UserModulesHrPersonalRoute
+  '/user/modules/hr/settings': typeof UserModulesHrSettingsRoute
+  '/user/modules/hr/support': typeof UserModulesHrSupportRoute
+  '/user/modules/hr/tasks': typeof UserModulesHrTasksRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -189,22 +207,24 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/profile': typeof ProfileRoute
   '/user': typeof UserRouteWithChildren
+  '/admin/$slug': typeof AdminSlugRoute
   '/admin/roles': typeof AdminRolesRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
-  '/user/attendance': typeof UserAttendanceRoute
-  '/user/benefits': typeof UserBenefitsRoute
+  '/user/$slug': typeof UserSlugRoute
   '/user/dashboard': typeof UserDashboardRoute
-  '/user/documents': typeof UserDocumentsRoute
-  '/user/job-reference': typeof UserJobReferenceRoute
-  '/user/payslip': typeof UserPayslipRoute
-  '/user/people': typeof UserPeopleRoute
-  '/user/performance': typeof UserPerformanceRoute
-  '/user/personal': typeof UserPersonalRoute
-  '/user/settings': typeof UserSettingsRoute
-  '/user/support': typeof UserSupportRoute
-  '/user/tasks': typeof UserTasksRoute
   '/admin/': typeof AdminIndexRoute
+  '/user/modules/hr/attendance': typeof UserModulesHrAttendanceRoute
+  '/user/modules/hr/benefits': typeof UserModulesHrBenefitsRoute
+  '/user/modules/hr/documents': typeof UserModulesHrDocumentsRoute
+  '/user/modules/hr/job-reference': typeof UserModulesHrJobReferenceRoute
+  '/user/modules/hr/payslip': typeof UserModulesHrPayslipRoute
+  '/user/modules/hr/people': typeof UserModulesHrPeopleRoute
+  '/user/modules/hr/performance': typeof UserModulesHrPerformanceRoute
+  '/user/modules/hr/personal': typeof UserModulesHrPersonalRoute
+  '/user/modules/hr/settings': typeof UserModulesHrSettingsRoute
+  '/user/modules/hr/support': typeof UserModulesHrSupportRoute
+  '/user/modules/hr/tasks': typeof UserModulesHrTasksRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -214,44 +234,48 @@ export interface FileRouteTypes {
     | '/auth'
     | '/profile'
     | '/user'
+    | '/admin/$slug'
     | '/admin/roles'
     | '/admin/settings'
     | '/admin/users'
-    | '/user/attendance'
-    | '/user/benefits'
+    | '/user/$slug'
     | '/user/dashboard'
-    | '/user/documents'
-    | '/user/job-reference'
-    | '/user/payslip'
-    | '/user/people'
-    | '/user/performance'
-    | '/user/personal'
-    | '/user/settings'
-    | '/user/support'
-    | '/user/tasks'
     | '/admin/'
+    | '/user/modules/hr/attendance'
+    | '/user/modules/hr/benefits'
+    | '/user/modules/hr/documents'
+    | '/user/modules/hr/job-reference'
+    | '/user/modules/hr/payslip'
+    | '/user/modules/hr/people'
+    | '/user/modules/hr/performance'
+    | '/user/modules/hr/personal'
+    | '/user/modules/hr/settings'
+    | '/user/modules/hr/support'
+    | '/user/modules/hr/tasks'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/auth'
     | '/profile'
     | '/user'
+    | '/admin/$slug'
     | '/admin/roles'
     | '/admin/settings'
     | '/admin/users'
-    | '/user/attendance'
-    | '/user/benefits'
+    | '/user/$slug'
     | '/user/dashboard'
-    | '/user/documents'
-    | '/user/job-reference'
-    | '/user/payslip'
-    | '/user/people'
-    | '/user/performance'
-    | '/user/personal'
-    | '/user/settings'
-    | '/user/support'
-    | '/user/tasks'
     | '/admin'
+    | '/user/modules/hr/attendance'
+    | '/user/modules/hr/benefits'
+    | '/user/modules/hr/documents'
+    | '/user/modules/hr/job-reference'
+    | '/user/modules/hr/payslip'
+    | '/user/modules/hr/people'
+    | '/user/modules/hr/performance'
+    | '/user/modules/hr/personal'
+    | '/user/modules/hr/settings'
+    | '/user/modules/hr/support'
+    | '/user/modules/hr/tasks'
   id:
     | '__root__'
     | '/'
@@ -259,22 +283,24 @@ export interface FileRouteTypes {
     | '/auth'
     | '/profile'
     | '/user'
+    | '/admin/$slug'
     | '/admin/roles'
     | '/admin/settings'
     | '/admin/users'
-    | '/user/attendance'
-    | '/user/benefits'
+    | '/user/$slug'
     | '/user/dashboard'
-    | '/user/documents'
-    | '/user/job-reference'
-    | '/user/payslip'
-    | '/user/people'
-    | '/user/performance'
-    | '/user/personal'
-    | '/user/settings'
-    | '/user/support'
-    | '/user/tasks'
     | '/admin/'
+    | '/user/modules/hr/attendance'
+    | '/user/modules/hr/benefits'
+    | '/user/modules/hr/documents'
+    | '/user/modules/hr/job-reference'
+    | '/user/modules/hr/payslip'
+    | '/user/modules/hr/people'
+    | '/user/modules/hr/performance'
+    | '/user/modules/hr/personal'
+    | '/user/modules/hr/settings'
+    | '/user/modules/hr/support'
+    | '/user/modules/hr/tasks'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -329,69 +355,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
     }
-    '/user/tasks': {
-      id: '/user/tasks'
-      path: '/tasks'
-      fullPath: '/user/tasks'
-      preLoaderRoute: typeof UserTasksRouteImport
-      parentRoute: typeof UserRoute
-    }
-    '/user/support': {
-      id: '/user/support'
-      path: '/support'
-      fullPath: '/user/support'
-      preLoaderRoute: typeof UserSupportRouteImport
-      parentRoute: typeof UserRoute
-    }
-    '/user/settings': {
-      id: '/user/settings'
-      path: '/settings'
-      fullPath: '/user/settings'
-      preLoaderRoute: typeof UserSettingsRouteImport
-      parentRoute: typeof UserRoute
-    }
-    '/user/personal': {
-      id: '/user/personal'
-      path: '/personal'
-      fullPath: '/user/personal'
-      preLoaderRoute: typeof UserPersonalRouteImport
-      parentRoute: typeof UserRoute
-    }
-    '/user/performance': {
-      id: '/user/performance'
-      path: '/performance'
-      fullPath: '/user/performance'
-      preLoaderRoute: typeof UserPerformanceRouteImport
-      parentRoute: typeof UserRoute
-    }
-    '/user/people': {
-      id: '/user/people'
-      path: '/people'
-      fullPath: '/user/people'
-      preLoaderRoute: typeof UserPeopleRouteImport
-      parentRoute: typeof UserRoute
-    }
-    '/user/payslip': {
-      id: '/user/payslip'
-      path: '/payslip'
-      fullPath: '/user/payslip'
-      preLoaderRoute: typeof UserPayslipRouteImport
-      parentRoute: typeof UserRoute
-    }
-    '/user/job-reference': {
-      id: '/user/job-reference'
-      path: '/job-reference'
-      fullPath: '/user/job-reference'
-      preLoaderRoute: typeof UserJobReferenceRouteImport
-      parentRoute: typeof UserRoute
-    }
-    '/user/documents': {
-      id: '/user/documents'
-      path: '/documents'
-      fullPath: '/user/documents'
-      preLoaderRoute: typeof UserDocumentsRouteImport
-      parentRoute: typeof UserRoute
-    }
     '/user/dashboard': {
       id: '/user/dashboard'
       path: '/dashboard'
@@ -399,18 +362,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UserDashboardRouteImport
       parentRoute: typeof UserRoute
     }
-    '/user/benefits': {
-      id: '/user/benefits'
-      path: '/benefits'
-      fullPath: '/user/benefits'
-      preLoaderRoute: typeof UserBenefitsRouteImport
-      parentRoute: typeof UserRoute
-    }
-    '/user/attendance': {
-      id: '/user/attendance'
-      path: '/attendance'
-      fullPath: '/user/attendance'
-      preLoaderRoute: typeof UserAttendanceRouteImport
+    '/user/$slug': {
+      id: '/user/$slug'
+      path: '/$slug'
+      fullPath: '/user/$slug'
+      preLoaderRoute: typeof UserSlugRouteImport
       parentRoute: typeof UserRoute
     }
     '/admin/users': {
@@ -434,10 +390,95 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminRolesRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/$slug': {
+      id: '/admin/$slug'
+      path: '/$slug'
+      fullPath: '/admin/$slug'
+      preLoaderRoute: typeof AdminSlugRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/user/modules/hr/tasks': {
+      id: '/user/modules/hr/tasks'
+      path: '/modules/hr/tasks'
+      fullPath: '/user/modules/hr/tasks'
+      preLoaderRoute: typeof UserModulesHrTasksRouteImport
+      parentRoute: typeof UserRoute
+    }
+    '/user/modules/hr/support': {
+      id: '/user/modules/hr/support'
+      path: '/modules/hr/support'
+      fullPath: '/user/modules/hr/support'
+      preLoaderRoute: typeof UserModulesHrSupportRouteImport
+      parentRoute: typeof UserRoute
+    }
+    '/user/modules/hr/settings': {
+      id: '/user/modules/hr/settings'
+      path: '/modules/hr/settings'
+      fullPath: '/user/modules/hr/settings'
+      preLoaderRoute: typeof UserModulesHrSettingsRouteImport
+      parentRoute: typeof UserRoute
+    }
+    '/user/modules/hr/personal': {
+      id: '/user/modules/hr/personal'
+      path: '/modules/hr/personal'
+      fullPath: '/user/modules/hr/personal'
+      preLoaderRoute: typeof UserModulesHrPersonalRouteImport
+      parentRoute: typeof UserRoute
+    }
+    '/user/modules/hr/performance': {
+      id: '/user/modules/hr/performance'
+      path: '/modules/hr/performance'
+      fullPath: '/user/modules/hr/performance'
+      preLoaderRoute: typeof UserModulesHrPerformanceRouteImport
+      parentRoute: typeof UserRoute
+    }
+    '/user/modules/hr/people': {
+      id: '/user/modules/hr/people'
+      path: '/modules/hr/people'
+      fullPath: '/user/modules/hr/people'
+      preLoaderRoute: typeof UserModulesHrPeopleRouteImport
+      parentRoute: typeof UserRoute
+    }
+    '/user/modules/hr/payslip': {
+      id: '/user/modules/hr/payslip'
+      path: '/modules/hr/payslip'
+      fullPath: '/user/modules/hr/payslip'
+      preLoaderRoute: typeof UserModulesHrPayslipRouteImport
+      parentRoute: typeof UserRoute
+    }
+    '/user/modules/hr/job-reference': {
+      id: '/user/modules/hr/job-reference'
+      path: '/modules/hr/job-reference'
+      fullPath: '/user/modules/hr/job-reference'
+      preLoaderRoute: typeof UserModulesHrJobReferenceRouteImport
+      parentRoute: typeof UserRoute
+    }
+    '/user/modules/hr/documents': {
+      id: '/user/modules/hr/documents'
+      path: '/modules/hr/documents'
+      fullPath: '/user/modules/hr/documents'
+      preLoaderRoute: typeof UserModulesHrDocumentsRouteImport
+      parentRoute: typeof UserRoute
+    }
+    '/user/modules/hr/benefits': {
+      id: '/user/modules/hr/benefits'
+      path: '/modules/hr/benefits'
+      fullPath: '/user/modules/hr/benefits'
+      preLoaderRoute: typeof UserModulesHrBenefitsRouteImport
+      parentRoute: typeof UserRoute
+    }
+    '/user/modules/hr/attendance': {
+      id: '/user/modules/hr/attendance'
+      path: '/modules/hr/attendance'
+      fullPath: '/user/modules/hr/attendance'
+      preLoaderRoute: typeof UserModulesHrAttendanceRouteImport
+      parentRoute: typeof UserRoute
+    }
   }
 }
 
 interface AdminRouteChildren {
+  AdminSlugRoute: typeof AdminSlugRoute
   AdminRolesRoute: typeof AdminRolesRoute
   AdminSettingsRoute: typeof AdminSettingsRoute
   AdminUsersRoute: typeof AdminUsersRoute
@@ -445,6 +486,7 @@ interface AdminRouteChildren {
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminSlugRoute: AdminSlugRoute,
   AdminRolesRoute: AdminRolesRoute,
   AdminSettingsRoute: AdminSettingsRoute,
   AdminUsersRoute: AdminUsersRoute,
@@ -454,33 +496,35 @@ const AdminRouteChildren: AdminRouteChildren = {
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
 interface UserRouteChildren {
-  UserAttendanceRoute: typeof UserAttendanceRoute
-  UserBenefitsRoute: typeof UserBenefitsRoute
+  UserSlugRoute: typeof UserSlugRoute
   UserDashboardRoute: typeof UserDashboardRoute
-  UserDocumentsRoute: typeof UserDocumentsRoute
-  UserJobReferenceRoute: typeof UserJobReferenceRoute
-  UserPayslipRoute: typeof UserPayslipRoute
-  UserPeopleRoute: typeof UserPeopleRoute
-  UserPerformanceRoute: typeof UserPerformanceRoute
-  UserPersonalRoute: typeof UserPersonalRoute
-  UserSettingsRoute: typeof UserSettingsRoute
-  UserSupportRoute: typeof UserSupportRoute
-  UserTasksRoute: typeof UserTasksRoute
+  UserModulesHrAttendanceRoute: typeof UserModulesHrAttendanceRoute
+  UserModulesHrBenefitsRoute: typeof UserModulesHrBenefitsRoute
+  UserModulesHrDocumentsRoute: typeof UserModulesHrDocumentsRoute
+  UserModulesHrJobReferenceRoute: typeof UserModulesHrJobReferenceRoute
+  UserModulesHrPayslipRoute: typeof UserModulesHrPayslipRoute
+  UserModulesHrPeopleRoute: typeof UserModulesHrPeopleRoute
+  UserModulesHrPerformanceRoute: typeof UserModulesHrPerformanceRoute
+  UserModulesHrPersonalRoute: typeof UserModulesHrPersonalRoute
+  UserModulesHrSettingsRoute: typeof UserModulesHrSettingsRoute
+  UserModulesHrSupportRoute: typeof UserModulesHrSupportRoute
+  UserModulesHrTasksRoute: typeof UserModulesHrTasksRoute
 }
 
 const UserRouteChildren: UserRouteChildren = {
-  UserAttendanceRoute: UserAttendanceRoute,
-  UserBenefitsRoute: UserBenefitsRoute,
+  UserSlugRoute: UserSlugRoute,
   UserDashboardRoute: UserDashboardRoute,
-  UserDocumentsRoute: UserDocumentsRoute,
-  UserJobReferenceRoute: UserJobReferenceRoute,
-  UserPayslipRoute: UserPayslipRoute,
-  UserPeopleRoute: UserPeopleRoute,
-  UserPerformanceRoute: UserPerformanceRoute,
-  UserPersonalRoute: UserPersonalRoute,
-  UserSettingsRoute: UserSettingsRoute,
-  UserSupportRoute: UserSupportRoute,
-  UserTasksRoute: UserTasksRoute,
+  UserModulesHrAttendanceRoute: UserModulesHrAttendanceRoute,
+  UserModulesHrBenefitsRoute: UserModulesHrBenefitsRoute,
+  UserModulesHrDocumentsRoute: UserModulesHrDocumentsRoute,
+  UserModulesHrJobReferenceRoute: UserModulesHrJobReferenceRoute,
+  UserModulesHrPayslipRoute: UserModulesHrPayslipRoute,
+  UserModulesHrPeopleRoute: UserModulesHrPeopleRoute,
+  UserModulesHrPerformanceRoute: UserModulesHrPerformanceRoute,
+  UserModulesHrPersonalRoute: UserModulesHrPersonalRoute,
+  UserModulesHrSettingsRoute: UserModulesHrSettingsRoute,
+  UserModulesHrSupportRoute: UserModulesHrSupportRoute,
+  UserModulesHrTasksRoute: UserModulesHrTasksRoute,
 }
 
 const UserRouteWithChildren = UserRoute._addFileChildren(UserRouteChildren)

@@ -5,6 +5,9 @@ var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
+var __esm = (fn, res) => function __init() {
+  return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
+};
 var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
@@ -25,9 +28,9 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 
-// .wrangler/tmp/bundle-bggTt9/checked-fetch.js
+// .wrangler/tmp/bundle-O1axK6/checked-fetch.js
 var require_checked_fetch = __commonJS({
-  ".wrangler/tmp/bundle-bggTt9/checked-fetch.js"() {
+  ".wrangler/tmp/bundle-O1axK6/checked-fetch.js"() {
     "use strict";
     var urls = /* @__PURE__ */ new Set();
     function checkURL(request, init) {
@@ -56,9 +59,9 @@ var require_checked_fetch = __commonJS({
   }
 });
 
-// .wrangler/tmp/bundle-bggTt9/strip-cf-connecting-ip-header.js
+// .wrangler/tmp/bundle-O1axK6/strip-cf-connecting-ip-header.js
 var require_strip_cf_connecting_ip_header = __commonJS({
-  ".wrangler/tmp/bundle-bggTt9/strip-cf-connecting-ip-header.js"() {
+  ".wrangler/tmp/bundle-O1axK6/strip-cf-connecting-ip-header.js"() {
     "use strict";
     function stripCfConnectingIPHeader(input, init) {
       const request = new Request(input, init);
@@ -76,37 +79,1094 @@ var require_strip_cf_connecting_ip_header = __commonJS({
   }
 });
 
-// .wrangler/tmp/bundle-bggTt9/middleware-loader.entry.ts
-var import_checked_fetch72 = __toESM(require_checked_fetch());
-var import_strip_cf_connecting_ip_header72 = __toESM(require_strip_cf_connecting_ip_header());
-
 // wrangler-modules-watch:wrangler:modules-watch
-var import_checked_fetch = __toESM(require_checked_fetch());
-var import_strip_cf_connecting_ip_header = __toESM(require_strip_cf_connecting_ip_header());
+var import_checked_fetch, import_strip_cf_connecting_ip_header;
+var init_wrangler_modules_watch = __esm({
+  "wrangler-modules-watch:wrangler:modules-watch"() {
+    import_checked_fetch = __toESM(require_checked_fetch());
+    import_strip_cf_connecting_ip_header = __toESM(require_strip_cf_connecting_ip_header());
+    init_modules_watch_stub();
+  }
+});
 
-// .wrangler/tmp/bundle-bggTt9/middleware-insertion-facade.js
-var import_checked_fetch70 = __toESM(require_checked_fetch());
-var import_strip_cf_connecting_ip_header70 = __toESM(require_strip_cf_connecting_ip_header());
+// ../node_modules/wrangler/templates/modules-watch-stub.js
+var init_modules_watch_stub = __esm({
+  "../node_modules/wrangler/templates/modules-watch-stub.js"() {
+    init_wrangler_modules_watch();
+  }
+});
+
+// ../node_modules/react/cjs/react.development.js
+var require_react_development = __commonJS({
+  "../node_modules/react/cjs/react.development.js"(exports, module) {
+    "use strict";
+    var import_checked_fetch95 = __toESM(require_checked_fetch());
+    var import_strip_cf_connecting_ip_header95 = __toESM(require_strip_cf_connecting_ip_header());
+    init_modules_watch_stub();
+    (function() {
+      function defineDeprecationWarning(methodName, info) {
+        Object.defineProperty(Component.prototype, methodName, {
+          get: function() {
+            console.warn(
+              "%s(...) is deprecated in plain JavaScript React classes. %s",
+              info[0],
+              info[1]
+            );
+          }
+        });
+      }
+      __name(defineDeprecationWarning, "defineDeprecationWarning");
+      function getIteratorFn(maybeIterable) {
+        if (null === maybeIterable || "object" !== typeof maybeIterable)
+          return null;
+        maybeIterable = MAYBE_ITERATOR_SYMBOL && maybeIterable[MAYBE_ITERATOR_SYMBOL] || maybeIterable["@@iterator"];
+        return "function" === typeof maybeIterable ? maybeIterable : null;
+      }
+      __name(getIteratorFn, "getIteratorFn");
+      function warnNoop(publicInstance, callerName) {
+        publicInstance = (publicInstance = publicInstance.constructor) && (publicInstance.displayName || publicInstance.name) || "ReactClass";
+        var warningKey = publicInstance + "." + callerName;
+        didWarnStateUpdateForUnmountedComponent[warningKey] || (console.error(
+          "Can't call %s on a component that is not yet mounted. This is a no-op, but it might indicate a bug in your application. Instead, assign to `this.state` directly or define a `state = {};` class property with the desired state in the %s component.",
+          callerName,
+          publicInstance
+        ), didWarnStateUpdateForUnmountedComponent[warningKey] = true);
+      }
+      __name(warnNoop, "warnNoop");
+      function Component(props, context, updater) {
+        this.props = props;
+        this.context = context;
+        this.refs = emptyObject;
+        this.updater = updater || ReactNoopUpdateQueue;
+      }
+      __name(Component, "Component");
+      function ComponentDummy() {
+      }
+      __name(ComponentDummy, "ComponentDummy");
+      function PureComponent(props, context, updater) {
+        this.props = props;
+        this.context = context;
+        this.refs = emptyObject;
+        this.updater = updater || ReactNoopUpdateQueue;
+      }
+      __name(PureComponent, "PureComponent");
+      function noop3() {
+      }
+      __name(noop3, "noop");
+      function testStringCoercion(value) {
+        return "" + value;
+      }
+      __name(testStringCoercion, "testStringCoercion");
+      function checkKeyStringCoercion(value) {
+        try {
+          testStringCoercion(value);
+          var JSCompiler_inline_result = false;
+        } catch (e) {
+          JSCompiler_inline_result = true;
+        }
+        if (JSCompiler_inline_result) {
+          JSCompiler_inline_result = console;
+          var JSCompiler_temp_const = JSCompiler_inline_result.error;
+          var JSCompiler_inline_result$jscomp$0 = "function" === typeof Symbol && Symbol.toStringTag && value[Symbol.toStringTag] || value.constructor.name || "Object";
+          JSCompiler_temp_const.call(
+            JSCompiler_inline_result,
+            "The provided key is an unsupported type %s. This value must be coerced to a string before using it here.",
+            JSCompiler_inline_result$jscomp$0
+          );
+          return testStringCoercion(value);
+        }
+      }
+      __name(checkKeyStringCoercion, "checkKeyStringCoercion");
+      function getComponentNameFromType(type) {
+        if (null == type)
+          return null;
+        if ("function" === typeof type)
+          return type.$$typeof === REACT_CLIENT_REFERENCE ? null : type.displayName || type.name || null;
+        if ("string" === typeof type)
+          return type;
+        switch (type) {
+          case REACT_FRAGMENT_TYPE:
+            return "Fragment";
+          case REACT_PROFILER_TYPE:
+            return "Profiler";
+          case REACT_STRICT_MODE_TYPE:
+            return "StrictMode";
+          case REACT_SUSPENSE_TYPE:
+            return "Suspense";
+          case REACT_SUSPENSE_LIST_TYPE:
+            return "SuspenseList";
+          case REACT_ACTIVITY_TYPE:
+            return "Activity";
+        }
+        if ("object" === typeof type)
+          switch ("number" === typeof type.tag && console.error(
+            "Received an unexpected object in getComponentNameFromType(). This is likely a bug in React. Please file an issue."
+          ), type.$$typeof) {
+            case REACT_PORTAL_TYPE:
+              return "Portal";
+            case REACT_CONTEXT_TYPE:
+              return type.displayName || "Context";
+            case REACT_CONSUMER_TYPE:
+              return (type._context.displayName || "Context") + ".Consumer";
+            case REACT_FORWARD_REF_TYPE:
+              var innerType = type.render;
+              type = type.displayName;
+              type || (type = innerType.displayName || innerType.name || "", type = "" !== type ? "ForwardRef(" + type + ")" : "ForwardRef");
+              return type;
+            case REACT_MEMO_TYPE:
+              return innerType = type.displayName || null, null !== innerType ? innerType : getComponentNameFromType(type.type) || "Memo";
+            case REACT_LAZY_TYPE:
+              innerType = type._payload;
+              type = type._init;
+              try {
+                return getComponentNameFromType(type(innerType));
+              } catch (x) {
+              }
+          }
+        return null;
+      }
+      __name(getComponentNameFromType, "getComponentNameFromType");
+      function getTaskName(type) {
+        if (type === REACT_FRAGMENT_TYPE)
+          return "<>";
+        if ("object" === typeof type && null !== type && type.$$typeof === REACT_LAZY_TYPE)
+          return "<...>";
+        try {
+          var name = getComponentNameFromType(type);
+          return name ? "<" + name + ">" : "<...>";
+        } catch (x) {
+          return "<...>";
+        }
+      }
+      __name(getTaskName, "getTaskName");
+      function getOwner() {
+        var dispatcher = ReactSharedInternals.A;
+        return null === dispatcher ? null : dispatcher.getOwner();
+      }
+      __name(getOwner, "getOwner");
+      function UnknownOwner() {
+        return Error("react-stack-top-frame");
+      }
+      __name(UnknownOwner, "UnknownOwner");
+      function hasValidKey(config) {
+        if (hasOwnProperty.call(config, "key")) {
+          var getter = Object.getOwnPropertyDescriptor(config, "key").get;
+          if (getter && getter.isReactWarning)
+            return false;
+        }
+        return void 0 !== config.key;
+      }
+      __name(hasValidKey, "hasValidKey");
+      function defineKeyPropWarningGetter(props, displayName) {
+        function warnAboutAccessingKey() {
+          specialPropKeyWarningShown || (specialPropKeyWarningShown = true, console.error(
+            "%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://react.dev/link/special-props)",
+            displayName
+          ));
+        }
+        __name(warnAboutAccessingKey, "warnAboutAccessingKey");
+        warnAboutAccessingKey.isReactWarning = true;
+        Object.defineProperty(props, "key", {
+          get: warnAboutAccessingKey,
+          configurable: true
+        });
+      }
+      __name(defineKeyPropWarningGetter, "defineKeyPropWarningGetter");
+      function elementRefGetterWithDeprecationWarning() {
+        var componentName = getComponentNameFromType(this.type);
+        didWarnAboutElementRef[componentName] || (didWarnAboutElementRef[componentName] = true, console.error(
+          "Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release."
+        ));
+        componentName = this.props.ref;
+        return void 0 !== componentName ? componentName : null;
+      }
+      __name(elementRefGetterWithDeprecationWarning, "elementRefGetterWithDeprecationWarning");
+      function ReactElement(type, key, props, owner, debugStack, debugTask) {
+        var refProp = props.ref;
+        type = {
+          $$typeof: REACT_ELEMENT_TYPE,
+          type,
+          key,
+          props,
+          _owner: owner
+        };
+        null !== (void 0 !== refProp ? refProp : null) ? Object.defineProperty(type, "ref", {
+          enumerable: false,
+          get: elementRefGetterWithDeprecationWarning
+        }) : Object.defineProperty(type, "ref", { enumerable: false, value: null });
+        type._store = {};
+        Object.defineProperty(type._store, "validated", {
+          configurable: false,
+          enumerable: false,
+          writable: true,
+          value: 0
+        });
+        Object.defineProperty(type, "_debugInfo", {
+          configurable: false,
+          enumerable: false,
+          writable: true,
+          value: null
+        });
+        Object.defineProperty(type, "_debugStack", {
+          configurable: false,
+          enumerable: false,
+          writable: true,
+          value: debugStack
+        });
+        Object.defineProperty(type, "_debugTask", {
+          configurable: false,
+          enumerable: false,
+          writable: true,
+          value: debugTask
+        });
+        Object.freeze && (Object.freeze(type.props), Object.freeze(type));
+        return type;
+      }
+      __name(ReactElement, "ReactElement");
+      function cloneAndReplaceKey(oldElement, newKey) {
+        newKey = ReactElement(
+          oldElement.type,
+          newKey,
+          oldElement.props,
+          oldElement._owner,
+          oldElement._debugStack,
+          oldElement._debugTask
+        );
+        oldElement._store && (newKey._store.validated = oldElement._store.validated);
+        return newKey;
+      }
+      __name(cloneAndReplaceKey, "cloneAndReplaceKey");
+      function validateChildKeys(node) {
+        isValidElement(node) ? node._store && (node._store.validated = 1) : "object" === typeof node && null !== node && node.$$typeof === REACT_LAZY_TYPE && ("fulfilled" === node._payload.status ? isValidElement(node._payload.value) && node._payload.value._store && (node._payload.value._store.validated = 1) : node._store && (node._store.validated = 1));
+      }
+      __name(validateChildKeys, "validateChildKeys");
+      function isValidElement(object) {
+        return "object" === typeof object && null !== object && object.$$typeof === REACT_ELEMENT_TYPE;
+      }
+      __name(isValidElement, "isValidElement");
+      function escape(key) {
+        var escaperLookup = { "=": "=0", ":": "=2" };
+        return "$" + key.replace(/[=:]/g, function(match2) {
+          return escaperLookup[match2];
+        });
+      }
+      __name(escape, "escape");
+      function getElementKey(element, index) {
+        return "object" === typeof element && null !== element && null != element.key ? (checkKeyStringCoercion(element.key), escape("" + element.key)) : index.toString(36);
+      }
+      __name(getElementKey, "getElementKey");
+      function resolveThenable(thenable) {
+        switch (thenable.status) {
+          case "fulfilled":
+            return thenable.value;
+          case "rejected":
+            throw thenable.reason;
+          default:
+            switch ("string" === typeof thenable.status ? thenable.then(noop3, noop3) : (thenable.status = "pending", thenable.then(
+              function(fulfilledValue) {
+                "pending" === thenable.status && (thenable.status = "fulfilled", thenable.value = fulfilledValue);
+              },
+              function(error) {
+                "pending" === thenable.status && (thenable.status = "rejected", thenable.reason = error);
+              }
+            )), thenable.status) {
+              case "fulfilled":
+                return thenable.value;
+              case "rejected":
+                throw thenable.reason;
+            }
+        }
+        throw thenable;
+      }
+      __name(resolveThenable, "resolveThenable");
+      function mapIntoArray(children, array, escapedPrefix, nameSoFar, callback) {
+        var type = typeof children;
+        if ("undefined" === type || "boolean" === type)
+          children = null;
+        var invokeCallback = false;
+        if (null === children)
+          invokeCallback = true;
+        else
+          switch (type) {
+            case "bigint":
+            case "string":
+            case "number":
+              invokeCallback = true;
+              break;
+            case "object":
+              switch (children.$$typeof) {
+                case REACT_ELEMENT_TYPE:
+                case REACT_PORTAL_TYPE:
+                  invokeCallback = true;
+                  break;
+                case REACT_LAZY_TYPE:
+                  return invokeCallback = children._init, mapIntoArray(
+                    invokeCallback(children._payload),
+                    array,
+                    escapedPrefix,
+                    nameSoFar,
+                    callback
+                  );
+              }
+          }
+        if (invokeCallback) {
+          invokeCallback = children;
+          callback = callback(invokeCallback);
+          var childKey = "" === nameSoFar ? "." + getElementKey(invokeCallback, 0) : nameSoFar;
+          isArrayImpl(callback) ? (escapedPrefix = "", null != childKey && (escapedPrefix = childKey.replace(userProvidedKeyEscapeRegex, "$&/") + "/"), mapIntoArray(callback, array, escapedPrefix, "", function(c) {
+            return c;
+          })) : null != callback && (isValidElement(callback) && (null != callback.key && (invokeCallback && invokeCallback.key === callback.key || checkKeyStringCoercion(callback.key)), escapedPrefix = cloneAndReplaceKey(
+            callback,
+            escapedPrefix + (null == callback.key || invokeCallback && invokeCallback.key === callback.key ? "" : ("" + callback.key).replace(
+              userProvidedKeyEscapeRegex,
+              "$&/"
+            ) + "/") + childKey
+          ), "" !== nameSoFar && null != invokeCallback && isValidElement(invokeCallback) && null == invokeCallback.key && invokeCallback._store && !invokeCallback._store.validated && (escapedPrefix._store.validated = 2), callback = escapedPrefix), array.push(callback));
+          return 1;
+        }
+        invokeCallback = 0;
+        childKey = "" === nameSoFar ? "." : nameSoFar + ":";
+        if (isArrayImpl(children))
+          for (var i = 0; i < children.length; i++)
+            nameSoFar = children[i], type = childKey + getElementKey(nameSoFar, i), invokeCallback += mapIntoArray(
+              nameSoFar,
+              array,
+              escapedPrefix,
+              type,
+              callback
+            );
+        else if (i = getIteratorFn(children), "function" === typeof i)
+          for (i === children.entries && (didWarnAboutMaps || console.warn(
+            "Using Maps as children is not supported. Use an array of keyed ReactElements instead."
+          ), didWarnAboutMaps = true), children = i.call(children), i = 0; !(nameSoFar = children.next()).done; )
+            nameSoFar = nameSoFar.value, type = childKey + getElementKey(nameSoFar, i++), invokeCallback += mapIntoArray(
+              nameSoFar,
+              array,
+              escapedPrefix,
+              type,
+              callback
+            );
+        else if ("object" === type) {
+          if ("function" === typeof children.then)
+            return mapIntoArray(
+              resolveThenable(children),
+              array,
+              escapedPrefix,
+              nameSoFar,
+              callback
+            );
+          array = String(children);
+          throw Error(
+            "Objects are not valid as a React child (found: " + ("[object Object]" === array ? "object with keys {" + Object.keys(children).join(", ") + "}" : array) + "). If you meant to render a collection of children, use an array instead."
+          );
+        }
+        return invokeCallback;
+      }
+      __name(mapIntoArray, "mapIntoArray");
+      function mapChildren(children, func, context) {
+        if (null == children)
+          return children;
+        var result = [], count = 0;
+        mapIntoArray(children, result, "", "", function(child) {
+          return func.call(context, child, count++);
+        });
+        return result;
+      }
+      __name(mapChildren, "mapChildren");
+      function lazyInitializer(payload) {
+        if (-1 === payload._status) {
+          var ioInfo = payload._ioInfo;
+          null != ioInfo && (ioInfo.start = ioInfo.end = performance.now());
+          ioInfo = payload._result;
+          var thenable = ioInfo();
+          thenable.then(
+            function(moduleObject) {
+              if (0 === payload._status || -1 === payload._status) {
+                payload._status = 1;
+                payload._result = moduleObject;
+                var _ioInfo = payload._ioInfo;
+                null != _ioInfo && (_ioInfo.end = performance.now());
+                void 0 === thenable.status && (thenable.status = "fulfilled", thenable.value = moduleObject);
+              }
+            },
+            function(error) {
+              if (0 === payload._status || -1 === payload._status) {
+                payload._status = 2;
+                payload._result = error;
+                var _ioInfo2 = payload._ioInfo;
+                null != _ioInfo2 && (_ioInfo2.end = performance.now());
+                void 0 === thenable.status && (thenable.status = "rejected", thenable.reason = error);
+              }
+            }
+          );
+          ioInfo = payload._ioInfo;
+          if (null != ioInfo) {
+            ioInfo.value = thenable;
+            var displayName = thenable.displayName;
+            "string" === typeof displayName && (ioInfo.name = displayName);
+          }
+          -1 === payload._status && (payload._status = 0, payload._result = thenable);
+        }
+        if (1 === payload._status)
+          return ioInfo = payload._result, void 0 === ioInfo && console.error(
+            "lazy: Expected the result of a dynamic import() call. Instead received: %s\n\nYour code should look like: \n  const MyComponent = lazy(() => import('./MyComponent'))\n\nDid you accidentally put curly braces around the import?",
+            ioInfo
+          ), "default" in ioInfo || console.error(
+            "lazy: Expected the result of a dynamic import() call. Instead received: %s\n\nYour code should look like: \n  const MyComponent = lazy(() => import('./MyComponent'))",
+            ioInfo
+          ), ioInfo.default;
+        throw payload._result;
+      }
+      __name(lazyInitializer, "lazyInitializer");
+      function resolveDispatcher() {
+        var dispatcher = ReactSharedInternals.H;
+        null === dispatcher && console.error(
+          "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem."
+        );
+        return dispatcher;
+      }
+      __name(resolveDispatcher, "resolveDispatcher");
+      function releaseAsyncTransition() {
+        ReactSharedInternals.asyncTransitions--;
+      }
+      __name(releaseAsyncTransition, "releaseAsyncTransition");
+      function enqueueTask(task) {
+        if (null === enqueueTaskImpl)
+          try {
+            var requireString = ("require" + Math.random()).slice(0, 7);
+            enqueueTaskImpl = (module && module[requireString]).call(
+              module,
+              "timers"
+            ).setImmediate;
+          } catch (_err) {
+            enqueueTaskImpl = /* @__PURE__ */ __name(function(callback) {
+              false === didWarnAboutMessageChannel && (didWarnAboutMessageChannel = true, "undefined" === typeof MessageChannel && console.error(
+                "This browser does not have a MessageChannel implementation, so enqueuing tasks via await act(async () => ...) will fail. Please file an issue at https://github.com/facebook/react/issues if you encounter this warning."
+              ));
+              var channel = new MessageChannel();
+              channel.port1.onmessage = callback;
+              channel.port2.postMessage(void 0);
+            }, "enqueueTaskImpl");
+          }
+        return enqueueTaskImpl(task);
+      }
+      __name(enqueueTask, "enqueueTask");
+      function aggregateErrors(errors) {
+        return 1 < errors.length && "function" === typeof AggregateError ? new AggregateError(errors) : errors[0];
+      }
+      __name(aggregateErrors, "aggregateErrors");
+      function popActScope(prevActQueue, prevActScopeDepth) {
+        prevActScopeDepth !== actScopeDepth - 1 && console.error(
+          "You seem to have overlapping act() calls, this is not supported. Be sure to await previous act() calls before making a new one. "
+        );
+        actScopeDepth = prevActScopeDepth;
+      }
+      __name(popActScope, "popActScope");
+      function recursivelyFlushAsyncActWork(returnValue, resolve, reject) {
+        var queue = ReactSharedInternals.actQueue;
+        if (null !== queue)
+          if (0 !== queue.length)
+            try {
+              flushActQueue(queue);
+              enqueueTask(function() {
+                return recursivelyFlushAsyncActWork(returnValue, resolve, reject);
+              });
+              return;
+            } catch (error) {
+              ReactSharedInternals.thrownErrors.push(error);
+            }
+          else
+            ReactSharedInternals.actQueue = null;
+        0 < ReactSharedInternals.thrownErrors.length ? (queue = aggregateErrors(ReactSharedInternals.thrownErrors), ReactSharedInternals.thrownErrors.length = 0, reject(queue)) : resolve(returnValue);
+      }
+      __name(recursivelyFlushAsyncActWork, "recursivelyFlushAsyncActWork");
+      function flushActQueue(queue) {
+        if (!isFlushing) {
+          isFlushing = true;
+          var i = 0;
+          try {
+            for (; i < queue.length; i++) {
+              var callback = queue[i];
+              do {
+                ReactSharedInternals.didUsePromise = false;
+                var continuation = callback(false);
+                if (null !== continuation) {
+                  if (ReactSharedInternals.didUsePromise) {
+                    queue[i] = callback;
+                    queue.splice(0, i);
+                    return;
+                  }
+                  callback = continuation;
+                } else
+                  break;
+              } while (1);
+            }
+            queue.length = 0;
+          } catch (error) {
+            queue.splice(0, i + 1), ReactSharedInternals.thrownErrors.push(error);
+          } finally {
+            isFlushing = false;
+          }
+        }
+      }
+      __name(flushActQueue, "flushActQueue");
+      "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
+      var REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = Symbol.for("react.activity"), MAYBE_ITERATOR_SYMBOL = Symbol.iterator, didWarnStateUpdateForUnmountedComponent = {}, ReactNoopUpdateQueue = {
+        isMounted: function() {
+          return false;
+        },
+        enqueueForceUpdate: function(publicInstance) {
+          warnNoop(publicInstance, "forceUpdate");
+        },
+        enqueueReplaceState: function(publicInstance) {
+          warnNoop(publicInstance, "replaceState");
+        },
+        enqueueSetState: function(publicInstance) {
+          warnNoop(publicInstance, "setState");
+        }
+      }, assign = Object.assign, emptyObject = {};
+      Object.freeze(emptyObject);
+      Component.prototype.isReactComponent = {};
+      Component.prototype.setState = function(partialState, callback) {
+        if ("object" !== typeof partialState && "function" !== typeof partialState && null != partialState)
+          throw Error(
+            "takes an object of state variables to update or a function which returns an object of state variables."
+          );
+        this.updater.enqueueSetState(this, partialState, callback, "setState");
+      };
+      Component.prototype.forceUpdate = function(callback) {
+        this.updater.enqueueForceUpdate(this, callback, "forceUpdate");
+      };
+      var deprecatedAPIs = {
+        isMounted: [
+          "isMounted",
+          "Instead, make sure to clean up subscriptions and pending requests in componentWillUnmount to prevent memory leaks."
+        ],
+        replaceState: [
+          "replaceState",
+          "Refactor your code to use setState instead (see https://github.com/facebook/react/issues/3236)."
+        ]
+      };
+      for (fnName in deprecatedAPIs)
+        deprecatedAPIs.hasOwnProperty(fnName) && defineDeprecationWarning(fnName, deprecatedAPIs[fnName]);
+      ComponentDummy.prototype = Component.prototype;
+      deprecatedAPIs = PureComponent.prototype = new ComponentDummy();
+      deprecatedAPIs.constructor = PureComponent;
+      assign(deprecatedAPIs, Component.prototype);
+      deprecatedAPIs.isPureReactComponent = true;
+      var isArrayImpl = Array.isArray, REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference"), ReactSharedInternals = {
+        H: null,
+        A: null,
+        T: null,
+        S: null,
+        actQueue: null,
+        asyncTransitions: 0,
+        isBatchingLegacy: false,
+        didScheduleLegacyUpdate: false,
+        didUsePromise: false,
+        thrownErrors: [],
+        getCurrentStack: null,
+        recentlyCreatedOwnerStacks: 0
+      }, hasOwnProperty = Object.prototype.hasOwnProperty, createTask = console.createTask ? console.createTask : function() {
+        return null;
+      };
+      deprecatedAPIs = {
+        react_stack_bottom_frame: function(callStackForError) {
+          return callStackForError();
+        }
+      };
+      var specialPropKeyWarningShown, didWarnAboutOldJSXRuntime;
+      var didWarnAboutElementRef = {};
+      var unknownOwnerDebugStack = deprecatedAPIs.react_stack_bottom_frame.bind(
+        deprecatedAPIs,
+        UnknownOwner
+      )();
+      var unknownOwnerDebugTask = createTask(getTaskName(UnknownOwner));
+      var didWarnAboutMaps = false, userProvidedKeyEscapeRegex = /\/+/g, reportGlobalError = "function" === typeof reportError ? reportError : function(error) {
+        if ("object" === typeof window && "function" === typeof window.ErrorEvent) {
+          var event = new window.ErrorEvent("error", {
+            bubbles: true,
+            cancelable: true,
+            message: "object" === typeof error && null !== error && "string" === typeof error.message ? String(error.message) : String(error),
+            error
+          });
+          if (!window.dispatchEvent(event))
+            return;
+        } else if ("object" === typeof process && "function" === typeof process.emit) {
+          process.emit("uncaughtException", error);
+          return;
+        }
+        console.error(error);
+      }, didWarnAboutMessageChannel = false, enqueueTaskImpl = null, actScopeDepth = 0, didWarnNoAwaitAct = false, isFlushing = false, queueSeveralMicrotasks = "function" === typeof queueMicrotask ? function(callback) {
+        queueMicrotask(function() {
+          return queueMicrotask(callback);
+        });
+      } : enqueueTask;
+      deprecatedAPIs = Object.freeze({
+        __proto__: null,
+        c: function(size) {
+          return resolveDispatcher().useMemoCache(size);
+        }
+      });
+      var fnName = {
+        map: mapChildren,
+        forEach: function(children, forEachFunc, forEachContext) {
+          mapChildren(
+            children,
+            function() {
+              forEachFunc.apply(this, arguments);
+            },
+            forEachContext
+          );
+        },
+        count: function(children) {
+          var n = 0;
+          mapChildren(children, function() {
+            n++;
+          });
+          return n;
+        },
+        toArray: function(children) {
+          return mapChildren(children, function(child) {
+            return child;
+          }) || [];
+        },
+        only: function(children) {
+          if (!isValidElement(children))
+            throw Error(
+              "React.Children.only expected to receive a single React element child."
+            );
+          return children;
+        }
+      };
+      exports.Activity = REACT_ACTIVITY_TYPE;
+      exports.Children = fnName;
+      exports.Component = Component;
+      exports.Fragment = REACT_FRAGMENT_TYPE;
+      exports.Profiler = REACT_PROFILER_TYPE;
+      exports.PureComponent = PureComponent;
+      exports.StrictMode = REACT_STRICT_MODE_TYPE;
+      exports.Suspense = REACT_SUSPENSE_TYPE;
+      exports.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE = ReactSharedInternals;
+      exports.__COMPILER_RUNTIME = deprecatedAPIs;
+      exports.act = function(callback) {
+        var prevActQueue = ReactSharedInternals.actQueue, prevActScopeDepth = actScopeDepth;
+        actScopeDepth++;
+        var queue = ReactSharedInternals.actQueue = null !== prevActQueue ? prevActQueue : [], didAwaitActCall = false;
+        try {
+          var result = callback();
+        } catch (error) {
+          ReactSharedInternals.thrownErrors.push(error);
+        }
+        if (0 < ReactSharedInternals.thrownErrors.length)
+          throw popActScope(prevActQueue, prevActScopeDepth), callback = aggregateErrors(ReactSharedInternals.thrownErrors), ReactSharedInternals.thrownErrors.length = 0, callback;
+        if (null !== result && "object" === typeof result && "function" === typeof result.then) {
+          var thenable = result;
+          queueSeveralMicrotasks(function() {
+            didAwaitActCall || didWarnNoAwaitAct || (didWarnNoAwaitAct = true, console.error(
+              "You called act(async () => ...) without await. This could lead to unexpected testing behaviour, interleaving multiple act calls and mixing their scopes. You should - await act(async () => ...);"
+            ));
+          });
+          return {
+            then: function(resolve, reject) {
+              didAwaitActCall = true;
+              thenable.then(
+                function(returnValue) {
+                  popActScope(prevActQueue, prevActScopeDepth);
+                  if (0 === prevActScopeDepth) {
+                    try {
+                      flushActQueue(queue), enqueueTask(function() {
+                        return recursivelyFlushAsyncActWork(
+                          returnValue,
+                          resolve,
+                          reject
+                        );
+                      });
+                    } catch (error$0) {
+                      ReactSharedInternals.thrownErrors.push(error$0);
+                    }
+                    if (0 < ReactSharedInternals.thrownErrors.length) {
+                      var _thrownError = aggregateErrors(
+                        ReactSharedInternals.thrownErrors
+                      );
+                      ReactSharedInternals.thrownErrors.length = 0;
+                      reject(_thrownError);
+                    }
+                  } else
+                    resolve(returnValue);
+                },
+                function(error) {
+                  popActScope(prevActQueue, prevActScopeDepth);
+                  0 < ReactSharedInternals.thrownErrors.length ? (error = aggregateErrors(
+                    ReactSharedInternals.thrownErrors
+                  ), ReactSharedInternals.thrownErrors.length = 0, reject(error)) : reject(error);
+                }
+              );
+            }
+          };
+        }
+        var returnValue$jscomp$0 = result;
+        popActScope(prevActQueue, prevActScopeDepth);
+        0 === prevActScopeDepth && (flushActQueue(queue), 0 !== queue.length && queueSeveralMicrotasks(function() {
+          didAwaitActCall || didWarnNoAwaitAct || (didWarnNoAwaitAct = true, console.error(
+            "A component suspended inside an `act` scope, but the `act` call was not awaited. When testing React components that depend on asynchronous data, you must await the result:\n\nawait act(() => ...)"
+          ));
+        }), ReactSharedInternals.actQueue = null);
+        if (0 < ReactSharedInternals.thrownErrors.length)
+          throw callback = aggregateErrors(ReactSharedInternals.thrownErrors), ReactSharedInternals.thrownErrors.length = 0, callback;
+        return {
+          then: function(resolve, reject) {
+            didAwaitActCall = true;
+            0 === prevActScopeDepth ? (ReactSharedInternals.actQueue = queue, enqueueTask(function() {
+              return recursivelyFlushAsyncActWork(
+                returnValue$jscomp$0,
+                resolve,
+                reject
+              );
+            })) : resolve(returnValue$jscomp$0);
+          }
+        };
+      };
+      exports.cache = function(fn) {
+        return function() {
+          return fn.apply(null, arguments);
+        };
+      };
+      exports.cacheSignal = function() {
+        return null;
+      };
+      exports.captureOwnerStack = function() {
+        var getCurrentStack = ReactSharedInternals.getCurrentStack;
+        return null === getCurrentStack ? null : getCurrentStack();
+      };
+      exports.cloneElement = function(element, config, children) {
+        if (null === element || void 0 === element)
+          throw Error(
+            "The argument must be a React element, but you passed " + element + "."
+          );
+        var props = assign({}, element.props), key = element.key, owner = element._owner;
+        if (null != config) {
+          var JSCompiler_inline_result;
+          a: {
+            if (hasOwnProperty.call(config, "ref") && (JSCompiler_inline_result = Object.getOwnPropertyDescriptor(
+              config,
+              "ref"
+            ).get) && JSCompiler_inline_result.isReactWarning) {
+              JSCompiler_inline_result = false;
+              break a;
+            }
+            JSCompiler_inline_result = void 0 !== config.ref;
+          }
+          JSCompiler_inline_result && (owner = getOwner());
+          hasValidKey(config) && (checkKeyStringCoercion(config.key), key = "" + config.key);
+          for (propName in config)
+            !hasOwnProperty.call(config, propName) || "key" === propName || "__self" === propName || "__source" === propName || "ref" === propName && void 0 === config.ref || (props[propName] = config[propName]);
+        }
+        var propName = arguments.length - 2;
+        if (1 === propName)
+          props.children = children;
+        else if (1 < propName) {
+          JSCompiler_inline_result = Array(propName);
+          for (var i = 0; i < propName; i++)
+            JSCompiler_inline_result[i] = arguments[i + 2];
+          props.children = JSCompiler_inline_result;
+        }
+        props = ReactElement(
+          element.type,
+          key,
+          props,
+          owner,
+          element._debugStack,
+          element._debugTask
+        );
+        for (key = 2; key < arguments.length; key++)
+          validateChildKeys(arguments[key]);
+        return props;
+      };
+      exports.createContext = function(defaultValue) {
+        defaultValue = {
+          $$typeof: REACT_CONTEXT_TYPE,
+          _currentValue: defaultValue,
+          _currentValue2: defaultValue,
+          _threadCount: 0,
+          Provider: null,
+          Consumer: null
+        };
+        defaultValue.Provider = defaultValue;
+        defaultValue.Consumer = {
+          $$typeof: REACT_CONSUMER_TYPE,
+          _context: defaultValue
+        };
+        defaultValue._currentRenderer = null;
+        defaultValue._currentRenderer2 = null;
+        return defaultValue;
+      };
+      exports.createElement = function(type, config, children) {
+        for (var i = 2; i < arguments.length; i++)
+          validateChildKeys(arguments[i]);
+        i = {};
+        var key = null;
+        if (null != config)
+          for (propName in didWarnAboutOldJSXRuntime || !("__self" in config) || "key" in config || (didWarnAboutOldJSXRuntime = true, console.warn(
+            "Your app (or one of its dependencies) is using an outdated JSX transform. Update to the modern JSX transform for faster performance: https://react.dev/link/new-jsx-transform"
+          )), hasValidKey(config) && (checkKeyStringCoercion(config.key), key = "" + config.key), config)
+            hasOwnProperty.call(config, propName) && "key" !== propName && "__self" !== propName && "__source" !== propName && (i[propName] = config[propName]);
+        var childrenLength = arguments.length - 2;
+        if (1 === childrenLength)
+          i.children = children;
+        else if (1 < childrenLength) {
+          for (var childArray = Array(childrenLength), _i = 0; _i < childrenLength; _i++)
+            childArray[_i] = arguments[_i + 2];
+          Object.freeze && Object.freeze(childArray);
+          i.children = childArray;
+        }
+        if (type && type.defaultProps)
+          for (propName in childrenLength = type.defaultProps, childrenLength)
+            void 0 === i[propName] && (i[propName] = childrenLength[propName]);
+        key && defineKeyPropWarningGetter(
+          i,
+          "function" === typeof type ? type.displayName || type.name || "Unknown" : type
+        );
+        var propName = 1e4 > ReactSharedInternals.recentlyCreatedOwnerStacks++;
+        return ReactElement(
+          type,
+          key,
+          i,
+          getOwner(),
+          propName ? Error("react-stack-top-frame") : unknownOwnerDebugStack,
+          propName ? createTask(getTaskName(type)) : unknownOwnerDebugTask
+        );
+      };
+      exports.createRef = function() {
+        var refObject = { current: null };
+        Object.seal(refObject);
+        return refObject;
+      };
+      exports.forwardRef = function(render) {
+        null != render && render.$$typeof === REACT_MEMO_TYPE ? console.error(
+          "forwardRef requires a render function but received a `memo` component. Instead of forwardRef(memo(...)), use memo(forwardRef(...))."
+        ) : "function" !== typeof render ? console.error(
+          "forwardRef requires a render function but was given %s.",
+          null === render ? "null" : typeof render
+        ) : 0 !== render.length && 2 !== render.length && console.error(
+          "forwardRef render functions accept exactly two parameters: props and ref. %s",
+          1 === render.length ? "Did you forget to use the ref parameter?" : "Any additional parameter will be undefined."
+        );
+        null != render && null != render.defaultProps && console.error(
+          "forwardRef render functions do not support defaultProps. Did you accidentally pass a React component?"
+        );
+        var elementType = { $$typeof: REACT_FORWARD_REF_TYPE, render }, ownName;
+        Object.defineProperty(elementType, "displayName", {
+          enumerable: false,
+          configurable: true,
+          get: function() {
+            return ownName;
+          },
+          set: function(name) {
+            ownName = name;
+            render.name || render.displayName || (Object.defineProperty(render, "name", { value: name }), render.displayName = name);
+          }
+        });
+        return elementType;
+      };
+      exports.isValidElement = isValidElement;
+      exports.lazy = function(ctor) {
+        ctor = { _status: -1, _result: ctor };
+        var lazyType = {
+          $$typeof: REACT_LAZY_TYPE,
+          _payload: ctor,
+          _init: lazyInitializer
+        }, ioInfo = {
+          name: "lazy",
+          start: -1,
+          end: -1,
+          value: null,
+          owner: null,
+          debugStack: Error("react-stack-top-frame"),
+          debugTask: console.createTask ? console.createTask("lazy()") : null
+        };
+        ctor._ioInfo = ioInfo;
+        lazyType._debugInfo = [{ awaited: ioInfo }];
+        return lazyType;
+      };
+      exports.memo = function(type, compare) {
+        null == type && console.error(
+          "memo: The first argument must be a component. Instead received: %s",
+          null === type ? "null" : typeof type
+        );
+        compare = {
+          $$typeof: REACT_MEMO_TYPE,
+          type,
+          compare: void 0 === compare ? null : compare
+        };
+        var ownName;
+        Object.defineProperty(compare, "displayName", {
+          enumerable: false,
+          configurable: true,
+          get: function() {
+            return ownName;
+          },
+          set: function(name) {
+            ownName = name;
+            type.name || type.displayName || (Object.defineProperty(type, "name", { value: name }), type.displayName = name);
+          }
+        });
+        return compare;
+      };
+      exports.startTransition = function(scope) {
+        var prevTransition = ReactSharedInternals.T, currentTransition = {};
+        currentTransition._updatedFibers = /* @__PURE__ */ new Set();
+        ReactSharedInternals.T = currentTransition;
+        try {
+          var returnValue = scope(), onStartTransitionFinish = ReactSharedInternals.S;
+          null !== onStartTransitionFinish && onStartTransitionFinish(currentTransition, returnValue);
+          "object" === typeof returnValue && null !== returnValue && "function" === typeof returnValue.then && (ReactSharedInternals.asyncTransitions++, returnValue.then(releaseAsyncTransition, releaseAsyncTransition), returnValue.then(noop3, reportGlobalError));
+        } catch (error) {
+          reportGlobalError(error);
+        } finally {
+          null === prevTransition && currentTransition._updatedFibers && (scope = currentTransition._updatedFibers.size, currentTransition._updatedFibers.clear(), 10 < scope && console.warn(
+            "Detected a large number of updates inside startTransition. If this is due to a subscription please re-write it to use React provided hooks. Otherwise concurrent mode guarantees are off the table."
+          )), null !== prevTransition && null !== currentTransition.types && (null !== prevTransition.types && prevTransition.types !== currentTransition.types && console.error(
+            "We expected inner Transitions to have transferred the outer types set and that you cannot add to the outer Transition while inside the inner.This is a bug in React."
+          ), prevTransition.types = currentTransition.types), ReactSharedInternals.T = prevTransition;
+        }
+      };
+      exports.unstable_useCacheRefresh = function() {
+        return resolveDispatcher().useCacheRefresh();
+      };
+      exports.use = function(usable) {
+        return resolveDispatcher().use(usable);
+      };
+      exports.useActionState = function(action, initialState, permalink) {
+        return resolveDispatcher().useActionState(
+          action,
+          initialState,
+          permalink
+        );
+      };
+      exports.useCallback = function(callback, deps) {
+        return resolveDispatcher().useCallback(callback, deps);
+      };
+      exports.useContext = function(Context2) {
+        var dispatcher = resolveDispatcher();
+        Context2.$$typeof === REACT_CONSUMER_TYPE && console.error(
+          "Calling useContext(Context.Consumer) is not supported and will cause bugs. Did you mean to call useContext(Context) instead?"
+        );
+        return dispatcher.useContext(Context2);
+      };
+      exports.useDebugValue = function(value, formatterFn) {
+        return resolveDispatcher().useDebugValue(value, formatterFn);
+      };
+      exports.useDeferredValue = function(value, initialValue) {
+        return resolveDispatcher().useDeferredValue(value, initialValue);
+      };
+      exports.useEffect = function(create, deps) {
+        null == create && console.warn(
+          "React Hook useEffect requires an effect callback. Did you forget to pass a callback to the hook?"
+        );
+        return resolveDispatcher().useEffect(create, deps);
+      };
+      exports.useEffectEvent = function(callback) {
+        return resolveDispatcher().useEffectEvent(callback);
+      };
+      exports.useId = function() {
+        return resolveDispatcher().useId();
+      };
+      exports.useImperativeHandle = function(ref, create, deps) {
+        return resolveDispatcher().useImperativeHandle(ref, create, deps);
+      };
+      exports.useInsertionEffect = function(create, deps) {
+        null == create && console.warn(
+          "React Hook useInsertionEffect requires an effect callback. Did you forget to pass a callback to the hook?"
+        );
+        return resolveDispatcher().useInsertionEffect(create, deps);
+      };
+      exports.useLayoutEffect = function(create, deps) {
+        null == create && console.warn(
+          "React Hook useLayoutEffect requires an effect callback. Did you forget to pass a callback to the hook?"
+        );
+        return resolveDispatcher().useLayoutEffect(create, deps);
+      };
+      exports.useMemo = function(create, deps) {
+        return resolveDispatcher().useMemo(create, deps);
+      };
+      exports.useOptimistic = function(passthrough, reducer) {
+        return resolveDispatcher().useOptimistic(passthrough, reducer);
+      };
+      exports.useReducer = function(reducer, initialArg, init) {
+        return resolveDispatcher().useReducer(reducer, initialArg, init);
+      };
+      exports.useRef = function(initialValue) {
+        return resolveDispatcher().useRef(initialValue);
+      };
+      exports.useState = function(initialState) {
+        return resolveDispatcher().useState(initialState);
+      };
+      exports.useSyncExternalStore = function(subscribe, getSnapshot, getServerSnapshot) {
+        return resolveDispatcher().useSyncExternalStore(
+          subscribe,
+          getSnapshot,
+          getServerSnapshot
+        );
+      };
+      exports.useTransition = function() {
+        return resolveDispatcher().useTransition();
+      };
+      exports.version = "19.2.3";
+      "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error());
+    })();
+  }
+});
+
+// ../node_modules/react/index.js
+var require_react = __commonJS({
+  "../node_modules/react/index.js"(exports, module) {
+    "use strict";
+    var import_checked_fetch95 = __toESM(require_checked_fetch());
+    var import_strip_cf_connecting_ip_header95 = __toESM(require_strip_cf_connecting_ip_header());
+    init_modules_watch_stub();
+    if (false) {
+      module.exports = null;
+    } else {
+      module.exports = require_react_development();
+    }
+  }
+});
+
+// .wrangler/tmp/bundle-O1axK6/middleware-loader.entry.ts
+var import_checked_fetch94 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header94 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
+
+// .wrangler/tmp/bundle-O1axK6/middleware-insertion-facade.js
+var import_checked_fetch92 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header92 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 
 // src/index.ts
-var import_checked_fetch67 = __toESM(require_checked_fetch());
-var import_strip_cf_connecting_ip_header67 = __toESM(require_strip_cf_connecting_ip_header());
+var import_checked_fetch89 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header89 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 
 // ../node_modules/hono/dist/index.js
 var import_checked_fetch25 = __toESM(require_checked_fetch(), 1);
 var import_strip_cf_connecting_ip_header25 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+init_modules_watch_stub();
 
 // ../node_modules/hono/dist/hono.js
 var import_checked_fetch24 = __toESM(require_checked_fetch(), 1);
 var import_strip_cf_connecting_ip_header24 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+init_modules_watch_stub();
 
 // ../node_modules/hono/dist/hono-base.js
 var import_checked_fetch12 = __toESM(require_checked_fetch(), 1);
 var import_strip_cf_connecting_ip_header12 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+init_modules_watch_stub();
 
 // ../node_modules/hono/dist/compose.js
 var import_checked_fetch2 = __toESM(require_checked_fetch(), 1);
 var import_strip_cf_connecting_ip_header2 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+init_modules_watch_stub();
 var compose = /* @__PURE__ */ __name((middleware, onError, onNotFound) => {
   return (context, next) => {
     let index = -1;
@@ -154,23 +1214,28 @@ var compose = /* @__PURE__ */ __name((middleware, onError, onNotFound) => {
 // ../node_modules/hono/dist/context.js
 var import_checked_fetch9 = __toESM(require_checked_fetch(), 1);
 var import_strip_cf_connecting_ip_header9 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+init_modules_watch_stub();
 
 // ../node_modules/hono/dist/request.js
 var import_checked_fetch7 = __toESM(require_checked_fetch(), 1);
 var import_strip_cf_connecting_ip_header7 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+init_modules_watch_stub();
 
 // ../node_modules/hono/dist/http-exception.js
 var import_checked_fetch3 = __toESM(require_checked_fetch(), 1);
 var import_strip_cf_connecting_ip_header3 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+init_modules_watch_stub();
 
 // ../node_modules/hono/dist/request/constants.js
 var import_checked_fetch4 = __toESM(require_checked_fetch(), 1);
 var import_strip_cf_connecting_ip_header4 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+init_modules_watch_stub();
 var GET_MATCH_RESULT = /* @__PURE__ */ Symbol();
 
 // ../node_modules/hono/dist/utils/body.js
 var import_checked_fetch5 = __toESM(require_checked_fetch(), 1);
 var import_strip_cf_connecting_ip_header5 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+init_modules_watch_stub();
 var parseBody = /* @__PURE__ */ __name(async (request, options = /* @__PURE__ */ Object.create(null)) => {
   const { all = false, dot = false } = options;
   const headers = request instanceof HonoRequest ? request.raw.headers : request.headers;
@@ -244,6 +1309,7 @@ var handleParsingNestedValues = /* @__PURE__ */ __name((form, key, value) => {
 // ../node_modules/hono/dist/utils/url.js
 var import_checked_fetch6 = __toESM(require_checked_fetch(), 1);
 var import_strip_cf_connecting_ip_header6 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+init_modules_watch_stub();
 var splitPath = /* @__PURE__ */ __name((path) => {
   const paths = path.split("/");
   if (paths[0] === "") {
@@ -716,6 +1782,7 @@ var HonoRequest = /* @__PURE__ */ __name(class {
 // ../node_modules/hono/dist/utils/html.js
 var import_checked_fetch8 = __toESM(require_checked_fetch(), 1);
 var import_strip_cf_connecting_ip_header8 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+init_modules_watch_stub();
 var HtmlEscapedCallbackPhase = {
   Stringify: 1,
   BeforeStream: 2,
@@ -1166,6 +2233,7 @@ var Context = /* @__PURE__ */ __name(class {
 // ../node_modules/hono/dist/router.js
 var import_checked_fetch10 = __toESM(require_checked_fetch(), 1);
 var import_strip_cf_connecting_ip_header10 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+init_modules_watch_stub();
 var METHOD_NAME_ALL = "ALL";
 var METHOD_NAME_ALL_LOWERCASE = "all";
 var METHODS = ["get", "post", "put", "delete", "options", "patch"];
@@ -1176,6 +2244,7 @@ var UnsupportedPathError = /* @__PURE__ */ __name(class extends Error {
 // ../node_modules/hono/dist/utils/constants.js
 var import_checked_fetch11 = __toESM(require_checked_fetch(), 1);
 var import_strip_cf_connecting_ip_header11 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+init_modules_watch_stub();
 var COMPOSED_HANDLER = "__COMPOSED_HANDLER";
 
 // ../node_modules/hono/dist/hono-base.js
@@ -1552,14 +2621,17 @@ var Hono = /* @__PURE__ */ __name(class _Hono {
 // ../node_modules/hono/dist/router/reg-exp-router/index.js
 var import_checked_fetch18 = __toESM(require_checked_fetch(), 1);
 var import_strip_cf_connecting_ip_header18 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+init_modules_watch_stub();
 
 // ../node_modules/hono/dist/router/reg-exp-router/router.js
 var import_checked_fetch16 = __toESM(require_checked_fetch(), 1);
 var import_strip_cf_connecting_ip_header16 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+init_modules_watch_stub();
 
 // ../node_modules/hono/dist/router/reg-exp-router/matcher.js
 var import_checked_fetch13 = __toESM(require_checked_fetch(), 1);
 var import_strip_cf_connecting_ip_header13 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+init_modules_watch_stub();
 var emptyParam = [];
 function match(method, path) {
   const matchers = this.buildAllMatchers();
@@ -1584,6 +2656,7 @@ __name(match, "match");
 // ../node_modules/hono/dist/router/reg-exp-router/node.js
 var import_checked_fetch14 = __toESM(require_checked_fetch(), 1);
 var import_strip_cf_connecting_ip_header14 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+init_modules_watch_stub();
 var LABEL_REG_EXP_STR = "[^/]+";
 var ONLY_WILDCARD_REG_EXP_STR = ".*";
 var TAIL_WILDCARD_REG_EXP_STR = "(?:|/.*)";
@@ -1695,6 +2768,7 @@ var Node = /* @__PURE__ */ __name(class _Node {
 // ../node_modules/hono/dist/router/reg-exp-router/trie.js
 var import_checked_fetch15 = __toESM(require_checked_fetch(), 1);
 var import_strip_cf_connecting_ip_header15 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+init_modules_watch_stub();
 var Trie = /* @__PURE__ */ __name(class {
   #context = { varIndex: 0 };
   #root = new Node();
@@ -1936,14 +3010,17 @@ var RegExpRouter = /* @__PURE__ */ __name(class {
 // ../node_modules/hono/dist/router/reg-exp-router/prepared-router.js
 var import_checked_fetch17 = __toESM(require_checked_fetch(), 1);
 var import_strip_cf_connecting_ip_header17 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+init_modules_watch_stub();
 
 // ../node_modules/hono/dist/router/smart-router/index.js
 var import_checked_fetch20 = __toESM(require_checked_fetch(), 1);
 var import_strip_cf_connecting_ip_header20 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+init_modules_watch_stub();
 
 // ../node_modules/hono/dist/router/smart-router/router.js
 var import_checked_fetch19 = __toESM(require_checked_fetch(), 1);
 var import_strip_cf_connecting_ip_header19 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+init_modules_watch_stub();
 var SmartRouter = /* @__PURE__ */ __name(class {
   name = "SmartRouter";
   #routers = [];
@@ -2001,14 +3078,17 @@ var SmartRouter = /* @__PURE__ */ __name(class {
 // ../node_modules/hono/dist/router/trie-router/index.js
 var import_checked_fetch23 = __toESM(require_checked_fetch(), 1);
 var import_strip_cf_connecting_ip_header23 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+init_modules_watch_stub();
 
 // ../node_modules/hono/dist/router/trie-router/router.js
 var import_checked_fetch22 = __toESM(require_checked_fetch(), 1);
 var import_strip_cf_connecting_ip_header22 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+init_modules_watch_stub();
 
 // ../node_modules/hono/dist/router/trie-router/node.js
 var import_checked_fetch21 = __toESM(require_checked_fetch(), 1);
 var import_strip_cf_connecting_ip_header21 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+init_modules_watch_stub();
 var emptyParams = /* @__PURE__ */ Object.create(null);
 var Node2 = /* @__PURE__ */ __name(class _Node2 {
   #methods;
@@ -2206,6 +3286,7 @@ var Hono2 = /* @__PURE__ */ __name(class extends Hono {
 // ../node_modules/hono/dist/middleware/cors/index.js
 var import_checked_fetch26 = __toESM(require_checked_fetch(), 1);
 var import_strip_cf_connecting_ip_header26 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+init_modules_watch_stub();
 var cors = /* @__PURE__ */ __name((options) => {
   const defaults = {
     origin: "*",
@@ -2294,18 +3375,22 @@ var cors = /* @__PURE__ */ __name((options) => {
 // ../node_modules/@supabase/supabase-js/dist/index.mjs
 var import_checked_fetch64 = __toESM(require_checked_fetch(), 1);
 var import_strip_cf_connecting_ip_header64 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+init_modules_watch_stub();
 
 // ../node_modules/@supabase/functions-js/dist/module/index.js
 var import_checked_fetch31 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header31 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 
 // ../node_modules/@supabase/functions-js/dist/module/FunctionsClient.js
 var import_checked_fetch30 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header30 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 
 // ../node_modules/tslib/tslib.es6.mjs
 var import_checked_fetch27 = __toESM(require_checked_fetch(), 1);
 var import_strip_cf_connecting_ip_header27 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+init_modules_watch_stub();
 function __rest(s, e) {
   var t = {};
   for (var p in s)
@@ -2355,6 +3440,7 @@ __name(__awaiter, "__awaiter");
 // ../node_modules/@supabase/functions-js/dist/module/helper.js
 var import_checked_fetch28 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header28 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 var resolveFetch = /* @__PURE__ */ __name((customFetch) => {
   if (customFetch) {
     return (...args) => customFetch(...args);
@@ -2365,6 +3451,7 @@ var resolveFetch = /* @__PURE__ */ __name((customFetch) => {
 // ../node_modules/@supabase/functions-js/dist/module/types.js
 var import_checked_fetch29 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header29 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 var FunctionsError = class extends Error {
   constructor(message, name = "FunctionsError", context) {
     super(message);
@@ -2550,6 +3637,7 @@ __name(FunctionsClient, "FunctionsClient");
 // ../node_modules/@supabase/postgrest-js/dist/index.mjs
 var import_checked_fetch32 = __toESM(require_checked_fetch(), 1);
 var import_strip_cf_connecting_ip_header32 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+init_modules_watch_stub();
 var PostgrestError = /* @__PURE__ */ __name(class extends Error {
   /**
   * @example
@@ -3791,14 +4879,17 @@ var PostgrestClient = /* @__PURE__ */ __name(class PostgrestClient2 {
 // ../node_modules/@supabase/realtime-js/dist/module/index.js
 var import_checked_fetch43 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header43 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 
 // ../node_modules/@supabase/realtime-js/dist/module/RealtimeClient.js
 var import_checked_fetch42 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header42 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 
 // ../node_modules/@supabase/realtime-js/dist/module/lib/websocket-factory.js
 var import_checked_fetch33 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header33 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 var WebSocketFactory = class {
   /**
    * Static-only utility – prevent instantiation.
@@ -3917,10 +5008,12 @@ var websocket_factory_default = WebSocketFactory;
 // ../node_modules/@supabase/realtime-js/dist/module/lib/constants.js
 var import_checked_fetch35 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header35 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 
 // ../node_modules/@supabase/realtime-js/dist/module/lib/version.js
 var import_checked_fetch34 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header34 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 var version = "2.89.0";
 
 // ../node_modules/@supabase/realtime-js/dist/module/lib/constants.js
@@ -3970,6 +5063,7 @@ var CONNECTION_STATE;
 // ../node_modules/@supabase/realtime-js/dist/module/lib/serializer.js
 var import_checked_fetch36 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header36 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 var Serializer = class {
   constructor(allowedMetadataKeys) {
     this.HEADER_LENGTH = 1;
@@ -4113,6 +5207,7 @@ __name(Serializer, "Serializer");
 // ../node_modules/@supabase/realtime-js/dist/module/lib/timer.js
 var import_checked_fetch37 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header37 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 var Timer = class {
   constructor(callback, timerCalc) {
     this.callback = callback;
@@ -4141,6 +5236,7 @@ __name(Timer, "Timer");
 // ../node_modules/@supabase/realtime-js/dist/module/lib/transformers.js
 var import_checked_fetch38 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header38 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 var PostgresTypes;
 (function(PostgresTypes2) {
   PostgresTypes2["abstime"] = "abstime";
@@ -4299,10 +5395,12 @@ var httpEndpointURL = /* @__PURE__ */ __name((socketUrl) => {
 // ../node_modules/@supabase/realtime-js/dist/module/RealtimeChannel.js
 var import_checked_fetch41 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header41 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 
 // ../node_modules/@supabase/realtime-js/dist/module/lib/push.js
 var import_checked_fetch39 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header39 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 var Push = class {
   /**
    * Initializes the Push
@@ -4405,6 +5503,7 @@ __name(Push, "Push");
 // ../node_modules/@supabase/realtime-js/dist/module/RealtimePresence.js
 var import_checked_fetch40 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header40 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 var REALTIME_PRESENCE_LISTEN_EVENTS;
 (function(REALTIME_PRESENCE_LISTEN_EVENTS2) {
   REALTIME_PRESENCE_LISTEN_EVENTS2["SYNC"] = "sync";
@@ -5987,10 +7086,12 @@ __name(RealtimeClient, "RealtimeClient");
 // ../node_modules/@supabase/storage-js/dist/index.mjs
 var import_checked_fetch45 = __toESM(require_checked_fetch(), 1);
 var import_strip_cf_connecting_ip_header45 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+init_modules_watch_stub();
 
 // ../node_modules/iceberg-js/dist/index.mjs
 var import_checked_fetch44 = __toESM(require_checked_fetch(), 1);
 var import_strip_cf_connecting_ip_header44 = __toESM(require_strip_cf_connecting_ip_header(), 1);
+init_modules_watch_stub();
 var IcebergError = /* @__PURE__ */ __name(class extends Error {
   constructor(message, opts) {
     super(message);
@@ -9388,22 +10489,27 @@ var StorageClient = /* @__PURE__ */ __name(class extends StorageBucketApi {
 // ../node_modules/@supabase/auth-js/dist/module/index.js
 var import_checked_fetch63 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header63 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 
 // ../node_modules/@supabase/auth-js/dist/module/GoTrueAdminApi.js
 var import_checked_fetch53 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header53 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 
 // ../node_modules/@supabase/auth-js/dist/module/lib/fetch.js
 var import_checked_fetch51 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header51 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 
 // ../node_modules/@supabase/auth-js/dist/module/lib/constants.js
 var import_checked_fetch47 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header47 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 
 // ../node_modules/@supabase/auth-js/dist/module/lib/version.js
 var import_checked_fetch46 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header46 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 var version3 = "2.89.0";
 
 // ../node_modules/@supabase/auth-js/dist/module/lib/constants.js
@@ -9426,10 +10532,12 @@ var JWKS_TTL = 10 * 60 * 1e3;
 // ../node_modules/@supabase/auth-js/dist/module/lib/helpers.js
 var import_checked_fetch50 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header50 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 
 // ../node_modules/@supabase/auth-js/dist/module/lib/errors.js
 var import_checked_fetch48 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header48 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 var AuthError = class extends Error {
   constructor(message, status, code) {
     super(message);
@@ -9564,6 +10672,7 @@ __name(AuthInvalidJwtError, "AuthInvalidJwtError");
 // ../node_modules/@supabase/auth-js/dist/module/lib/base64url.js
 var import_checked_fetch49 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header49 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 var TO_BASE64URL = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_".split("");
 var IGNORE_BASE64URL = " 	\n\r=".split("");
 var FROM_BASE64URL = (() => {
@@ -10185,6 +11294,7 @@ __name(hasSession, "hasSession");
 // ../node_modules/@supabase/auth-js/dist/module/lib/types.js
 var import_checked_fetch52 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header52 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 var SIGN_OUT_SCOPES = ["global", "local", "others"];
 
 // ../node_modules/@supabase/auth-js/dist/module/GoTrueAdminApi.js
@@ -10608,10 +11718,12 @@ __name(GoTrueAdminApi, "GoTrueAdminApi");
 // ../node_modules/@supabase/auth-js/dist/module/GoTrueClient.js
 var import_checked_fetch60 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header60 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 
 // ../node_modules/@supabase/auth-js/dist/module/lib/local-storage.js
 var import_checked_fetch54 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header54 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 function memoryLocalStorageAdapter(store = {}) {
   return {
     getItem: (key) => {
@@ -10630,6 +11742,7 @@ __name(memoryLocalStorageAdapter, "memoryLocalStorageAdapter");
 // ../node_modules/@supabase/auth-js/dist/module/lib/locks.js
 var import_checked_fetch55 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header55 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 var internals = {
   /**
    * @experimental
@@ -10703,6 +11816,7 @@ __name(navigatorLock, "navigatorLock");
 // ../node_modules/@supabase/auth-js/dist/module/lib/polyfills.js
 var import_checked_fetch56 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header56 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 function polyfillGlobalThis() {
   if (typeof globalThis === "object")
     return;
@@ -10726,6 +11840,7 @@ __name(polyfillGlobalThis, "polyfillGlobalThis");
 // ../node_modules/@supabase/auth-js/dist/module/lib/web3/ethereum.js
 var import_checked_fetch57 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header57 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 function getAddress(address) {
   if (!/^0x[a-fA-F0-9]{40}$/.test(address)) {
     throw new Error(`@supabase/auth-js: Address "${address}" is invalid.`);
@@ -10800,10 +11915,12 @@ __name(createSiweMessage, "createSiweMessage");
 // ../node_modules/@supabase/auth-js/dist/module/lib/webauthn.js
 var import_checked_fetch59 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header59 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 
 // ../node_modules/@supabase/auth-js/dist/module/lib/webauthn.errors.js
 var import_checked_fetch58 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header58 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 var WebAuthnError = class extends Error {
   constructor({ message, code, cause, name }) {
     var _a;
@@ -14008,10 +15125,12 @@ var GoTrueClient_default = GoTrueClient;
 // ../node_modules/@supabase/auth-js/dist/module/AuthAdminApi.js
 var import_checked_fetch61 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header61 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 
 // ../node_modules/@supabase/auth-js/dist/module/AuthClient.js
 var import_checked_fetch62 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header62 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 var AuthClient = GoTrueClient_default;
 var AuthClient_default = AuthClient;
 
@@ -14385,141 +15504,329 @@ if (shouldShowDeprecationWarning())
   console.warn("\u26A0\uFE0F  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217");
 
 // src/storage.ts
-var import_checked_fetch66 = __toESM(require_checked_fetch());
-var import_strip_cf_connecting_ip_header66 = __toESM(require_strip_cf_connecting_ip_header());
+var import_checked_fetch88 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header88 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 
 // ../shared/config/site.ts
+var import_checked_fetch87 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header87 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
+
+// ../shared/config/modules/index.ts
+var import_checked_fetch84 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header84 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
+
+// ../shared/config/modules/hr.config.ts
+var import_checked_fetch82 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header82 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
+
+// ../node_modules/lucide-react/dist/esm/lucide-react.js
+var import_checked_fetch81 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header81 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
+
+// ../node_modules/lucide-react/dist/esm/createLucideIcon.js
+var import_checked_fetch68 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header68 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
+var import_react2 = __toESM(require_react());
+
+// ../node_modules/lucide-react/dist/esm/shared/src/utils.js
 var import_checked_fetch65 = __toESM(require_checked_fetch());
 var import_strip_cf_connecting_ip_header65 = __toESM(require_strip_cf_connecting_ip_header());
-var getEnv = /* @__PURE__ */ __name((key, defaultValue = "") => {
-  if (typeof import.meta !== "undefined" && import.meta.env) {
-    return import.meta.env[key] || defaultValue;
-  }
-  try {
-    if (typeof process !== "undefined" && process.env) {
-      return process.env[key] || defaultValue;
+init_modules_watch_stub();
+var toKebabCase = /* @__PURE__ */ __name((string) => string.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase(), "toKebabCase");
+var toCamelCase = /* @__PURE__ */ __name((string) => string.replace(
+  /^([A-Z])|[\s-_]+(\w)/g,
+  (match2, p1, p2) => p2 ? p2.toUpperCase() : p1.toLowerCase()
+), "toCamelCase");
+var toPascalCase = /* @__PURE__ */ __name((string) => {
+  const camelCase = toCamelCase(string);
+  return camelCase.charAt(0).toUpperCase() + camelCase.slice(1);
+}, "toPascalCase");
+var mergeClasses = /* @__PURE__ */ __name((...classes) => classes.filter((className, index, array) => {
+  return Boolean(className) && className.trim() !== "" && array.indexOf(className) === index;
+}).join(" ").trim(), "mergeClasses");
+var hasA11yProp = /* @__PURE__ */ __name((props) => {
+  for (const prop in props) {
+    if (prop.startsWith("aria-") || prop === "role" || prop === "title") {
+      return true;
     }
-  } catch (e) {
   }
-  return defaultValue;
-}, "getEnv");
-var siteConfig = {
-  // --- General (General Tab) ---
+}, "hasA11yProp");
+
+// ../node_modules/lucide-react/dist/esm/Icon.js
+var import_checked_fetch67 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header67 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
+var import_react = __toESM(require_react());
+
+// ../node_modules/lucide-react/dist/esm/defaultAttributes.js
+var import_checked_fetch66 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header66 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
+var defaultAttributes = {
+  xmlns: "http://www.w3.org/2000/svg",
+  width: 24,
+  height: 24,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 2,
+  strokeLinecap: "round",
+  strokeLinejoin: "round"
+};
+
+// ../node_modules/lucide-react/dist/esm/Icon.js
+var Icon = (0, import_react.forwardRef)(
+  ({
+    color = "currentColor",
+    size = 24,
+    strokeWidth = 2,
+    absoluteStrokeWidth,
+    className = "",
+    children,
+    iconNode,
+    ...rest
+  }, ref) => (0, import_react.createElement)(
+    "svg",
+    {
+      ref,
+      ...defaultAttributes,
+      width: size,
+      height: size,
+      stroke: color,
+      strokeWidth: absoluteStrokeWidth ? Number(strokeWidth) * 24 / Number(size) : strokeWidth,
+      className: mergeClasses("lucide", className),
+      ...!children && !hasA11yProp(rest) && { "aria-hidden": "true" },
+      ...rest
+    },
+    [
+      ...iconNode.map(([tag, attrs]) => (0, import_react.createElement)(tag, attrs)),
+      ...Array.isArray(children) ? children : [children]
+    ]
+  )
+);
+
+// ../node_modules/lucide-react/dist/esm/createLucideIcon.js
+var createLucideIcon = /* @__PURE__ */ __name((iconName, iconNode) => {
+  const Component = (0, import_react2.forwardRef)(
+    ({ className, ...props }, ref) => (0, import_react2.createElement)(Icon, {
+      ref,
+      iconNode,
+      className: mergeClasses(
+        `lucide-${toKebabCase(toPascalCase(iconName))}`,
+        `lucide-${iconName}`,
+        className
+      ),
+      ...props
+    })
+  );
+  Component.displayName = toPascalCase(iconName);
+  return Component;
+}, "createLucideIcon");
+
+// ../node_modules/lucide-react/dist/esm/icons/briefcase.js
+var import_checked_fetch69 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header69 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
+var __iconNode = [
+  ["path", { d: "M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16", key: "jecpp" }],
+  ["rect", { width: "20", height: "14", x: "2", y: "6", rx: "2", key: "i6l2r4" }]
+];
+var Briefcase = createLucideIcon("briefcase", __iconNode);
+
+// ../node_modules/lucide-react/dist/esm/icons/calendar-check.js
+var import_checked_fetch70 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header70 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
+var __iconNode2 = [
+  ["path", { d: "M8 2v4", key: "1cmpym" }],
+  ["path", { d: "M16 2v4", key: "4m81vk" }],
+  ["rect", { width: "18", height: "18", x: "3", y: "4", rx: "2", key: "1hopcy" }],
+  ["path", { d: "M3 10h18", key: "8toen8" }],
+  ["path", { d: "m9 16 2 2 4-4", key: "19s6y9" }]
+];
+var CalendarCheck = createLucideIcon("calendar-check", __iconNode2);
+
+// ../node_modules/lucide-react/dist/esm/icons/file-text.js
+var import_checked_fetch71 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header71 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
+var __iconNode3 = [
+  [
+    "path",
+    {
+      d: "M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
+      key: "1oefj6"
+    }
+  ],
+  ["path", { d: "M14 2v5a1 1 0 0 0 1 1h5", key: "wfsgrz" }],
+  ["path", { d: "M10 9H8", key: "b1mrlr" }],
+  ["path", { d: "M16 13H8", key: "t4e002" }],
+  ["path", { d: "M16 17H8", key: "z1uh3a" }]
+];
+var FileText = createLucideIcon("file-text", __iconNode3);
+
+// ../node_modules/lucide-react/dist/esm/icons/gavel.js
+var import_checked_fetch72 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header72 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
+var __iconNode4 = [
+  ["path", { d: "m14 13-8.381 8.38a1 1 0 0 1-3.001-3l8.384-8.381", key: "pgg06f" }],
+  ["path", { d: "m16 16 6-6", key: "vzrcl6" }],
+  ["path", { d: "m21.5 10.5-8-8", key: "a17d9x" }],
+  ["path", { d: "m8 8 6-6", key: "18bi4p" }],
+  ["path", { d: "m8.5 7.5 8 8", key: "1oyaui" }]
+];
+var Gavel = createLucideIcon("gavel", __iconNode4);
+
+// ../node_modules/lucide-react/dist/esm/icons/gift.js
+var import_checked_fetch73 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header73 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
+var __iconNode5 = [
+  ["rect", { x: "3", y: "8", width: "18", height: "4", rx: "1", key: "bkv52" }],
+  ["path", { d: "M12 8v13", key: "1c76mn" }],
+  ["path", { d: "M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7", key: "6wjy6b" }],
+  [
+    "path",
+    {
+      d: "M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5",
+      key: "1ihvrl"
+    }
+  ]
+];
+var Gift = createLucideIcon("gift", __iconNode5);
+
+// ../node_modules/lucide-react/dist/esm/icons/layout-dashboard.js
+var import_checked_fetch74 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header74 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
+var __iconNode6 = [
+  ["rect", { width: "7", height: "9", x: "3", y: "3", rx: "1", key: "10lvy0" }],
+  ["rect", { width: "7", height: "5", x: "14", y: "3", rx: "1", key: "16une8" }],
+  ["rect", { width: "7", height: "9", x: "14", y: "12", rx: "1", key: "1hutg5" }],
+  ["rect", { width: "7", height: "5", x: "3", y: "16", rx: "1", key: "ldoo1y" }]
+];
+var LayoutDashboard = createLucideIcon("layout-dashboard", __iconNode6);
+
+// ../node_modules/lucide-react/dist/esm/icons/life-buoy.js
+var import_checked_fetch75 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header75 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
+var __iconNode7 = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["path", { d: "m4.93 4.93 4.24 4.24", key: "1ymg45" }],
+  ["path", { d: "m14.83 9.17 4.24-4.24", key: "1cb5xl" }],
+  ["path", { d: "m14.83 14.83 4.24 4.24", key: "q42g0n" }],
+  ["path", { d: "m9.17 14.83-4.24 4.24", key: "bqpfvv" }],
+  ["circle", { cx: "12", cy: "12", r: "4", key: "4exip2" }]
+];
+var LifeBuoy = createLucideIcon("life-buoy", __iconNode7);
+
+// ../node_modules/lucide-react/dist/esm/icons/receipt.js
+var import_checked_fetch76 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header76 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
+var __iconNode8 = [
+  [
+    "path",
+    { d: "M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z", key: "q3az6g" }
+  ],
+  ["path", { d: "M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8", key: "1h4pet" }],
+  ["path", { d: "M12 17.5v-11", key: "1jc1ny" }]
+];
+var Receipt = createLucideIcon("receipt", __iconNode8);
+
+// ../node_modules/lucide-react/dist/esm/icons/settings.js
+var import_checked_fetch77 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header77 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
+var __iconNode9 = [
+  [
+    "path",
+    {
+      d: "M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915",
+      key: "1i5ecw"
+    }
+  ],
+  ["circle", { cx: "12", cy: "12", r: "3", key: "1v7zrd" }]
+];
+var Settings = createLucideIcon("settings", __iconNode9);
+
+// ../node_modules/lucide-react/dist/esm/icons/trending-up.js
+var import_checked_fetch78 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header78 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
+var __iconNode10 = [
+  ["path", { d: "M16 7h6v6", key: "box55l" }],
+  ["path", { d: "m22 7-8.5 8.5-5-5L2 17", key: "1t1m79" }]
+];
+var TrendingUp = createLucideIcon("trending-up", __iconNode10);
+
+// ../node_modules/lucide-react/dist/esm/icons/user.js
+var import_checked_fetch79 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header79 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
+var __iconNode11 = [
+  ["path", { d: "M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2", key: "975kel" }],
+  ["circle", { cx: "12", cy: "7", r: "4", key: "17ys0d" }]
+];
+var User = createLucideIcon("user", __iconNode11);
+
+// ../node_modules/lucide-react/dist/esm/icons/users.js
+var import_checked_fetch80 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header80 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
+var __iconNode12 = [
+  ["path", { d: "M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2", key: "1yyitq" }],
+  ["path", { d: "M16 3.128a4 4 0 0 1 0 7.744", key: "16gr8j" }],
+  ["path", { d: "M22 21v-2a4 4 0 0 0-3-3.87", key: "kshegd" }],
+  ["circle", { cx: "9", cy: "7", r: "4", key: "nufk8" }]
+];
+var Users = createLucideIcon("users", __iconNode12);
+
+// ../shared/config/modules/hr.config.ts
+var hrModule = {
+  // --- General ---
   name: "MacroHR",
   description: "The ultimate all-in-one HR Management & Workforce Orchestration suite. Manage payroll, performance, and personnel with a single, high-fidelity platform.",
   url: "https://macrohr.com",
   creator: "@Web4strategy",
-  keywords: ["hr management", "workforce automation", "payroll system", "employee registry", "performance tracking", "hr dashboard", "personnel dossiers", "talent management"],
+  keywords: [
+    "hr management",
+    "workforce automation",
+    "payroll system",
+    "employee registry",
+    "performance tracking",
+    "hr dashboard",
+    "personnel dossiers",
+    "talent management"
+  ],
   contactEmail: "hello@macrohr.com",
   githubUrl: "https://github.com/Interpoolx/MacroHR",
   twitterUrl: "https://x.com/web4strategy",
   websiteUrl: "https://web4strategy.com",
   version: "1.0.0",
-  environment: "production",
-  demo_mode: "enabled",
-  system_mode: getEnv("VITE_SUPABASE_URL") && getEnv("VITE_SUPABASE_ANON_KEY") ? "live" : "demo",
-  // --- Branding (Branding Tab) ---
+  // --- Branding ---
   logo: {
     text: "MacroHR",
     icon: "A+",
     url: "/uploads/images/logo.png",
     favicon: "/uploads/images/favicon.png"
   },
-  theme: {
-    primaryColor: "#FF6B00",
-    // Orange
-    secondaryColor: "#000000",
-    // Black
-    accentColor: "#FFFFFF",
-    darkMode: true
-  },
-  // --- Backend & Auth (Backend & Auth Tab) ---
-  local: {
-    backendApiUrl: "http://localhost:3001",
-    cloudFlareUrl: "http://localhost:3000",
-    storageProvider: "local"
-  },
-  live: {
-    backendApiUrl: "https://worker.macrohr.com",
-    cloudFlareUrl: "https://web4strategy.com/",
-    storageProvider: "cloudflare-r2"
-  },
-  database: {
-    // Current approach: 'json' | Future: 'd1'
-    provider: "json",
-    d1: {
-      database_id: "",
-      binding: "DB"
-    },
-    json: {
-      dataDir: "./public/json",
-      seedDir: "./public/json-seed"
-    }
-  },
-  cloudflare: {
-    r2: {
-      bucketName: getEnv("VITE_R2_BUCKET_NAME"),
-      accountId: getEnv("VITE_R2_ACCOUNT_ID"),
-      accessKeyId: getEnv("VITE_R2_ACCESS_KEY_ID"),
-      secretAccessKey: getEnv("VITE_R2_SECRET_ACCESS_KEY"),
-      // Only secure on backend
-      publicUrl: getEnv("VITE_R2_PUBLIC_URL"),
-      binding: "BUCKET"
-    },
-    d1: {
-      databaseId: getEnv("VITE_D1_DATABASE_ID"),
-      binding: "DB"
-    }
-  },
-  supabase: {
-    url: getEnv("VITE_SUPABASE_URL"),
-    anonKey: getEnv("VITE_SUPABASE_ANON_KEY"),
-    serviceRoleKey: getEnv("SUPABASE_SERVICE_ROLE_KEY")
-    // Only secure on backend
-  },
-  auth: {
-    providers: ["email", "google", "github"],
-    enableMagicLink: true,
-    sessionTimeout: 7200,
-    // 2 hours in seconds
-    requireEmailVerification: true,
-    passwordMinLength: 8
-  },
-  dbName: "macrohr_db",
-  // --- Finance & Billing (Finance & Billing Tab) ---
-  billing: {
-    mode: "test",
-    accessToken: "",
-    organizationId: "",
-    webhookSecret: "",
-    currency: "USD",
-    plans: {
-      free: {
-        name: "Free",
-        price: 0,
-        features: ["Basic inspection", "Limited exports", "Community support"]
-      },
-      pro: {
-        name: "Pro",
-        price: 9.99,
-        features: ["Unlimited inspection", "Bulk exports", "Priority support", "Advanced SEO tools"]
-      },
-      team: {
-        name: "Team",
-        price: 29.99,
-        features: ["Everything in Pro", "Team collaboration", "Custom integrations", "Dedicated support"]
-      }
-    },
-    trialPeriod: 14
-    // days
-  },
-  // --- Navigation (Navigation Tab) ---
+  // --- Navigation (Landing Page) ---
   nav: [
     { title: "Features", href: "#features" },
     { title: "How It Works", href: "#how-it-works" },
     { title: "Testimonials", href: "#testimonials" },
     { title: "FAQ", href: "#faq" }
   ],
+  // --- Footer ---
   footer: {
     links: [
       {
@@ -14559,7 +15866,7 @@ var siteConfig = {
       }
     ]
   },
-  // --- SEO (SEO Tab) ---
+  // --- SEO ---
   seo: {
     homepageTitle: "MacroHR | Advanced Workforce Management & HR Analytics",
     homepageDescription: "Streamline your human resources with the MacroHR platform. Automated payroll, performance benchmarks, and deep workforce insights.",
@@ -14575,7 +15882,7 @@ var siteConfig = {
       follow: true
     }
   },
-  // --- Social (Social Tab) ---
+  // --- Social Links ---
   links: {
     twitter: "https://x.com/web4strategy",
     github: "https://github.com/Interpoolx/MacroHR",
@@ -14584,106 +15891,13 @@ var siteConfig = {
     discord: "https://discord.gg/web4strategy",
     producthunt: ""
   },
-  // --- Analytics & Monitoring (Analytics Tab) ---
-  analytics: {
-    googleAnalyticsId: "",
-    googleTagManagerId: "",
-    mixpanelToken: "",
-    amplitudeApiKey: "",
-    hotjarId: "",
-    clarity: {
-      enabled: false,
-      projectId: ""
-    },
-    plausible: {
-      enabled: false,
-      domain: "macrohr.com"
-    }
-  },
-  monitoring: {
-    sentry: {
-      enabled: false,
-      dsn: "",
-      environment: "production",
-      tracesSampleRate: 0.1
-    },
-    logRocket: {
-      enabled: false,
-      appId: ""
-    }
-  },
-  errorTracking: {
-    enabled: true,
-    reportToBackend: true,
-    ignoredErrors: ["ResizeObserver loop limit exceeded"]
-  },
-  // --- Content Management (Content Tab) ---
-  content: {
-    blog: {
-      enabled: true,
-      apiEndpoint: "/api/blog",
-      postsPerPage: 10
-    },
-    changelog: {
-      enabled: true,
-      apiEndpoint: "/api/changelog"
-    },
-    documentation: {
-      url: "https://",
-      searchEnabled: true
-    },
-    helpCenter: {
-      url: "https://help",
-      categories: ["Getting Started", "Features", "Troubleshooting", "API", "Billing"]
-    },
-    announcements: {
-      enabled: true,
-      apiEndpoint: "/api/announcements"
-    }
-  },
-  // --- Legal & Compliance (Legal Tab) ---
-  legal: {
-    termsOfService: {
-      url: "/terms",
-      lastUpdated: "2025-12-18"
-    },
-    privacyPolicy: {
-      url: "/privacy",
-      lastUpdated: "2025-12-18"
-    },
-    cookiePolicy: {
-      url: "/cookies",
-      lastUpdated: "2025-12-18"
-    },
-    gdpr: {
-      enabled: true,
-      dataRetentionDays: 365,
-      cookieConsentRequired: true
-    },
-    ccpa: {
-      enabled: true,
-      doNotSellLink: "/do-not-sell"
-    },
-    ageRestriction: {
-      minimumAge: 13,
-      requireVerification: false
-    },
-    dataExport: {
-      enabled: true,
-      endpoint: "/api/user/export"
-    },
-    dataDelition: {
-      enabled: true,
-      endpoint: "/api/user/delete"
-    }
-  },
-  // --- Support & Help (Support Tab) ---
+  // --- Support & Help ---
   support: {
     email: "support@macrohr.com",
-    helpCenterUrl: "https://help.",
-    documentationUrl: "https://docs.",
-    communityForumUrl: "https://community.",
-    statusPageUrl: "https://status.",
+    helpCenterUrl: "https://help.macrohr.com",
+    documentationUrl: "https://docs.macrohr.com",
+    communityForumUrl: "https://community.macrohr.com",
+    statusPageUrl: "https://status.macrohr.com",
     liveChat: {
       enabled: false,
       provider: "intercom",
@@ -14711,7 +15925,510 @@ var siteConfig = {
       ]
     }
   },
-  // --- Notifications & Communications (Notifications Tab) ---
+  // --- App Sidebar Navigation (Authenticated Dashboard) ---
+  sidebarNav: [
+    { to: "/user/dashboard", label: "Dashboard", icon: LayoutDashboard },
+    { to: "/user/modules/hr/people", label: "People", icon: Users, managerOnly: true },
+    { to: "/user/modules/hr/payslip", label: "Payslips", icon: Receipt, managerOnly: true },
+    { to: "/user/modules/hr/attendance", label: "Attendance", icon: CalendarCheck },
+    { to: "/user/modules/hr/tasks", label: "My Tasks", icon: FileText, userOnly: true },
+    { to: "/user/modules/hr/benefits", label: "Benefits", icon: Gift, managerOnly: true },
+    { to: "/user/modules/hr/performance", label: "Performance", icon: TrendingUp, managerOnly: true },
+    { to: "/user/modules/hr/personal", label: "Personal Details", icon: User, managerOnly: true },
+    { to: "/user/modules/hr/job-reference", label: "Job Reference", icon: Briefcase, managerOnly: true },
+    { to: "/user/modules/hr/documents", label: "Documents", icon: FileText, managerOnly: true },
+    { to: "/user/modules/hr/settings", label: "Settings", icon: Settings, managerOnly: true },
+    { to: "/user/modules/hr/support", label: "Support", icon: LifeBuoy, managerOnly: true }
+  ]
+};
+
+// ../shared/config/modules/legal.config.ts
+var import_checked_fetch83 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header83 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
+var legalModule = {
+  // --- General ---
+  name: "MacroLegal",
+  description: "The comprehensive all-in-one legal case management, contract automation, and compliance platform. Streamline matters, documents, billing, and team collaboration with a modern, high-performance solution.",
+  url: "https://macrolegal.com",
+  creator: "@Web4strategy",
+  keywords: [
+    "legal case management",
+    "matter management",
+    "contract automation",
+    "legal billing",
+    "document management",
+    "compliance platform",
+    "law firm software",
+    "legal operations",
+    "e-billing",
+    "client portal"
+  ],
+  contactEmail: "hello@macrolegal.com",
+  githubUrl: "https://github.com/Interpoolx/MacroLegal",
+  twitterUrl: "https://x.com/web4strategy",
+  websiteUrl: "https://web4strategy.com",
+  version: "1.0.0",
+  // --- Branding ---
+  logo: {
+    text: "MacroLegal",
+    icon: "\u2696\uFE0F",
+    url: "/uploads/images/legal-logo.png",
+    favicon: "/uploads/images/legal-favicon.png"
+  },
+  // --- Navigation (Landing Page) ---
+  nav: [
+    { title: "Features", href: "#features" },
+    { title: "Case Management", href: "#case-management" },
+    { title: "Pricing", href: "#pricing" },
+    { title: "Testimonials", href: "#testimonials" },
+    { title: "FAQ", href: "#faq" }
+  ],
+  // --- Footer ---
+  footer: {
+    links: [
+      {
+        title: "Product",
+        items: [
+          { title: "Features", href: "/features" },
+          { title: "Case Management", href: "/case-management" },
+          { title: "Document Automation", href: "/document-automation" },
+          { title: "Pricing", href: "/pricing" },
+          { title: "Changelog", href: "/changelog" },
+          { title: "Roadmap", href: "/roadmap" }
+        ]
+      },
+      {
+        title: "Resources",
+        items: [
+          { title: "Documentation", href: "/docs" },
+          { title: "API Reference", href: "/api" },
+          { title: "Tutorials", href: "/tutorials" },
+          { title: "Blog", href: "/blog" },
+          { title: "Webinars", href: "/webinars" }
+        ]
+      },
+      {
+        title: "Support",
+        items: [
+          { title: "Help Center", href: "/help" },
+          { title: "Contact Us", href: "/contact" },
+          { title: "Status", href: "/status" },
+          { title: "Community", href: "/community" }
+        ]
+      },
+      {
+        title: "Legal",
+        items: [
+          { title: "Privacy Policy", href: "/privacy" },
+          { title: "Terms of Service", href: "/terms" },
+          { title: "Cookie Policy", href: "/cookies" },
+          { title: "Security", href: "/security" }
+        ]
+      }
+    ]
+  },
+  // --- SEO ---
+  seo: {
+    homepageTitle: "MacroLegal | Comprehensive Legal Case Management & Operations Platform",
+    homepageDescription: "Empower your law firm or legal department with MacroLegal. Advanced case tracking, document management, automated workflows, billing, and compliance tools in one secure platform.",
+    homepageOgImage: "/uploads/images/legal-og-image.png",
+    titleTemplate: "%s | MacroLegal",
+    descriptionDefault: "Modern legal practice management software for efficient matter handling, client collaboration, and firm growth.",
+    ogImageDefault: "/uploads/images/legal-og-default.png",
+    twitterHandle: "@macrolegal",
+    siteName: "MacroLegal",
+    locale: "en_US",
+    robots: {
+      index: true,
+      follow: true
+    }
+  },
+  // --- Social Links ---
+  links: {
+    twitter: "https://x.com/web4strategy",
+    github: "https://github.com/Interpoolx/MacroLegal",
+    linkedin: "https://linkedin.com/company/web4strategy",
+    youtube: "https://youtube.com/@web4strategy",
+    discord: "https://discord.gg/web4strategy",
+    producthunt: ""
+  },
+  // --- Support & Help ---
+  support: {
+    email: "support@macrolegal.com",
+    helpCenterUrl: "https://help.macrolegal.com",
+    documentationUrl: "https://docs.macrolegal.com",
+    communityForumUrl: "https://community.macrolegal.com",
+    statusPageUrl: "https://status.macrolegal.com",
+    liveChat: {
+      enabled: true,
+      // Legal teams often prefer live support
+      provider: "intercom",
+      appId: ""
+      // Fill in when integrating
+    },
+    ticketSystem: {
+      enabled: true,
+      endpoint: "/api/support/tickets"
+    },
+    feedbackWidget: {
+      enabled: true,
+      position: "bottom-right"
+    },
+    faq: {
+      enabled: true,
+      items: [
+        {
+          question: "Is MacroLegal compliant with data privacy laws like GDPR and CCPA?",
+          answer: "Yes, MacroLegal is fully compliant with GDPR, CCPA, and other major data protection regulations. We implement encryption, access controls, and audit logs by default."
+        },
+        {
+          question: "Can I import existing matters and documents from my current system?",
+          answer: "Absolutely. MacroLegal supports seamless data migration from popular platforms like Clio, PracticePanther, MyCase, and CSV/Excel exports. Our onboarding team assists at no extra cost on Pro plans."
+        },
+        {
+          question: "Does MacroLegal support e-signatures and client portals?",
+          answer: "Yes \u2014 built-in secure client portal with e-signature integration (compatible with DocuSign and HelloSign), document sharing, and real-time matter updates."
+        },
+        {
+          question: "Is my data encrypted and secure?",
+          answer: "All data is encrypted at rest (AES-256) and in transit (TLS 1.3). We undergo regular security audits and offer SOC 2 Type II compliance on Enterprise plans."
+        }
+      ]
+    }
+  },
+  // --- App Sidebar Navigation (Authenticated Dashboard) ---
+  sidebarNav: [
+    { to: "/user/dashboard", label: "Dashboard", icon: LayoutDashboard },
+    { to: "/user/matters", label: "Matters", icon: Gavel, managerOnly: true },
+    { to: "/user/modules/hr/documents", label: "Documents", icon: FileText, managerOnly: true },
+    { to: "/user/modules/hr/people", label: "People", icon: Users, managerOnly: true },
+    { to: "/user/billing", label: "Billing", icon: Receipt, managerOnly: true },
+    { to: "/user/calendar", label: "Calendar", icon: CalendarCheck },
+    { to: "/user/modules/hr/tasks", label: "My Tasks", icon: FileText, userOnly: true },
+    { to: "/user/modules/hr/performance", label: "Performance", icon: TrendingUp, managerOnly: true },
+    { to: "/user/modules/hr/personal", label: "Personal Details", icon: User, managerOnly: true },
+    { to: "/user/modules/hr/job-reference", label: "Reference", icon: Briefcase, managerOnly: true },
+    { to: "/user/modules/hr/settings", label: "Settings", icon: Settings, managerOnly: true },
+    { to: "/user/modules/hr/support", label: "Support", icon: LifeBuoy, managerOnly: true }
+  ]
+};
+
+// ../shared/config/modules/index.ts
+var modules = {
+  hr: hrModule,
+  legal: legalModule
+};
+var getCurrentModule = /* @__PURE__ */ __name((name) => modules[name], "getCurrentModule");
+
+// ../shared/lib/themes.ts
+var import_checked_fetch85 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header85 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
+var themes = {
+  default: {
+    name: "Default",
+    dark: true,
+    tokens: {
+      primary: "#FF6B00",
+      primaryEnd: "#FF8533",
+      primaryForeground: "#FFFFFF",
+      secondary: "#000000",
+      secondaryForeground: "#FFFFFF",
+      accent: "#FFFFFF",
+      accentForeground: "#000000",
+      background: "#0F0F0F",
+      foreground: "#FFFFFF",
+      muted: "#1A1A1A",
+      mutedForeground: "#A0A0A0",
+      border: "#2A2A2A",
+      card: "#121212",
+      cardForeground: "#FFFFFF",
+      popover: "#1A1A1A",
+      popoverForeground: "#FFFFFF",
+      header: "#0A0A0A",
+      headerForeground: "#FFFFFF",
+      footer: "#050505",
+      footerForeground: "#A0A0A0",
+      sidebar: "#0C0C0C",
+      sidebarForeground: "#FFFFFF",
+      sidebarBorder: "#242424",
+      glassBg: "rgba(10, 10, 10, 0.7)",
+      glassBorder: "rgba(255, 255, 255, 0.05)",
+      fontSans: "'Inter', sans-serif",
+      fontHeading: "'Inter', sans-serif",
+      fontSizeBase: "16px",
+      lineHeightBase: "1.5",
+      spacingBase: "4px",
+      radiusBase: "12px"
+    }
+  },
+  minimal: {
+    name: "Minimal",
+    dark: false,
+    tokens: {
+      primary: "#000000",
+      primaryEnd: "#333333",
+      primaryForeground: "#FFFFFF",
+      secondary: "#F0F0F0",
+      secondaryForeground: "#000000",
+      accent: "#000000",
+      accentForeground: "#FFFFFF",
+      background: "#FFFFFF",
+      foreground: "#000000",
+      muted: "#F9F9F9",
+      mutedForeground: "#666666",
+      border: "#EEEEEE",
+      card: "#FAFAFA",
+      cardForeground: "#000000",
+      popover: "#FFFFFF",
+      popoverForeground: "#000000",
+      header: "#FFFFFF",
+      headerForeground: "#000000",
+      footer: "#F9F9F9",
+      footerForeground: "#666666",
+      sidebar: "#FBFBFB",
+      sidebarForeground: "#000000",
+      sidebarBorder: "#EEEEEE",
+      glassBg: "rgba(255, 255, 255, 0.8)",
+      glassBorder: "rgba(0, 0, 0, 0.05)",
+      fontSans: "'Inter', sans-serif",
+      fontHeading: "'Inter', sans-serif",
+      fontSizeBase: "15px",
+      lineHeightBase: "1.6",
+      spacingBase: "5px",
+      radiusBase: "8px"
+    }
+  },
+  oak: {
+    name: "Oak",
+    dark: true,
+    tokens: {
+      primary: "#8B4513",
+      primaryEnd: "#A0522D",
+      primaryForeground: "#FFFFFF",
+      secondary: "#D2B48C",
+      secondaryForeground: "#3E2723",
+      accent: "#A0522D",
+      accentForeground: "#FFFFFF",
+      background: "#2E1A12",
+      foreground: "#F5DEB3",
+      muted: "#4A2F20",
+      mutedForeground: "#D2B48C",
+      border: "#5D4037",
+      card: "#3E2723",
+      cardForeground: "#F5DEB3",
+      popover: "#3E2723",
+      popoverForeground: "#F5DEB3",
+      header: "#3E2723",
+      headerForeground: "#F5DEB3",
+      footer: "#2E1A12",
+      footerForeground: "#D2B48C",
+      sidebar: "#2D1D16",
+      sidebarForeground: "#F5DEB3",
+      sidebarBorder: "#4A2F20",
+      glassBg: "rgba(40, 20, 10, 0.7)",
+      glassBorder: "rgba(255, 255, 255, 0.05)",
+      fontSans: "'Garamond', serif",
+      fontHeading: "'Garamond', serif",
+      fontSizeBase: "17px",
+      lineHeightBase: "1.4",
+      spacingBase: "4px",
+      radiusBase: "4px"
+    }
+  },
+  olive: {
+    name: "Olive",
+    dark: true,
+    tokens: {
+      primary: "#556B2F",
+      primaryEnd: "#6B8E23",
+      primaryForeground: "#FFFFFF",
+      secondary: "#808000",
+      secondaryForeground: "#FFFFFF",
+      accent: "#6B8E23",
+      accentForeground: "#FFFFFF",
+      background: "#1F2F1F",
+      foreground: "#E8E8E8",
+      muted: "#2F3F2F",
+      mutedForeground: "#A0A080",
+      border: "#3F4F3F",
+      card: "#283428",
+      cardForeground: "#E8E8E8",
+      popover: "#283428",
+      popoverForeground: "#E8E8E8",
+      header: "#283428",
+      headerForeground: "#E8E8E8",
+      footer: "#1F2F1F",
+      footerForeground: "#A0A080",
+      sidebar: "#1A251A",
+      sidebarForeground: "#E8E8E8",
+      sidebarBorder: "#2F3F2F",
+      glassBg: "rgba(30, 45, 30, 0.7)",
+      glassBorder: "rgba(255, 255, 255, 0.05)",
+      fontSans: "'Outfit', sans-serif",
+      fontHeading: "'Outfit', sans-serif",
+      fontSizeBase: "16px",
+      lineHeightBase: "1.5",
+      spacingBase: "4px",
+      radiusBase: "16px"
+    }
+  }
+};
+var defaultTheme = "default";
+var currentTheme = themes[defaultTheme];
+
+// ../shared/config/env.ts
+var import_checked_fetch86 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header86 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
+var getEnv = /* @__PURE__ */ __name((key, defaultValue = "") => {
+  if (typeof import.meta !== "undefined" && import.meta.env) {
+    return import.meta.env[key] || defaultValue;
+  }
+  try {
+    if (typeof process !== "undefined" && process.env) {
+      return process.env[key] || defaultValue;
+    }
+  } catch (e) {
+  }
+  return defaultValue;
+}, "getEnv");
+
+// ../shared/config/site.ts
+var currentModule = "hr";
+var currentTheme2 = defaultTheme;
+var moduleConfig = getCurrentModule(currentModule);
+var siteConfig = {
+  // --- Runtime / Environment ---
+  environment: "production",
+  demo_mode: "enabled",
+  system_mode: getEnv("VITE_SUPABASE_URL") && getEnv("VITE_SUPABASE_ANON_KEY") ? "live" : "demo",
+  // --- Active Selections ---
+  currentModule,
+  currentTheme: currentTheme2,
+  // --- Module-Specific Content (branding, nav, seo, support, sidebar, etc.) ---
+  module: moduleConfig,
+  // --- Backend & Infrastructure ---
+  local: {
+    backendApiUrl: "http://localhost:3001",
+    cloudFlareUrl: "http://localhost:3000",
+    storageProvider: "local"
+  },
+  live: {
+    backendApiUrl: "https://worker.macrohr.com",
+    cloudFlareUrl: "https://web4strategy.com/",
+    storageProvider: "cloudflare-r2"
+  },
+  database: {
+    provider: "d1",
+    d1: {
+      database_id: "",
+      binding: "DB"
+    }
+  },
+  cloudflare: {
+    r2: {
+      bucketName: getEnv("VITE_R2_BUCKET_NAME"),
+      accountId: getEnv("VITE_R2_ACCOUNT_ID"),
+      accessKeyId: getEnv("VITE_R2_ACCESS_KEY_ID"),
+      secretAccessKey: getEnv("VITE_R2_SECRET_ACCESS_KEY"),
+      publicUrl: getEnv("VITE_R2_PUBLIC_URL"),
+      binding: "BUCKET"
+    },
+    d1: {
+      databaseId: getEnv("VITE_D1_DATABASE_ID"),
+      binding: "DB"
+    }
+  },
+  supabase: {
+    url: getEnv("VITE_SUPABASE_URL"),
+    anonKey: getEnv("VITE_SUPABASE_ANON_KEY"),
+    serviceRoleKey: getEnv("SUPABASE_SERVICE_ROLE_KEY")
+  },
+  // --- Authentication ---
+  auth: {
+    providers: ["email", "google", "github"],
+    enableMagicLink: true,
+    sessionTimeout: 7200,
+    // 2 hours
+    requireEmailVerification: true,
+    passwordMinLength: 8
+  },
+  dbName: "macrohr_db",
+  // --- Billing & Plans ---
+  billing: {
+    mode: "test",
+    accessToken: "",
+    organizationId: "",
+    webhookSecret: "",
+    currency: "USD",
+    plans: {
+      free: {
+        name: "Free",
+        price: 0,
+        features: ["Basic inspection", "Limited exports", "Community support"]
+      },
+      pro: {
+        name: "Pro",
+        price: 9.99,
+        features: ["Unlimited inspection", "Bulk exports", "Priority support", "Advanced SEO tools"]
+      },
+      team: {
+        name: "Team",
+        price: 29.99,
+        features: ["Everything in Pro", "Team collaboration", "Custom integrations", "Dedicated support"]
+      }
+    },
+    trialPeriod: 14
+  },
+  // --- Analytics & Monitoring ---
+  analytics: {
+    googleAnalyticsId: "",
+    googleTagManagerId: "",
+    mixpanelToken: "",
+    amplitudeApiKey: "",
+    hotjarId: "",
+    clarity: { enabled: false, projectId: "" },
+    plausible: { enabled: false, domain: "macrohr.com" }
+  },
+  monitoring: {
+    sentry: {
+      enabled: false,
+      dsn: "",
+      environment: "production",
+      tracesSampleRate: 0.1
+    },
+    logRocket: { enabled: false, appId: "" }
+  },
+  errorTracking: {
+    enabled: true,
+    reportToBackend: true,
+    ignoredErrors: ["ResizeObserver loop limit exceeded"]
+  },
+  // --- Content Management ---
+  content: {
+    blog: { enabled: true, apiEndpoint: "/api/blog", postsPerPage: 10 },
+    changelog: { enabled: true, apiEndpoint: "/api/changelog" },
+    documentation: { url: "https://", searchEnabled: true },
+    helpCenter: {
+      url: "https://help",
+      categories: ["Getting Started", "Features", "Troubleshooting", "API", "Billing"]
+    },
+    announcements: { enabled: true, apiEndpoint: "/api/announcements" }
+  },
+  // --- Legal & Compliance ---
+  legal: {
+    termsOfService: { url: "/terms", lastUpdated: "2025-12-18" },
+    privacyPolicy: { url: "/privacy", lastUpdated: "2025-12-18" },
+    cookiePolicy: { url: "/cookies", lastUpdated: "2025-12-18" },
+    gdpr: { enabled: true, dataRetentionDays: 365, cookieConsentRequired: true },
+    ccpa: { enabled: true, doNotSellLink: "/do-not-sell" },
+    ageRestriction: { minimumAge: 13, requireVerification: false },
+    dataExport: { enabled: true, endpoint: "/api/user/export" },
+    dataDelition: { enabled: true, endpoint: "/api/user/delete" }
+  },
+  // --- Notifications ---
   notifications: {
     email: {
       provider: "sendgrid",
@@ -14724,26 +16441,16 @@ var siteConfig = {
       provider: "onesignal",
       appId: ""
     },
-    inApp: {
-      enabled: true,
-      pollInterval: 6e4,
-      // 1 minute
-      maxNotifications: 50
-    },
+    inApp: { enabled: true, pollInterval: 6e4, maxNotifications: 50 },
     banner: {
       enabled: false,
       message: "",
       type: "info",
       dismissible: true
     },
-    newsletter: {
-      enabled: true,
-      provider: "mailchimp",
-      apiKey: "",
-      listId: ""
-    }
+    newsletter: { enabled: true, provider: "mailchimp", apiKey: "", listId: "" }
   },
-  // --- Feature Flags & Experiments (Features Tab) ---
+  // --- Features & Flags ---
   features: {
     betaFeatures: {
       enabled: false,
@@ -14753,42 +16460,32 @@ var siteConfig = {
         { id: "team-collaboration", name: "Team Collaboration", enabled: false }
       ]
     },
-    experimentalFeatures: {
-      enabled: false,
-      features: []
-    },
-    rollout: {
-      gradualEnabled: false,
-      percentage: 10
-      // Rollout to 10% of users initially
-    },
+    experimentalFeatures: { enabled: false, features: [] },
+    rollout: { gradualEnabled: false, percentage: 10 },
     maintenance: {
       enabled: false,
       message: "We're currently performing maintenance. We'll be back shortly!"
     }
   },
-  // --- Localization & i18n (Localization Tab) ---
+  // --- Localization ---
   localization: {
     defaultLanguage: "en",
     supportedLanguages: [
-      { code: "en", name: "English", flag: "\u{1F1FA}\u{1F1F8}" },
-      { code: "es", name: "Espa\xF1ol", flag: "\u{1F1EA}\u{1F1F8}" },
-      { code: "fr", name: "Fran\xE7ais", flag: "\u{1F1EB}\u{1F1F7}" },
-      { code: "de", name: "Deutsch", flag: "\u{1F1E9}\u{1F1EA}" },
-      { code: "ja", name: "\u65E5\u672C\u8A9E", flag: "\u{1F1EF}\u{1F1F5}" }
+      { code: "en", name: "English", flag: "US" },
+      { code: "es", name: "Espa\xF1ol", flag: "ES" },
+      { code: "fr", name: "Fran\xE7ais", flag: "FR" },
+      { code: "de", name: "Deutsch", flag: "DE" },
+      { code: "ja", name: "\u65E5\u672C\u8A9E", flag: "JP" }
     ],
     autoDetect: true,
     fallbackLanguage: "en",
-    translationService: {
-      provider: "i18next",
-      apiKey: ""
-    },
+    translationService: { provider: "i18next", apiKey: "" },
     dateFormat: "MM/DD/YYYY",
     timeFormat: "12h",
     currency: "USD",
     numberFormat: "en-US"
   },
-  // --- Storage & Assets (Storage Tab) ---
+  // --- Storage ---
   storage: {
     provider: "local",
     bucket: "macrohr",
@@ -14796,18 +16493,12 @@ var siteConfig = {
     publicUrl: "",
     limits: {
       maxFileSize: 10485760,
-      // 10MB in bytes
       maxFilesPerUser: 1e3,
       allowedFileTypes: [".jpg", ".jpeg", ".png", ".gif", ".svg", ".webp", ".pdf"]
     },
-    imageOptimization: {
-      enabled: true,
-      quality: 85,
-      formats: ["webp", "avif"],
-      responsive: true
-    }
+    imageOptimization: { enabled: true, quality: 85, formats: ["webp", "avif"], responsive: true }
   },
-  // --- Security (Security Tab) ---
+  // --- Security ---
   security: {
     cors: {
       enabled: true,
@@ -14828,83 +16519,33 @@ var siteConfig = {
     rateLimit: {
       enabled: true,
       windowMs: 9e5,
-      // 15 minutes
       maxRequests: 100,
       message: "Too many requests, please try again later."
     },
-    apiKeys: {
-      rotation: {
-        enabled: false,
-        intervalDays: 90
-      }
-    },
-    ipWhitelist: {
-      enabled: false,
-      ips: []
-    },
-    webhookVerification: {
-      enabled: true,
-      secretKey: ""
-    },
-    encryption: {
-      algorithm: "aes-256-gcm",
-      enabled: true
-    }
+    apiKeys: { rotation: { enabled: false, intervalDays: 90 } },
+    ipWhitelist: { enabled: false, ips: [] },
+    webhookVerification: { enabled: true, secretKey: "" },
+    encryption: { algorithm: "aes-256-gcm", enabled: true }
   },
-  // --- Performance (Performance Tab) ---
+  // --- Performance ---
   performance: {
     cache: {
       enabled: true,
       ttl: 3600,
-      // 1 hour in seconds
       strategy: "stale-while-revalidate"
     },
-    lazyLoading: {
-      enabled: true,
-      threshold: 0.1
-    },
-    compression: {
-      enabled: true,
-      type: "gzip"
-    },
-    budgets: {
-      javascript: 500,
-      // KB
-      css: 100,
-      // KB
-      images: 1e3,
-      // KB
-      fonts: 200
-      // KB
-    },
-    preload: {
-      enabled: true,
-      resources: ["/fonts/main.woff2", "/images/logo.svg"]
-    }
+    lazyLoading: { enabled: true, threshold: 0.1 },
+    compression: { enabled: true, type: "gzip" },
+    budgets: { javascript: 500, css: 100, images: 1e3, fonts: 200 },
+    preload: { enabled: true, resources: ["/fonts/main.woff2", "/images/logo.svg"] }
   },
-  // --- Developer & Testing (Developer Tab) ---
+  // --- Developer Tools ---
   developer: {
     debugMode: false,
-    staging: {
-      enabled: true,
-      url: "https://staging.macrohr.com",
-      apiUrl: "https://staging-api.macrohr.com"
-    },
-    testing: {
-      enabled: true,
-      testApiUrl: "https://test-api.macrohr.com"
-    },
-    apiVersioning: {
-      current: "v1",
-      supported: ["v1"],
-      deprecationNotice: ""
-    },
-    webhooks: {
-      testEndpoint: "https://webhook.site/test",
-      retryAttempts: 3,
-      timeout: 5e3
-      // ms
-    },
+    staging: { enabled: true, url: "https://staging.macrohr.com", apiUrl: "https://staging-api.macrohr.com" },
+    testing: { enabled: true, testApiUrl: "https://test-api.macrohr.com" },
+    apiVersioning: { current: "v1", supported: ["v1"], deprecationNotice: "" },
+    webhooks: { testEndpoint: "https://webhook.site/test", retryAttempts: 3, timeout: 5e3 },
     logging: {
       level: "info",
       enabled: true,
@@ -14912,36 +16553,16 @@ var siteConfig = {
       remote: false
     }
   },
-  // --- Changelog & Updates (Updates Tab) ---
+  // --- Updates & Changelog ---
   updates: {
-    changelog: {
-      enabled: true,
-      url: "/changelog",
-      apiEndpoint: "/api/changelog"
-    },
-    notifications: {
-      showOnUpdate: true,
-      showInApp: true,
-      sendEmail: false
-    },
-    autoUpdate: {
-      enabled: true,
-      checkInterval: 864e5
-      // 24 hours in ms
-    },
+    changelog: { enabled: true, url: "/changelog", apiEndpoint: "/api/changelog" },
+    notifications: { showOnUpdate: true, showInApp: true, sendEmail: false },
+    autoUpdate: { enabled: true, checkInterval: 864e5 },
     versionHistory: [
-      {
-        version: "1.0.0",
-        date: "2025-12-18",
-        changes: ["Initial release"],
-        breaking: false
-      }
+      { version: "1.0.0", date: "2025-12-18", changes: ["Initial release"], breaking: false }
     ],
     deprecations: [],
-    migrationGuides: {
-      enabled: true,
-      url: "/docs/migrations"
-    }
+    migrationGuides: { enabled: true, url: "/docs/migrations" }
   }
 };
 
@@ -15060,8 +16681,9 @@ app.get("/api/documents", async (c) => {
 var src_default = app;
 
 // ../node_modules/wrangler/templates/middleware/middleware-ensure-req-body-drained.ts
-var import_checked_fetch68 = __toESM(require_checked_fetch());
-var import_strip_cf_connecting_ip_header68 = __toESM(require_strip_cf_connecting_ip_header());
+var import_checked_fetch90 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header90 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 var drainBody = /* @__PURE__ */ __name(async (request, env, _ctx, middlewareCtx) => {
   try {
     return await middlewareCtx.next(request, env);
@@ -15080,8 +16702,9 @@ var drainBody = /* @__PURE__ */ __name(async (request, env, _ctx, middlewareCtx)
 var middleware_ensure_req_body_drained_default = drainBody;
 
 // ../node_modules/wrangler/templates/middleware/middleware-miniflare3-json-error.ts
-var import_checked_fetch69 = __toESM(require_checked_fetch());
-var import_strip_cf_connecting_ip_header69 = __toESM(require_strip_cf_connecting_ip_header());
+var import_checked_fetch91 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header91 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 function reduceError(e) {
   return {
     name: e?.name,
@@ -15104,7 +16727,7 @@ var jsonError = /* @__PURE__ */ __name(async (request, env, _ctx, middlewareCtx)
 }, "jsonError");
 var middleware_miniflare3_json_error_default = jsonError;
 
-// .wrangler/tmp/bundle-bggTt9/middleware-insertion-facade.js
+// .wrangler/tmp/bundle-O1axK6/middleware-insertion-facade.js
 var __INTERNAL_WRANGLER_MIDDLEWARE__ = [
   middleware_ensure_req_body_drained_default,
   middleware_miniflare3_json_error_default
@@ -15112,8 +16735,9 @@ var __INTERNAL_WRANGLER_MIDDLEWARE__ = [
 var middleware_insertion_facade_default = src_default;
 
 // ../node_modules/wrangler/templates/middleware/common.ts
-var import_checked_fetch71 = __toESM(require_checked_fetch());
-var import_strip_cf_connecting_ip_header71 = __toESM(require_strip_cf_connecting_ip_header());
+var import_checked_fetch93 = __toESM(require_checked_fetch());
+var import_strip_cf_connecting_ip_header93 = __toESM(require_strip_cf_connecting_ip_header());
+init_modules_watch_stub();
 var __facade_middleware__ = [];
 function __facade_register__(...args) {
   __facade_middleware__.push(...args.flat());
@@ -15138,7 +16762,7 @@ function __facade_invoke__(request, env, ctx, dispatch, finalMiddleware) {
 }
 __name(__facade_invoke__, "__facade_invoke__");
 
-// .wrangler/tmp/bundle-bggTt9/middleware-loader.entry.ts
+// .wrangler/tmp/bundle-O1axK6/middleware-loader.entry.ts
 var __Facade_ScheduledController__ = class {
   constructor(scheduledTime, cron, noRetry) {
     this.scheduledTime = scheduledTime;
@@ -15236,4 +16860,153 @@ export {
   __INTERNAL_WRANGLER_MIDDLEWARE__,
   middleware_loader_entry_default as default
 };
+/*! Bundled license information:
+
+react/cjs/react.development.js:
+  (**
+   * @license React
+   * react.development.js
+   *
+   * Copyright (c) Meta Platforms, Inc. and affiliates.
+   *
+   * This source code is licensed under the MIT license found in the
+   * LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/shared/src/utils.js:
+  (**
+   * @license lucide-react v0.561.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/defaultAttributes.js:
+  (**
+   * @license lucide-react v0.561.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/Icon.js:
+  (**
+   * @license lucide-react v0.561.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/createLucideIcon.js:
+  (**
+   * @license lucide-react v0.561.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/icons/briefcase.js:
+  (**
+   * @license lucide-react v0.561.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/icons/calendar-check.js:
+  (**
+   * @license lucide-react v0.561.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/icons/file-text.js:
+  (**
+   * @license lucide-react v0.561.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/icons/gavel.js:
+  (**
+   * @license lucide-react v0.561.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/icons/gift.js:
+  (**
+   * @license lucide-react v0.561.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/icons/layout-dashboard.js:
+  (**
+   * @license lucide-react v0.561.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/icons/life-buoy.js:
+  (**
+   * @license lucide-react v0.561.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/icons/receipt.js:
+  (**
+   * @license lucide-react v0.561.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/icons/settings.js:
+  (**
+   * @license lucide-react v0.561.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/icons/trending-up.js:
+  (**
+   * @license lucide-react v0.561.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/icons/user.js:
+  (**
+   * @license lucide-react v0.561.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/icons/users.js:
+  (**
+   * @license lucide-react v0.561.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
+lucide-react/dist/esm/lucide-react.js:
+  (**
+   * @license lucide-react v0.561.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+*/
 //# sourceMappingURL=index.js.map

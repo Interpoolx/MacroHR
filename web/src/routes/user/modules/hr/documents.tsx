@@ -1,63 +1,66 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { createColumnHelper } from '@tanstack/react-table'
-import { DataTable } from '../../components/shared/DataTable'
+import { createColumnHelper, ColumnDef } from '@tanstack/react-table'
+import { DataTable } from '../../../../components/shared/DataTable'
 import { useState, useEffect } from 'react'
 import { Badge } from "@shared/components/ui/badge"
 import { toast } from "sonner"
 import { Button } from "@shared/components/ui/button"
-import { ScrollText, Plus } from 'lucide-react'
+import { Files, FileDown, UploadCloud } from 'lucide-react'
 
-interface JobReference {
+interface Document {
     id: string
-    employeeName: string
-    requestDate: string
+    name: string
     type: string
-    recipient: string
-    status: 'approved' | 'pending' | 'rejected'
+    category: string
+    uploadDate: string
+    owner: string
 }
 
-export const Route = createFileRoute('/user/job-reference')({
-    component: JobReferencePage,
+export const Route = createFileRoute('/user/modules/hr/documents')({
+    component: DocumentsPage,
 })
 
-const columnHelper = createColumnHelper<JobReference>()
+const columnHelper = createColumnHelper<Document>()
 
-const columns = [
-    columnHelper.accessor('employeeName', {
-        header: 'Subject',
-        cell: info => <span className="font-black uppercase italic text-sm tracking-tight text-white">{info.getValue()}</span>,
+const columns: ColumnDef<Document, any>[] = [
+    columnHelper.accessor('name', {
+        header: 'Document Name',
+        cell: info => (
+            <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-slate-400">
+                    <span className="text-[9px] font-black uppercase">{info.row.original.type}</span>
+                </div>
+                <span className="font-black uppercase italic text-sm tracking-tight">{info.getValue()}</span>
+            </div>
+        ),
     }),
-    columnHelper.accessor('recipient', {
-        header: 'Recipient',
+    columnHelper.accessor('owner', {
+        header: 'Personnel',
         cell: info => <span className="text-xs font-bold text-slate-400">{info.getValue()}</span>,
     }),
-    columnHelper.accessor('type', {
-        header: 'Doc Type',
+    columnHelper.accessor('category', {
+        header: 'Category',
         cell: info => <span className="text-[10px] font-black uppercase italic tracking-widest text-primary">{info.getValue()}</span>,
     }),
-    columnHelper.accessor('status', {
-        header: 'Status',
-        cell: info => {
-            const status = info.getValue()
-            const colors = {
-                approved: "bg-emerald-500/10 text-emerald-500",
-                pending: "bg-orange-500/10 text-orange-500",
-                rejected: "bg-red-500/10 text-red-500",
-            }
-            return (
-                <Badge variant="outline" className={`font-black uppercase italic text-[9px] tracking-widest px-2 ${colors[status]}`}>
-                    {status}
-                </Badge>
-            )
-        }
+    columnHelper.accessor('uploadDate', {
+        header: 'Date Uploaded',
+        cell: info => <span className="font-mono text-slate-500 text-xs">{info.getValue()}</span>,
+    }),
+    columnHelper.display({
+        id: 'download',
+        cell: () => (
+            <Button variant="ghost" size="icon" className="h-8 w-8 text-primary hover:bg-white/10">
+                <FileDown size={14} />
+            </Button>
+        )
     })
 ]
 
-function JobReferencePage() {
-    const [data, setData] = useState<JobReference[]>([])
+function DocumentsPage() {
+    const [data, setData] = useState<Document[]>([])
 
     useEffect(() => {
-        fetch('/data/job_references.json')
+        fetch('/data/hr/documents.json')
             .then(res => res.json())
             .then(d => setData(d))
     }, [])
@@ -68,18 +71,18 @@ function JobReferencePage() {
                 <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[100px] -mr-32 -mt-32 pointer-events-none" />
                 <div className="relative z-10 flex items-center gap-4">
                     <div className="w-16 h-16 rounded-[1.5rem] bg-primary/20 flex items-center justify-center text-primary border border-primary/20 shadow-xl shadow-primary/10">
-                        <ScrollText size={32} />
+                        <Files size={32} />
                     </div>
                     <div>
                         <h1 className="text-4xl font-black uppercase italic tracking-tighter leading-none">
-                            Reference <span className="text-primary">Vault</span>
+                            Artifact <span className="text-primary">Library</span>
                         </h1>
-                        <p className="text-slate-500 mt-2 font-bold uppercase italic text-xs tracking-[0.2em]">Process employment verifications and reference letters</p>
+                        <p className="text-slate-500 mt-2 font-bold uppercase italic text-xs tracking-[0.2em]">Secure centralized repository for organizational documents</p>
                     </div>
                 </div>
                 <Button className="relative z-10 h-12 px-8 accent-gradient border-0 rounded-xl font-black uppercase italic shadow-xl shadow-primary/20 hover:scale-105 active:scale-95 transition-all text-[10px] tracking-widest">
-                    <Plus className="w-4 h-4 mr-2" />
-                    Issue Reference
+                    <UploadCloud className="w-4 h-4 mr-2" />
+                    Upload Entity
                 </Button>
             </div>
 
@@ -87,10 +90,10 @@ function JobReferencePage() {
                 <DataTable
                     columns={columns}
                     data={data}
-                    searchKey="employeeName"
+                    searchColumn="name"
                     onDelete={(row) => {
                         setData(data.filter(d => d.id !== row.id))
-                        toast.info("Reference Request Expunged")
+                        toast.info("Document Purged from Archive")
                     }}
                 />
             </div>

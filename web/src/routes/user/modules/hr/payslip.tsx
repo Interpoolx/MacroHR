@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { createColumnHelper, ColumnDef } from '@tanstack/react-table'
-import { DataTable } from '../../components/shared/DataTable'
+import { DataTable } from '../../../../components/shared/DataTable'
 import { useState, useEffect } from 'react'
 import { Badge } from "@shared/components/ui/badge"
 import { toast } from "sonner"
@@ -16,7 +16,7 @@ interface Payslip {
     status: 'paid' | 'processed' | 'pending'
 }
 
-export const Route = createFileRoute('/user/payslip')({
+export const Route = createFileRoute('/user/modules/hr/payslip')({
     component: PayslipManagementPage,
 })
 
@@ -45,7 +45,7 @@ const columns: ColumnDef<Payslip, any>[] = [
                 pending: "bg-orange-500/10 text-orange-500",
             }
             return (
-                <Badge variant="outline" className={`font-black uppercase italic text-[9px] tracking-widest px-2 ${colors[status as keyof typeof colors]}`}>
+                <Badge variant="outline" className={"font-black uppercase italic text-[9px] tracking-widest px-2 ${colors[status as keyof typeof colors]}"}>
                     {status}
                 </Badge>
             )
@@ -57,7 +57,7 @@ function PayslipManagementPage() {
     const [data, setData] = useState<Payslip[]>([])
 
     useEffect(() => {
-        fetch('/data/payslips.json')
+        fetch('/data/hr/payslips.json')
             .then(res => res.json())
             .then(d => setData(d))
     }, [])
@@ -82,7 +82,7 @@ function PayslipManagementPage() {
                 <DataTable
                     columns={columns}
                     data={data}
-                    searchKey="employeeName"
+                    searchColumn="employeeName"
                     onDelete={(row) => {
                         setData(data.filter(d => d.id !== row.id))
                         toast.info("Payslip Voided")

@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
+html {
+  scroll-behavior: smooth;
+}
+
 @theme {
   --color-background: #050505;
   --color-foreground: #ffffff;
@@ -12,6 +16,7 @@
   --color-popover-foreground: #ffffff;
 
   --color-primary: #ff6600;
+  --color-primary-end: #ff8533;
   --color-primary-foreground: #ffffff;
 
   --color-secondary: #0a0a0a;
@@ -30,11 +35,25 @@
   --color-input: #242424;
   --color-ring: #ff6600;
 
-  --radius-lg: 1rem;
-  --radius-md: 0.875rem;
-  --radius-sm: 0.75rem;
+  --color-header: #050505;
+  --color-header-foreground: #ffffff;
+  --color-footer: #050505;
+  --color-footer-foreground: #ffffff;
+  --color-sidebar: #050505;
+  --color-sidebar-foreground: #ffffff;
+  --color-sidebar-border: #242424;
 
-  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-sans: var(--font-sans);
+  --font-heading: var(--font-heading);
+  --font-size-base: var(--font-size-base);
+  --line-height-base: var(--line-height-base);
+  --spacing: var(--spacing);
+  --radius: var(--radius);
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-sm: calc(var(--radius) * 0.6);
+
   --font-mono: 'JetBrains Mono', monospace;
 
   /* Custom tokens */
@@ -74,6 +93,8 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -105,14 +126,17 @@
   }
 
   .gradient-text {
-    background: linear-gradient(135deg, var(--color-primary), #ff9933);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-end));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    display: inline-block;
+    color: var(--color-primary);
+    /* Fallback */
   }
 
   .accent-gradient {
-    background: linear-gradient(135deg, var(--color-primary), #ff8533);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-end));
   }
 
   .glow-effect {

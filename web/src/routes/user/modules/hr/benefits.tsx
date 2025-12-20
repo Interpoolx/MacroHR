@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { createColumnHelper, ColumnDef } from '@tanstack/react-table'
-import { DataTable } from '../../components/shared/DataTable'
+import { DataTable } from '../../../../components/shared/DataTable'
 import { useState, useEffect } from 'react'
 import { Badge } from "@shared/components/ui/badge"
 import { toast } from "sonner"
@@ -27,7 +27,7 @@ interface Benefit {
     status: 'active' | 'inactive'
 }
 
-export const Route = createFileRoute('/user/benefits')({
+export const Route = createFileRoute('/user/modules/hr/benefits')({
     component: BenefitsManagementPage,
 })
 
@@ -134,7 +134,7 @@ function BenefitsManagementPage() {
                 <DataTable
                     columns={columns}
                     data={data}
-                    searchKey="name"
+                    searchColumn="name"
                     onEdit={handleOpenModal}
                     onDelete={(row) => {
                         setData(data.filter(d => d.id !== row.id))

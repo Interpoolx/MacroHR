@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { createColumnHelper, ColumnDef } from '@tanstack/react-table'
-import { DataTable } from '../../components/shared/DataTable'
+import { DataTable } from '../../../../components/shared/DataTable'
 import { useState, useEffect, useCallback } from 'react'
 import { Badge } from "@shared/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@shared/components/ui/avatar"
@@ -37,9 +37,18 @@ interface Person {
     avatar: string
 }
 
-export const Route = createFileRoute('/user/people')({
+export const Route = createFileRoute('/user/modules/hr/people')({
     component: PeopleManagementPage,
 })
+
+const tableConfig = {
+    addLabel: "New Employee",
+    editLabel: "Edit Employee",
+    searchPlaceholder: "Search employees...", // optional – override default if needed
+    // You can add more later:
+    // deleteLabel: "Delete User",
+    // emptyMessage: "No users found",
+};
 
 const columnHelper = createColumnHelper<Person>()
 
@@ -103,7 +112,7 @@ function PeopleManagementPage() {
     })
 
     useEffect(() => {
-        fetch('/data/people.json')
+        fetch('/data/hr/people.json')
             .then(res => res.json())
             .then(data => setPeople(data))
             .catch(err => console.error('Error fetching people:', err))
@@ -166,7 +175,8 @@ function PeopleManagementPage() {
                 <DataTable
                     columns={columns}
                     data={people}
-                    searchKey="name"
+                    searchColumn="name"
+                    config={tableConfig}
                     onEdit={handleOpenModal}
                     onDelete={handleDelete}
                     onAdd={() => handleOpenModal(null)}

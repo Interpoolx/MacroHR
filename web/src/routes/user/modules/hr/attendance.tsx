@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useState, useEffect } from 'react'
 import { createColumnHelper, ColumnDef } from '@tanstack/react-table'
-import { DataTable } from '../../components/shared/DataTable'
+import { DataTable } from '../../../../components/shared/DataTable'
 import { Badge } from "@shared/components/ui/badge"
 import { Calendar, Clock, Download, Filter, Users } from 'lucide-react'
 import { Button } from "@shared/components/ui/button"
@@ -11,7 +11,7 @@ const searchSchema = z.object({
   role: z.enum(['user', 'manager']).optional().catch('user'),
 })
 
-export const Route = createFileRoute('/user/attendance')({
+export const Route = createFileRoute('/user/modules/hr/attendance')({
   validateSearch: searchSchema,
   component: AttendancePage,
 })
@@ -35,7 +35,7 @@ function AttendancePage() {
   const isManager = role === 'manager'
 
   useEffect(() => {
-    fetch('/data/attendance.json')
+    fetch('/data/hr/attendance.json')
       .then(res => res.json())
       .then(allData => {
         if (isManager) {
@@ -76,7 +76,7 @@ function AttendancePage() {
           'half-day': 'bg-blue-500/10 text-blue-500 border-blue-500/20',
         }
         return (
-          <Badge variant="outline" className={`font-black uppercase italic text-[9px] tracking-widest px-2 py-0.5 ${colors[status as keyof typeof colors]}`}>
+          <Badge variant="outline" className={"font-black uppercase italic text-[9px] tracking-widest px-2 py-0.5 ${colors[status as keyof typeof colors]}"}>
             {status}
           </Badge>
         )
@@ -98,7 +98,7 @@ function AttendancePage() {
           </div>
           <div>
             <h1 className="text-4xl font-black uppercase italic tracking-tighter leading-none">
-              {isManager ? 'Team' : 'Personal'} <span className="text-primary">Attendance</span>
+              {isManager ? 'Team' : 'Personal'} <span className='text-primary'>Attendance</span>
             </h1>
             <p className="text-slate-500 mt-2 font-bold uppercase italic text-xs tracking-[0.2em]">
               {isManager ? 'Overview of workforce discipline and shift adherence' : 'Track your discipline and work hours history'}
@@ -120,15 +120,15 @@ function AttendancePage() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="glass bg-white/5 border border-white/10 rounded-3xl p-6">
-          <p className="text-[10px] font-black uppercase italic tracking-widest text-slate-500 mb-1">{isManager ? 'Team Late Count' : 'Avg. Clock In'}</p>
-          <h3 className={`text-3xl font-black italic tracking-tighter ${isManager ? 'text-orange-400' : 'text-emerald-400'}`}>
+          <p className="text-[10px] font-black uppercase italic tracking-widest text-slate-500 mb-1">{isManager ? "Team Late Count" : "Avg. Clock In"}</p>
+          <h3 className={`text-3xl font-black italic tracking-tighter ${isManager ? `text-orange-400` : `text-emerald-400`}`}>
             {isManager ? '08' : '08:52 AM'}
           </h3>
         </div>
         <div className="glass bg-white/5 border border-white/10 rounded-3xl p-6">
-          <p className="text-[10px] font-black uppercase italic tracking-widest text-slate-500 mb-1">{isManager ? 'Active Shifts' : 'Total Late Days'}</p>
+          <p className="text-[10px] font-black uppercase italic tracking-widest text-slate-500 mb-1">{isManager ? "Active Shifts" : "Total Late Days"}</p>
           <h3 className="text-3xl font-black italic tracking-tighter text-sky-400">
-            {isManager ? '124' : '02'} <span className="text-xs uppercase ml-1">Live</span>
+            {isManager ? '124' : '02'} <span className='text-xs uppercase ml-1'>Live</span>
           </h3>
         </div>
         <div className="glass bg-white/5 border border-white/10 rounded-3xl p-6">
@@ -141,7 +141,7 @@ function AttendancePage() {
         <DataTable
           columns={columns}
           data={data}
-          searchKey={isManager ? "employeeName" : "date"}
+          searchColumn={isManager ? "employeeName" : "date"}
         />
       </div>
     </div>

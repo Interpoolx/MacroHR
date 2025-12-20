@@ -94,17 +94,17 @@ export default function AdminDashboard() {
             {/* Header */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                    <h1 className="text-4xl font-black uppercase italic tracking-tighter leading-none">
+                    <h1 className="text-4xl font-black uppercase italic tracking-tighter leading-none text-foreground">
                         Admin <span className="text-primary">Dashboard</span>
                     </h1>
-                    <p className="text-slate-500 mt-2 font-bold uppercase italic text-xs tracking-[0.2em]">Real-time performance overview & metrics</p>
+                    <p className="text-muted-foreground mt-2 font-bold uppercase italic text-xs tracking-[0.2em]">Real-time performance overview & metrics</p>
                 </div>
                 <div className="flex items-center gap-3">
-                    <div className="flex items-center gap-2 p-3 bg-white/5 border border-white/10 rounded-2xl text-slate-400 font-bold text-sm">
+                    <div className="flex items-center gap-2 p-3 bg-card border border-border rounded-[var(--radius)] text-muted-foreground font-bold text-sm">
                         <Calendar size={18} />
                         <span>Last 30 Days</span>
                     </div>
-                    <button className="accent-gradient h-12 px-6 rounded-2xl font-black uppercase italic text-sm shadow-xl shadow-primary/20 hover:scale-105 active:scale-95 transition-all flex items-center gap-2">
+                    <button className="accent-gradient h-12 px-6 rounded-[var(--radius)] font-black uppercase italic text-sm shadow-xl shadow-primary/20 hover:scale-105 active:scale-95 transition-all flex items-center gap-2 text-primary-foreground">
                         <ArrowUpRight size={18} /> Export Data
                     </button>
                 </div>
@@ -119,7 +119,7 @@ export default function AdminDashboard() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: i * 0.1 }}
                     >
-                        <Card className="glass border-white/5 rounded-[2rem] overflow-hidden hover:border-white/20 transition-all group">
+                        <Card className="glass border-border rounded-[var(--radius)] bg-card overflow-hidden hover:border-primary/30 transition-all group">
                             <CardContent className="p-6">
                                 <div className="flex items-center justify-between mb-4">
                                     <div className={`w-12 h-12 rounded-2xl ${stat.bg} flex items-center justify-center`}>
@@ -131,15 +131,15 @@ export default function AdminDashboard() {
                                     </div>
                                 </div>
                                 <div>
-                                    <h3 className="text-slate-500 text-xs font-black uppercase tracking-[0.2em] mb-1">{stat.title}</h3>
-                                    <div className="text-3xl font-black italic tracking-tighter tabular-nums leading-none">{stat.value}</div>
+                                    <h3 className="text-muted-foreground text-xs font-black uppercase tracking-[0.2em] mb-1">{stat.title}</h3>
+                                    <div className="text-3xl font-black italic tracking-tighter tabular-nums leading-none text-foreground">{stat.value}</div>
                                 </div>
-                                <div className="mt-4 h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                                <div className="mt-4 h-1 w-full bg-muted rounded-full overflow-hidden">
                                     <motion.div
                                         initial={{ width: 0 }}
                                         animate={{ width: '70%' }}
                                         transition={{ delay: 0.5 + i * 0.1, duration: 1 }}
-                                        className={`h-full ${stat.isUp ? 'bg-primary' : 'bg-red-500'}`}
+                                        className={`h-full ${stat.isUp ? 'bg-primary' : 'bg-destructive'}`}
                                     />
                                 </div>
                             </CardContent>
@@ -150,11 +150,11 @@ export default function AdminDashboard() {
 
             {/* Charts Section */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <Card className="glass border-white/5 rounded-[2.5rem] p-8 shadow-2xl relative overflow-hidden">
+                <Card className="glass border-border bg-card rounded-[var(--radius)] p-8 shadow-2xl relative overflow-hidden">
                     <div className="flex items-center justify-between mb-8">
                         <div>
-                            <CardTitle className="text-2xl font-black uppercase italic tracking-tighter">Revenue Growth</CardTitle>
-                            <CardDescription className="font-bold text-slate-500 uppercase italic text-[10px] tracking-widest mt-1">Daily revenue generated this week</CardDescription>
+                            <CardTitle className="text-2xl font-black uppercase italic tracking-tighter text-foreground">Revenue Growth</CardTitle>
+                            <CardDescription className="font-bold text-muted-foreground uppercase italic text-[10px] tracking-widest mt-1">Daily revenue generated this week</CardDescription>
                         </div>
                         <TrendingUp size={24} className="text-primary group-hover:scale-110 transition-transform" />
                     </div>
@@ -196,11 +196,11 @@ export default function AdminDashboard() {
                     </div>
                 </Card>
 
-                <Card className="glass border-white/5 rounded-[2.5rem] p-8 shadow-2xl relative overflow-hidden">
+                <Card className="glass border-border bg-card rounded-[var(--radius)] p-8 shadow-2xl relative overflow-hidden">
                     <div className="flex items-center justify-between mb-8">
                         <div>
-                            <CardTitle className="text-2xl font-black uppercase italic tracking-tighter">User Acquisition</CardTitle>
-                            <CardDescription className="font-bold text-slate-500 uppercase italic text-[10px] tracking-widest mt-1">New user signups over the last 7 days</CardDescription>
+                            <CardTitle className="text-2xl font-black uppercase italic tracking-tighter text-foreground">User Acquisition</CardTitle>
+                            <CardDescription className="font-bold text-muted-foreground uppercase italic text-[10px] tracking-widest mt-1">New user signups over the last 7 days</CardDescription>
                         </div>
                         <Activity size={24} className="text-blue-500" />
                     </div>
@@ -237,13 +237,13 @@ export default function AdminDashboard() {
             {/* Bottom Section */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {/* Recent Activity */}
-                <Card className="lg:col-span-2 glass border-white/5 rounded-[2.5rem] p-8 shadow-2xl overflow-hidden relative">
+                <Card className="lg:col-span-2 glass border-border bg-card rounded-[var(--radius)] p-8 shadow-2xl overflow-hidden relative">
                     <div className="flex items-center justify-between mb-8">
                         <div>
-                            <CardTitle className="text-2xl font-black uppercase italic tracking-tighter">Recent Activities</CardTitle>
-                            <CardDescription className="font-bold text-slate-500 uppercase italic text-[10px] tracking-widest mt-1">Most recent actions performed on the platform</CardDescription>
+                            <CardTitle className="text-2xl font-black uppercase italic tracking-tighter text-foreground">Recent Activities</CardTitle>
+                            <CardDescription className="font-bold text-muted-foreground uppercase italic text-[10px] tracking-widest mt-1">Most recent actions performed on the platform</CardDescription>
                         </div>
-                        <Clock size={24} className="text-slate-400" />
+                        <Clock size={24} className="text-muted-foreground" />
                     </div>
                     <div className="space-y-6">
                         {activities.map((activity, i) => (
@@ -254,14 +254,14 @@ export default function AdminDashboard() {
                                 transition={{ delay: 0.4 + i * 0.1 }}
                                 className="flex items-center gap-4 group"
                             >
-                                <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-primary/50 transition-colors">
+                                <div className="w-12 h-12 rounded-[var(--radius)] bg-muted/50 border border-border flex items-center justify-center group-hover:border-primary/50 transition-colors">
                                     <activity.icon size={20} className="text-primary" />
                                 </div>
                                 <div className="flex-1">
-                                    <p className="font-black italic uppercase text-sm tracking-tighter">
-                                        {activity.user} <span className="text-slate-500 normal-case italic font-bold ml-1">{activity.action}</span>
+                                    <p className="font-black italic uppercase text-sm tracking-tighter text-foreground">
+                                        {activity.user} <span className="text-muted-foreground normal-case italic font-bold ml-1">{activity.action}</span>
                                     </p>
-                                    <p className="text-xs font-bold text-slate-600 uppercase tracking-widest mt-0.5">{activity.time}</p>
+                                    <p className="text-xs font-bold text-muted-foreground/60 uppercase tracking-widest mt-0.5">{activity.time}</p>
                                 </div>
                                 <button className="w-8 h-8 rounded-full bg-white/5 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center hover:bg-white/10">
                                     <ArrowRight size={14} className="text-slate-400" />
@@ -269,30 +269,30 @@ export default function AdminDashboard() {
                             </motion.div>
                         ))}
                     </div>
-                    <button className="w-full mt-8 py-4 border border-white/5 bg-white/5 rounded-2xl font-black uppercase italic text-xs tracking-widest hover:bg-white/10 transition-all">
+                    <button className="w-full mt-8 py-4 border border-border bg-muted/30 rounded-[var(--radius)] font-black uppercase italic text-xs tracking-widest hover:bg-muted/50 transition-all text-foreground">
                         View All Activity
                     </button>
                 </Card>
 
                 {/* Quick Tips/Metrics */}
-                <Card className="glass border-white/5 rounded-[2.5rem] p-8 shadow-2xl bg-gradient-to-br from-primary/20 via-transparent to-transparent">
-                    <div className="w-14 h-14 rounded-2xl accent-gradient flex items-center justify-center shadow-2xl shadow-primary/20 mb-6">
-                        <Zap className="text-white fill-current" size={32} />
+                <Card className="glass border-border rounded-[var(--radius)] p-8 shadow-2xl bg-gradient-to-br from-primary/20 via-transparent to-transparent">
+                    <div className="w-14 h-14 rounded-[var(--radius)] accent-gradient flex items-center justify-center shadow-2xl shadow-primary/20 mb-6">
+                        <Zap className="text-primary-foreground fill-current" size={32} />
                     </div>
-                    <h3 className="text-3xl font-black uppercase italic tracking-tighter leading-none mb-4">Quick Insights</h3>
-                    <p className="font-bold text-slate-400 uppercase italic text-xs tracking-widest leading-relaxed mb-8">
+                    <h3 className="text-3xl font-black uppercase italic tracking-tighter leading-none mb-4 text-foreground">Quick Insights</h3>
+                    <p className="font-bold text-muted-foreground uppercase italic text-xs tracking-widest leading-relaxed mb-8">
                         Your platform performance is <span className="text-primary italic">15% higher</span> than the last quarter average.
                     </p>
                     <div className="space-y-4">
-                        <div className="p-4 bg-white/5 rounded-2xl border border-white/10 flex items-center gap-3">
+                        <div className="p-4 bg-card border border-border rounded-[var(--radius)] flex items-center gap-3">
                             <div className="w-3 h-3 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]" />
                             <span className="font-black uppercase italic text-xs tracking-widest">System Health: 100%</span>
                         </div>
-                        <div className="p-4 bg-white/5 rounded-2xl border border-white/10 flex items-center gap-3">
+                        <div className="p-4 bg-card border border-border rounded-[var(--radius)] flex items-center gap-3">
                             <div className="w-3 h-3 rounded-full bg-blue-500 shadow-[0_0_10px_#3b82f6]" />
                             <span className="font-black uppercase italic text-xs tracking-widest">Active nodes: 12</span>
                         </div>
-                        <div className="p-4 bg-white/5 rounded-2xl border border-white/10 flex items-center gap-3">
+                        <div className="p-4 bg-card border border-border rounded-[var(--radius)] flex items-center gap-3">
                             <div className="w-3 h-3 rounded-full bg-orange-500 shadow-[0_0_10px_#f59e0b]" />
                             <span className="font-black uppercase italic text-xs tracking-widest">Pending PRs: 4</span>
                         </div>

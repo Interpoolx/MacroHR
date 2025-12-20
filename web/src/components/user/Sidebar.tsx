@@ -1,22 +1,26 @@
+// src/components/Sidebar.tsx (or wherever your Sidebar component lives)
+
 import React from 'react';
 import {
-    LayoutDashboard,
-    Users,
-    Receipt,
-    CalendarCheck,
-    Gift,
-    TrendingUp,
-    User,
-    Briefcase,
-    FileText,
-    Settings,
-    LifeBuoy,
     ChevronLeft,
     ChevronRight,
-    LogOut
+    ChevronDown,
+    LogOut,
+    Palette,
+    Box
 } from 'lucide-react';
 import { Link, useNavigate } from '@tanstack/react-router';
 import { signOut } from '@shared/lib/supabase';
+import { useSiteConfig } from '@shared/config/SiteConfigContext';
+import { themes } from '@shared/lib/themes';
+import { modules } from '@shared/config/modules';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@shared/components/ui/select';
 
 interface SidebarProps {
     isMobileOpen: boolean;
@@ -26,66 +30,52 @@ interface SidebarProps {
     role: 'user' | 'manager';
 }
 
-interface NavItem {
-    to: string;
-    label: string;
-    icon: React.ElementType;
-}
-
-const NAV_ITEMS: NavItem[] = [
-    { to: '/user/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { to: '/user/people', label: 'People', icon: Users, managerOnly: true },
-    { to: '/user/payslip', label: 'Payslips', icon: Receipt, managerOnly: true },
-    { to: '/user/attendance', label: 'Attendance', icon: CalendarCheck },
-    { to: '/user/tasks', label: 'My Tasks', icon: FileText, userOnly: true },
-    { to: '/user/benefits', label: 'Benefits', icon: Gift, managerOnly: true },
-    { to: '/user/performance', label: 'Performance', icon: TrendingUp, managerOnly: true },
-    { to: '/user/personal', label: 'Personal Details', icon: User, managerOnly: true },
-    { to: '/user/job-reference', label: 'Job Reference', icon: Briefcase, managerOnly: true },
-    { to: '/user/documents', label: 'Documents', icon: FileText, managerOnly: true },
-    { to: '/user/settings', label: 'Settings', icon: Settings, managerOnly: true },
-    { to: '/user/support', label: 'Support', icon: LifeBuoy, managerOnly: true },
-];
-
-interface NavItem {
+type NavItem = {
     to: string;
     label: string;
     icon: React.ElementType;
     managerOnly?: boolean;
     userOnly?: boolean;
-}
+};
 
 const Sidebar: React.FC<SidebarProps> = ({
     isMobileOpen,
     onMobileToggle,
     isCollapsed,
     onCollapse,
-    role
+    role,
 }) => {
+    const { config, setTheme, setModule } = useSiteConfig();
     const navigate = useNavigate();
+    const [showSwitchers, setShowSwitchers] = React.useState(false);
 
-    const handleSignOut = async () => {
-        try {
-            await signOut()
-        } catch (e) { }
+    // Get sidebar items from current module config
+    const sidebarItems: readonly NavItem[] = config.module.sidebarNav;
 
-        localStorage.removeItem('admin_session')
-        localStorage.removeItem('user_email')
-        localStorage.removeItem('user_role')
-        localStorage.removeItem('macrohr_demo_user')
-
-        window.dispatchEvent(new Event('auth-change'))
-        window.location.href = '/'
-    }
-
-    const filteredNavItems = NAV_ITEMS.filter(item => {
+    const filteredNavItems = sidebarItems.filter((item) => {
         if (role === 'manager') return !item.userOnly;
         if (role === 'user') return !item.managerOnly;
         return true;
     });
 
+    const handleSignOut = async () => {
+        try {
+            await signOut();
+        } catch (e) {
+            console.error(e);
+        }
+
+        localStorage.removeItem('admin_session');
+        localStorage.removeItem('user_email');
+        localStorage.removeItem('user_role');
+        localStorage.removeItem('macrohr_demo_user');
+
+        window.dispatchEvent(new Event('auth-change'));
+        window.location.href = '/';
+    };
+
     const sidebarClasses = `
-    fixed inset-y-0 left-0 z-40 bg-[#050505] border-r border-white/5 transition-all duration-300 ease-in-out
+    fixed inset-y-0 left-0 z-40 bg-[var(--color-sidebar)] text-[var(--color-sidebar-foreground)] border-r border-[var(--color-sidebar-border)] transition-all duration-300 ease-in-out
     ${isCollapsed ? 'w-20' : 'w-64'}
     ${isMobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
   `;
@@ -95,7 +85,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             {/* Mobile Overlay */}
             {isMobileOpen && (
                 <div
-                    className="fixed inset-0 bg-black/60 backdrop-blur-md z-30 lg:hidden"
+                    className="fixed inset-0 bg-background/60 backdrop-blur-md z-30 lg:hidden"
                     onClick={onMobileToggle}
                 />
             )}
@@ -103,14 +93,21 @@ const Sidebar: React.FC<SidebarProps> = ({
             <aside className={sidebarClasses}>
                 <div className="flex flex-col h-full">
                     {/* Logo Section */}
-                    <Link to="/" className={`p-8 flex items-center ${isCollapsed ? 'justify-center' : 'justify-between'} hover:opacity-80 transition-all group`}>
+                    <Link
+                        to="/"
+                        className={`p-8 flex items-center ${isCollapsed ? 'justify-center' : 'justify-between'} hover:opacity-80 transition-all group`}
+                    >
                         {!isCollapsed && (
                             <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 accent-gradient rounded-2xl flex items-center justify-center text-white font-black italic shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">M+</div>
+                                <div className="w-10 h-10 accent-gradient rounded-2xl flex items-center justify-center text-primary-foreground font-black italic shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
+                                    {config.module.logo.icon}
+                                </div>
                                 <div className="flex flex-col">
-                                    <span className="text-lg font-black uppercase italic tracking-tighter leading-none text-white text-balance">Macro<span className="text-primary text-xl">HR</span></span>
-                                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">
-                                        {role === 'manager' ? 'HR Manager' : 'Employee Hub'}
+                                    <span className="text-lg font-black uppercase italic tracking-tighter leading-none text-[var(--color-sidebar-foreground)] text-balance">
+                                        {config.module.logo.text}
+                                    </span>
+                                    <span className="text-[10px] font-bold text-[var(--color-sidebar-foreground)]/60 uppercase tracking-widest mt-1">
+                                        {role === 'manager' ? 'Admin Hub' : 'User Portal'}
                                     </span>
                                 </div>
                             </div>
@@ -121,7 +118,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                                 e.stopPropagation();
                                 onCollapse();
                             }}
-                            className="hidden lg:flex p-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-slate-400 transition-all"
+                            className="hidden lg:flex p-2 rounded-xl bg-muted/20 border border-[var(--color-sidebar-border)] hover:bg-muted/40 text-[var(--color-sidebar-foreground)]/80 transition-all"
                         >
                             {isCollapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
                         </button>
@@ -139,35 +136,103 @@ const Sidebar: React.FC<SidebarProps> = ({
                                     search={{ role }}
                                     onClick={() => isMobileOpen && onMobileToggle()}
                                     activeProps={{
-                                        className: 'bg-primary text-white shadow-xl shadow-primary/20 scale-[1.02]'
+                                        className: 'bg-primary text-primary-foreground shadow-xl shadow-primary/20 scale-[1.02]',
                                     }}
                                     inactiveProps={{
-                                        className: 'text-slate-400 hover:bg-white/5 hover:text-white'
+                                        className: 'text-[var(--color-sidebar-foreground)]/60 hover:bg-muted/30 hover:text-[var(--color-sidebar-foreground)]',
                                     }}
                                     className="w-full flex items-center gap-4 px-4 py-3.5 rounded-2xl transition-all duration-300 group font-black uppercase italic text-xs tracking-widest overflow-hidden"
                                     title={isCollapsed ? item.label : undefined}
                                 >
                                     <Icon size={18} className="shrink-0" />
-                                    {!isCollapsed && (
-                                        <span className="truncate">{item.label}</span>
-                                    )}
+                                    {!isCollapsed && <span className="truncate">{item.label}</span>}
                                 </Link>
                             );
                         })}
                     </nav>
 
+                    {/* Collapsible Switchers Section */}
+                    {!isCollapsed && (
+                        <div className="px-6 py-2 border-t border-[var(--color-sidebar-border)]/10">
+                            <button
+                                onClick={() => setShowSwitchers(!showSwitchers)}
+                                className="w-full flex items-center justify-between px-2 py-3 text-[8px] font-black uppercase tracking-[0.2em] text-[var(--color-sidebar-foreground)]/40 hover:text-primary transition-colors italic group"
+                            >
+                                <div className="flex items-center gap-2">
+                                    <Palette size={10} className={showSwitchers ? "text-primary" : ""} />
+                                    <span>Engine Control</span>
+                                </div>
+                                <div className={`transition-transform duration-300 ${showSwitchers ? 'rotate-180' : ''}`}>
+                                    <ChevronDown size={10} />
+                                </div>
+                            </button>
+
+                            {showSwitchers && (
+                                <div className="space-y-4 pt-2 pb-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                                    <div className="space-y-2">
+                                        <div className="flex items-center gap-2 px-2 text-[8px] font-black uppercase tracking-[0.2em] text-[var(--color-sidebar-foreground)]/30 italic">
+                                            <span>Visual Theme</span>
+                                        </div>
+                                        <Select value={config.currentTheme} onValueChange={(v) => setTheme(v as any)}>
+                                            <SelectTrigger className="h-10 bg-muted/20 border-[var(--color-sidebar-border)]/50 rounded-xl text-[10px] font-black uppercase italic tracking-widest text-[var(--color-sidebar-foreground)] focus:ring-primary/20">
+                                                <SelectValue />
+                                            </SelectTrigger>
+                                            <SelectContent className="bg-card border-[var(--color-sidebar-border)] rounded-xl">
+                                                {Object.entries(themes).map(([id, theme]) => (
+                                                    <SelectItem
+                                                        key={id}
+                                                        value={id}
+                                                        className="text-[10px] font-black uppercase italic tracking-widest focus:bg-primary/10 focus:text-primary transition-colors py-3"
+                                                    >
+                                                        {theme.name}
+                                                    </SelectItem>
+                                                ))}
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+
+                                    <div className="space-y-2">
+                                        <div className="flex items-center gap-2 px-2 text-[8px] font-black uppercase tracking-[0.2em] text-[var(--color-sidebar-foreground)]/30 italic">
+                                            <span>Core Architecture</span>
+                                        </div>
+                                        <Select value={config.currentModule} onValueChange={(v) => setModule(v as any)}>
+                                            <SelectTrigger className="h-10 bg-muted/20 border-[var(--color-sidebar-border)]/50 rounded-xl text-[10px] font-black uppercase italic tracking-widest text-[var(--color-sidebar-foreground)] focus:ring-primary/20">
+                                                <SelectValue />
+                                            </SelectTrigger>
+                                            <SelectContent className="bg-card border-[var(--color-sidebar-border)] rounded-xl">
+                                                {Object.entries(modules).map(([id, mod]) => (
+                                                    <SelectItem
+                                                        key={id}
+                                                        value={id}
+                                                        className="text-[10px] font-black uppercase italic tracking-widest focus:bg-primary/10 focus:text-primary transition-colors py-3"
+                                                    >
+                                                        {mod.name}
+                                                    </SelectItem>
+                                                ))}
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    )}
+
                     {/* Footer Branding & Actions */}
-                    <div className="p-6 mt-auto border-t border-white/5 space-y-2 relative overflow-hidden">
+                    <div className="p-6 mt-auto border-t border-[var(--color-sidebar-border)]/10 space-y-2 relative overflow-hidden">
                         {!isCollapsed && (
-                            <div className="px-4 py-3 mb-4 bg-white/5 rounded-2xl border border-white/5 border-dashed">
+                            <div className="px-4 py-3 mb-4 bg-muted/20 rounded-2xl border border-[var(--color-sidebar-border)] border-dashed">
                                 <a
                                     href="https://web4strategy.com"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="block group text-center"
                                 >
-                                    <span className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-500 group-hover:text-primary transition-colors">Innovated by</span>
-                                    <span className="block text-[11px] font-black uppercase italic tracking-tighter text-white mt-1 group-hover:scale-110 transition-transform">@Web4strategy</span>
+                                    <span className="text-[9px] font-black uppercase tracking-[0.2em] text-[var(--color-sidebar-foreground)]/40 group-hover:text-primary transition-colors">
+                                        Innovated by
+                                    </span>
+                                    <span className="block text-[11px] font-black uppercase italic tracking-tighter text-[var(--color-sidebar-foreground)] mt-1 group-hover:scale-110 transition-transform">
+                                        @Web4strategy
+                                    </span>
                                 </a>
                             </div>
                         )}

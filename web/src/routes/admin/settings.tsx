@@ -1,33 +1,53 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useCallback, useMemo, useEffect } from 'react';
 import {
   Settings,
-  Globe,
-  ShieldCheck,
-  Database,
-  CreditCard,
-  Bell,
-  Search,
-  ChevronRight,
-  Save,
-  Plus,
-  Trash2,
-  Info,
   Layout,
-  Server,
+  Search,
+  Shield,
+  Palette,
+  Box,
+  CreditCard,
+  Globe,
+  Menu,
+  Save,
+  Trash2,
+  Upload,
+  ExternalLink,
+  ChevronRight,
+  Monitor,
+  Moon,
+  Sun,
+  Camera,
+  Layers,
+  Sparkles,
   Zap,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  Info,
+  Twitter,
+  Hash
 } from 'lucide-react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@shared/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@shared/components/ui/tabs";
 import { Button } from "@shared/components/ui/button";
 import { Input } from "@shared/components/ui/input";
 import { Label } from "@shared/components/ui/label";
-import { Badge } from "@shared/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@shared/components/ui/tabs";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@shared/components/ui/card";
-import { siteConfig as initialConfig } from '@shared/config/site';
+import { Switch } from "@shared/components/ui/switch";
+import { Textarea } from "@shared/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from "@shared/components/ui/select";
 import { toast } from "sonner";
+import { Badge } from "@shared/components/ui/badge";
+import { Separator } from "@shared/components/ui/separator";
+import { motion, AnimatePresence } from "framer-motion";
+import { siteConfig } from '@shared/config/site';
+import { themes } from '@shared/lib/themes';
 
 export const Route = createFileRoute('/admin/settings')({
   component: SettingsPage,
@@ -36,341 +56,659 @@ export const Route = createFileRoute('/admin/settings')({
 const CATEGORIES = [
   { id: 'general', label: 'General', icon: Settings, description: 'Core site identification and settings' },
   { id: 'branding', label: 'Branding', icon: Layout, description: 'Logo, colors, and visual identity' },
-  { id: 'database', label: 'Backend & DB', icon: Database, description: 'API endpoints and storage providers' },
-  { id: 'auth', label: 'Authentication', icon: ShieldCheck, description: 'Login providers and security protocols' },
-  { id: 'billing', label: 'Finance', icon: CreditCard, description: 'Subscription plans and pricing' },
-  { id: 'notifications', label: 'Communcations', icon: Bell, description: 'Email and push notification settings' },
-  { id: 'deployment', label: 'Deployment', icon: Server, description: 'Live mode transition and cloud setup' },
+  { id: 'seo', label: 'SEO & Meta', icon: Globe, description: 'Search engine optimization and social sharing' },
+  { id: 'theme', label: 'Theme Control', icon: Palette, description: 'Interface styles and dark mode' },
+  { id: 'modules', label: 'Module Engine', icon: Box, description: 'Enable or switch active functional modules' },
+  { id: 'billing', label: 'Billing & Ops', icon: CreditCard, description: 'Cloud infrastructure and financial operations' },
+  { id: 'navigation', label: 'Navigation', icon: Menu, description: 'Manage menus and site structure' },
 ];
 
 function SettingsPage() {
-  const [config, setConfig] = useState(initialConfig);
   const [activeTab, setActiveTab] = useState('general');
   const [isSaving, setIsSaving] = useState(false);
 
-  const handleUpdate = (path: string, value: any) => {
+  // Clone config to state for editing
+  const [config, setConfig] = useState<any>(JSON.parse(JSON.stringify(siteConfig)));
+
+  const handleUpdate = useCallback((path: string, value: any) => {
     const keys = path.split('.');
     const nextConfig = { ...config };
     let current: any = nextConfig;
 
     for (let i = 0; i < keys.length - 1; i++) {
       const key = keys[i];
-      if (key === undefined) continue;
-      if (!current[key]) current[key] = {};
-      current[key] = { ...current[key] };
-      current = current[key];
+      if (key) {
+        if (!current[key]) current[key] = {};
+        current[key] = { ...current[key] };
+        current = current[key];
+      }
     }
-    const finalKey = keys[keys.length - 1];
-    if (finalKey !== undefined) {
-      current[finalKey] = value;
+
+    const lastKey = keys[keys.length - 1];
+    if (lastKey) {
+      current[lastKey] = value;
     }
-    setConfig({ ...nextConfig });
-  };
+    setConfig(nextConfig);
+  }, [config]);
 
   const handleSave = async () => {
     setIsSaving(true);
-    // Simulating backend update
-    await new Promise(r => setTimeout(r, 1500));
+    // Simulate API delay
+    await new Promise(r => setTimeout(r, 1200));
     setIsSaving(false);
-    toast.success("Configuration Synced", {
-      description: "System settings have been updated across the production cluster.",
-      icon: "🚀"
+    toast.success("Configuration Synchronized", {
+      description: "Global settings have been pushed to the edge network.",
+      className: "glass border-primary/20"
     });
   };
 
   return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-20">
-      {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-white/5 p-8 rounded-[2.5rem] border border-white/10 glass shadow-2xl relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[100px] -mr-32 -mt-32 pointer-events-none" />
+    <div className="space-y-10 animate-in fade-in slide-in-from-bottom-6 duration-700 pb-20">
+      {/* Page Header */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-card p-8 rounded-[var(--radius)] border border-border glass shadow-3xl relative overflow-hidden backdrop-blur-xl">
+        <div className="absolute top-0 right-0 w-80 h-80 bg-primary/10 rounded-full blur-[120px] -mr-40 -mt-40 pointer-events-none" />
         <div className="relative z-10">
-          <h1 className="text-4xl font-black uppercase italic tracking-tighter leading-none">
-            System <span className="text-primary">Settings</span>
+          <div className="flex items-center gap-3 mb-2">
+            <div className="p-2 bg-primary/20 rounded-lg">
+              <Shield className="text-primary h-5 w-5" />
+            </div>
+            <Badge variant="outline" className="border-primary/20 text-primary font-black uppercase tracking-widest text-[8px] h-5">
+              Admin Mode
+            </Badge>
+          </div>
+          <h1 className="text-5xl font-black uppercase italic tracking-tighter leading-none text-foreground">
+            System <span className="text-primary italic">Control</span>
           </h1>
-          <p className="text-slate-500 mt-2 font-bold uppercase italic text-xs tracking-[0.2em]">Live configuration engine for MacroHR</p>
+          <p className="text-muted-foreground mt-3 font-bold uppercase italic text-[11px] tracking-[0.25em]">Master overrides and infrastructure configuration</p>
         </div>
-        <Button
-          onClick={handleSave}
-          disabled={isSaving}
-          className="relative z-10 h-14 px-8 accent-gradient border-0 rounded-2xl font-black uppercase italic shadow-2xl shadow-primary/30 hover:scale-105 active:scale-95 transition-all text-sm flex items-center gap-3"
-        >
-          {isSaving ? (
-            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-          ) : (
-            <>
-              <Save className="w-5 h-5" />
-              Commit Changes
-            </>
-          )}
-        </Button>
+
+        <div className="flex items-center gap-4 relative z-10">
+          <Button
+            variant="ghost"
+            className="h-14 px-8 rounded-2xl font-black uppercase italic tracking-widest text-muted-foreground hover:text-foreground"
+            onClick={() => setConfig(JSON.parse(JSON.stringify(siteConfig)))}
+          >
+            Rollback
+          </Button>
+          <Button
+            onClick={handleSave}
+            disabled={isSaving}
+            className="h-14 px-10 bg-primary text-primary-foreground border-0 rounded-2xl font-black uppercase italic shadow-2xl shadow-primary/30 hover:scale-[1.02] active:scale-95 transition-all text-xs tracking-widest"
+          >
+            {isSaving ? (
+              <Sparkles className="h-5 w-5 animate-spin mr-2" />
+            ) : (
+              <Save className="h-5 w-5 mr-3" />
+            )}
+            {isSaving ? "Syncing..." : "Save Changes"}
+          </Button>
+        </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-8">
-        {/* Navigation - Vertical Tabs */}
-        <div className="w-full lg:w-80 shrink-0">
-          <div className="glass bg-white/5 border border-white/10 rounded-[2.5rem] p-4 sticky top-8">
-            <div className="space-y-2">
-              {CATEGORIES.map((cat) => (
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        {/* Navigation Sidebar */}
+        <div className="lg:col-span-3 space-y-4">
+          <div className="glass bg-card border-border rounded-[var(--radius)] p-4 flex flex-col gap-1 shadow-xl">
+            {CATEGORIES.map((cat) => {
+              const Icon = cat.icon;
+              return (
                 <button
                   key={cat.id}
                   onClick={() => setActiveTab(cat.id)}
-                  className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all duration-300 text-left group ${activeTab === cat.id
-                    ? 'bg-primary text-white shadow-xl shadow-primary/20'
-                    : 'text-slate-500 hover:bg-white/5 hover:text-white'
+                  className={`w-full flex items-center gap-4 p-4 rounded-xl transition-all group relative overflow-hidden ${activeTab === cat.id
+                    ? 'bg-primary/10 text-foreground border-l-4 border-primary shadow-inner'
+                    : 'text-muted-foreground hover:bg-muted/50 hover:text-foreground border-l-4 border-transparent'
                     }`}
                 >
-                  <div className={`shrink-0 w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${activeTab === cat.id ? 'bg-white/20' : 'bg-white/5 group-hover:bg-white/10'
-                    }`}>
-                    <cat.icon size={20} />
+                  <Icon className={`h-5 w-5 transition-transform group-hover:scale-110 ${activeTab === cat.id ? 'text-primary' : ''}`} />
+                  <div className="text-left">
+                    <p className={`font-black uppercase italic text-xs tracking-widest leading-none ${activeTab === cat.id ? 'text-primary' : ''}`}>
+                      {cat.label}
+                    </p>
+                    <p className="text-[9px] font-bold text-muted-foreground/60 mt-1 uppercase line-clamp-1">{cat.description}</p>
                   </div>
-                  <div className="flex-1 overflow-hidden">
-                    <p className="font-black uppercase italic text-xs tracking-widest">{cat.label}</p>
-                    {activeTab === cat.id && (
-                      <p className="text-[10px] font-bold opacity-70 truncate mt-0.5">{cat.description}</p>
-                    )}
-                  </div>
-                  <ChevronRight size={16} className={`transition-transform duration-300 ${activeTab === cat.id ? 'translate-x-0' : '-translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0'}`} />
+                  {activeTab === cat.id && (
+                    <div className="absolute right-4">
+                      <ChevronRight size={14} className="text-primary animate-pulse" />
+                    </div>
+                  )}
                 </button>
-              ))}
+              );
+            })}
+          </div>
+
+          <div className="p-6 bg-primary/5 border border-border rounded-[var(--radius)] glass">
+            <h4 className="text-[10px] font-black tracking-widest uppercase text-muted-foreground/60 mb-3 italic">Node Status</h4>
+            <div className="flex items-center gap-2 mb-4">
+              <div className="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]" />
+              <span className="text-[10px] font-black uppercase italic text-emerald-500">Global Cluster Online</span>
+            </div>
+            <Separator className="bg-border/30 mb-4" />
+            <div className="space-y-3">
+              <div className="flex justify-between items-center text-[9px] font-bold uppercase tracking-widest text-muted-foreground">
+                <span>Latency</span>
+                <span className="text-foreground">12ms</span>
+              </div>
+              <div className="flex justify-between items-center text-[9px] font-bold uppercase tracking-widest text-muted-foreground">
+                <span>Region</span>
+                <span className="text-foreground">US-EAST</span>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Content Area */}
-        <div className="flex-1">
+        <div className="lg:col-span-9">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              className="space-y-6"
+              initial={{ opacity: 0, y: 10, filter: 'blur(8px)' }}
+              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              exit={{ opacity: 0, y: -10, filter: 'blur(8px)' }}
+              transition={{ duration: 0.4 }}
             >
-              <Tabs value={activeTab} className="w-full">
-                <TabsContent value="general" className="mt-0 space-y-6">
-                  <Card className="glass border-white/5 rounded-[2.5rem] p-8 shadow-2xl">
-                    <CardHeader className="p-0 mb-8">
-                      <CardTitle className="text-2xl font-black uppercase italic tracking-tighter">General Configuration</CardTitle>
-                      <CardDescription className="font-bold text-slate-500 uppercase italic text-[10px] tracking-widest mt-1">Foundational site identity metadata</CardDescription>
-                    </CardHeader>
-                    <CardContent className="p-0 space-y-6">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="space-y-2">
-                          <Label className="font-black uppercase italic text-[10px] tracking-widest text-slate-400">Application Name</Label>
-                          <Input
-                            value={config.name}
-                            onChange={(e) => handleUpdate('name', e.target.value)}
-                            className="h-12 bg-white/5 border-white/10 rounded-xl focus:ring-primary/20"
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <Label className="font-black uppercase italic text-[10px] tracking-widest text-slate-400">Contact Email</Label>
-                          <Input
-                            value={config.contactEmail}
-                            onChange={(e) => handleUpdate('contactEmail', e.target.value)}
-                            className="h-12 bg-white/5 border-white/10 rounded-xl focus:ring-primary/20"
-                          />
-                        </div>
-                        <div className="md:col-span-2 space-y-2">
-                          <Label className="font-black uppercase italic text-[10px] tracking-widest text-slate-400">Site Description</Label>
-                          <textarea
-                            value={config.description}
-                            onChange={(e) => handleUpdate('description', e.target.value)}
-                            className="w-full min-h-[100px] bg-white/5 border border-white/10 rounded-xl p-4 text-sm focus:ring-primary/20 focus:outline-none transition-all"
-                          />
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="glass border-white/5 rounded-[2.5rem] p-8 shadow-2xl">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-10 h-10 rounded-xl bg-orange-500/10 flex items-center justify-center text-orange-500">
-                        <Plus size={20} />
-                      </div>
-                      <div>
-                        <h4 className="font-black uppercase italic text-sm tracking-tighter">Dynamic Metadata</h4>
-                        <p className="text-[10px] font-bold text-slate-500 uppercase italic tracking-widest">Add custom key-value pairs to siteConfig</p>
-                      </div>
+              <Card className="glass border-border rounded-[var(--radius)] shadow-4xl overflow-hidden bg-card/60">
+                <CardHeader className="p-10 pb-4 border-b border-border/50">
+                  <div className="flex items-center gap-4">
+                    <div className="h-16 w-16 rounded-2xl bg-muted/50 flex items-center justify-center text-primary border border-border shadow-inner">
+                      {useMemo(() => {
+                        const Icon = CATEGORIES.find(c => c.id === activeTab)?.icon || Settings;
+                        return <Icon size={32} />;
+                      }, [activeTab])}
                     </div>
-                    <div className="p-6 bg-white/5 rounded-2xl border border-dashed border-white/10 flex flex-col items-center justify-center text-center">
-                      <p className="text-xs font-bold text-slate-500 italic mb-4">Extend your configuration schema with custom variables.</p>
-                      <Button variant="outline" className="rounded-xl border-white/10 bg-white/5 hover:bg-white/10 font-bold text-xs uppercase italic tracking-widest">
-                        Initialize Schema Entry
-                      </Button>
+                    <div>
+                      <CardTitle className="text-4xl font-black uppercase italic tracking-tighter text-foreground">
+                        {CATEGORIES.find(c => c.id === activeTab)?.label} <span className="text-primary opacity-50">Config</span>
+                      </CardTitle>
+                      <CardDescription className="text-muted-foreground font-bold uppercase italic text-[11px] tracking-[0.2em] mt-2">
+                        {CATEGORIES.find(c => c.id === activeTab)?.description}
+                      </CardDescription>
                     </div>
-                  </Card>
-                </TabsContent>
+                  </div>
+                </CardHeader>
 
-                <TabsContent value="branding" className="mt-0 space-y-6">
-                  <Card className="glass border-white/5 rounded-[2.5rem] p-8 shadow-2xl">
-                    <CardHeader className="p-0 mb-8">
-                      <CardTitle className="text-2xl font-black uppercase italic tracking-tighter">Visual Identity</CardTitle>
-                      <CardDescription className="font-bold text-slate-500 uppercase italic text-[10px] tracking-widest mt-1">Manage logos, favicons, and theme colors</CardDescription>
-                    </CardHeader>
-                    <CardContent className="p-0 space-y-8">
+                <CardContent className="p-10 space-y-12">
+                  {/* General Settings */}
+                  {activeTab === 'general' && (
+                    <div className="space-y-10">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div className="space-y-3">
+                          <Label className="font-black uppercase italic text-[10px] tracking-widest text-muted-foreground px-1">Application Name</Label>
+                          <Input
+                            value={config.module?.name || ''}
+                            onChange={(e) => handleUpdate('module.name', e.target.value)}
+                            className="h-14 bg-muted/30 border-border rounded-2xl text-foreground px-6 font-bold"
+                          />
+                        </div>
+                        <div className="space-y-3">
+                          <Label className="font-black uppercase italic text-[10px] tracking-widest text-muted-foreground px-1">Global URL Hierarchy</Label>
+                          <Input
+                            value={config.module?.url || ''}
+                            onChange={(e) => handleUpdate('module.url', e.target.value)}
+                            className="h-14 bg-muted/30 border-border rounded-2xl text-muted-foreground font-mono italic text-sm"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="space-y-3">
+                        <Label className="font-black uppercase italic text-[10px] tracking-widest text-muted-foreground px-1">Module Objective (Description)</Label>
+                        <Textarea
+                          value={config.module?.description || ''}
+                          onChange={(e) => handleUpdate('module.description', e.target.value)}
+                          className="min-h-[120px] bg-muted/30 border-border rounded-3xl text-foreground p-6 font-bold leading-relaxed"
+                        />
+                      </div>
+
+                      <Separator className="bg-border/30" />
+
+                      <div className="flex items-center justify-between p-6 bg-muted/30 rounded-3xl border border-border transition-colors hover:border-primary/20">
+                        <div className="space-y-1">
+                          <h4 className="font-black uppercase italic text-sm text-foreground tracking-tight">Public Registry</h4>
+                          <p className="text-[10px] font-bold text-muted-foreground/60 uppercase italic tracking-widest">Allow search engines to index this specific module</p>
+                        </div>
+                        <Switch className="data-[state=checked]:bg-primary" />
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Branding Settings */}
+                  {activeTab === 'branding' && (
+                    <div className="space-y-10">
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <div className="space-y-4">
-                          <Label className="font-black uppercase italic text-[10px] tracking-widest text-slate-400">Primary Color (HEX)</Label>
-                          <div className="flex gap-4">
-                            <div className="w-12 h-12 rounded-xl border border-white/10 shadow-lg" style={{ backgroundColor: config.theme.primaryColor }} />
-                            <Input
-                              value={config.theme.primaryColor}
-                              onChange={(e) => handleUpdate('theme.primaryColor', e.target.value)}
-                              className="h-12 bg-white/5 border-white/10 rounded-xl flex-1"
-                            />
+                          <Label className="font-black uppercase italic text-[10px] tracking-widest text-muted-foreground text-center block">Primary Logo</Label>
+                          <div className="aspect-square bg-muted/30 border-2 border-dashed border-border rounded-[var(--radius)] flex flex-col items-center justify-center gap-4 group hover:border-primary/40 cursor-pointer transition-all">
+                            <div className="h-16 w-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform shadow-xl shadow-primary/5">
+                              <Camera size={28} />
+                            </div>
+                            <Button variant="ghost" className="text-[9px] font-black uppercase italic tracking-widest text-muted-foreground">Select Artifact</Button>
                           </div>
                         </div>
                         <div className="space-y-4">
-                          <Label className="font-black uppercase italic text-[10px] tracking-widest text-slate-400">Secondary Color (HEX)</Label>
-                          <div className="flex gap-4">
-                            <div className="w-12 h-12 rounded-xl border border-white/10 shadow-lg" style={{ backgroundColor: config.theme.secondaryColor }} />
-                            <Input
-                              value={config.theme.secondaryColor}
-                              onChange={(e) => handleUpdate('theme.secondaryColor', e.target.value)}
-                              className="h-12 bg-white/5 border-white/10 rounded-xl flex-1"
-                            />
+                          <Label className="font-black uppercase italic text-[10px] tracking-widest text-muted-foreground text-center block">Favicon Entity</Label>
+                          <div className="aspect-square bg-muted/30 border-2 border-dashed border-border rounded-[var(--radius)] flex flex-col items-center justify-center gap-4 group hover:border-primary/40 cursor-pointer transition-all">
+                            <div className="h-12 w-12 rounded-xl bg-orange-500/10 flex items-center justify-center text-orange-500 group-hover:scale-110 transition-transform">
+                              <Box size={24} />
+                            </div>
+                            <Button variant="ghost" className="text-[9px] font-black uppercase italic tracking-widest text-muted-foreground">Upload Icon</Button>
+                          </div>
+                        </div>
+                        <div className="space-y-4">
+                          <Label className="font-black uppercase italic text-[10px] tracking-widest text-muted-foreground text-center block">Social Card (OG)</Label>
+                          <div className="aspect-video col-span-1 bg-muted/30 border-2 border-dashed border-border rounded-[var(--radius)] flex flex-col items-center justify-center gap-4 group hover:border-primary/40 cursor-pointer transition-all">
+                            <Layers size={32} className="text-muted-foreground/40 group-hover:text-primary transition-colors" />
+                            <Button variant="ghost" className="text-[9px] font-black uppercase italic tracking-widest text-muted-foreground">Drop 1200x630px</Button>
                           </div>
                         </div>
                       </div>
 
-                      <div className="p-6 bg-white/5 rounded-3xl border border-white/10">
-                        <div className="flex items-center justify-between mb-4">
-                          <span className="font-black uppercase italic text-xs tracking-widest">Logo Configuration</span>
-                          <Badge className="bg-primary/20 text-primary border-primary/20 italic font-black uppercase tracking-tighter text-[9px]">Production Asset</Badge>
-                        </div>
-                        <div className="flex items-center gap-6">
-                          <div className="w-20 h-20 rounded-2xl bg-white flex items-center justify-center p-2 shadow-xl border-4 border-white/10">
-                            <span className="text-slate-900 font-black text-2xl">{config.logo.icon}</span>
-                          </div>
-                          <div className="flex-1 space-y-3">
-                            <Input
-                              value={config.logo.text}
-                              placeholder="Logo Text"
-                              onChange={(e) => handleUpdate('logo.text', e.target.value)}
-                              className="h-10 bg-white/5 border-white/10 rounded-xl"
-                            />
-                            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest italic">Asset path: {config.logo.url}</p>
-                          </div>
+                      <div className="space-y-6">
+                        <div className="space-y-3">
+                          <Label className="font-black uppercase italic text-[10px] tracking-widest text-muted-foreground px-1">Brand Identifier (Text)</Label>
+                          <Input
+                            value={config.module?.logo?.text || ''}
+                            onChange={(e) => handleUpdate('module.logo.text', e.target.value)}
+                            className="h-14 bg-muted/30 border-border rounded-2xl text-foreground px-6 font-black italic tracking-tighter"
+                          />
                         </div>
                       </div>
-                    </CardContent>
-                  </Card>
-                </TabsContent>
+                    </div>
+                  )}
 
-                {/* Other tabs follow same premium pattern... */}
-                <TabsContent value="deployment" className="mt-0 space-y-6">
-                  <Card className="glass border-white/5 rounded-[2.5rem] p-8 shadow-2xl">
-                    <CardHeader className="p-0 mb-8">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <CardTitle className="text-2xl font-black uppercase italic tracking-tighter">Infrastructure Deployment</CardTitle>
-                          <CardDescription className="font-bold text-slate-500 uppercase italic text-[10px] tracking-widest mt-1">Transition system from Demo to Live environment</CardDescription>
-                        </div>
-                        <div className="flex items-center gap-3 bg-white/5 p-2 rounded-2xl border border-white/10">
-                          <span className="text-[10px] font-black uppercase italic text-slate-400 px-2">System Mode</span>
-                          <div className="flex gap-1">
-                            <Button
-                              size="sm"
-                              variant={config.system_mode === 'demo' ? 'default' : 'ghost'}
-                              onClick={() => handleUpdate('system_mode', 'demo')}
-                              className={`h-8 rounded-xl text-[10px] font-black uppercase italic transition-all ${config.system_mode === 'demo' ? 'accent-gradient border-0 shadow-lg shadow-primary/20' : 'text-slate-500'}`}
-                            >
-                              Demo
-                            </Button>
-                            <Button
-                              size="sm"
-                              variant={config.system_mode === 'live' ? 'default' : 'ghost'}
-                              onClick={() => handleUpdate('system_mode', 'live')}
-                              className={`h-8 rounded-xl text-[10px] font-black uppercase italic transition-all ${config.system_mode === 'live' ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-500/20' : 'text-slate-500'}`}
-                            >
-                              Live
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="p-0 space-y-8">
-                      {/* Setup Checker */}
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {[
-                          { name: 'Cloudflare D1', status: !!(config as any).cloudflare?.d1?.databaseId, desc: 'Primary SQL Engine' },
-                          { name: 'Cloudflare R2', status: !!(config as any).cloudflare?.r2?.bucketName && !!(config as any).cloudflare?.r2?.accessKeyId, desc: 'Blob Storage' },
-                          { name: 'Supabase Auth', status: !!(config as any).supabase?.url && !!(config as any).supabase?.anonKey, desc: 'Identity Provider' }
-                        ].map((service, idx) => (
-                          <div key={idx} className="p-6 bg-white/5 rounded-3xl border border-white/10 flex flex-col items-center text-center group hover:bg-white/10 transition-all">
-                            {service.status ? (
-                              <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 flex items-center justify-center text-emerald-500 mb-4">
-                                <CheckCircle2 size={24} />
-                              </div>
-                            ) : (
-                              <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-slate-500 mb-4 group-hover:bg-primary/20 group-hover:text-primary transition-all">
-                                <Zap size={24} />
-                              </div>
-                            )}
-                            <h4 className="font-black uppercase italic text-sm tracking-tighter">{service.name}</h4>
-                            <p className="text-[10px] font-bold text-slate-500 uppercase italic tracking-widest mt-1">{service.desc}</p>
-                            <Badge className={`mt-4 ${service.status ? 'bg-emerald-500/20 text-emerald-500 border-emerald-500/20' : 'bg-white/5 text-slate-500 border-white/10'} italic font-black uppercase text-[9px]`}>
-                              {service.status ? 'Connected' : 'Missing Config'}
-                            </Badge>
-                          </div>
-                        ))}
-                      </div>
+                  {/* SEO Settings */}
+                  {activeTab === 'seo' && (
+                    <Tabs defaultValue="homepage" className="space-y-8">
+                      <TabsList className="bg-muted/30 border border-border p-1 rounded-2xl h-14 w-full">
+                        <TabsTrigger value="homepage" className="flex-1 rounded-xl data-[state=active]:bg-primary/20 data-[state=active]:text-primary font-black uppercase italic text-[10px] tracking-widest h-full">Homepage</TabsTrigger>
+                        <TabsTrigger value="others" className="flex-1 rounded-xl data-[state=active]:bg-primary/20 data-[state=active]:text-primary font-black uppercase italic text-[10px] tracking-widest h-full">Secondary Nodes</TabsTrigger>
+                        <TabsTrigger value="social" className="flex-1 rounded-xl data-[state=active]:bg-primary/20 data-[state=active]:text-primary font-black uppercase italic text-[10px] tracking-widest h-full">Social & Meta</TabsTrigger>
+                      </TabsList>
 
-                      {/* Credentials Table */}
-                      <div className="space-y-6 pt-6 border-t border-white/5">
-                        <div className="flex items-center gap-2">
-                          <AlertCircle size={16} className="text-primary" />
-                          <h4 className="font-black uppercase italic text-xs tracking-widest">Environment Variables Required</h4>
+                      <TabsContent value="homepage" className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
+                        <div className="space-y-3">
+                          <Label className="font-black uppercase italic text-[10px] tracking-widest text-muted-foreground">Homepage Meta Title</Label>
+                          <Input
+                            className="h-14 bg-muted/30 border-border rounded-2xl text-foreground font-bold"
+                            value={config.module?.seo?.homepageTitle || ''}
+                            onChange={(e) => handleUpdate('module.seo.homepageTitle', e.target.value)}
+                          />
+                          <p className="text-[9px] font-bold text-slate-500 uppercase italic tracking-widest mt-1">Recommended: 50-60 characters</p>
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          <div className="space-y-2">
-                            <Label className="font-black uppercase italic text-[10px] tracking-widest text-slate-400">Cloudflare Account ID</Label>
+                        <div className="space-y-3">
+                          <Label className="font-black uppercase italic text-[10px] tracking-widest text-muted-foreground">Homepage Meta Description</Label>
+                          <Textarea
+                            className="min-h-[100px] bg-muted/30 border-border rounded-2xl text-foreground p-4 font-bold"
+                            value={config.module?.seo?.homepageDescription || ''}
+                            onChange={(e) => handleUpdate('module.seo.homepageDescription', e.target.value)}
+                          />
+                          <p className="text-[9px] font-bold text-muted-foreground/60 uppercase italic tracking-widest mt-1">Recommended: 150-160 characters</p>
+                        </div>
+                      </TabsContent>
+
+                      <TabsContent value="others" className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-300">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                          <div className="space-y-3">
+                            <Label className="font-black uppercase italic text-[10px] tracking-widest text-muted-foreground">Title Template</Label>
                             <Input
-                              value={(config as any).cloudflare?.r2?.accountId || ''}
-                              onChange={(e) => handleUpdate('cloudflare.r2.accountId', e.target.value)}
-                              placeholder="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-                              className="h-12 bg-white/5 border-white/10 rounded-xl font-mono text-xs"
+                              className="h-14 bg-muted/30 border-border rounded-2xl text-foreground font-mono"
+                              value={config.module?.seo?.titleTemplate || ''}
+                              onChange={(e) => handleUpdate('module.seo.titleTemplate', e.target.value)}
+                              placeholder="%s | MacroHR"
+                            />
+                            <p className="text-[9px] font-bold text-slate-500 uppercase italic tracking-widest mt-1">Use %s for page title placeholder</p>
+                          </div>
+                          <div className="space-y-3">
+                            <Label className="font-black uppercase italic text-[10px] tracking-widest text-muted-foreground">Default Description</Label>
+                            <Input
+                              className="h-14 bg-muted/30 border-border rounded-2xl text-foreground font-bold"
+                              value={config.module?.seo?.descriptionDefault || ''}
+                              onChange={(e) => handleUpdate('module.seo.descriptionDefault', e.target.value)}
                             />
                           </div>
-                          <div className="space-y-2">
-                            <Label className="font-black uppercase italic text-[10px] tracking-widest text-slate-400">Supabase Project URL</Label>
-                            <Input
-                              value={(config as any).supabase?.url || ''}
-                              onChange={(e) => handleUpdate('supabase.url', e.target.value)}
-                              placeholder="https://xyz.supabase.co"
-                              className="h-12 bg-white/5 border-white/10 rounded-xl font-mono text-xs"
-                            />
-                          </div>
                         </div>
-                        <div className="p-4 bg-primary/10 rounded-2xl border border-primary/20 flex items-start gap-4">
-                          <Info className="text-primary shrink-0" size={20} />
-                          <p className="text-xs font-bold text-slate-400 leading-relaxed italic">
-                            Ensuring these fields are populated correctly allows the system to pivot from
-                            <span className="text-white"> JSON simulation</span> to
-                            <span className="text-emerald-400"> Real Infrastructure</span>. Note that changing System Mode
-                            to <span className="text-emerald-400">Live</span> without proper credentials will result in API failures.
+                        <div className="space-y-4 p-6 bg-muted/30 rounded-[var(--radius)] border border-border">
+                          <div className="flex items-center gap-3 mb-2">
+                            <Info className="h-4 w-4 text-primary" />
+                            <h4 className="text-[10px] font-black uppercase italic tracking-widest text-foreground">Inheritance Note</h4>
+                          </div>
+                          <p className="text-[10px] font-bold text-slate-500 uppercase italic tracking-widest leading-relaxed">
+                            Subpages will automatically inherit these settings unless explicitly overridden at the node level.
                           </p>
                         </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </TabsContent>
+                      </TabsContent>
 
-                <TabsContent value="database" className="mt-0">
-                  <Card className="glass border-white/5 rounded-[2.5rem] p-8 shadow-2xl h-64 flex items-center justify-center">
-                    <div className="text-center">
-                      <Database className="w-12 h-12 text-blue-500 mx-auto mb-4 animate-pulse" />
-                      <h3 className="font-black uppercase italic tracking-tighter text-lg">Infrastructure Controls</h3>
-                      <p className="text-xs font-bold text-slate-500 uppercase italic tracking-widest mt-2">{config.system_mode === 'demo' ? 'Operating in Simulation Mode' : 'Connected to Cloudflare Worker'}</p>
+                      <TabsContent value="social" className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-300">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                          <div className="space-y-3">
+                            <Label className="font-black uppercase italic text-[10px] tracking-widest text-muted-foreground flex items-center gap-2">
+                              <Twitter size={14} /> Twitter Handle
+                            </Label>
+                            <Input
+                              className="h-14 bg-muted/30 border-border rounded-2xl text-foreground font-bold"
+                              value={config.module?.seo?.twitterHandle || ''}
+                              onChange={(e) => handleUpdate('module.seo.twitterHandle', e.target.value)}
+                              placeholder="@macrohr"
+                            />
+                          </div>
+                          <div className="space-y-3">
+                            <Label className="font-black uppercase italic text-[10px] tracking-widest text-muted-foreground flex items-center gap-2">
+                              <Hash size={14} /> Site Name
+                            </Label>
+                            <Input
+                              className="h-14 bg-muted/30 border-border rounded-2xl text-foreground font-bold"
+                              value={config.module?.seo?.siteName || ''}
+                              onChange={(e) => handleUpdate('module.seo.siteName', e.target.value)}
+                              placeholder="MacroHR"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="space-y-4">
+                          <Label className="font-black uppercase italic text-[10px] tracking-widest text-muted-foreground block">Default OG Image URL</Label>
+                          <div className="flex gap-4">
+                            <Input
+                              className="h-14 bg-muted/30 border-border rounded-2xl text-muted-foreground font-mono text-xs flex-1"
+                              value={config.module?.seo?.ogImageDefault || ''}
+                              onChange={(e) => handleUpdate('module.seo.ogImageDefault', e.target.value)}
+                            />
+                            <Button variant="outline" className="h-14 w-14 rounded-2xl border-border bg-muted/30 hover:bg-muted/50 glass">
+                              <Upload size={18} className="text-muted-foreground" />
+                            </Button>
+                          </div>
+                        </div>
+                      </TabsContent>
+                    </Tabs>
+                  )}
+
+                  {/* Theme Control */}
+                  {activeTab === 'theme' && (
+                    <div className="space-y-12">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                        <div className="space-y-6">
+                          <h4 className="font-black uppercase italic text-xs tracking-widest text-foreground">Active Theme Template</h4>
+                          <Select
+                            value={config.currentTheme}
+                            onValueChange={(value) => handleUpdate('currentTheme', value)}
+                          >
+                            <SelectTrigger className="h-14 bg-muted/30 border-border rounded-2xl font-black uppercase italic text-[10px] tracking-widest text-foreground">
+                              <SelectValue placeholder="Select Theme" />
+                            </SelectTrigger>
+                            <SelectContent className="glass border-border rounded-2xl p-2 h-64 overflow-y-auto">
+                              {Object.entries(themes).map(([id, theme]) => (
+                                <SelectItem
+                                  key={id}
+                                  value={id}
+                                  className="rounded-xl focus:bg-primary/20 focus:text-primary font-black uppercase italic text-[10px] tracking-widest p-4 transition-colors"
+                                >
+                                  <div className="flex items-center gap-3">
+                                    <div className="h-4 w-4 rounded-full border border-border" style={{ background: theme.tokens.primary }} />
+                                    {theme.name}
+                                  </div>
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                          <p className="text-[10px] font-bold text-muted-foreground/60 uppercase italic tracking-widest px-1">
+                            Selecting a theme will immediately update visual tokens across the entire environment.
+                          </p>
+                        </div>
+
+                        <div className="space-y-6">
+                          <h4 className="font-black uppercase italic text-xs tracking-widest text-foreground">Visual Mode</h4>
+                          <div className="grid grid-cols-3 gap-4">
+                            {[
+                              { id: 'dark', label: 'Dark', icon: Moon },
+                              { id: 'light', label: 'Light', icon: Sun },
+                              { id: 'system', label: 'Auto', icon: Monitor }
+                            ].map((mode) => (
+                              <button
+                                key={mode.id}
+                                className={`flex flex-col items-center gap-3 p-4 rounded-2xl border-2 transition-all ${mode.id === 'dark' ? 'border-primary bg-primary/10 text-primary shadow-xl shadow-primary/10' : 'border-border bg-muted/30 text-muted-foreground hover:border-primary/20'
+                                  }`}
+                              >
+                                <mode.icon size={20} />
+                                <span className="text-[10px] font-black uppercase italic tracking-widest">{mode.label}</span>
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="space-y-6">
+                        <h4 className="font-black uppercase italic text-xs tracking-widest text-foreground">System Font</h4>
+                        <Select defaultValue="jakarta">
+                          <SelectTrigger className="h-14 bg-muted/30 border-border rounded-2xl font-bold">
+                            <SelectValue placeholder="Select Typeface" />
+                          </SelectTrigger>
+                          <SelectContent className="glass border-white/10 rounded-2xl">
+                            <SelectItem value="jakarta" className="font-black uppercase italic text-[10px] tracking-widest p-4">Inter / Plus Jakarta</SelectItem>
+                            <SelectItem value="mono" className="font-black uppercase italic text-[10px] tracking-widest p-4">JetBrains Mono</SelectItem>
+                            <SelectItem value="system" className="font-black uppercase italic text-[10px] tracking-widest p-4">OS Default</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <div className="space-y-6">
+                        <h4 className="font-black uppercase italic text-xs tracking-widest text-foreground">Core UI Metrics</h4>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div className="flex items-center justify-between p-6 bg-muted/30 rounded-3xl border border-border">
+                            <span className="text-[10px] font-black uppercase italic tracking-widest text-muted-foreground">Border Radius (Legacy)</span>
+                            <Badge variant="outline" className="border-border text-foreground font-mono">1.5rem</Badge>
+                          </div>
+                          <div className="flex items-center justify-between p-6 bg-muted/30 rounded-3xl border border-border">
+                            <span className="text-[10px] font-black uppercase italic tracking-widest text-muted-foreground">Accent Intensity</span>
+                            <Badge variant="outline" className="border-border text-foreground font-mono">High (Glow)</Badge>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center justify-between p-6 bg-primary/10 rounded-[var(--radius)] border border-primary/20 shadow-xl shadow-primary/5">
+                        <div className="flex gap-4 items-center">
+                          <div className="h-12 w-12 rounded-xl bg-primary/20 flex items-center justify-center text-primary border border-primary/20">
+                            <Moon size={24} />
+                          </div>
+                          <div className="space-y-1">
+                            <h4 className="font-black uppercase italic text-sm text-foreground tracking-tight">Force Pro Dark Mode</h4>
+                            <p className="text-[10px] font-bold text-muted-foreground/60 uppercase italic tracking-widest">Enforce system-wide dark environment by default</p>
+                          </div>
+                        </div>
+                        <Switch checked />
+                      </div>
                     </div>
-                  </Card>
-                </TabsContent>
-              </Tabs>
+                  )}
+
+                  {/* Module Selection */}
+                  {activeTab === 'modules' && (
+                    <div className="space-y-8 text-center py-10">
+                      <div className="w-24 h-24 bg-primary/10 rounded-[var(--radius)] flex items-center justify-center text-primary border border-primary/20 mx-auto shadow-2xl shadow-primary/10">
+                        <Box size={48} />
+                      </div>
+                      <div className="max-w-md mx-auto space-y-4">
+                        <h3 className="text-3xl font-black uppercase italic tracking-tighter text-foreground">
+                          Engine <span className="text-primary">Ecosystem</span>
+                        </h3>
+                        <p className="text-muted-foreground font-bold uppercase italic text-[10px] tracking-widest leading-relaxed">
+                          Currently synchronized with the <span className="text-primary font-black">{siteConfig.currentModule.toUpperCase()}</span> core.
+                          Module switching requires an engine restart and edge propagation.
+                        </p>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+                        <div className="p-8 bg-primary/10 rounded-[var(--radius)] border border-primary/40 relative group cursor-pointer transition-all hover:scale-[1.02]">
+                          <Badge className="absolute top-4 right-6 bg-primary text-primary-foreground font-black italic text-[8px] uppercase tracking-widest">Active Engine</Badge>
+                          <div className="flex items-center gap-4 text-left">
+                            <div className="h-16 w-16 bg-primary rounded-2xl flex items-center justify-center text-primary-foreground"><Box size={32} /></div>
+                            <div>
+                              <h4 className="font-black uppercase italic text-lg text-foreground">HR Engine</h4>
+                              <p className="text-[10px] font-bold text-muted-foreground/60 uppercase tracking-widest mt-1 italic">Workforce & Identity Registry</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="p-8 bg-muted/30 rounded-[var(--radius)] border border-border relative group cursor-pointer transition-all hover:bg-muted/10 opacity-60 grayscale-[0.8] hover:grayscale-0">
+                          <div className="flex items-center gap-4 text-left">
+                            <div className="h-16 w-16 bg-muted rounded-2xl flex items-center justify-center text-muted-foreground"><Shield size={32} /></div>
+                            <div>
+                              <h4 className="font-black uppercase italic text-lg text-foreground">Legal Engine</h4>
+                              <p className="text-[10px] font-bold text-muted-foreground/60 uppercase tracking-widest mt-1 italic">Compliance & Risk Shield</p>
+                            </div>
+                          </div>
+                          <Badge variant="outline" className="mt-4 border-border text-foreground font-black italic text-[8px] uppercase tracking-widest">Available Upgrade</Badge>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Billing Settings */}
+                  {activeTab === 'billing' && (
+                    <div className="space-y-12">
+                      <div className="p-10 bg-card rounded-[var(--radius)] border border-border relative overflow-hidden group shadow-3xl">
+                        <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-primary/20 rounded-full blur-[100px] pointer-events-none group-hover:bg-primary/30 transition-colors" />
+                        <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+                          <div className="space-y-4">
+                            <div className="flex items-center gap-3">
+                              <CreditCard className="text-primary h-6 w-6" />
+                              <h4 className="font-black uppercase italic text-xl text-foreground tracking-widest">Financial Gateway</h4>
+                            </div>
+                            <p className="max-w-md text-muted-foreground font-bold uppercase italic text-[11px] tracking-[0.2em] leading-relaxed">
+                              Managed via <span className="text-foreground font-black">Polar.sh</span> edge marketplace.
+                              Automated licensing and revenue distribution.
+                            </p>
+                            <div className="flex gap-4 pt-4">
+                              <Badge className="bg-emerald-500 text-white font-black italic text-[9px] uppercase tracking-[0.2em] px-4 py-1.5 rounded-full">Pro Enterprise Verified</Badge>
+                            </div>
+                          </div>
+                          <Button className="h-16 px-10 bg-foreground text-background hover:bg-foreground/90 rounded-2xl font-black uppercase italic tracking-widest text-xs transition-transform active:scale-95 shadow-2xl">
+                            Launch Dashboard
+                            <ExternalLink size={16} className="ml-3" />
+                          </Button>
+                        </div>
+                      </div>
+
+                      <div className="space-y-6">
+                        <h4 className="font-black uppercase italic text-xs tracking-widest text-foreground">Infrastructure Ops</h4>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <div className="p-6 bg-muted/30 rounded-3xl border border-border space-y-4">
+                            <div className="flex justify-between items-center">
+                              <span className="text-[10px] font-black uppercase italic tracking-widest text-muted-foreground">Database Engine</span>
+                              <Badge className="bg-primary/20 text-primary border-primary/20 font-mono text-[9px]">CLOUDFLARE D1</Badge>
+                            </div>
+                            <Progress value={82} className="h-2 bg-muted/50 border border-border/10" indicatorClassName="bg-primary" />
+                            <div className="flex justify-between items-center text-[9px] font-bold uppercase tracking-widest text-muted-foreground">
+                              <span>Query Peak</span>
+                              <span>82 / 100 Req/s</span>
+                            </div>
+                          </div>
+                          <div className="p-6 bg-muted/30 rounded-3xl border border-border space-y-4">
+                            <div className="flex justify-between items-center">
+                              <span className="text-[10px] font-black uppercase italic tracking-widest text-muted-foreground">Storage Provider</span>
+                              <Badge className="bg-orange-500/20 text-orange-500 border-orange-500/20 font-mono text-[9px]">CLOUDFLARE R2</Badge>
+                            </div>
+                            <Progress value={45} className="h-2 bg-muted/50 border border-border/10" indicatorClassName="bg-orange-500" />
+                            <div className="flex justify-between items-center text-[9px] font-bold uppercase tracking-widest text-muted-foreground">
+                              <span>Object Capacity</span>
+                              <span>4.2 GB / 10 GB</span>
+                            </div>
+                          </div>
+                          Broadway
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Navigation Settings */}
+                  {activeTab === 'navigation' && (
+                    <div className="space-y-10 group">
+                      <div className="flex items-center justify-between mb-2">
+                        <h4 className="font-black uppercase italic text-xs tracking-widest text-foreground">Global Menu Structure</h4>
+                        <Button variant="ghost" className="h-10 text-[9px] font-black uppercase italic tracking-widest text-primary gap-2 hover:bg-primary/10 rounded-xl px-4 transition-all">
+                          <Layout size={14} />
+                          Synthesize New Link
+                        </Button>
+                      </div>
+
+                      <div className="space-y-4">
+                        {(config.module?.nav || []).map((nav: any, idx: number) => (
+                          <div key={idx} className="p-6 bg-muted/30 rounded-3xl border border-border flex items-center justify-between hover:border-primary/30 transition-all group/item shadow-sm">
+                            <div className="flex items-center gap-6 flex-1">
+                              <div className="h-12 w-12 rounded-xl bg-muted flex items-center justify-center text-muted-foreground cursor-move active:scale-110 transition-transform">
+                                <Menu size={20} />
+                              </div>
+                              <div className="grid grid-cols-2 gap-6 flex-1 max-w-2xl px-4">
+                                <div className="space-y-2">
+                                  <Label className="text-[8px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 italic block">Link Identity</Label>
+                                  <Input
+                                    value={nav.title || ''}
+                                    onChange={(e) => {
+                                      const nextNav = [...(config.module?.nav || [])];
+                                      nextNav[idx] = { ...nextNav[idx], title: e.target.value };
+                                      handleUpdate('module.nav', nextNav);
+                                    }}
+                                    className="h-10 bg-transparent border-0 border-b border-border/30 rounded-none px-0 font-black italic text-xs uppercase tracking-widest text-foreground focus:ring-0 focus:border-primary"
+                                  />
+                                </div>
+                                <div className="space-y-2">
+                                  <Label className="text-[8px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 italic block">Target Path</Label>
+                                  <Input
+                                    value={nav.href || ''}
+                                    onChange={(e) => {
+                                      const nextNav = [...(config.module?.nav || [])];
+                                      nextNav[idx] = { ...nextNav[idx], href: e.target.value };
+                                      handleUpdate('module.nav', nextNav);
+                                    }}
+                                    className="h-10 bg-transparent border-0 border-b border-border/30 rounded-none px-0 font-mono text-xs text-primary focus:ring-0 focus:border-primary"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                            <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-red-500 transition-colors h-12 w-12 rounded-2xl hover:bg-red-500/5">
+                              <Trash2 size={18} />
+                            </Button>
+                          </div>
+                        ))}
+                        Broadway
+                      </div>
+
+                      <div className="p-10 border-2 border-dashed border-border rounded-[var(--radius)] text-center space-y-4 hover:border-primary/30 transition-all cursor-pointer">
+                        <AnimatePresence>
+                          <motion.div
+                            initial={{ scale: 0.9 }}
+                            whileHover={{ scale: 1.05 }}
+                            className="bg-muted/30 w-16 h-16 rounded-2xl mx-auto flex items-center justify-center text-muted-foreground"
+                          >
+                            <span className="text-2xl font-black italic">+</span>
+                          </motion.div>
+                        </AnimatePresence>
+                        <p className="text-[10px] font-black uppercase italic tracking-widest text-muted-foreground/60">Append Registry Entry</p>
+                      </div>
+                    </div>
+                  )}
+                </CardContent>
+
+                <CardFooter className="bg-muted/30 p-10 flex flex-col items-center justify-center gap-4 text-center border-t border-border/50 relative overflow-hidden group">
+                  <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
+                  <p className="text-[10px] font-black uppercase italic tracking-[0.25em] text-muted-foreground/60 px-10 leading-relaxed max-w-lg">
+                    System-wide settings are immutable until committed. Synchronization occurs across the global edge CDN within 300ms of final save.
+                  </p>
+                </CardFooter>
+              </Card>
             </motion.div>
           </AnimatePresence>
         </div>
       </div>
+    </div >
+  );
+}
+
+// Simple Progress component (since it might be missing from @shared)
+function Progress({ value, className, indicatorClassName }: { value: number; className?: string; indicatorClassName?: string }) {
+  return (
+    <div className={`w-full h-4 rounded-full overflow-hidden ${className}`}>
+      <motion.div
+        initial={{ width: 0 }}
+        animate={{ width: `${value}%` }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        className={`h-full ${indicatorClassName}`}
+      />
     </div>
   );
 }

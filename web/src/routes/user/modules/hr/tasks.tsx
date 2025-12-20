@@ -6,7 +6,7 @@ import { Button } from "@shared/components/ui/button"
 import { Card, CardContent } from "@shared/components/ui/card"
 import { toast } from "sonner"
 
-export const Route = createFileRoute('/user/tasks')({
+export const Route = createFileRoute('/user/modules/hr/tasks')({
   component: TasksPage,
 })
 
@@ -23,7 +23,7 @@ function TasksPage() {
   const [tasks, setTasks] = useState<Task[]>([])
 
   useEffect(() => {
-    fetch('/data/tasks.json')
+    fetch('/data/hr/tasks.json')
       .then(res => res.json())
       .then(data => setTasks(data))
   }, [])
@@ -70,7 +70,7 @@ function TasksPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {tasks.map((task) => (
-          <Card key={task.id} className={`glass border-white/10 rounded-[2rem] overflow-hidden group transition-all duration-300 ${task.status === 'completed' ? 'opacity-60 grayscale-[0.5]' : 'hover:border-primary/40'}`}>
+          <Card key={task.id} className={`glass border-white/10 rounded-[2rem] overflow-hidden group transition-all duration-300 ${task.status === `completed` ? `opacity-60 grayscale-[0.5]` : `hover:border-primary/40`}`}>
             <CardContent className="p-8 space-y-6">
               <div className="flex items-start justify-between">
                 <button
@@ -84,7 +84,7 @@ function TasksPage() {
                   )}
                 </button>
                 <div className="flex gap-2">
-                  <Badge variant="outline" className={`font-black uppercase italic text-[9px] tracking-tighter px-2 ${priorityColors[task.priority]}`}>
+                  <Badge variant="outline" className={"font-black uppercase italic text-[9px] tracking-tighter px-2 ${priorityColors[task.priority]}"}>
                     {task.priority}
                   </Badge>
                   <button
@@ -97,7 +97,7 @@ function TasksPage() {
               </div>
 
               <div>
-                <h4 className={`text-lg font-black uppercase italic tracking-tighter leading-tight ${task.status === 'completed' ? 'line-through text-slate-500' : 'text-white'}`}>
+                <h4 className={`text-lg font-black uppercase italic tracking-tighter leading-tight ${task.status === `completed` ? `line-through text-slate-500` : `text-white`}`}>
                   {task.title}
                 </h4>
                 <div className="flex items-center gap-4 mt-4 text-[10px] font-bold uppercase italic tracking-widest text-slate-500">

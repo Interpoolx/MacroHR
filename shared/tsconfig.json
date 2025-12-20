@@ -6,24 +6,18 @@
         "strict": true,
         "noEmit": true,
         "skipLibCheck": true,
-        "lib": [
-            "ESNext"
-        ],
-        "types": [
-            "@cloudflare/workers-types",
-            "node"
-        ],
         "baseUrl": ".",
+        "jsx": "react-jsx",
         "paths": {
             "@/*": [
-                "src/*"
+                "./*"
             ],
             "@shared/*": [
-                "../shared/*"
+                "./*"
             ]
         }
     },
     "include": [
-        "src/**/*"
+        "**/*"
     ]
 }

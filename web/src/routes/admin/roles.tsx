@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { createColumnHelper } from '@tanstack/react-table';
+import { createColumnHelper, ColumnDef } from '@tanstack/react-table';
 import { DataTable } from '../../components/shared/DataTable';
 import { useState, useEffect } from 'react';
 import { Badge } from "@shared/components/ui/badge";
@@ -29,30 +29,39 @@ export const Route = createFileRoute('/admin/roles')({
   component: RolesManagementPage,
 });
 
+const tableConfig = {
+  addLabel: "New Role",
+  editLabel: "Edit Role",
+  searchPlaceholder: "Search roles...", // optional – override default if needed
+  // You can add more later:
+  // deleteLabel: "Delete User",
+  // emptyMessage: "No users found",
+};
+
 const columnHelper = createColumnHelper<Role>();
 
-const columns = [
+const columns: ColumnDef<Role, any>[] = [
   columnHelper.accessor('name', {
     header: 'Role Name',
     cell: info => (
       <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+        <div className="w-10 h-10 rounded-[var(--radius)] bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
           <Shield size={20} />
         </div>
         <div className="flex flex-col">
-          <span className="font-black uppercase italic text-sm tracking-tight leading-none">{info.getValue()}</span>
-          <span className="text-xs font-bold text-slate-500 mt-1 font-mono tracking-tighter">ID: {info.row.original.id}</span>
+          <span className="font-black uppercase italic text-sm tracking-tight leading-none text-foreground">{info.getValue()}</span>
+          <span className="text-xs font-bold text-muted-foreground mt-1 font-mono tracking-tighter">ID: {info.row.original.id}</span>
         </div>
       </div>
     ),
   }),
   columnHelper.accessor('key', {
     header: 'Key',
-    cell: info => <Badge variant="secondary" className="font-mono text-[10px] uppercase font-black tracking-widest bg-white/5 border-white/10">{info.getValue()}</Badge>,
+    cell: info => <Badge variant="secondary" className="font-mono text-[10px] uppercase font-black tracking-widest bg-muted/50 border-border">{info.getValue()}</Badge>,
   }),
   columnHelper.accessor('description', {
     header: 'Description',
-    cell: info => <span className="text-sm font-bold text-slate-500 italic leading-tight max-w-[200px] block">{info.getValue()}</span>,
+    cell: info => <span className="text-sm font-bold text-muted-foreground italic leading-tight max-w-[200px] block">{info.getValue()}</span>,
   }),
   columnHelper.accessor('permissions', {
     header: 'Permissions',
@@ -60,7 +69,7 @@ const columns = [
       const permissions = info.getValue();
       return (
         <div className="flex flex-wrap gap-1 max-w-[250px]">
-          {permissions.map(p => (
+          {permissions.map((p: string) => (
             <Badge key={p} variant="outline" className="text-[9px] font-black uppercase italic tracking-tighter bg-primary/5 border-primary/20 text-primary/70">
               {p}
             </Badge>
@@ -156,35 +165,36 @@ function RolesManagementPage() {
 
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="flex justify-between items-center bg-white/5 p-8 rounded-[2.5rem] border border-white/10 glass shadow-2xl overflow-hidden relative">
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full blur-[100px] -ml-32 -mb-32 pointer-events-none" />
+      <div className="flex justify-between items-center bg-card p-8 rounded-[var(--radius)] border border-border glass shadow-2xl overflow-hidden relative">
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary/10 rounded-full blur-[100px] -ml-32 -mb-32 pointer-events-none" />
         <div className="relative z-10 flex items-center gap-6">
-          <div className="w-16 h-16 rounded-[1.5rem] accent-gradient flex items-center justify-center shadow-2xl shadow-primary/20">
-            <Shield className="w-8 h-8 text-white" />
+          <div className="w-16 h-16 rounded-[var(--radius)] bg-primary flex items-center justify-center shadow-2xl shadow-primary/20">
+            <Shield className="w-8 h-8 text-primary-foreground" />
           </div>
           <div>
-            <h1 className="text-4xl font-black uppercase italic tracking-tighter leading-none">
+            <h1 className="text-4xl font-black uppercase italic tracking-tighter leading-none text-foreground">
               Roles & <span className="text-primary">Permissions</span>
             </h1>
-            <p className="text-slate-500 mt-2 font-bold uppercase italic text-xs tracking-[0.2em]">Define security protocols and access hierarchies</p>
+            <p className="text-muted-foreground mt-2 font-bold uppercase italic text-xs tracking-[0.2em]">Define security protocols and access hierarchies</p>
           </div>
         </div>
         <div className="hidden lg:flex items-center gap-4">
           <div className="flex flex-col items-end">
-            <span className="text-2xl font-black italic tracking-tighter leading-none">{roles.length}</span>
-            <span className="text-[10px] font-black uppercase tracking-widest text-slate-500 mt-1">Active Profiles</span>
+            <span className="text-2xl font-black italic tracking-tighter leading-none text-foreground">{roles.length}</span>
+            <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mt-1">Active Profiles</span>
           </div>
-          <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-400">
+          <div className="w-10 h-10 rounded-full bg-muted border border-border flex items-center justify-center text-muted-foreground">
             <UsersIcon size={20} />
           </div>
         </div>
       </div>
 
-      <div className="p-8 bg-white/5 border border-white/10 glass rounded-[2.5rem] shadow-2xl">
+      <div className="p-8 bg-card border border-border glass rounded-[var(--radius)] shadow-2xl">
         <DataTable
           columns={columns}
           data={roles}
-          searchKey="name"
+          searchColumn="name"
+          config={tableConfig}
           onEdit={handleOpenModal}
           onDelete={handleDelete}
           onAdd={() => handleOpenModal(null)}
@@ -193,15 +203,15 @@ function RolesManagementPage() {
 
       {/* Role CRUD Modal */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="glass border-white/10 shadow-3xl rounded-[2.5rem] max-w-2xl p-8">
+        <DialogContent className="glass border-border shadow-3xl rounded-[var(--radius)] max-w-2xl p-8 text-foreground">
           <DialogHeader className="mb-6">
             <div className="w-14 h-14 accent-gradient rounded-2xl flex items-center justify-center mb-4 shadow-xl shadow-primary/20">
               <Key className="text-white" size={28} />
             </div>
-            <DialogTitle className="text-3xl font-black uppercase italic tracking-tighter leading-none">
+            <DialogTitle className="text-3xl font-black uppercase italic tracking-tighter leading-none text-foreground">
               {editingRole ? 'Refine' : 'Add New'} <span className="text-primary">Security Role</span>
             </DialogTitle>
-            <DialogDescription className="font-bold text-slate-500 uppercase italic text-[10px] tracking-widest mt-2">
+            <DialogDescription className="font-bold text-muted-foreground uppercase italic text-[10px] tracking-widest mt-2">
               {editingRole ? 'Update access control definitions' : 'Draft a new security policy for the ecosystem'}
             </DialogDescription>
           </DialogHeader>
@@ -209,37 +219,37 @@ function RolesManagementPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-6">
               <div className="space-y-2">
-                <Label className="font-black uppercase italic text-[10px] tracking-widest text-slate-400">Role Name</Label>
+                <Label className="font-black uppercase italic text-[10px] tracking-widest text-muted-foreground">Role Name</Label>
                 <Input
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="h-12 bg-white/5 border-white/10 rounded-xl focus:ring-primary/20"
+                  className="h-12 bg-muted/50 border-border rounded-xl focus:ring-primary/20"
                   placeholder="Lead Architect"
                 />
               </div>
               <div className="space-y-2">
-                <Label className="font-black uppercase italic text-[10px] tracking-widest text-slate-400">Policy Key (Unique)</Label>
+                <Label className="font-black uppercase italic text-[10px] tracking-widest text-muted-foreground">Policy Key (Unique)</Label>
                 <Input
                   value={formData.key}
                   onChange={(e) => setFormData({ ...formData, key: e.target.value.toLowerCase().replace(/\s+/g, '_') })}
-                  className="h-12 bg-white/5 border-white/10 rounded-xl focus:ring-primary/20 font-mono"
+                  className="h-12 bg-muted/50 border-border rounded-xl focus:ring-primary/20 font-mono"
                   placeholder="lead_architect"
                 />
               </div>
               <div className="space-y-2">
-                <Label className="font-black uppercase italic text-[10px] tracking-widest text-slate-400">Description</Label>
+                <Label className="font-black uppercase italic text-[10px] tracking-widest text-muted-foreground">Description</Label>
                 <textarea
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  className="w-full min-h-[100px] bg-white/5 border border-white/10 rounded-xl p-4 text-sm focus:ring-primary/20 focus:outline-none transition-all placeholder:text-slate-600"
+                  className="w-full min-h-[100px] bg-muted/50 border border-border rounded-xl p-4 text-sm focus:ring-primary/20 focus:outline-none transition-all placeholder:text-muted-foreground/60"
                   placeholder="Describe the scope of this security role..."
                 />
               </div>
             </div>
 
             <div className="space-y-4">
-              <Label className="font-black uppercase italic text-[10px] tracking-widest text-slate-400">Access Privileges</Label>
-              <div className="p-6 bg-white/5 border border-white/10 rounded-2xl grid grid-cols-1 gap-3 max-h-[280px] overflow-y-auto custom-scrollbar">
+              <Label className="font-black uppercase italic text-[10px] tracking-widest text-muted-foreground">Access Privileges</Label>
+              <div className="p-6 bg-muted/50 border border-border rounded-[var(--radius)] grid grid-cols-1 gap-3 max-h-[280px] overflow-y-auto custom-scrollbar">
                 {AVAILABLE_PERMISSIONS.map(perm => {
                   const active = formData.permissions?.includes(perm);
                   return (
@@ -247,8 +257,8 @@ function RolesManagementPage() {
                       key={perm}
                       onClick={() => handleTogglePermission(perm)}
                       className={`flex items-center justify-between p-3 rounded-xl border transition-all ${active
-                          ? 'bg-primary/20 border-primary text-white'
-                          : 'bg-white/5 border-transparent text-slate-500 hover:bg-white/10'
+                        ? 'bg-primary/20 border-primary text-foreground'
+                        : 'bg-muted/30 border-transparent text-muted-foreground hover:bg-muted/50'
                         }`}
                     >
                       <span className="text-[10px] font-black uppercase italic tracking-widest">{perm.replace(/_/g, ' ')}</span>
@@ -264,13 +274,13 @@ function RolesManagementPage() {
             <Button
               variant="ghost"
               onClick={() => setIsModalOpen(false)}
-              className="h-12 px-6 rounded-xl font-black uppercase italic text-xs tracking-widest text-slate-400 hover:text-white hover:bg-white/5"
+              className="h-12 px-6 rounded-xl font-black uppercase italic text-xs tracking-widest text-muted-foreground hover:text-foreground hover:bg-muted/50"
             >
               Abort
             </Button>
             <Button
               onClick={handleSaveRole}
-              className="h-12 px-8 accent-gradient border-0 rounded-xl font-black uppercase italic shadow-xl shadow-primary/20 hover:scale-105 transition-all text-xs tracking-widest"
+              className="h-12 px-8 bg-primary text-primary-foreground border-0 rounded-xl font-black uppercase italic shadow-xl shadow-primary/20 hover:scale-105 transition-all text-xs tracking-widest"
             >
               {editingRole ? 'Commit Updates' : 'Initialize Policy'}
             </Button>

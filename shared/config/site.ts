@@ -1,97 +1,86 @@
-const getEnv = (key: string, defaultValue: string = ""): string => {
-    if (typeof import.meta !== 'undefined' && (import.meta as any).env) {
-        return (import.meta as any).env[key] || defaultValue;
-    }
-    try {
-        if (typeof process !== 'undefined' && process.env) {
-            return process.env[key] || defaultValue;
-        }
-    } catch (e) { }
-    return defaultValue;
-};
+// src/config/site.ts
 
+import { getCurrentModule, type ModuleName, type ModuleConfig } from "./modules";
+import { defaultTheme, type ThemeName } from "../lib/themes";
+import { getEnv } from "./env"; // Adjust path if needed
+
+// === SELECTED CONFIGURATION ===
+// Change these to switch between modules/themes
+export const currentModule: ModuleName = "hr"; // "hr" | "legal" | ...
+export const currentTheme: ThemeName = defaultTheme; // e.g., "default" | "oak" | "olive"
+
+// === DERIVED: Current Module Config ===
+export const moduleConfig: ModuleConfig = getCurrentModule(currentModule);
+
+// === MAIN EXPORT: Combined Global + Module Config ===
 export const siteConfig = {
-    // --- General (General Tab) ---
-    name: "MacroHR",
-    description: "The ultimate all-in-one HR Management & Workforce Orchestration suite. Manage payroll, performance, and personnel with a single, high-fidelity platform.",
-    url: "https://macrohr.com",
-    creator: "@Web4strategy",
-    keywords: ["hr management", "workforce automation", "payroll system", "employee registry", "performance tracking", "hr dashboard", "personnel dossiers", "talent management"],
-    contactEmail: "hello@macrohr.com",
-    githubUrl: "https://github.com/Interpoolx/MacroHR",
-    twitterUrl: "https://x.com/web4strategy",
-    websiteUrl: "https://web4strategy.com",
-    version: "1.0.0",
+    // --- Runtime / Environment ---
     environment: "production" as "development" | "staging" | "production",
     demo_mode: "enabled" as "enabled" | "disabled",
-    system_mode: (getEnv("VITE_SUPABASE_URL") && getEnv("VITE_SUPABASE_ANON_KEY")) ? "live" : "demo" as "demo" | "live",
+    system_mode: (getEnv("VITE_SUPABASE_URL") && getEnv("VITE_SUPABASE_ANON_KEY"))
+        ? "live"
+        : "demo" as "demo" | "live",
 
-    // --- Branding (Branding Tab) ---
-    logo: {
-        text: "MacroHR",
-        icon: "A+",
-        url: "/uploads/images/logo.png",
-        favicon: "/uploads/images/favicon.png",
-    },
-    theme: {
-        primaryColor: "#FF6B00", // Orange
-        secondaryColor: "#000000", // Black
-        accentColor: "#FFFFFF",
-        darkMode: true,
-    },
+    // --- Active Selections ---
+    currentModule: currentModule as ModuleName,
+    currentTheme: currentTheme as ThemeName,
 
-    // --- Backend & Auth (Backend & Auth Tab) ---
+    // --- Module-Specific Content (branding, nav, seo, support, sidebar, etc.) ---
+    module: moduleConfig as ModuleConfig,
+
+    // --- Backend & Infrastructure ---
     local: {
         backendApiUrl: "http://localhost:3001",
         cloudFlareUrl: "http://localhost:3000",
-        storageProvider: "local",
+        storageProvider: "local" as const,
     },
     live: {
         backendApiUrl: "https://worker.macrohr.com",
         cloudFlareUrl: "https://web4strategy.com/",
-        storageProvider: "cloudflare-r2",
+        storageProvider: "cloudflare-r2" as const,
     },
+
     database: {
-        // Current approach: 'json' | Future: 'd1'
-        provider: 'json' as 'json' | 'd1',
+        provider: "d1" as "json" | "d1",
         d1: {
-            database_id: '',
-            binding: 'DB',
+            database_id: "",
+            binding: "DB",
         },
-        json: {
-            dataDir: './public/json',
-            seedDir: './public/json-seed',
-        }
     },
+
     cloudflare: {
         r2: {
             bucketName: getEnv("VITE_R2_BUCKET_NAME"),
             accountId: getEnv("VITE_R2_ACCOUNT_ID"),
             accessKeyId: getEnv("VITE_R2_ACCESS_KEY_ID"),
-            secretAccessKey: getEnv("VITE_R2_SECRET_ACCESS_KEY"), // Only secure on backend
+            secretAccessKey: getEnv("VITE_R2_SECRET_ACCESS_KEY"),
             publicUrl: getEnv("VITE_R2_PUBLIC_URL"),
             binding: "BUCKET",
         },
         d1: {
             databaseId: getEnv("VITE_D1_DATABASE_ID"),
             binding: "DB",
-        }
+        },
     },
+
     supabase: {
         url: getEnv("VITE_SUPABASE_URL"),
         anonKey: getEnv("VITE_SUPABASE_ANON_KEY"),
-        serviceRoleKey: getEnv("SUPABASE_SERVICE_ROLE_KEY"), // Only secure on backend
+        serviceRoleKey: getEnv("SUPABASE_SERVICE_ROLE_KEY"),
     },
+
+    // --- Authentication ---
     auth: {
-        providers: ["email", "google", "github"],
+        providers: ["email", "google", "github"] as const,
         enableMagicLink: true,
-        sessionTimeout: 7200, // 2 hours in seconds
+        sessionTimeout: 7200, // 2 hours
         requireEmailVerification: true,
         passwordMinLength: 8,
     },
+
     dbName: "macrohr_db",
 
-    // --- Finance & Billing (Finance & Billing Tab) ---
+    // --- Billing & Plans ---
     billing: {
         mode: "test" as "test" | "live",
         accessToken: "",
@@ -115,99 +104,20 @@ export const siteConfig = {
                 features: ["Everything in Pro", "Team collaboration", "Custom integrations", "Dedicated support"],
             },
         },
-        trialPeriod: 14, // days
+        trialPeriod: 14,
     },
 
-    // --- Navigation (Navigation Tab) ---
-    nav: [
-        { title: "Features", href: "#features" },
-        { title: "How It Works", href: "#how-it-works" },
-        { title: "Testimonials", href: "#testimonials" },
-        { title: "FAQ", href: "#faq" },
-    ],
-    footer: {
-        links: [
-            {
-                title: "Product",
-                items: [
-                    { title: "Features", href: "/features" },
-                    { title: "Pricing", href: "/pricing" },
-                    { title: "Changelog", href: "/changelog" },
-                    { title: "Roadmap", href: "/roadmap" },
-                ],
-            },
-            {
-                title: "Resources",
-                items: [
-                    { title: "Documentation", href: "/docs" },
-                    { title: "API Reference", href: "/api" },
-                    { title: "Tutorials", href: "/tutorials" },
-                    { title: "Blog", href: "/blog" },
-                ],
-            },
-            {
-                title: "Support",
-                items: [
-                    { title: "Help Center", href: "/help" },
-                    { title: "Contact Us", href: "/contact" },
-                    { title: "Status", href: "/status" },
-                    { title: "Community", href: "/community" },
-                ],
-            },
-            {
-                title: "Legal",
-                items: [
-                    { title: "Privacy Policy", href: "/privacy" },
-                    { title: "Terms of Service", href: "/terms" },
-                    { title: "Cookie Policy", href: "/cookies" },
-                ],
-            },
-        ],
-    },
-
-    // --- SEO (SEO Tab) ---
-    seo: {
-        homepageTitle: "MacroHR | Advanced Workforce Management & HR Analytics",
-        homepageDescription: "Streamline your human resources with the MacroHR platform. Automated payroll, performance benchmarks, and deep workforce insights.",
-        homepageOgImage: "/uploads/images/image_1766070918398.png",
-        titleTemplate: "%s | MacroHR",
-        descriptionDefault: "High-performance HR management suite for modern enterprise operations.",
-        ogImageDefault: "/uploads/images/og-image.png",
-        twitterHandle: "@macrohr",
-        siteName: "MacroHR",
-        locale: "en_US",
-        robots: {
-            index: true,
-            follow: true,
-        },
-    },
-
-    // --- Social (Social Tab) ---
-    links: {
-        twitter: "https://x.com/web4strategy",
-        github: "https://github.com/Interpoolx/MacroHR",
-        linkedin: "https://linkedin.com/company/web4strategy",
-        youtube: "https://youtube.com/@web4strategy",
-        discord: "https://discord.gg/web4strategy",
-        producthunt: "",
-    },
-
-    // --- Analytics & Monitoring (Analytics Tab) ---
+    // --- Analytics & Monitoring ---
     analytics: {
         googleAnalyticsId: "",
         googleTagManagerId: "",
         mixpanelToken: "",
         amplitudeApiKey: "",
         hotjarId: "",
-        clarity: {
-            enabled: false,
-            projectId: "",
-        },
-        plausible: {
-            enabled: false,
-            domain: "macrohr.com",
-        },
+        clarity: { enabled: false, projectId: "" },
+        plausible: { enabled: false, domain: "macrohr.com" },
     },
+
     monitoring: {
         sentry: {
             enabled: false,
@@ -215,115 +125,40 @@ export const siteConfig = {
             environment: "production",
             tracesSampleRate: 0.1,
         },
-        logRocket: {
-            enabled: false,
-            appId: "",
-        },
+        logRocket: { enabled: false, appId: "" },
     },
+
     errorTracking: {
         enabled: true,
         reportToBackend: true,
         ignoredErrors: ["ResizeObserver loop limit exceeded"],
     },
 
-    // --- Content Management (Content Tab) ---
+    // --- Content Management ---
     content: {
-        blog: {
-            enabled: true,
-            apiEndpoint: "/api/blog",
-            postsPerPage: 10,
-        },
-        changelog: {
-            enabled: true,
-            apiEndpoint: "/api/changelog",
-        },
-        documentation: {
-            url: "https://",
-            searchEnabled: true,
-        },
+        blog: { enabled: true, apiEndpoint: "/api/blog", postsPerPage: 10 },
+        changelog: { enabled: true, apiEndpoint: "/api/changelog" },
+        documentation: { url: "https://", searchEnabled: true },
         helpCenter: {
             url: "https://help",
             categories: ["Getting Started", "Features", "Troubleshooting", "API", "Billing"],
         },
-        announcements: {
-            enabled: true,
-            apiEndpoint: "/api/announcements",
-        },
+        announcements: { enabled: true, apiEndpoint: "/api/announcements" },
     },
 
-    // --- Legal & Compliance (Legal Tab) ---
+    // --- Legal & Compliance ---
     legal: {
-        termsOfService: {
-            url: "/terms",
-            lastUpdated: "2025-12-18",
-        },
-        privacyPolicy: {
-            url: "/privacy",
-            lastUpdated: "2025-12-18",
-        },
-        cookiePolicy: {
-            url: "/cookies",
-            lastUpdated: "2025-12-18",
-        },
-        gdpr: {
-            enabled: true,
-            dataRetentionDays: 365,
-            cookieConsentRequired: true,
-        },
-        ccpa: {
-            enabled: true,
-            doNotSellLink: "/do-not-sell",
-        },
-        ageRestriction: {
-            minimumAge: 13,
-            requireVerification: false,
-        },
-        dataExport: {
-            enabled: true,
-            endpoint: "/api/user/export",
-        },
-        dataDelition: {
-            enabled: true,
-            endpoint: "/api/user/delete",
-        },
+        termsOfService: { url: "/terms", lastUpdated: "2025-12-18" },
+        privacyPolicy: { url: "/privacy", lastUpdated: "2025-12-18" },
+        cookiePolicy: { url: "/cookies", lastUpdated: "2025-12-18" },
+        gdpr: { enabled: true, dataRetentionDays: 365, cookieConsentRequired: true },
+        ccpa: { enabled: true, doNotSellLink: "/do-not-sell" },
+        ageRestriction: { minimumAge: 13, requireVerification: false },
+        dataExport: { enabled: true, endpoint: "/api/user/export" },
+        dataDelition: { enabled: true, endpoint: "/api/user/delete" },
     },
 
-    // --- Support & Help (Support Tab) ---
-    support: {
-        email: "support@macrohr.com",
-        helpCenterUrl: "https://help.",
-        documentationUrl: "https://docs.",
-        communityForumUrl: "https://community.",
-        statusPageUrl: "https://status.",
-        liveChat: {
-            enabled: false,
-            provider: "intercom" as "intercom" | "zendesk" | "crisp" | "tawk",
-            appId: "",
-        },
-        ticketSystem: {
-            enabled: true,
-            endpoint: "/api/support/tickets",
-        },
-        feedbackWidget: {
-            enabled: true,
-            position: "bottom-right" as "bottom-right" | "bottom-left" | "top-right" | "top-left",
-        },
-        faq: {
-            enabled: true,
-            items: [
-                {
-                    question: "How do I deploy MacroHR?",
-                    answer: "Use our one-click deployment to Cloudflare Workers or host on-premise with our Docker images.",
-                },
-                {
-                    question: "Does it support Multi-Role Access?",
-                    answer: "Yes, MacroHR is built with granular role-based access control (RBAC) for Admins, Managers, and Employees.",
-                },
-            ],
-        },
-    },
-
-    // --- Notifications & Communications (Notifications Tab) ---
+    // --- Notifications ---
     notifications: {
         email: {
             provider: "sendgrid" as "sendgrid" | "mailchimp" | "resend" | "postmark",
@@ -336,26 +171,17 @@ export const siteConfig = {
             provider: "onesignal" as "onesignal" | "firebase" | "pusher",
             appId: "",
         },
-        inApp: {
-            enabled: true,
-            pollInterval: 60000, // 1 minute
-            maxNotifications: 50,
-        },
+        inApp: { enabled: true, pollInterval: 60000, maxNotifications: 50 },
         banner: {
             enabled: false,
             message: "",
             type: "info" as "info" | "warning" | "success" | "error",
             dismissible: true,
         },
-        newsletter: {
-            enabled: true,
-            provider: "mailchimp",
-            apiKey: "",
-            listId: "",
-        },
+        newsletter: { enabled: true, provider: "mailchimp", apiKey: "", listId: "" },
     },
 
-    // --- Feature Flags & Experiments (Features Tab) ---
+    // --- Features & Flags ---
     features: {
         betaFeatures: {
             enabled: false,
@@ -365,62 +191,48 @@ export const siteConfig = {
                 { id: "team-collaboration", name: "Team Collaboration", enabled: false },
             ],
         },
-        experimentalFeatures: {
-            enabled: false,
-            features: [],
-        },
-        rollout: {
-            gradualEnabled: false,
-            percentage: 10, // Rollout to 10% of users initially
-        },
+        experimentalFeatures: { enabled: false, features: [] },
+        rollout: { gradualEnabled: false, percentage: 10 },
         maintenance: {
             enabled: false,
             message: "We're currently performing maintenance. We'll be back shortly!",
         },
     },
 
-    // --- Localization & i18n (Localization Tab) ---
+    // --- Localization ---
     localization: {
         defaultLanguage: "en",
         supportedLanguages: [
-            { code: "en", name: "English", flag: "🇺🇸" },
-            { code: "es", name: "Español", flag: "🇪🇸" },
-            { code: "fr", name: "Français", flag: "🇫🇷" },
-            { code: "de", name: "Deutsch", flag: "🇩🇪" },
-            { code: "ja", name: "日本語", flag: "🇯🇵" },
+            { code: "en", name: "English", flag: "US" },
+            { code: "es", name: "Español", flag: "ES" },
+            { code: "fr", name: "Français", flag: "FR" },
+            { code: "de", name: "Deutsch", flag: "DE" },
+            { code: "ja", name: "日本語", flag: "JP" },
         ],
         autoDetect: true,
         fallbackLanguage: "en",
-        translationService: {
-            provider: "i18next",
-            apiKey: "",
-        },
+        translationService: { provider: "i18next", apiKey: "" },
         dateFormat: "MM/DD/YYYY",
         timeFormat: "12h" as "12h" | "24h",
         currency: "USD",
         numberFormat: "en-US",
     },
 
-    // --- Storage & Assets (Storage Tab) ---
+    // --- Storage ---
     storage: {
         provider: "local" as "cloudflare-r2" | "aws-s3" | "cloudinary" | "local",
         bucket: "macrohr",
         region: "auto",
         publicUrl: "",
         limits: {
-            maxFileSize: 10485760, // 10MB in bytes
+            maxFileSize: 10485760,
             maxFilesPerUser: 1000,
             allowedFileTypes: [".jpg", ".jpeg", ".png", ".gif", ".svg", ".webp", ".pdf"],
         },
-        imageOptimization: {
-            enabled: true,
-            quality: 85,
-            formats: ["webp", "avif"],
-            responsive: true,
-        },
+        imageOptimization: { enabled: true, quality: 85, formats: ["webp", "avif"], responsive: true },
     },
 
-    // --- Security (Security Tab) ---
+    // --- Security ---
     security: {
         cors: {
             enabled: true,
@@ -440,79 +252,36 @@ export const siteConfig = {
         },
         rateLimit: {
             enabled: true,
-            windowMs: 900000, // 15 minutes
+            windowMs: 900000,
             maxRequests: 100,
             message: "Too many requests, please try again later.",
         },
-        apiKeys: {
-            rotation: {
-                enabled: false,
-                intervalDays: 90,
-            },
-        },
-        ipWhitelist: {
-            enabled: false,
-            ips: [],
-        },
-        webhookVerification: {
-            enabled: true,
-            secretKey: "",
-        },
-        encryption: {
-            algorithm: "aes-256-gcm",
-            enabled: true,
-        },
+        apiKeys: { rotation: { enabled: false, intervalDays: 90 } },
+        ipWhitelist: { enabled: false, ips: [] },
+        webhookVerification: { enabled: true, secretKey: "" },
+        encryption: { algorithm: "aes-256-gcm", enabled: true },
     },
 
-    // --- Performance (Performance Tab) ---
+    // --- Performance ---
     performance: {
         cache: {
             enabled: true,
-            ttl: 3600, // 1 hour in seconds
+            ttl: 3600,
             strategy: "stale-while-revalidate" as "cache-first" | "network-first" | "stale-while-revalidate",
         },
-        lazyLoading: {
-            enabled: true,
-            threshold: 0.1,
-        },
-        compression: {
-            enabled: true,
-            type: "gzip" as "gzip" | "brotli",
-        },
-        budgets: {
-            javascript: 500, // KB
-            css: 100, // KB
-            images: 1000, // KB
-            fonts: 200, // KB
-        },
-        preload: {
-            enabled: true,
-            resources: ["/fonts/main.woff2", "/images/logo.svg"],
-        },
+        lazyLoading: { enabled: true, threshold: 0.1 },
+        compression: { enabled: true, type: "gzip" as "gzip" | "brotli" },
+        budgets: { javascript: 500, css: 100, images: 1000, fonts: 200 },
+        preload: { enabled: true, resources: ["/fonts/main.woff2", "/images/logo.svg"] },
     },
 
-    // --- Developer & Testing (Developer Tab) ---
+    // --- Developer Tools ---
     developer: {
         debugMode: false,
-        staging: {
-            enabled: true,
-            url: "https://staging.macrohr.com",
-            apiUrl: "https://staging-api.macrohr.com",
-        },
-        testing: {
-            enabled: true,
-            testApiUrl: "https://test-api.macrohr.com",
-        },
-        apiVersioning: {
-            current: "v1",
-            supported: ["v1"],
-            deprecationNotice: "",
-        },
-        webhooks: {
-            testEndpoint: "https://webhook.site/test",
-            retryAttempts: 3,
-            timeout: 5000, // ms
-        },
+        staging: { enabled: true, url: "https://staging.macrohr.com", apiUrl: "https://staging-api.macrohr.com" },
+        testing: { enabled: true, testApiUrl: "https://test-api.macrohr.com" },
+        apiVersioning: { current: "v1", supported: ["v1"], deprecationNotice: "" },
+        webhooks: { testEndpoint: "https://webhook.site/test", retryAttempts: 3, timeout: 5000 },
         logging: {
             level: "info" as "debug" | "info" | "warn" | "error",
             enabled: true,
@@ -521,36 +290,18 @@ export const siteConfig = {
         },
     },
 
-    // --- Changelog & Updates (Updates Tab) ---
+    // --- Updates & Changelog ---
     updates: {
-        changelog: {
-            enabled: true,
-            url: "/changelog",
-            apiEndpoint: "/api/changelog",
-        },
-        notifications: {
-            showOnUpdate: true,
-            showInApp: true,
-            sendEmail: false,
-        },
-        autoUpdate: {
-            enabled: true,
-            checkInterval: 86400000, // 24 hours in ms
-        },
+        changelog: { enabled: true, url: "/changelog", apiEndpoint: "/api/changelog" },
+        notifications: { showOnUpdate: true, showInApp: true, sendEmail: false },
+        autoUpdate: { enabled: true, checkInterval: 86400000 },
         versionHistory: [
-            {
-                version: "1.0.0",
-                date: "2025-12-18",
-                changes: ["Initial release"],
-                breaking: false,
-            },
+            { version: "1.0.0", date: "2025-12-18", changes: ["Initial release"], breaking: false },
         ],
         deprecations: [],
-        migrationGuides: {
-            enabled: true,
-            url: "/docs/migrations",
-        },
+        migrationGuides: { enabled: true, url: "/docs/migrations" },
     },
 };
 
+// Optional: Export type for use elsewhere
 export type SiteConfig = typeof siteConfig;

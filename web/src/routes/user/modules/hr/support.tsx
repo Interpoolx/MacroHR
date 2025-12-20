@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { createColumnHelper } from '@tanstack/react-table'
-import { DataTable } from '../../components/shared/DataTable'
+import { DataTable } from '../../../../components/shared/DataTable'
 import { useState, useEffect } from 'react'
 import { Badge } from "@shared/components/ui/badge"
 import { toast } from "sonner"
@@ -16,7 +16,7 @@ interface Ticket {
     category: string
 }
 
-export const Route = createFileRoute('/user/support')({
+export const Route = createFileRoute('/user/modules/hr/support')({
     component: SupportPage,
 })
 
@@ -41,7 +41,7 @@ const columns = [
             const s = info.getValue()
             const colors = {
                 open: "bg-orange-500/10 text-orange-500",
-                'in-progress': "bg-blue-500/10 text-blue-500",
+                'in-progress': 'bg-blue-500/10 text-blue-500',
                 resolved: "bg-emerald-500/10 text-emerald-500",
             }
             return <Badge className={`font-black uppercase italic text-[8px] tracking-widest px-2 ${colors[s]}`}>{s}</Badge>
@@ -53,7 +53,7 @@ function SupportPage() {
     const [data, setData] = useState<Ticket[]>([])
 
     useEffect(() => {
-        fetch('/data/support.json')
+        fetch('/data/hr/support.json')
             .then(res => res.json())
             .then(d => setData(d))
     }, [])
@@ -83,7 +83,7 @@ function SupportPage() {
                 <DataTable
                     columns={columns}
                     data={data}
-                    searchKey="subject"
+                    searchColumn="subject"
                     onEdit={(row) => toast.info(`Initializing response for #${row.id}`)}
                     onDelete={(row) => {
                         setData(data.filter(d => d.id !== row.id))

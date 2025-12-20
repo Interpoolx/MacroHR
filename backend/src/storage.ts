@@ -7,6 +7,8 @@ export interface Storage {
     createUser(user: Partial<User>): Promise<User>;
     getMembers(): Promise<Member[]>;
     getDocuments(): Promise<Document[]>;
+    getSettings(): Promise<{ key: string; value: string }[]>;
+    updateSetting(key: string, value: string): Promise<void>;
 }
 
 export class D1Storage implements Storage {
@@ -35,6 +37,17 @@ export class D1Storage implements Storage {
         const { results } = await this.db.prepare('SELECT * FROM documents ORDER BY upload_date DESC').all<Document>();
         return results;
     }
+
+    async getSettings(): Promise<{ key: string; value: string }[]> {
+        const { results } = await this.db.prepare('SELECT key, value FROM settings').all<{ key: string; value: string }>();
+        return results;
+    }
+
+    async updateSetting(key: string, value: string): Promise<void> {
+        await this.db.prepare(
+            'INSERT INTO settings (key, value) VALUES (?, ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value, updated_at = CURRENT_TIMESTAMP'
+        ).bind(key, value).run();
+    }
 }
 
 // Mock/JSON storage for when DB is not available
@@ -55,6 +68,14 @@ export class JsonStorage implements Storage {
 
     async getDocuments(): Promise<Document[]> {
         return [];
+    }
+
+    async getSettings(): Promise<{ key: string; value: string }[]> {
+        return [];
+    }
+
+    async updateSetting(key: string, value: string): Promise<void> {
+        // No-op for mock
     }
 }
 

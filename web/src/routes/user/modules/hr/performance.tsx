@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { createColumnHelper, ColumnDef } from '@tanstack/react-table'
-import { DataTable } from '../../components/shared/DataTable'
+import { DataTable } from '../../../../components/shared/DataTable'
 import { useState, useEffect } from 'react'
 import { Badge } from "@shared/components/ui/badge"
 import { toast } from "sonner"
@@ -16,7 +16,7 @@ interface PerformanceReview {
   feedback: string
 }
 
-export const Route = createFileRoute('/user/performance')({
+export const Route = createFileRoute('/user/modules/hr/performance')({
   component: PerformanceManagementPage,
 })
 
@@ -47,10 +47,10 @@ const columns: ColumnDef<PerformanceReview, any>[] = [
       const colors = {
         completed: "bg-emerald-500/10 text-emerald-500",
         pending: "bg-orange-500/10 text-orange-500",
-        'in-progress': "bg-blue-500/10 text-blue-500",
+        'in-progress': 'bg-blue-500/10 text-blue-500',
       }
       return (
-        <Badge variant="outline" className={`font-black uppercase italic text-[9px] tracking-widest px-2 ${colors[status as keyof typeof colors]}`}>
+        <Badge variant="outline" className={"font-black uppercase italic text-[9px] tracking-widest px-2 ${colors[status as keyof typeof colors]}"}>
           {status}
         </Badge>
       )
@@ -62,7 +62,7 @@ function PerformanceManagementPage() {
   const [data, setData] = useState<PerformanceReview[]>([])
 
   useEffect(() => {
-    fetch('/data/performance.json')
+    fetch('/data/hr/performance.json')
       .then(res => res.json())
       .then(d => setData(d))
   }, [])
@@ -92,7 +92,7 @@ function PerformanceManagementPage() {
         <DataTable
           columns={columns}
           data={data}
-          searchKey="employeeName"
+          searchColumn="employeeName"
           onDelete={(row) => {
             setData(data.filter(d => d.id !== row.id))
             toast.info("Review Record Purged")

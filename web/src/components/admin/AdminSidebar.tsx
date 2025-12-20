@@ -6,11 +6,24 @@ import {
     Shield,
     ChevronLeft,
     ChevronRight,
+    ChevronDown,
     LogOut,
-    Home
+    Home,
+    Palette,
+    Box
 } from 'lucide-react';
 import { Link, useNavigate } from '@tanstack/react-router';
 import { signOut } from '@shared/lib/supabase';
+import { useSiteConfig } from '@shared/config/SiteConfigContext';
+import { themes } from '@shared/lib/themes';
+import { modules } from '@shared/config/modules';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@shared/components/ui/select';
 
 interface SidebarProps {
     isMobileOpen: boolean;
@@ -32,6 +45,7 @@ const AdminSidebar: React.FC<SidebarProps> = ({
     isCollapsed,
     onCollapse
 }) => {
+    const { config, setTheme, setModule } = useSiteConfig();
     const navigate = useNavigate();
 
     const handleSignOut = async () => {
@@ -49,10 +63,12 @@ const AdminSidebar: React.FC<SidebarProps> = ({
     }
 
     const sidebarClasses = `
-    fixed inset-y-0 left-0 z-40 bg-[#050505] border-r border-white/5 transition-all duration-300 ease-in-out
+    fixed inset-y-0 left-0 z-40 bg-[var(--color-sidebar)] text-[var(--color-sidebar-foreground)] border-r border-[var(--color-sidebar-border)] transition-all duration-300 ease-in-out
     ${isCollapsed ? 'w-20' : 'w-64'}
     ${isMobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
   `;
+
+    const [showSwitchers, setShowSwitchers] = React.useState(false);
 
     return (
         <>
@@ -78,7 +94,7 @@ const AdminSidebar: React.FC<SidebarProps> = ({
                         )}
                         <button
                             onClick={onCollapse}
-                            className="hidden lg:flex p-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-slate-400 transition-all"
+                            className="hidden lg:flex p-2 rounded-xl bg-muted/20 border border-border/10 hover:bg-muted/30 text-muted-foreground transition-all"
                         >
                             {isCollapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
                         </button>
@@ -96,10 +112,10 @@ const AdminSidebar: React.FC<SidebarProps> = ({
                                     activeOptions={{ exact: isDashboard }}
                                     onClick={() => isMobileOpen && onMobileToggle()}
                                     activeProps={{
-                                        className: 'bg-primary text-white shadow-xl shadow-primary/20 scale-[1.02]'
+                                        className: 'bg-primary text-primary-foreground shadow-xl shadow-primary/20 scale-[1.02]'
                                     }}
                                     inactiveProps={{
-                                        className: 'text-slate-400 hover:bg-white/5 hover:text-white'
+                                        className: 'text-muted-foreground/80 hover:bg-muted/20 hover:text-foreground'
                                     }}
                                     className="w-full flex items-center gap-4 px-4 py-3.5 rounded-2xl transition-all duration-300 group font-black uppercase italic text-xs tracking-widest overflow-hidden"
                                 >
@@ -112,13 +128,79 @@ const AdminSidebar: React.FC<SidebarProps> = ({
                         })}
                     </nav>
 
+                    {/* Collapsible Switchers Section */}
+                    {!isCollapsed && (
+                        <div className="px-6 py-2 border-t border-border/5">
+                            <button
+                                onClick={() => setShowSwitchers(!showSwitchers)}
+                                className="w-full flex items-center justify-between px-2 py-3 text-[8px] font-black uppercase tracking-[0.2em] text-muted-foreground/60 hover:text-primary transition-colors italic group"
+                            >
+                                <div className="flex items-center gap-2">
+                                    <Palette size={10} className={showSwitchers ? "text-primary" : ""} />
+                                    <span>Engine Control</span>
+                                </div>
+                                <div className={`transition-transform duration-300 ${showSwitchers ? 'rotate-180' : ''}`}>
+                                    <ChevronDown size={10} />
+                                </div>
+                            </button>
+
+                            {showSwitchers && (
+                                <div className="space-y-4 pt-2 pb-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                                    <div className="space-y-2">
+                                        <div className="flex items-center gap-2 px-2 text-[8px] font-black uppercase tracking-[0.2em] text-muted-foreground/40 italic">
+                                            <span>Visual Theme</span>
+                                        </div>
+                                        <Select value={config.currentTheme} onValueChange={(v) => setTheme(v as any)}>
+                                            <SelectTrigger className="h-10 bg-muted/20 border-border/50 rounded-xl text-[10px] font-black uppercase italic tracking-widest text-foreground focus:ring-primary/20">
+                                                <SelectValue />
+                                            </SelectTrigger>
+                                            <SelectContent className="bg-card border-border rounded-xl">
+                                                {Object.entries(themes).map(([id, theme]) => (
+                                                    <SelectItem
+                                                        key={id}
+                                                        value={id}
+                                                        className="text-[10px] font-black uppercase italic tracking-widest focus:bg-primary/10 focus:text-primary transition-colors py-3"
+                                                    >
+                                                        {theme.name}
+                                                    </SelectItem>
+                                                ))}
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+
+                                    <div className="space-y-2">
+                                        <div className="flex items-center gap-2 px-2 text-[8px] font-black uppercase tracking-[0.2em] text-muted-foreground/40 italic">
+                                            <span>Core Architecture</span>
+                                        </div>
+                                        <Select value={config.currentModule} onValueChange={(v) => setModule(v as any)}>
+                                            <SelectTrigger className="h-10 bg-muted/20 border-border/50 rounded-xl text-[10px] font-black uppercase italic tracking-widest text-foreground focus:ring-primary/20">
+                                                <SelectValue />
+                                            </SelectTrigger>
+                                            <SelectContent className="bg-card border-border rounded-xl">
+                                                {Object.entries(modules).map(([id, mod]) => (
+                                                    <SelectItem
+                                                        key={id}
+                                                        value={id}
+                                                        className="text-[10px] font-black uppercase italic tracking-widest focus:bg-primary/10 focus:text-primary transition-colors py-3"
+                                                    >
+                                                        {mod.name}
+                                                    </SelectItem>
+                                                ))}
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    )}
+
                     {/* Footer Actions */}
-                    <div className="p-6 mt-auto border-t border-white/5 space-y-2 relative overflow-hidden">
+                    <div className="p-6 mt-auto border-t border-border/10 space-y-2 relative overflow-hidden">
                         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/10 to-transparent" />
 
                         <Link
                             to="/"
-                            className={`flex items-center gap-4 px-4 py-3.5 rounded-2xl text-slate-400 hover:bg-white/5 hover:text-white transition-all font-black uppercase italic text-xs tracking-widest ${isCollapsed ? 'justify-center' : ''}`}
+                            className={`flex items-center gap-4 px-4 py-3.5 rounded-2xl text-muted-foreground hover:bg-muted/20 hover:text-foreground transition-all font-black uppercase italic text-xs tracking-widest ${isCollapsed ? 'justify-center' : ''}`}
                         >
                             <Home size={18} />
                             {!isCollapsed && <span className="truncate">Back to Site</span>}
@@ -132,7 +214,7 @@ const AdminSidebar: React.FC<SidebarProps> = ({
                                     rel="noopener noreferrer"
                                     className="block group"
                                 >
-                                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-600 group-hover:text-primary transition-colors">By @Web4strategy</span>
+                                    <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground/40 group-hover:text-primary transition-colors">By @Web4strategy</span>
                                     <div className="flex items-center gap-1 mt-1">
                                         <div className="h-[2px] w-4 bg-primary/20 rounded-full group-hover:w-full transition-all duration-500" />
                                     </div>

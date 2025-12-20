@@ -1,66 +1,63 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { createColumnHelper, ColumnDef } from '@tanstack/react-table'
-import { DataTable } from '../../components/shared/DataTable'
+import { createColumnHelper } from '@tanstack/react-table'
+import { DataTable } from '../../../../components/shared/DataTable'
 import { useState, useEffect } from 'react'
 import { Badge } from "@shared/components/ui/badge"
 import { toast } from "sonner"
 import { Button } from "@shared/components/ui/button"
-import { Files, FileDown, UploadCloud } from 'lucide-react'
+import { ScrollText, Plus } from 'lucide-react'
 
-interface Document {
+interface JobReference {
     id: string
-    name: string
+    employeeName: string
+    requestDate: string
     type: string
-    category: string
-    uploadDate: string
-    owner: string
+    recipient: string
+    status: 'approved' | 'pending' | 'rejected'
 }
 
-export const Route = createFileRoute('/user/documents')({
-    component: DocumentsPage,
+export const Route = createFileRoute('/user/modules/hr/job-reference')({
+    component: JobReferencePage,
 })
 
-const columnHelper = createColumnHelper<Document>()
+const columnHelper = createColumnHelper<JobReference>()
 
-const columns: ColumnDef<Document, any>[] = [
-    columnHelper.accessor('name', {
-        header: 'Document Name',
-        cell: info => (
-            <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-slate-400">
-                    <span className="text-[9px] font-black uppercase">{info.row.original.type}</span>
-                </div>
-                <span className="font-black uppercase italic text-sm tracking-tight">{info.getValue()}</span>
-            </div>
-        ),
+const columns = [
+    columnHelper.accessor('employeeName', {
+        header: 'Subject',
+        cell: info => <span className="font-black uppercase italic text-sm tracking-tight text-white">{info.getValue()}</span>,
     }),
-    columnHelper.accessor('owner', {
-        header: 'Personnel',
+    columnHelper.accessor('recipient', {
+        header: 'Recipient',
         cell: info => <span className="text-xs font-bold text-slate-400">{info.getValue()}</span>,
     }),
-    columnHelper.accessor('category', {
-        header: 'Category',
+    columnHelper.accessor('type', {
+        header: 'Doc Type',
         cell: info => <span className="text-[10px] font-black uppercase italic tracking-widest text-primary">{info.getValue()}</span>,
     }),
-    columnHelper.accessor('uploadDate', {
-        header: 'Date Uploaded',
-        cell: info => <span className="font-mono text-slate-500 text-xs">{info.getValue()}</span>,
-    }),
-    columnHelper.display({
-        id: 'download',
-        cell: () => (
-            <Button variant="ghost" size="icon" className="h-8 w-8 text-primary hover:bg-white/10">
-                <FileDown size={14} />
-            </Button>
-        )
+    columnHelper.accessor('status', {
+        header: 'Status',
+        cell: info => {
+            const status = info.getValue()
+            const colors = {
+                approved: "bg-emerald-500/10 text-emerald-500",
+                pending: "bg-orange-500/10 text-orange-500",
+                rejected: "bg-red-500/10 text-red-500",
+            }
+            return (
+                <Badge variant="outline" className={"font-black uppercase italic text-[9px] tracking-widest px-2 ${colors[status]}"}>
+                    {status}
+                </Badge>
+            )
+        }
     })
 ]
 
-function DocumentsPage() {
-    const [data, setData] = useState<Document[]>([])
+function JobReferencePage() {
+    const [data, setData] = useState<JobReference[]>([])
 
     useEffect(() => {
-        fetch('/data/documents.json')
+        fetch('/data/hr/job_references.json')
             .then(res => res.json())
             .then(d => setData(d))
     }, [])
@@ -71,18 +68,18 @@ function DocumentsPage() {
                 <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[100px] -mr-32 -mt-32 pointer-events-none" />
                 <div className="relative z-10 flex items-center gap-4">
                     <div className="w-16 h-16 rounded-[1.5rem] bg-primary/20 flex items-center justify-center text-primary border border-primary/20 shadow-xl shadow-primary/10">
-                        <Files size={32} />
+                        <ScrollText size={32} />
                     </div>
                     <div>
                         <h1 className="text-4xl font-black uppercase italic tracking-tighter leading-none">
-                            Artifact <span className="text-primary">Library</span>
+                            Reference <span className="text-primary">Vault</span>
                         </h1>
-                        <p className="text-slate-500 mt-2 font-bold uppercase italic text-xs tracking-[0.2em]">Secure centralized repository for organizational documents</p>
+                        <p className="text-slate-500 mt-2 font-bold uppercase italic text-xs tracking-[0.2em]">Process employment verifications and reference letters</p>
                     </div>
                 </div>
                 <Button className="relative z-10 h-12 px-8 accent-gradient border-0 rounded-xl font-black uppercase italic shadow-xl shadow-primary/20 hover:scale-105 active:scale-95 transition-all text-[10px] tracking-widest">
-                    <UploadCloud className="w-4 h-4 mr-2" />
-                    Upload Entity
+                    <Plus className="w-4 h-4 mr-2" />
+                    Issue Reference
                 </Button>
             </div>
 
@@ -90,10 +87,10 @@ function DocumentsPage() {
                 <DataTable
                     columns={columns}
                     data={data}
-                    searchKey="name"
+                    searchColumn="employeeName"
                     onDelete={(row) => {
                         setData(data.filter(d => d.id !== row.id))
-                        toast.info("Document Purged from Archive")
+                        toast.info("Reference Request Expunged")
                     }}
                 />
             </div>
