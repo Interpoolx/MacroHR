@@ -1,13 +1,14 @@
 import { Link } from '@tanstack/react-router'
-import { useSiteConfig } from '@config/SiteConfigFromDB'
+import { useSiteConfig } from '@config'
 import { PageLayout } from '../layout/PageLayout'
 import { SEO } from '../SEO'
 
 export function StandardPage({ page }: { page: any }) {
-    const config = useSiteConfig()
+    const { config } = useSiteConfig()
+    const module = config.module
 
     // Safety check for HTML content
-    const htmlContent = (page.content?.[0]?.data?.html || '').replace(/{site_name}/g, config.name || 'Anything+')
+    const htmlContent = (page.content?.[0]?.data?.html || '').replace(/{site_name}/g, module?.name || 'Anything+')
 
     return (
         <PageLayout>

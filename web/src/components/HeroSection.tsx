@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Github, Rocket, Zap, Layout, Code2, Layers } from "lucide-react";
-import { useSiteConfig } from "@config/SiteConfigFromDB";
+import { useSiteConfig } from "@config";
 
 export const HeroSection = () => {
   const { config } = useSiteConfig();

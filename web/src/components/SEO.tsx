@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useSiteConfig } from '@config/SiteConfigFromDB'
+import { useSiteConfig } from '@config'
 
 interface SEOProps {
     title?: string
@@ -8,24 +8,25 @@ interface SEOProps {
 }
 
 export function SEO({ title, description, ogImage }: SEOProps) {
-    const config = useSiteConfig()
+    const { config } = useSiteConfig()
 
     useEffect(() => {
         if (!config) return
 
         const isHomepage = window.location.pathname === '/'
-        const siteName = config.name || 'Anything+'
+        const module = config.module
+        const siteName = module?.name || 'Anything+'
 
         let finalTitle = ''
         let finalDescription = ''
 
         if (isHomepage) {
             // Homepage logic: Priority to specific fields, fallback to sitewide defaults
-            finalTitle = config.seo?.homepageTitle || siteName
-            finalDescription = config.seo?.homepageDescription || config.seo?.descriptionDefault || config.description
+            finalTitle = module?.seo?.homepageTitle || siteName
+            finalDescription = module?.seo?.homepageDescription || module?.seo?.descriptionDefault || module?.description
         } else {
             // Other pages: Use template and individual title/description
-            const titleTemplate = config.seo?.titleTemplate || '%s | {site_name}'
+            const titleTemplate = module?.seo?.titleTemplate || '%s | {site_name}'
             if (title) {
                 finalTitle = titleTemplate.replace(/{site_name}/g, siteName).replace(/%s/g, title)
             } else {
@@ -33,16 +34,16 @@ export function SEO({ title, description, ogImage }: SEOProps) {
                 finalTitle = titleTemplate.replace(/%s\s*\|\s*/g, '').replace(/\s*\|\s*%s/g, '').replace(/{site_name}/g, siteName).trim()
                 if (!finalTitle) finalTitle = siteName
             }
-            finalDescription = description || config.seo?.descriptionDefault || config.description
+            finalDescription = description || module?.seo?.descriptionDefault || module?.description
         }
 
         document.title = finalTitle
 
         // Favicon
-        if (config.logo?.favicon) {
-            updateLinkTag('icon', config.logo.favicon)
-            updateLinkTag('shortcut icon', config.logo.favicon)
-            updateLinkTag('apple-touch-icon', config.logo.favicon)
+        if (module?.logo?.favicon) {
+            updateLinkTag('icon', module.logo.favicon)
+            updateLinkTag('shortcut icon', module.logo.favicon)
+            updateLinkTag('apple-touch-icon', module.logo.favicon)
         }
 
         // Meta Description
@@ -55,9 +56,9 @@ export function SEO({ title, description, ogImage }: SEOProps) {
         let finalOgImage = ogImage
         if (!finalOgImage) {
             if (isHomepage) {
-                finalOgImage = config.seo?.homepageOgImage || config.seo?.ogImageDefault || config.logo?.url
+                finalOgImage = module?.seo?.homepageOgImage || module?.seo?.ogImageDefault || module?.logo?.url
             } else {
-                finalOgImage = config.seo?.ogImageDefault || config.logo?.url
+                finalOgImage = module?.seo?.ogImageDefault || module?.logo?.url
             }
         }
 

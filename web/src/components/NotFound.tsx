@@ -1,15 +1,15 @@
 import { useRouterState } from "@tanstack/react-router";
-import { useSiteConfig } from '@config/SiteConfigFromDB'
+import { useSiteConfig } from '@config'
 import { useEffect } from "react";
 
 const NotFound = () => {
-  const config = useSiteConfig()
+  const { config } = useSiteConfig()
   const routerState = useRouterState();
   const currentPath = routerState.location.pathname;
 
   useEffect(() => {
-    console.error(`404 Error: User attempted to access non-existent route on ${config.name}:`, currentPath);
-  }, [currentPath, config.name]);
+    console.error(`404 Error: User attempted to access non-existent route on ${config.module?.name || 'MacroHR'}:`, currentPath);
+  }, [currentPath, config.module?.name]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-muted">

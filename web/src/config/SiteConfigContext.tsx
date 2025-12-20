@@ -12,6 +12,7 @@ interface SiteConfigContextType {
     setTheme: (theme: ThemeName) => void;
     setModule: (module: ModuleName) => void;
     refreshConfig: () => Promise<void>;
+    isLoading: boolean;
 }
 
 const SiteConfigContext = createContext<SiteConfigContextType | undefined>(undefined)
@@ -57,6 +58,7 @@ const applyTheme = (themeName: ThemeName) => {
 };
 
 export const SiteConfigProvider = ({ children }: { children: React.ReactNode }) => {
+    const [isLoading, setIsLoading] = useState(true)
     // Initial state setup from localStorage or staticConfig
     const [config, setConfig] = useState<SiteConfig>(() => {
         const savedTheme = localStorage.getItem('macrohr_theme') as ThemeName;
@@ -89,22 +91,24 @@ export const SiteConfigProvider = ({ children }: { children: React.ReactNode }) 
     const refreshConfig = useCallback(async () => {
         try {
             const dynamic = await getSiteConfig();
-            if (!dynamic) return; // Keep existing if null
+            if (dynamic) {
+                setConfig(prev => {
+                    // Only update if something actually changed to avoid infinite cycles
+                    const hasChanged = JSON.stringify(dynamic) !== JSON.stringify(staticConfig);
+                    if (!hasChanged) return prev;
 
-            setConfig(prev => {
-                // Only update if something actually changed to avoid infinite cycles
-                const hasChanged = JSON.stringify(dynamic) !== JSON.stringify(staticConfig);
-                if (!hasChanged) return prev;
-
-                return {
-                    ...dynamic,
-                    currentTheme: prev.currentTheme,
-                    currentModule: prev.currentModule,
-                    module: prev.module
-                };
-            });
+                    return {
+                        ...dynamic,
+                        currentTheme: prev.currentTheme,
+                        currentModule: prev.currentModule,
+                        module: prev.module
+                    };
+                });
+            }
         } catch (e) {
             // Silent fail for dynamic fetch during dev
+        } finally {
+            setIsLoading(false)
         }
     }, []);
 
@@ -145,8 +149,12 @@ export const SiteConfigProvider = ({ children }: { children: React.ReactNode }) 
     }, [config.currentTheme]);
 
     return (
-        <SiteConfigContext.Provider value={{ config, setTheme, setModule, refreshConfig }}>
-            {children}
+        <SiteConfigContext.Provider value={{ config, setTheme, setModule, refreshConfig, isLoading }}>
+            {isLoading ? (
+                <div className="fixed inset-0 bg-background flex items-center justify-center z-[9999]">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                </div>
+            ) : children}
         </SiteConfigContext.Provider>
     )
 }

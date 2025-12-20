@@ -1,11 +1,12 @@
-import { useSiteConfig } from '@config/SiteConfigFromDB'
+import { useSiteConfig } from '@config'
 import { PageLayout } from '../layout/PageLayout'
 import { SEO } from '../SEO'
 
 export function PostPage({ page }: { page: any }) {
-    const config = useSiteConfig()
+    const { config } = useSiteConfig()
+    const module = config.module
 
-    const htmlContent = (page.content?.[0]?.data?.html || '').replace(/{site_name}/g, config.name || 'Anything+')
+    const htmlContent = (page.content?.[0]?.data?.html || '').replace(/{site_name}/g, module?.name || 'Anything+')
 
     return (
         <PageLayout>

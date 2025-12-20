@@ -14,9 +14,9 @@ import {
 } from 'lucide-react';
 import { Link, useNavigate } from '@tanstack/react-router';
 import { signOut } from '@shared/lib/supabase';
-import { useSiteConfig } from '@config/SiteConfigFromDB';
+import { useSiteConfig } from '@config';
 import { themes } from '@shared/lib/themes';
-import { modules } from '@config/modules';
+import { modules } from '@config';
 import {
     Select,
     SelectContent,
@@ -177,7 +177,7 @@ const AdminSidebar: React.FC<SidebarProps> = ({
                                                 <SelectValue />
                                             </SelectTrigger>
                                             <SelectContent className="bg-card border-border rounded-xl">
-                                                {Object.entries(modules).map(([id, mod]) => (
+                                                {Object.entries(modules).map(([id, mod]: [string, any]) => (
                                                     <SelectItem
                                                         key={id}
                                                         value={id}

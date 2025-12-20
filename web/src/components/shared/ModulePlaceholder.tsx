@@ -8,7 +8,7 @@ import {
     ShieldCheck,
     ArrowRight
 } from 'lucide-react';
-import { useSiteConfig } from '@config/SiteConfigFromDB';
+import { useSiteConfig } from '@config';
 import { DataTable } from '../shared/DataTable';
 
 interface ModulePlaceholderProps {

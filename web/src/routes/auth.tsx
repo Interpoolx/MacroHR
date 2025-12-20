@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useSiteConfig } from '@config/SiteConfigFromDB'
+import { useSiteConfig } from '@config'
 import { Button } from "@/components/ui/button"
 import { Shield, User, Zap, ArrowRight, Lock, Mail, CheckCircle2, AlertCircle } from 'lucide-react'
 
@@ -40,7 +40,7 @@ const demoAccounts = [
 ]
 
 function AuthPage() {
-  const config = useSiteConfig()
+  const { config } = useSiteConfig()
   const navigate = useNavigate()
   const [selectedAccount, setSelectedAccount] = useState<typeof demoAccounts[0] | null>(null)
   const [isLoading, setIsLoading] = useState(false)
@@ -101,7 +101,7 @@ function AuthPage() {
               <Zap className="w-7 h-7 text-white fill-current" />
             </div>
             <span className="text-3xl font-black italic uppercase tracking-tighter gradient-text">
-              {config.name}
+              {config.module?.name || 'MacroHR'}
             </span>
           </div>
 
@@ -228,7 +228,7 @@ function AuthPage() {
 
           <div className="mt-8 text-center">
             <p className="text-white/30 text-xs font-black uppercase tracking-[0.2em]">
-              Powered by <span className="text-white/50 italic">{config.name} React 19 Engine</span>
+              Powered by <span className="text-white/50 italic">{config.module?.name || 'MacroHR'} React 19 Engine</span>
             </p>
           </div>
         </div>

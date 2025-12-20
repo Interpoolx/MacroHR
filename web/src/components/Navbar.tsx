@@ -22,7 +22,7 @@ import type { ModuleName } from '@config/modules';
 import { themes } from '@shared/lib/themes';
 import type { ThemeName } from '@shared/lib/themes';
 import { toast } from 'sonner';
-import { useSiteConfig } from '@config/SiteConfigFromDB';
+import { useSiteConfig } from '@config';
 
 export function Navbar() {
     const { config, setModule, setTheme } = useSiteConfig();

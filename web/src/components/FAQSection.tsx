@@ -6,7 +6,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-import { useSiteConfig } from "@config/SiteConfigFromDB";
+import { useSiteConfig } from "@config";
 
 const DEFAULT_FAQS = [
   {
