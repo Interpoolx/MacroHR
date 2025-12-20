@@ -1,8 +1,8 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useSiteConfig } from '@shared/config/SiteConfigFromDB'
-import { Button } from "@shared/components/ui/button"
+import { useSiteConfig } from '@config/SiteConfigFromDB'
+import { Button } from "@/components/ui/button"
 import { Shield, User, Zap, ArrowRight, Lock, Mail, CheckCircle2, AlertCircle } from 'lucide-react'
 
 export const Route = createFileRoute('/auth')({

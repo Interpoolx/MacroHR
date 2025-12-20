@@ -1,6 +1,12 @@
 import { Context } from 'hono';
 import { User, Member, Document } from '@shared/types';
-import { siteConfig } from '@shared/config/site';
+
+// Backend config (no React dependencies)
+const config = {
+  database: {
+    provider: 'd1' as const
+  }
+} as const;
 
 export interface Storage {
     getUsers(): Promise<User[]>;
@@ -81,7 +87,7 @@ export class JsonStorage implements Storage {
 
 export function getStorage(c: Context): Storage {
     const db = (c.env as any).DB;
-    const provider = siteConfig.database.provider;
+    const provider = config.database.provider;
 
     if (provider === 'd1' && db) {
         return new D1Storage(db);

@@ -7,6 +7,9 @@
       ],
       "@shared/*": [
         "../shared/*"
+      ],
+      "@config": [
+        "./src/config"
       ]
     },
     "target": "ES2022",

@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react'
 import { getSiteConfig } from './dynamicSite'
 import { siteConfig as staticConfig } from './site'
-import { type ThemeName, themes } from '../lib/themes'
+import { type ThemeName, themes } from '@shared/lib/themes'
 import { type ModuleName, getCurrentModule } from './modules'
 
 // Define the shape of our config based on static type for now

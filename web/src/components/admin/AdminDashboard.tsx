@@ -14,7 +14,7 @@ import {
     Calendar,
     Search
 } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@shared/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import {
     AreaChart,
     Area,

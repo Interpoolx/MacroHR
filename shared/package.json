@@ -1,0 +1,11 @@
+{
+  "name": "@macrohr/shared",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "exports": {
+    "./types": "./types/index.ts",
+    "./lib": "./lib/index.ts",
+    "./config": "./config/index.ts"
+  }
+}

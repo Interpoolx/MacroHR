@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router'
-import { useSiteConfig } from '@shared/config/SiteConfigFromDB'
+import { useSiteConfig } from '@config/SiteConfigFromDB'
 import { PageLayout } from '../layout/PageLayout'
 import { SEO } from '../SEO'
 

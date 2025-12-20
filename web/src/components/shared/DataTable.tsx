@@ -18,13 +18,13 @@ import {
     TableHead,
     TableHeader,
     TableRow,
-} from "@shared/components/ui/table";
+} from "@/components/ui/table";
 import {
     Button
-} from "@shared/components/ui/button";
+} from "@/components/ui/button";
 import {
     Input
-} from "@shared/components/ui/input";
+} from "@/components/ui/input";
 import {
     DropdownMenu,
     DropdownMenuCheckboxItem,
@@ -33,7 +33,7 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-} from "@shared/components/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 import {
     ChevronLeft,
     ChevronRight,
@@ -53,17 +53,17 @@ import {
     Filter
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Badge } from "@shared/components/ui/badge";
-import { Checkbox } from "@shared/components/ui/checkbox";
+import { Badge } from "@/components/ui/badge";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
     Select,
     SelectContent,
     SelectItem,
     SelectTrigger,
     SelectValue
-} from "@shared/components/ui/select";
-import { Separator } from "@shared/components/ui/separator";
-import { Skeleton } from "@shared/components/ui/skeleton";
+} from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
+import { Skeleton } from "@/components/ui/skeleton";
 import { toast } from "sonner";
 import {
     AlertDialog,
@@ -74,7 +74,7 @@ import {
     AlertDialogFooter,
     AlertDialogHeader,
     AlertDialogTitle,
-} from "@shared/components/ui/alert-dialog";
+} from "@/components/ui/alert-dialog";
 
 interface DataTableConfig {
     addLabel?: string;

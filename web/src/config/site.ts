@@ -1,8 +1,8 @@
 // src/config/site.ts
 
 import { getCurrentModule, type ModuleName, type ModuleConfig } from "./modules";
-import { defaultTheme, type ThemeName } from "../lib/themes";
-import { getEnv } from "./env"; // Adjust path if needed
+import { defaultTheme, type ThemeName } from "@shared/lib/themes";
+import { getEnv } from "@shared/config/env";
 
 // === SELECTED CONFIGURATION ===
 // Change these to switch between modules/themes
