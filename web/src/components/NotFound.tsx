@@ -1,5 +1,5 @@
 import { useRouterState } from "@tanstack/react-router";
-import { useSiteConfig } from '@shared/config/SiteConfigFromDB'
+import { useSiteConfig } from '@config/SiteConfigFromDB'
 import { useEffect } from "react";
 
 const NotFound = () => {

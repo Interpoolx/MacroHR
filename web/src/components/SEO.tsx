@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useSiteConfig } from '@shared/config/SiteConfigFromDB'
+import { useSiteConfig } from '@config/SiteConfigFromDB'
 
 interface SEOProps {
     title?: string

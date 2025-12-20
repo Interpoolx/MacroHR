@@ -4,9 +4,9 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@shared/components/ui/accordion";
+} from "@/components/ui/accordion";
 
-import { useSiteConfig } from "@shared/config/SiteConfigContext";
+import { useSiteConfig } from "@config/SiteConfigFromDB";
 
 const DEFAULT_FAQS = [
   {

@@ -2,9 +2,9 @@ import { createFileRoute } from '@tanstack/react-router'
 import { useState, useEffect } from 'react'
 import { createColumnHelper, ColumnDef } from '@tanstack/react-table'
 import { DataTable } from '../../../../components/shared/DataTable'
-import { Badge } from "@shared/components/ui/badge"
+import { Badge } from "@/components/ui/badge"
 import { Calendar, Clock, Download, Filter, Users } from 'lucide-react'
-import { Button } from "@shared/components/ui/button"
+import { Button } from "@/components/ui/button"
 import { z } from 'zod'
 
 const searchSchema = z.object({

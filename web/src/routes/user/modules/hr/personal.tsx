@@ -2,8 +2,8 @@ import { createFileRoute } from '@tanstack/react-router'
 import { useState, useEffect } from 'react'
 import { createColumnHelper, ColumnDef } from '@tanstack/react-table'
 import { DataTable } from '../../../../components/shared/DataTable'
-import { Badge } from "@shared/components/ui/badge"
-import { Avatar, AvatarFallback, AvatarImage } from "@shared/components/ui/avatar"
+import { Badge } from "@/components/ui/badge"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { toast } from "sonner"
 import {
     Dialog,
@@ -11,10 +11,10 @@ import {
     DialogHeader,
     DialogTitle,
     DialogFooter
-} from "@shared/components/ui/dialog"
-import { Button } from "@shared/components/ui/button"
-import { Input } from "@shared/components/ui/input"
-import { Label } from "@shared/components/ui/label"
+} from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import { User, ShieldCheck, Mail, MapPin, Phone, Building2 } from 'lucide-react'
 
 interface EmployeeProfile {

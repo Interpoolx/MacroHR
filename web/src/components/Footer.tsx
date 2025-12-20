@@ -1,5 +1,5 @@
 import { Github, Twitter, Mail } from "lucide-react";
-import { useSiteConfig } from '@shared/config/SiteConfigContext';
+import { useSiteConfig } from '@config/SiteConfigFromDB';
 
 export const Footer = () => {
   const { config } = useSiteConfig();

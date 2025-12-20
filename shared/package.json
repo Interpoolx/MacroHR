@@ -3,6 +3,9 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
+  "scripts": {
+    "build": "echo 'Shared package is pure utilities - no build needed'"
+  },
   "exports": {
     "./types": "./types/index.ts",
     "./lib": "./lib/index.ts",

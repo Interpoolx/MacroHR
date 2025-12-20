@@ -14,7 +14,7 @@ import {
   Users,
   Trash2
 } from "lucide-react";
-import { useSiteConfig } from "@shared/config/SiteConfigContext";
+import { useSiteConfig } from "@config/SiteConfigFromDB";
 
 const ICON_MAP: Record<string, any> = {
   Zap,

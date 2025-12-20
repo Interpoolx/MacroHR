@@ -1,9 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useState, useEffect } from 'react'
-import { Badge } from "@shared/components/ui/badge"
+import { Badge } from "@/components/ui/badge"
 import { CheckCircle2, Circle, Clock, Plus, Tag, Trash2 } from 'lucide-react'
-import { Button } from "@shared/components/ui/button"
-import { Card, CardContent } from "@shared/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
 import { toast } from "sonner"
 
 export const Route = createFileRoute('/user/modules/hr/tasks')({

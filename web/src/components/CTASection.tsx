@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { AnimatedSection } from "./AnimatedSection";
-import { Button } from "@shared/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { Github, Rocket, CheckCircle2, Zap } from "lucide-react";
 
 export const CTASection = () => {

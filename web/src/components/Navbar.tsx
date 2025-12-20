@@ -5,9 +5,9 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { supabase, signOut } from '@shared/lib/supabase';
 import { User, LogOut, Shield, LayoutDashboard } from 'lucide-react';
-import { siteConfig } from '@shared/config/site'; // ← Central config with current module
+import { siteConfig } from '@config/site'; // ← Central config with current module
 import { NavLink } from './NavLink';
-import { Button } from '@shared/components/ui/button';
+import { Button } from '@/components/ui/button';
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -15,14 +15,14 @@ import {
     DropdownMenuTrigger,
     DropdownMenuLabel,
     DropdownMenuSeparator
-} from '@shared/components/ui/dropdown-menu';
+} from '@/components/ui/dropdown-menu';
 import { Palette, Box, ChevronDown } from 'lucide-react';
-import { modules } from '@shared/config/modules';
-import type { ModuleName } from '@shared/config/modules';
+import { modules } from '@config/modules';
+import type { ModuleName } from '@config/modules';
 import { themes } from '@shared/lib/themes';
 import type { ThemeName } from '@shared/lib/themes';
 import { toast } from 'sonner';
-import { useSiteConfig } from '@shared/config/SiteConfigContext';
+import { useSiteConfig } from '@config/SiteConfigFromDB';
 
 export function Navbar() {
     const { config, setModule, setTheme } = useSiteConfig();

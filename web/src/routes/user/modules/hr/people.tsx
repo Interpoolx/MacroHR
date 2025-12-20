@@ -2,8 +2,8 @@ import { createFileRoute } from '@tanstack/react-router'
 import { createColumnHelper, ColumnDef } from '@tanstack/react-table'
 import { DataTable } from '../../../../components/shared/DataTable'
 import { useState, useEffect, useCallback } from 'react'
-import { Badge } from "@shared/components/ui/badge"
-import { Avatar, AvatarFallback, AvatarImage } from "@shared/components/ui/avatar"
+import { Badge } from "@/components/ui/badge"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { toast } from "sonner"
 import { X } from 'lucide-react'
 import {
@@ -13,17 +13,17 @@ import {
     DialogTitle,
     DialogFooter,
     DialogDescription
-} from "@shared/components/ui/dialog"
-import { Button } from "@shared/components/ui/button"
-import { Input } from "@shared/components/ui/input"
-import { Label } from "@shared/components/ui/label"
+} from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import {
     Select,
     SelectContent,
     SelectItem,
     SelectTrigger,
     SelectValue
-} from "@shared/components/ui/select"
+} from "@/components/ui/select"
 import { UserPlus, Edit } from 'lucide-react'
 
 interface Person {

@@ -11,16 +11,16 @@ import {
 } from 'lucide-react';
 import { Link, useNavigate } from '@tanstack/react-router';
 import { signOut } from '@shared/lib/supabase';
-import { useSiteConfig } from '@shared/config/SiteConfigContext';
+import { useSiteConfig } from '@config/SiteConfigFromDB';
 import { themes } from '@shared/lib/themes';
-import { modules } from '@shared/config/modules';
+import { modules } from '@config/modules';
 import {
     Select,
     SelectContent,
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from '@shared/components/ui/select';
+} from '@/components/ui/select';
 
 interface SidebarProps {
     isMobileOpen: boolean;

@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import { createColumnHelper, ColumnDef } from '@tanstack/react-table';
 import { DataTable } from '../../components/shared/DataTable';
 import { useState, useEffect } from 'react';
-import { Badge } from "@shared/components/ui/badge";
+import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { Shield, Key, Users as UsersIcon, Plus, Eye, Edit3, Trash2 } from 'lucide-react';
 import {
@@ -12,10 +12,10 @@ import {
   DialogTitle,
   DialogDescription,
   DialogFooter
-} from "@shared/components/ui/dialog";
-import { Button } from "@shared/components/ui/button";
-import { Input } from "@shared/components/ui/input";
-import { Label } from "@shared/components/ui/label";
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 interface Role {
   id: string;

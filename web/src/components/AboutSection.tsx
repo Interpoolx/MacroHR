@@ -1,4 +1,4 @@
-import { useSiteConfig } from '@shared/config/SiteConfigFromDB'
+import { useSiteConfig } from '@config/SiteConfigFromDB'
 
 export function AboutSection() {
     const config = useSiteConfig()

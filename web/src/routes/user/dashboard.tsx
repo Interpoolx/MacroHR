@@ -11,9 +11,9 @@ import {
     Timer,
     Activity
 } from 'lucide-react'
-import { Button } from "@shared/components/ui/button"
-import { Progress } from "@shared/components/ui/progress"
-import { Badge } from "@shared/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Progress } from "@/components/ui/progress"
+import { Badge } from "@/components/ui/badge"
 
 export const Route = createFileRoute('/user/dashboard')({
     component: UserDashboard,

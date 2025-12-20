@@ -2,9 +2,9 @@ import { createFileRoute } from '@tanstack/react-router'
 import { createColumnHelper, ColumnDef } from '@tanstack/react-table'
 import { DataTable } from '../../../../components/shared/DataTable'
 import { useState, useEffect } from 'react'
-import { Badge } from "@shared/components/ui/badge"
+import { Badge } from "@/components/ui/badge"
 import { toast } from "sonner"
-import { Button } from "@shared/components/ui/button"
+import { Button } from "@/components/ui/button"
 import {
     Dialog,
     DialogContent,
@@ -12,9 +12,9 @@ import {
     DialogTitle,
     DialogFooter,
     DialogDescription
-} from "@shared/components/ui/dialog"
-import { Input } from "@shared/components/ui/input"
-import { Label } from "@shared/components/ui/label"
+} from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import { Heart, Plus, Edit } from 'lucide-react'
 
 interface Benefit {

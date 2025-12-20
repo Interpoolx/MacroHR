@@ -1,6 +1,6 @@
 // src/components/NavLink.tsx
 
-import { useSiteConfig } from '@shared/config/SiteConfigContext';
+import { useSiteConfig } from '@config/SiteConfigFromDB';
 
 export function NavLink() {
     const { config } = useSiteConfig();

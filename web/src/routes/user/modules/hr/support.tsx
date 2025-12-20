@@ -2,9 +2,9 @@ import { createFileRoute } from '@tanstack/react-router'
 import { createColumnHelper } from '@tanstack/react-table'
 import { DataTable } from '../../../../components/shared/DataTable'
 import { useState, useEffect } from 'react'
-import { Badge } from "@shared/components/ui/badge"
+import { Badge } from "@/components/ui/badge"
 import { toast } from "sonner"
-import { Button } from "@shared/components/ui/button"
+import { Button } from "@/components/ui/button"
 import { LifeBuoy, Plus } from 'lucide-react'
 
 interface Ticket {
