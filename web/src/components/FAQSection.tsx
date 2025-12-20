@@ -22,7 +22,7 @@ const DEFAULT_FAQS = [
 export const FAQSection = () => {
   const { config } = useSiteConfig();
   const module = config.module;
-  const faqs = module.support?.faq?.items || DEFAULT_FAQS;
+  const faqs = module?.support?.faq?.items || DEFAULT_FAQS;
   return (
     <section id="faq" className="py-32 px-6">
       <div className="max-w-4xl mx-auto">

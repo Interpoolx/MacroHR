@@ -5,7 +5,7 @@ import { useSiteConfig } from '@config/SiteConfigFromDB';
 export function NavLink() {
     const { config } = useSiteConfig();
     // Pull navigation items directly from the active module config
-    const navItems = config.module.nav;
+    const navItems = config.module?.nav || [];
 
     return (
         <div className="hidden md:flex items-center gap-8">

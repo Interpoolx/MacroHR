@@ -18,7 +18,7 @@ interface ModulePlaceholderProps {
 
 const ModulePlaceholder: React.FC<ModulePlaceholderProps> = ({ title, slug }) => {
     const { config } = useSiteConfig();
-    const moduleName = config.module.name;
+    const moduleName = config.module?.name || 'MacroHR';
 
     // Mock data for the placeholder table
     const mockData = [

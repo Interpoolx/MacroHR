@@ -29,7 +29,7 @@ export function Navbar() {
 
     // All module-specific content comes from the active module
     const module = config.module;
-    const logo = module.logo;
+    const logo = module?.logo || { icon: '📋', text: 'MacroHR' };
 
     const [user, setUser] = useState<any>(null);
     const [showMenu, setShowMenu] = useState(false);

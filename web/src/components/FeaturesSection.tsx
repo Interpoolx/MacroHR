@@ -54,7 +54,7 @@ const defaultFeatures = [
 
 export const FeaturesSection = () => {
   const { config } = useSiteConfig();
-  const moduleFeatures = config.module.features || defaultFeatures;
+  const moduleFeatures = config.module?.features || defaultFeatures;
 
   return (
     <section id="features" className="py-24 px-6 relative">
@@ -68,7 +68,7 @@ export const FeaturesSection = () => {
             The <span className="gradient-text">Boring Stuff.</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-medium">
-            Everything you need to ship a modern {config.module.name} dashboard in record time.
+            Everything you need to ship a modern {config.module?.name || 'HR'} dashboard in record time.
             Built with the best technologies available.
           </p>
         </AnimatedSection>

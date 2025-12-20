@@ -5,7 +5,7 @@ import { useSiteConfig } from "@config/SiteConfigFromDB";
 
 export const HeroSection = () => {
   const { config } = useSiteConfig();
-  const module = config.module;
+  const module = config.module || { name: 'MacroHR', description: 'Comprehensive HR Management', url: '/', githubUrl: '/' };
 
   // Split name for styling: "MacroHR" -> "Macro" and "HR"
   const nameParts = module.name.replace(/([A-Z])/g, ' $1').trim().split(' ');

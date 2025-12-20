@@ -50,7 +50,7 @@ const Sidebar: React.FC<SidebarProps> = ({
     const [showSwitchers, setShowSwitchers] = React.useState(false);
 
     // Get sidebar items from current module config
-    const sidebarItems: readonly NavItem[] = config.module.sidebarNav;
+    const sidebarItems: readonly NavItem[] = config.module?.sidebarNav || [];
 
     const filteredNavItems = sidebarItems.filter((item) => {
         if (role === 'manager') return !item.userOnly;
@@ -99,13 +99,13 @@ const Sidebar: React.FC<SidebarProps> = ({
                     >
                         {!isCollapsed && (
                             <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 accent-gradient rounded-2xl flex items-center justify-center text-primary-foreground font-black italic shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
-                                    {config.module.logo.icon}
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-lg font-black uppercase italic tracking-tighter leading-none text-[var(--color-sidebar-foreground)] text-balance">
-                                        {config.module.logo.text}
-                                    </span>
+                                 <div className="w-10 h-10 accent-gradient rounded-2xl flex items-center justify-center text-primary-foreground font-black italic shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
+                                     {config.module?.logo?.icon || '📋'}
+                                 </div>
+                                 <div className="flex flex-col">
+                                     <span className="text-lg font-black uppercase italic tracking-tighter leading-none text-[var(--color-sidebar-foreground)] text-balance">
+                                         {config.module?.logo?.text || 'MacroHR'}
+                                     </span>
                                     <span className="text-[10px] font-bold text-[var(--color-sidebar-foreground)]/60 uppercase tracking-widest mt-1">
                                         {role === 'manager' ? 'Admin Hub' : 'User Portal'}
                                     </span>

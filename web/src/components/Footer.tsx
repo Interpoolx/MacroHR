@@ -3,7 +3,7 @@ import { useSiteConfig } from '@config/SiteConfigFromDB';
 
 export const Footer = () => {
   const { config } = useSiteConfig();
-  const module = config.module;
+  const module = config.module || { logo: { icon: '📋', text: 'MacroHR' }, description: 'Professional Dashboard Kit', name: 'MacroHR' };
 
   return (
     <footer className="border-t border-border py-24 px-6 bg-[var(--color-footer)] text-[var(--color-footer-foreground)] relative overflow-hidden">
